@@ -6,7 +6,7 @@ Ausgelegt und getestet für die Verwendung unter Ubuntu 20.04 LTS (funktioniert 
 
 ## Features
 
-- Kernel 4.14 (rel_socfpga-4.14.126-ltsi-rt_19.08.02_pr) mit angwewandtem PREEMPT_RT-Patch (grundsätzlich von SSL, aber etwas neuere Kernelversion). Das ist die letzte fertig verfügbare Version von altera-socfpga mit angewandtem RT-Patch. Bei neueren Versionen müsste RT-Patch händisch angewandt werden.
+- Kernel 4.14 (rel_socfpga-4.14.126-ltsi-rt_19.08.02_pr) mit angwewandtem PREEMPT_RT-Patch (grundsätzlich von SSL, aber etwas neuere Kernelversion). Das ist die letzte fertig verfügbare Version von linux-socfpga mit angewandtem RT-Patch. Bei neueren Versionen müsste der RT-Patch händisch angewandt werden.
 - gcc 9.5.0
 - Python 3.8.18
 - Webinterface und Service zum Konfigurieren und Debuggen von FPGAs (von SSL)
