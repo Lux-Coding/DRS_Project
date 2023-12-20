@@ -1,0 +1,5 @@
+/build
+/layer/meta-altera
+/layer/meta-openembedded
+/layer/meta-mingw
+/poky
