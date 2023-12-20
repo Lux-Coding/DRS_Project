@@ -109,3 +109,4 @@ IMAGE_INSTALL += "haveged"
 
 # ptp and stuff
 IMAGE_INSTALL += "ethtool"
+IMAGE_INSTALL += "linuxptp"

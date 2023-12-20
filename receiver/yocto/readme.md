@@ -10,6 +10,7 @@ Ausgelegt und getestet für die Verwendung unter Ubuntu 20.04 LTS (funktioniert 
 - gcc 9.5.0
 - Python 3.8.18
 - Webinterface und Service zum Konfigurieren und Debuggen von FPGAs (von SSL)
+- linuxptp (ältere Version 2.0.1 da fertiges Yocto-Recipe, 4.0 ist aktuell) mit Anwendungen ptp4l, phc2sys, pmc, ... für Hardware- und Software-PTP
 - apt Paketmanager (von SSL) - nicht in Verwendung
 
 ## Dateien im Verzeichnis
