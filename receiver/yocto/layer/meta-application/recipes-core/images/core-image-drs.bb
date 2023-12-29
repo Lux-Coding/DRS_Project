@@ -107,6 +107,10 @@ IMAGE_INSTALL += "readline"
 # userspace daemon to collect entropy
 IMAGE_INSTALL += "haveged"
 
+# essential build tools (make, ..) and git
+IMAGE_INSTALL += "packagegroup-core-buildessential"
+IMAGE_INSTALL += "git"
+
 # ptp and stuff
 IMAGE_INSTALL += "ethtool"
 IMAGE_INSTALL += "linuxptp"
