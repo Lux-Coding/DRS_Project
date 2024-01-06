@@ -1,0 +1,17 @@
+{
+  "libraries": {
+    "./grpIeeeProposed/pkgfixed_float_types/src/fixed_float_types-p.vhd": "ieee_proposed.fixed_float_types",
+    "./grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd": "ieee_proposed.fixed_pkg"
+  },
+  "excludes": {
+    "**/out/*.vhd": true
+  },
+  "settings": {
+    "V4p.Settings.Formatting.Indentation.TabWidth": 4,
+    "V4p.Settings.Formatting.Indentation.UseTabs": true 
+  },
+  "ignores": {
+    "**/_dbg.vhd @ signal_*_dbg_s": "never-read, never-written",
+    "duts/dut*.vhd @ dut_inst.*_dbg_o": "missing-association"
+  }
+}
