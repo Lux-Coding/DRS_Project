@@ -22,6 +22,8 @@ architecture Rtl of DrsReceiver is
     signal RxChannelSync   : std_ulogic;
     signal RxChannelSelect : natural range 0 to 11;
 
+    signal DistanceSelectSync : std_ulogic_vector(1 downto 0);
+
     signal RxDataOutput     : std_ulogic;
     signal RxDataOutputSync : std_ulogic;
     
@@ -106,7 +108,7 @@ begin
         gDepth        => 2
     )
     port map (
-        iClk         => iClk,
+        iClk         => Clk48MHz,
         inResetAsync => inResetAsync,
         iAsync       => iChannelSelect,
         oSync        => RxChannelSync
@@ -179,9 +181,21 @@ begin
         oLrc         => oDAClrc,
         oSd          => oDACdat);
 
+    SyncDistanceSelect: entity work.Sync
+    generic map (
+        gInitialState => '0',
+        gDepth        => 2
+    )
+    port map (
+        iClk         => iClk,
+        inResetAsync => inResetAsync,
+        iAsync       => iDistanceSelect,
+        oSync        => DistanceSelectSync
+    );
+
     datadetector_inst: entity work.DataDetector
     generic map (
-      gClkFrequency      => gClkFrequency,
+      gClkFrequency      => 50E6,
       gBaudRate          => gBaudRate,
       gDetectData        => gDetectData
     )
@@ -189,7 +203,7 @@ begin
       iClk            => iClk,
       inResetAsync    => inResetAsync,
       iData           => RxDataOutputSync,
-      iDistanceSelect => iDistanceSelect,
+      iDistanceSelect => DistanceSelectSync,
       oByteDetected   => oByteDetected
     );
 

@@ -34,7 +34,7 @@ begin
     begin
         NextR <= R;
 
-        case (iDistanceSelect) is
+        case iDistanceSelect is
             when "00" => 
                 vDelay := cHundresUsCountsOne;
             when "01" => 
@@ -61,7 +61,7 @@ begin
                 end if;
             when Sampling =>
                 NextR.CycleCount <= R.CycleCount + 1;
-                if R.CycleCount = cCyclesPerBit then
+                if to_integer(R.CycleCount) = cCyclesPerBit then
                     NextR.CycleCount <= 0;
                     NextR.Bits(to_integer(R.BitCount)) <= iData;
                     NextR.BitCount <= R.BitCount + 1;                    
@@ -82,7 +82,7 @@ begin
                     NextR.CycleCount <= 0;
                 end if;
             when IgnoreIncoming =>
-                if(HundredUsStrobe = '1') then 
+                if HundredUsStrobe = '1' then 
                     NextR.CycleCount <= R.CycleCount + 1;
                 end if;
                 if to_integer(R.CycleCount) = vDelay then
