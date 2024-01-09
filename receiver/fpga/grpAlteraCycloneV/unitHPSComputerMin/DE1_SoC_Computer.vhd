@@ -1,0 +1,217 @@
+--------------------------------------------------------------------------------
+-- Title       : HPS Computer System for DE1-SoC Top Level
+-- Project     : FPGA Based Digital Signal Processing
+--               FH OÖ Hagenberg/HSD, SCD5
+--------------------------------------------------------------------------------
+-- RevCtrl     : $Id: DE1_SoC_Computer.vhd 733 2017-12-04 02:28:35Z mroland $
+-- Authors     : Michael Roland, Hagenberg/Austria, Copyright (c) 2016-2017
+--------------------------------------------------------------------------------
+-- Description : HPS Computer System for DE1-SoC Top Level
+--------------------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+use work.global.all;
+
+entity DE1_SoC_Computer is
+
+  port (
+    -- CLOCK
+    CLOCK_50         : in    std_ulogic;
+    
+    ----------------------------------------------------------------------------
+    -- FPGA I/O PINS
+    ----------------------------------------------------------------------------
+    
+    -- HEX
+    HEX0             : out   std_ulogic_vector(6 downto 0);
+    HEX1             : out   std_ulogic_vector(6 downto 0);
+    HEX2             : out   std_ulogic_vector(6 downto 0);
+    HEX3             : out   std_ulogic_vector(6 downto 0);
+    HEX4             : out   std_ulogic_vector(6 downto 0);
+    HEX5             : out   std_ulogic_vector(6 downto 0);
+    
+    -- KEYS
+    KEY              : in    std_ulogic_vector(3 downto 0);
+    
+    -- LEDS
+    LEDR             : out   std_ulogic_vector(9 downto 0);
+
+    -- SWITCHES
+    SW               : in    std_ulogic_vector(9 downto 0);
+    
+    
+    ----------------------------------------------------------------------------
+    -- HPS I/O PINS
+    ----------------------------------------------------------------------------
+    
+    -- DDR3 SDRAM
+    HPS_DDR3_ADDR    : out   std_logic_vector(14 downto 0);
+    HPS_DDR3_BA      : out   std_logic_vector(2 downto 0);
+    HPS_DDR3_CK_P    : out   std_logic;
+    HPS_DDR3_CK_N    : out   std_logic;
+    HPS_DDR3_CKE     : out   std_logic;
+    HPS_DDR3_CS_N    : out   std_logic;
+    HPS_DDR3_RAS_N   : out   std_logic;
+    HPS_DDR3_CAS_N   : out   std_logic;
+    HPS_DDR3_WE_N    : out   std_logic;
+    HPS_DDR3_RESET_N : out   std_logic;
+    HPS_DDR3_DQ      : inout std_logic_vector(31 downto 0);
+    HPS_DDR3_DQS_P   : inout std_logic_vector(3 downto 0);
+    HPS_DDR3_DQS_N   : inout std_logic_vector(3 downto 0);
+    HPS_DDR3_ODT     : out   std_logic;
+    HPS_DDR3_DM      : out   std_logic_vector(3 downto 0);
+    HPS_DDR3_RZQ     : in    std_logic;
+    
+    -- ETHERNET
+    HPS_ENET_GTX_CLK : out   std_logic;
+    HPS_ENET_MDC     : out   std_logic;
+    HPS_ENET_MDIO    : inout std_logic;
+    HPS_ENET_RX_CLK  : in    std_logic;
+    HPS_ENET_RX_DATA : in    std_logic_vector(3 downto 0);
+    HPS_ENET_RX_DV   : in    std_logic;
+    HPS_ENET_TX_DATA : out   std_logic_vector(3 downto 0);
+    HPS_ENET_TX_EN   : out   std_logic;
+    HPS_ENET_INT_N   : inout std_logic;  -- HPS_GPIO35
+    
+    -- QSPI FLASH
+    HPS_FLASH_DATA   : inout std_logic_vector(3 downto 0);
+    HPS_FLASH_DCLK   : out   std_logic;
+    HPS_FLASH_NCSO   : out   std_logic;
+    
+    -- I2C
+    HPS_I2C_CONTROL  : inout std_logic;  -- HPS_GPIO48
+    HPS_I2C1_SCLK    : inout std_logic;
+    HPS_I2C1_SDAT    : inout std_logic;
+    HPS_I2C2_SCLK    : inout std_logic;
+    HPS_I2C2_SDAT    : inout std_logic;
+    
+    -- SD CARD
+    HPS_SD_CMD       : inout std_logic;
+    HPS_SD_CLK       : out   std_logic;
+    HPS_SD_DATA      : inout std_logic_vector(3 downto 0);
+    
+    -- USB
+    HPS_USB_CLKOUT   : in    std_logic;
+    HPS_USB_DATA     : inout std_logic_vector(7 downto 0);
+    HPS_USB_DIR      : in    std_logic;
+    HPS_USB_NXT      : in    std_logic;
+    HPS_USB_STP      : out   std_logic;
+    HPS_CONV_USB_N   : inout std_logic;  -- HPS_GPIO09
+    
+    -- SPI
+    HPS_SPIM_CLK     : out   std_logic;
+    HPS_SPIM_MISO    : in    std_logic;
+    HPS_SPIM_MOSI    : out   std_logic;
+    HPS_SPIM_SS      : out   std_logic;
+
+    -- UART
+    HPS_UART_TX      : inout std_logic;  -- HPS_GPIO50
+    HPS_UART_RX      : inout std_logic;  -- HPS_GPIO49
+    
+    -- GPIO
+    HPS_KEY          : inout std_logic;  -- HPS_GPIO54
+    HPS_LED          : inout std_logic;  -- HPS_GPIO53
+    HPS_LTC_GPIO     : inout std_logic;  -- HPS_GPIO40
+    HPS_GSENSOR_INT  : inout std_logic); -- HPS_GPIO61
+
+end DE1_SoC_Computer;
+
+
+architecture Top of DE1_SoC_Computer is
+  
+  signal fpga_reset_n     : std_ulogic;
+  signal fpga_uart_tx     : std_ulogic;
+  signal fpga_uart_rx     : std_ulogic;
+  signal mirror_hps_led   : std_ulogic;
+  
+begin  -- architecture Top
+  
+  Inst : entity work.HPSComputerMin
+    port map (
+      -- CLOCK
+      CLOCK_50         => CLOCK_50,
+      
+      -- RESET (for FPGA, generated by HPS)
+      FPGA_RESET_N     => fpga_reset_n,
+      
+      -- UART (HPS LOAN I/O -> FPGA)
+      FPGA_UART_TX     => fpga_uart_tx,
+      FPGA_UART_RX     => fpga_uart_rx,
+      
+      -- HPS GPIO DEBUG
+      MIRROR_HPS_LED   => mirror_hps_led,
+      
+      -- DDR3 SDRAM
+      HPS_DDR3_ADDR    => HPS_DDR3_ADDR,
+      HPS_DDR3_BA      => HPS_DDR3_BA,
+      HPS_DDR3_CK_P    => HPS_DDR3_CK_P,
+      HPS_DDR3_CK_N    => HPS_DDR3_CK_N,
+      HPS_DDR3_CKE     => HPS_DDR3_CKE,
+      HPS_DDR3_CS_N    => HPS_DDR3_CS_N,
+      HPS_DDR3_RAS_N   => HPS_DDR3_RAS_N,
+      HPS_DDR3_CAS_N   => HPS_DDR3_CAS_N,
+      HPS_DDR3_WE_N    => HPS_DDR3_WE_N,
+      HPS_DDR3_RESET_N => HPS_DDR3_RESET_N,
+      HPS_DDR3_DQ      => HPS_DDR3_DQ,
+      HPS_DDR3_DQS_P   => HPS_DDR3_DQS_P,
+      HPS_DDR3_DQS_N   => HPS_DDR3_DQS_N,
+      HPS_DDR3_ODT     => HPS_DDR3_ODT,
+      HPS_DDR3_DM      => HPS_DDR3_DM,
+      HPS_DDR3_RZQ     => HPS_DDR3_RZQ,
+      
+      -- ETHERNET
+      HPS_ENET_GTX_CLK => HPS_ENET_GTX_CLK,
+      HPS_ENET_MDC     => HPS_ENET_MDC,
+      HPS_ENET_MDIO    => HPS_ENET_MDIO,
+      HPS_ENET_RX_CLK  => HPS_ENET_RX_CLK,
+      HPS_ENET_RX_DATA => HPS_ENET_RX_DATA,
+      HPS_ENET_RX_DV   => HPS_ENET_RX_DV,
+      HPS_ENET_TX_DATA => HPS_ENET_TX_DATA,
+      HPS_ENET_TX_EN   => HPS_ENET_TX_EN,
+      HPS_ENET_INT_N   => HPS_ENET_INT_N,
+      
+      -- QSPI FLASH
+      HPS_FLASH_DATA   => HPS_FLASH_DATA,
+      HPS_FLASH_DCLK   => HPS_FLASH_DCLK,
+      HPS_FLASH_NCSO   => HPS_FLASH_NCSO,
+      
+      -- I2C
+      HPS_I2C_CONTROL  => HPS_I2C_CONTROL,
+      HPS_I2C1_SCLK    => HPS_I2C1_SCLK,
+      HPS_I2C1_SDAT    => HPS_I2C1_SDAT,
+      HPS_I2C2_SCLK    => HPS_I2C2_SCLK,
+      HPS_I2C2_SDAT    => HPS_I2C2_SDAT,
+      
+      -- SD CARD
+      HPS_SD_CMD       => HPS_SD_CMD,
+      HPS_SD_CLK       => HPS_SD_CLK,
+      HPS_SD_DATA      => HPS_SD_DATA,
+      
+      -- USB
+      HPS_USB_CLKOUT   => HPS_USB_CLKOUT,
+      HPS_USB_DATA     => HPS_USB_DATA,
+      HPS_USB_DIR      => HPS_USB_DIR,
+      HPS_USB_NXT      => HPS_USB_NXT,
+      HPS_USB_STP      => HPS_USB_STP,
+      HPS_CONV_USB_N   => HPS_CONV_USB_N,
+      
+      -- SPI
+      HPS_SPIM_CLK     => HPS_SPIM_CLK,
+      HPS_SPIM_MISO    => HPS_SPIM_MISO,
+      HPS_SPIM_MOSI    => HPS_SPIM_MOSI,
+      HPS_SPIM_SS      => HPS_SPIM_SS,
+
+      -- UART
+      HPS_UART_TX      => HPS_UART_TX,
+      HPS_UART_RX      => HPS_UART_RX,
+      
+      -- GPIO
+      HPS_KEY          => HPS_KEY,
+      HPS_LED          => HPS_LED,
+      HPS_LTC_GPIO     => HPS_LTC_GPIO,
+      HPS_GSENSOR_INT  => HPS_GSENSOR_INT);
+
+end architecture Top;

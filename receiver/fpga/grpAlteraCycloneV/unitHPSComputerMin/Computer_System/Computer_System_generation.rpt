@@ -1,0 +1,165 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate C:\Users\mroland\Documents\_FH\Lehre\Labs\2017W_Hagenberg_SCD5\ReferenceSolution\prjDsp\grpAlteraCycloneV\unitHPSComputerMin\Computer_System.qsys --block-symbol-file --output-directory=C:\Users\mroland\Documents\_FH\Lehre\Labs\2017W_Hagenberg_SCD5\ReferenceSolution\prjDsp\grpAlteraCycloneV\unitHPSComputerMin\Computer_System --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading unitHPSComputerMin/Computer_System.qsys
+Progress: Reading input file
+Progress: Adding ARM_A9_HPS [altera_hps 16.0]
+Progress: Parameterizing module ARM_A9_HPS
+Progress: Adding FPGA_Boot_SRAM [altera_avalon_onchip_memory2 16.0]
+Progress: Parameterizing module FPGA_Boot_SRAM
+Progress: Adding JTAG_UART_for_ARM_0 [altera_avalon_jtag_uart 16.0]
+Progress: Parameterizing module JTAG_UART_for_ARM_0
+Progress: Adding JTAG_UART_for_ARM_1 [altera_avalon_jtag_uart 16.0]
+Progress: Parameterizing module JTAG_UART_for_ARM_1
+Progress: Adding JTAG_to_FPGA_Bridge [altera_jtag_avalon_master 16.0]
+Progress: Parameterizing module JTAG_to_FPGA_Bridge
+Progress: Adding JTAG_to_HPS_Bridge [altera_jtag_avalon_master 16.0]
+Progress: Parameterizing module JTAG_to_HPS_Bridge
+Progress: Adding SysID [altera_avalon_sysid_qsys 16.0]
+Progress: Parameterizing module SysID
+Progress: Adding System_PLL [altera_up_avalon_sys_sdram_pll 15.1]
+Progress: Parameterizing module System_PLL
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: Computer_System.ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 63
+Info: Computer_System.ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
+Info: Computer_System.ARM_A9_HPS: Ensure that valid Cortex A9 boot code is available to the HPS system when enabling boot from FPGA and h2f_axi_master interface is connecting to slave component start at address 0x0.
+Info: Computer_System.JTAG_UART_for_ARM_0: JTAG UART IP input clock need to be at least double (2x) the operating frequency of JTAG TCK on board
+Info: Computer_System.JTAG_UART_for_ARM_1: JTAG UART IP input clock need to be at least double (2x) the operating frequency of JTAG TCK on board
+Info: Computer_System.SysID: System ID is not assigned automatically. Edit the System ID parameter to provide a unique ID
+Info: Computer_System.SysID: Time stamp will be automatically updated when this component is generated.
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\Users\mroland\Documents\_FH\Lehre\Labs\2017W_Hagenberg_SCD5\ReferenceSolution\prjDsp\grpAlteraCycloneV\unitHPSComputerMin\Computer_System.qsys --synthesis=VHDL --output-directory=C:\Users\mroland\Documents\_FH\Lehre\Labs\2017W_Hagenberg_SCD5\ReferenceSolution\prjDsp\grpAlteraCycloneV\unitHPSComputerMin\Computer_System\synthesis --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading unitHPSComputerMin/Computer_System.qsys
+Progress: Reading input file
+Progress: Adding ARM_A9_HPS [altera_hps 16.0]
+Progress: Parameterizing module ARM_A9_HPS
+Progress: Adding FPGA_Boot_SRAM [altera_avalon_onchip_memory2 16.0]
+Progress: Parameterizing module FPGA_Boot_SRAM
+Progress: Adding JTAG_UART_for_ARM_0 [altera_avalon_jtag_uart 16.0]
+Progress: Parameterizing module JTAG_UART_for_ARM_0
+Progress: Adding JTAG_UART_for_ARM_1 [altera_avalon_jtag_uart 16.0]
+Progress: Parameterizing module JTAG_UART_for_ARM_1
+Progress: Adding JTAG_to_FPGA_Bridge [altera_jtag_avalon_master 16.0]
+Progress: Parameterizing module JTAG_to_FPGA_Bridge
+Progress: Adding JTAG_to_HPS_Bridge [altera_jtag_avalon_master 16.0]
+Progress: Parameterizing module JTAG_to_HPS_Bridge
+Progress: Adding SysID [altera_avalon_sysid_qsys 16.0]
+Progress: Parameterizing module SysID
+Progress: Adding System_PLL [altera_up_avalon_sys_sdram_pll 15.1]
+Progress: Parameterizing module System_PLL
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: Computer_System.ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 63
+Info: Computer_System.ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
+Info: Computer_System.ARM_A9_HPS: Ensure that valid Cortex A9 boot code is available to the HPS system when enabling boot from FPGA and h2f_axi_master interface is connecting to slave component start at address 0x0.
+Info: Computer_System.JTAG_UART_for_ARM_0: JTAG UART IP input clock need to be at least double (2x) the operating frequency of JTAG TCK on board
+Info: Computer_System.JTAG_UART_for_ARM_1: JTAG UART IP input clock need to be at least double (2x) the operating frequency of JTAG TCK on board
+Info: Computer_System.SysID: System ID is not assigned automatically. Edit the System ID parameter to provide a unique ID
+Info: Computer_System.SysID: Time stamp will be automatically updated when this component is generated.
+Info: Computer_System: Generating Computer_System "Computer_System" for QUARTUS_SYNTH
+Info: Interconnect is inserted between master JTAG_to_HPS_Bridge.master and slave ARM_A9_HPS.f2h_axi_slave because the master is of type avalon and the slave is of type axi.
+Warning: ARM_A9_HPS.f2h_irq0: Cannot connect clock for irq_mapper.sender
+Warning: ARM_A9_HPS.f2h_irq0: Cannot connect reset for irq_mapper.sender
+Warning: ARM_A9_HPS.f2h_irq1: Cannot connect clock for irq_mapper_001.sender
+Warning: ARM_A9_HPS.f2h_irq1: Cannot connect reset for irq_mapper_001.sender
+Info: ARM_A9_HPS: "Running  for module: ARM_A9_HPS"
+Info: ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 63
+Info: ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
+Info: ARM_A9_HPS: Ensure that valid Cortex A9 boot code is available to the HPS system when enabling boot from FPGA and h2f_axi_master interface is connecting to slave component start at address 0x0.
+Info: ARM_A9_HPS: "Computer_System" instantiated altera_hps "ARM_A9_HPS"
+Info: FPGA_Boot_SRAM: Starting RTL generation for module 'Computer_System_FPGA_Boot_SRAM'
+Info: FPGA_Boot_SRAM:   Generation command is [exec C:/altera/16.0/quartus/bin64/perl/bin/perl.exe -I C:/altera/16.0/quartus/bin64/perl/lib -I C:/altera/16.0/quartus/sopc_builder/bin/europa -I C:/altera/16.0/quartus/sopc_builder/bin/perl_lib -I C:/altera/16.0/quartus/sopc_builder/bin -I C:/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I C:/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=Computer_System_FPGA_Boot_SRAM --dir=C:/Users/mroland/AppData/Local/Temp/alt7503_3464416405190939938.dir/0001_FPGA_Boot_SRAM_gen/ --quartus_dir=C:/altera/16.0/quartus --verilog --config=C:/Users/mroland/AppData/Local/Temp/alt7503_3464416405190939938.dir/0001_FPGA_Boot_SRAM_gen//Computer_System_FPGA_Boot_SRAM_component_configuration.pl  --do_build_sim=0  ]
+Info: FPGA_Boot_SRAM: Done RTL generation for module 'Computer_System_FPGA_Boot_SRAM'
+Info: FPGA_Boot_SRAM: "Computer_System" instantiated altera_avalon_onchip_memory2 "FPGA_Boot_SRAM"
+Info: JTAG_UART_for_ARM_0: Starting RTL generation for module 'Computer_System_JTAG_UART_for_ARM_0'
+Info: JTAG_UART_for_ARM_0:   Generation command is [exec C:/altera/16.0/quartus/bin64/perl/bin/perl.exe -I C:/altera/16.0/quartus/bin64/perl/lib -I C:/altera/16.0/quartus/sopc_builder/bin/europa -I C:/altera/16.0/quartus/sopc_builder/bin/perl_lib -I C:/altera/16.0/quartus/sopc_builder/bin -I C:/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I C:/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- C:/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=Computer_System_JTAG_UART_for_ARM_0 --dir=C:/Users/mroland/AppData/Local/Temp/alt7503_3464416405190939938.dir/0002_JTAG_UART_for_ARM_0_gen/ --quartus_dir=C:/altera/16.0/quartus --verilog --config=C:/Users/mroland/AppData/Local/Temp/alt7503_3464416405190939938.dir/0002_JTAG_UART_for_ARM_0_gen//Computer_System_JTAG_UART_for_ARM_0_component_configuration.pl  --do_build_sim=0  ]
+Info: JTAG_UART_for_ARM_0: Done RTL generation for module 'Computer_System_JTAG_UART_for_ARM_0'
+Info: JTAG_UART_for_ARM_0: "Computer_System" instantiated altera_avalon_jtag_uart "JTAG_UART_for_ARM_0"
+Info: JTAG_to_FPGA_Bridge: "Computer_System" instantiated altera_jtag_avalon_master "JTAG_to_FPGA_Bridge"
+Info: SysID: "Computer_System" instantiated altera_avalon_sysid_qsys "SysID"
+Info: System_PLL: "Computer_System" instantiated altera_up_avalon_sys_sdram_pll "System_PLL"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_002: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_003: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_0: "Computer_System" instantiated altera_mm_interconnect "mm_interconnect_0"
+Info: mm_interconnect_1: "Computer_System" instantiated altera_mm_interconnect "mm_interconnect_1"
+Info: irq_mapper: "Computer_System" instantiated altera_irq_mapper "irq_mapper"
+Info: rst_controller: "Computer_System" instantiated altera_reset_controller "rst_controller"
+Info: fpga_interfaces: "ARM_A9_HPS" instantiated altera_interface_generator "fpga_interfaces"
+Info: hps_io: "ARM_A9_HPS" instantiated altera_hps_io "hps_io"
+Info: jtag_phy_embedded_in_jtag_master: "JTAG_to_FPGA_Bridge" instantiated altera_jtag_dc_streaming "jtag_phy_embedded_in_jtag_master"
+Info: timing_adt: "JTAG_to_FPGA_Bridge" instantiated timing_adapter "timing_adt"
+Info: fifo: "JTAG_to_FPGA_Bridge" instantiated altera_avalon_sc_fifo "fifo"
+Info: b2p: "JTAG_to_FPGA_Bridge" instantiated altera_avalon_st_bytes_to_packets "b2p"
+Info: p2b: "JTAG_to_FPGA_Bridge" instantiated altera_avalon_st_packets_to_bytes "p2b"
+Info: transacto: "JTAG_to_FPGA_Bridge" instantiated altera_avalon_packets_to_master "transacto"
+Info: b2p_adapter: "JTAG_to_FPGA_Bridge" instantiated channel_adapter "b2p_adapter"
+Info: p2b_adapter: "JTAG_to_FPGA_Bridge" instantiated channel_adapter "p2b_adapter"
+Info: sys_pll: "System_PLL" instantiated altera_pll "sys_pll"
+Info: reset_from_locked: "System_PLL" instantiated altera_up_avalon_reset_from_locked_signal "reset_from_locked"
+Info: JTAG_to_FPGA_Bridge_master_translator: "mm_interconnect_0" instantiated altera_merlin_master_translator "JTAG_to_FPGA_Bridge_master_translator"
+Info: FPGA_Boot_SRAM_s1_translator: "mm_interconnect_0" instantiated altera_merlin_slave_translator "FPGA_Boot_SRAM_s1_translator"
+Info: ARM_A9_HPS_h2f_axi_master_agent: "mm_interconnect_0" instantiated altera_merlin_axi_master_ni "ARM_A9_HPS_h2f_axi_master_agent"
+Info: JTAG_to_FPGA_Bridge_master_agent: "mm_interconnect_0" instantiated altera_merlin_master_agent "JTAG_to_FPGA_Bridge_master_agent"
+Info: FPGA_Boot_SRAM_s1_agent: "mm_interconnect_0" instantiated altera_merlin_slave_agent "FPGA_Boot_SRAM_s1_agent"
+Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
+Info: router_002: "mm_interconnect_0" instantiated altera_merlin_router "router_002"
+Info: router_003: "mm_interconnect_0" instantiated altera_merlin_router "router_003"
+Info: router_005: "mm_interconnect_0" instantiated altera_merlin_router "router_005"
+Info: router_006: "mm_interconnect_0" instantiated altera_merlin_router "router_006"
+Info: router_007: "mm_interconnect_0" instantiated altera_merlin_router "router_007"
+Info: JTAG_to_FPGA_Bridge_master_limiter: "mm_interconnect_0" instantiated altera_merlin_traffic_limiter "JTAG_to_FPGA_Bridge_master_limiter"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: FPGA_Boot_SRAM_s1_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "FPGA_Boot_SRAM_s1_burst_adapter"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_avalon_st_pipeline_stage.sv
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_demux_002: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux_002"
+Info: cmd_demux_003: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux_003"
+Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: cmd_mux_001: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux_001"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: cmd_mux_002: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux_002"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_demux_001: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux_001"
+Info: rsp_demux_002: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux_002"
+Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_mux_002: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux_002"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_mux_003: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux_003"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: ARM_A9_HPS_h2f_axi_master_wr_to_FPGA_Boot_SRAM_s1_cmd_width_adapter: "mm_interconnect_0" instantiated altera_merlin_width_adapter "ARM_A9_HPS_h2f_axi_master_wr_to_FPGA_Boot_SRAM_s1_cmd_width_adapter"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: avalon_st_adapter_001: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter_001"
+Info: ARM_A9_HPS_f2h_axi_slave_agent: "mm_interconnect_1" instantiated altera_merlin_axi_slave_ni "ARM_A9_HPS_f2h_axi_slave_agent"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: router: "mm_interconnect_1" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_1" instantiated altera_merlin_router "router_001"
+Info: cmd_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file C:/Users/mroland/Documents/_FH/Lehre/Labs/2017W_Hagenberg_SCD5/ReferenceSolution/prjDsp/grpAlteraCycloneV/unitHPSComputerMin/Computer_System/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: border: "hps_io" instantiated altera_interface_generator "border"
+Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: error_adapter_0: "avalon_st_adapter_001" instantiated error_adapter "error_adapter_0"
+Info: Computer_System: Done "Computer_System" with 61 modules, 130 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis
