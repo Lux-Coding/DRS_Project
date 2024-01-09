@@ -73,38 +73,6 @@
          type = "int";
       }
    }
-   element hmi
-   {
-      datum _sortIndex
-      {
-         value = "2";
-         type = "int";
-      }
-   }
-   element hmi.leds_s1
-   {
-      datum baseAddress
-      {
-         value = "1040";
-         type = "String";
-      }
-   }
-   element hmi.seven_segment_s0
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "String";
-      }
-   }
-   element hmi.switches_s1
-   {
-      datum baseAddress
-      {
-         value = "1024";
-         type = "String";
-      }
-   }
    element hps_0
    {
       datum _sortIndex
@@ -157,46 +125,15 @@
    type="reset"
    dir="end" />
  <interface name="hps_io" internal="hps_0.hps_io" type="conduit" dir="end" />
- <interface
-   name="leds_external_connection"
-   internal="hmi.leds_external_connection"
-   type="conduit"
-   dir="end" />
  <interface name="memory" internal="hps_0.memory" type="conduit" dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
- <interface
-   name="seven_segment_conduit_end"
-   internal="hmi.seven_segment_conduit_end"
-   type="conduit"
-   dir="end" />
- <interface
-   name="switches_external_connection"
-   internal="hmi.switches_external_connection"
-   type="conduit"
-   dir="end" />
- <module name="clk_0" kind="clock_source" version="17.1" enabled="1">
+ <module name="clk_0" kind="clock_source" version="18.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module name="hmi" kind="subsystemHMI" version="1.0" enabled="1">
-  <parameter name="AUTO_DEVICE" value="5CSEMA5F31C6" />
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6" />
-  <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_LEDS_CLK_CLOCK_DOMAIN" value="1" />
-  <parameter name="AUTO_LEDS_CLK_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_LEDS_CLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_SEVEN_SEGMENT_CLOCK_CLOCK_DOMAIN" value="1" />
-  <parameter name="AUTO_SEVEN_SEGMENT_CLOCK_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_SEVEN_SEGMENT_CLOCK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_SWITCHES_CLK_CLOCK_DOMAIN" value="1" />
-  <parameter name="AUTO_SWITCHES_CLK_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_SWITCHES_CLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_UNIQUE_ID" value="$${FILENAME}_hmi" />
- </module>
- <module name="hps_0" kind="altera_hps" version="17.1" enabled="1">
+ <module name="hps_0" kind="altera_hps" version="18.1" enabled="1">
   <parameter name="ABSTRACT_REAL_COMPARE_TEST" value="false" />
   <parameter name="ABS_RAM_MEM_INIT_FILENAME" value="meminit" />
   <parameter name="ACV_PHY_CLK_ADD_FR_PHASE" value="0.0" />
@@ -727,69 +664,20 @@
   <parameter name="use_default_mpu_clk" value="true" />
  </module>
  <connection
-   kind="avalon"
-   version="17.1"
-   start="hps_0.h2f_lw_axi_master"
-   end="hmi.leds_s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0410" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="17.1"
-   start="hps_0.h2f_lw_axi_master"
-   end="hmi.seven_segment_s0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="17.1"
-   start="hps_0.h2f_lw_axi_master"
-   end="hmi.switches_s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0400" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
    kind="clock"
-   version="17.1"
+   version="18.1"
    start="clk_0.clk"
    end="hps_0.f2h_axi_clock" />
  <connection
    kind="clock"
-   version="17.1"
+   version="18.1"
    start="clk_0.clk"
    end="hps_0.h2f_axi_clock" />
  <connection
    kind="clock"
-   version="17.1"
+   version="18.1"
    start="clk_0.clk"
    end="hps_0.h2f_lw_axi_clock" />
- <connection kind="clock" version="17.1" start="clk_0.clk" end="hmi.leds_clk" />
- <connection
-   kind="clock"
-   version="17.1"
-   start="clk_0.clk"
-   end="hmi.seven_segment_clock" />
- <connection kind="clock" version="17.1" start="clk_0.clk" end="hmi.switches_clk" />
- <connection
-   kind="reset"
-   version="17.1"
-   start="clk_0.clk_reset"
-   end="hmi.leds_reset" />
- <connection
-   kind="reset"
-   version="17.1"
-   start="clk_0.clk_reset"
-   end="hmi.seven_segment_reset" />
- <connection
-   kind="reset"
-   version="17.1"
-   start="clk_0.clk_reset"
-   end="hmi.switches_reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
