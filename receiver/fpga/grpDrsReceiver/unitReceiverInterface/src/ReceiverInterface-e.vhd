@@ -10,7 +10,7 @@ entity ReceiverInterface is
         csi_clk          : in std_ulogic;
         rsi_reset_n      : in std_ulogic;
         -- avalon interface
-        avs_s0_address   : in std_logic_vector(0 downto 0);
+        avs_s0_address   : in std_logic_vector(1 downto 0);
         avs_s0_write     : in std_logic;
         avs_s0_writedata : in std_logic_vector(31 downto 0);
         avs_s0_read      : in std_logic;
