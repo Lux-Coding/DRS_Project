@@ -181,7 +181,7 @@ begin
         oLrc         => oDAClrc,
         oSd          => oDACdat);
 
-    SyncDistanceSelect: entity work.Sync
+    SyncDistanceSelect0: entity work.Sync
     generic map (
         gInitialState => '0',
         gDepth        => 2
@@ -189,8 +189,20 @@ begin
     port map (
         iClk         => iClk,
         inResetAsync => inResetAsync,
-        iAsync       => iDistanceSelect,
-        oSync        => DistanceSelectSync
+        iAsync       => iDistanceSelect(0),
+        oSync        => DistanceSelectSync(1)
+    );
+
+    SyncDistanceSelect1: entity work.Sync
+    generic map (
+        gInitialState => '0',
+        gDepth        => 2
+    )
+    port map (
+        iClk         => iClk,
+        inResetAsync => inResetAsync,
+        iAsync       => iDistanceSelect(0),
+        oSync        => DistanceSelectSync(1)
     );
 
     datadetector_inst: entity work.DataDetector

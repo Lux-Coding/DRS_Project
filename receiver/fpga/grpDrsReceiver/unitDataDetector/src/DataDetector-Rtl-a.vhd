@@ -18,8 +18,8 @@ architecture Rtl of DataDetector is
 
     constant cInitRegs : aRegs := (
         State => WaitForRisingEdge,
-        CycleCount => 0,
-        BitCount => 0,
+        CycleCount => (others => '0'),
+        BitCount => (others => '0'),
         Bits => (others => '0'),
         ByteDetected => '0'
     );
@@ -49,25 +49,25 @@ begin
             when WaitForRisingEdge =>
                 if iData = '1' then                    
                     NextR.State <= WaitUntilFirstSample;
-                    NextR.CycleCount <= 0;
+                    NextR.CycleCount <= (others => '0');
                 end if;
             when WaitUntilFirstSample =>
                 if to_integer(R.CycleCount) < cCyclesPerBit / 2 then
                     NextR.CycleCount <= R.CycleCount + 1;
                 else
                     NextR.State <= Sampling;
-                    NextR.CycleCount <= 0;
-                    NextR.BitCount <= 0;
+                    NextR.CycleCount <= (others => '0');
+                    NextR.BitCount <= (others => '0');
                 end if;
             when Sampling =>
                 NextR.CycleCount <= R.CycleCount + 1;
                 if to_integer(R.CycleCount) = cCyclesPerBit then
-                    NextR.CycleCount <= 0;
+                    NextR.CycleCount <= (others => '0');
                     NextR.Bits(to_integer(R.BitCount)) <= iData;
                     NextR.BitCount <= R.BitCount + 1;                    
                 end if;
                 if to_integer(R.BitCount) = gDetectData'length - 1 then
-                    NextR.CycleCount <= 0;
+                    NextR.CycleCount <= (others => '0');
                     NextR.State <= IgnoreIncoming;
                     if iData & R.Bits(6 downto 0) = gDetectData then
                         NextR.ByteDetected <= '1';
@@ -79,7 +79,7 @@ begin
                 if to_integer(R.CycleCount) = gDetectCycleLength then
                     NextR.ByteDetected <= '0';
                     NextR.State <= IgnoreIncoming;
-                    NextR.CycleCount <= 0;
+                    NextR.CycleCount <= (others => '0');
                 end if;
             when IgnoreIncoming =>
                 if HundredUsStrobe = '1' then 

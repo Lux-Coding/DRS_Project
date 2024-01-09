@@ -16,7 +16,7 @@ entity DataDetector is
         gDistanceThree_us   : integer := 499900;
         gDistanceFour_us    : integer := 999900;
         gBaudRate           : integer := 9600;
-        gDetectData         : std_ulogic_vector(7 downto 0) := x"A";
+        gDetectData         : std_ulogic_vector(7 downto 0) := x"0A";
         gDetectCycleLength  : integer := 4
     );
     port (
@@ -24,7 +24,7 @@ entity DataDetector is
         inResetAsync    :  in std_ulogic;
         -- input data
         iData           :  in std_ulogic;
-        iDistanceSelect :  in std_logic_vector(1 downto 0);
+        iDistanceSelect :  in std_ulogic_vector(1 downto 0);
         -- data byte detected
         oByteDetected   : out std_ulogic
     );
