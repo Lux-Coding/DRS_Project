@@ -15,6 +15,19 @@
 
 architecture Rtl of StrobeGen is
 
+  function LogDualis(cNumber : natural) return natural is
+    -- Initialize explicitly (will have warnings for uninitialized variables 
+    -- from Quartus synthesis otherwise).
+    variable vClimbUp : natural := 1;
+    variable vResult  : natural := 0;
+  begin
+    while vClimbUp < cNumber loop
+      vClimbUp := vClimbUp * 2;
+      vResult  := vResult+1;
+    end loop;
+    return vResult;
+  end LogDualis;
+
   -- How many iClk cycles make up one strobe cycle?
   -- Not as easy as it looks at first glance! The result will tend to be to small,
   -- because we only integer divide here. A remainder other than 0 will typically result.
@@ -44,13 +57,13 @@ begin  -- architecture Rtl
   begin  -- process GenStrobe
 
     -- Asynchronous reset
-    if (inResetAsync = cResetActive) then
+    if (inResetAsync = not('1')) then
 
       -- We begin counting at 0.
       ClkCounter <= to_unsigned(0, ClkCounter'length);
       -- oStrobe shall be sourced directly by a register output to ease time budgeting
       -- when several units are connected with each other.
-      oStrobe <= cInactivated;
+      oStrobe <= '0';
 
     -- Rising clk edge
     elsif rising_edge(iClk) then
@@ -61,10 +74,10 @@ begin  -- architecture Rtl
         -- The condition that sent us here will hold for exactly one iClk cycle. This
         -- will be the cycle during which the sStrobe signal is active. It's inactive
         -- during all other iClk cycles.
-        oStrobe    <= cActivated;
+        oStrobe    <= '1';
       else
         ClkCounter <= ClkCounter+1;
-        oStrobe    <= cInactivated;
+        oStrobe    <= '0';
       end if;
 
     end if;
