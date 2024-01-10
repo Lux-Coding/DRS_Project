@@ -311,11 +311,11 @@ BEGIN
         iChannelSelect  => SW(2),
         oSegChannel     => HEX0,
         oSegDistance    => HEX1,
+        oSeg0 => HEX2,
+        oSeg1 => HEX3,
         oLed            => LEDR
     );
 
-    HEX2 <= (others => '0');
-    HEX3 <= (others => '0');
     HEX4 <= (others => '0');
     HEX5 <= (others => '0');
 

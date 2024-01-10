@@ -27,6 +27,8 @@ entity DataDetector is
         iDistanceSelect :  in std_ulogic_vector(1 downto 0);
         -- data byte detected
         oByteDetected   : out std_ulogic;
-        oSegDistance    : out std_logic_vector(6 downto 0)  -- active low
+        oSegDistance    : out std_logic_vector(6 downto 0);
+        oSeg0    : out std_logic_vector(6 downto 0);
+        oSeg1    : out std_logic_vector(6 downto 0)
     );
 end entity DataDetector;

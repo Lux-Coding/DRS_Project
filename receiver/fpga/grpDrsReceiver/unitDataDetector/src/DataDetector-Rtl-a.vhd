@@ -11,6 +11,8 @@ architecture Rtl of DataDetector is
         Bits         : std_ulogic_vector(gDetectData'range);
         ByteDetected : std_ulogic;
         SegDistance  : std_logic_vector(6 downto 0);
+        Seg0  : std_logic_vector(6 downto 0);
+        Seg1  : std_logic_vector(6 downto 0);
     end record;
 
     constant cInitRegs : aRegs := (
@@ -19,7 +21,9 @@ architecture Rtl of DataDetector is
         BitCount => (others => '0'),
         Bits => (others => '0'),
         ByteDetected => '0',
-        SegDistance => (others => '0')
+        SegDistance => (others => '0'),        
+        Seg0 => (others => '0'),
+        Seg1 => (others => '0')
     );
 
     signal R, NextR : aRegs;
@@ -75,7 +79,9 @@ begin
                     if iData & R.Bits(6 downto 0) = gDetectData then
                         NextR.ByteDetected <= '1';
                         NextR.State <= OutputDetected;
-                    end if;                        
+                    end if;
+                    NextR.Seg0 <= not std_logic_vector(ToSevSeg(R.Bits(3 downto 0)));
+                    NextR.Seg1 <= not std_logic_vector(ToSevSeg(iData & R.Bits(6 downto 4)));
                 end if;
             when OutputDetected =>
                 NextR.CycleCount <= R.CycleCount + 1;
@@ -118,5 +124,7 @@ begin
 
     oByteDetected <= R.ByteDetected;
     oSegDistance <= R.SegDistance;
+    oSeg0 <= R.Seg0;
+    oSeg1 <= R.Seg1;
 
 end architecture Rtl;
