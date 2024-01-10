@@ -40,7 +40,7 @@ package ParamCodec is
     LineSlaveSampleRate44k1,
     MicroMasterSampleRate44k1,
     LineMasterSampleRate44k1,
-    UnusedSet6,
+    MicroSlaveSampleRate96k,
     UnusedSet7,
     UnusedSet8,
     UnusedSet9);
@@ -509,9 +509,9 @@ package ParamCodec is
           )
         ),
       ---------------------------------
-      UnusedSet6                     =>
+      MicroSlaveSampleRate96k                     =>
       ---------------------------------
-      (
+       (
         Reg0                         =>
         (
           LineLeftRightSimul         => cSimulLineVolUpdateDisabled,
@@ -538,12 +538,12 @@ package ParamCodec is
           ),
         Reg4                         =>
         (
-          SidetoneAttenuation        => -6,
+          SidetoneAttenuation        => -15,
           SidetoneEnable             => cSidetoneDisabled,
-          DacSelect                  => cDacOff,
+          DacSelect                  => cDacSelected,
           AnalogBypass               => cAnalogBypassDisabled,
-          AdcInputSelect             => cAdcInputLineSelected,
-          MicroMute                  => cMicroMuted,
+          AdcInputSelect             => cAdcInputMicroSelected,
+          MicroMute                  => cMicroUnmuted,
           MicroBoost                 => cMicroNoBoost
           ),
         Reg5                         =>
@@ -558,10 +558,10 @@ package ParamCodec is
           DevicePower                => cPowerOn,
           ClkPower                   => cPowerOff,
           OscillatorPower            => cPowerOff,
-          OutputsPower               => cPowerOff,
-          DacPower                   => cPowerOff,
-          AdcPower                   => cPowerOff,
-          MicroPower                 => cPowerOff,
+          OutputsPower               => cPowerOn,
+          DacPower                   => cPowerOn,
+          AdcPower                   => cPowerOn,
+          MicroPower                 => cPowerOn,
           LinePower                  => cPowerOff
           ),
         Reg7                         =>
@@ -577,7 +577,7 @@ package ParamCodec is
         (
           ClockOutputDivider         => cUseMclk,
           ClockInputDivider          => cUseMclk,
-          CodecSampleRate            => cAdc44117Dac44117
+          CodecSampleRate            => cAdc96000Dac96000
           ),
         Reg9                         =>
         (

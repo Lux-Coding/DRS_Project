@@ -46,7 +46,6 @@ entity TbdTxFskFull is
         1 => (Frequency0 => 7237.9453125,       -- Hz
               Frequency1 => 12063.2421875))     -- Hz
   );
-
   port (
     iClk         : in std_ulogic;
     inResetAsync : in std_ulogic;
@@ -61,6 +60,7 @@ entity TbdTxFskFull is
     oSEG4        : out std_ulogic_vector(6 downto 0);  -- active low
     oSEG5        : out std_ulogic_vector(6 downto 0);  -- active low
     oLed         : out std_ulogic_vector(9 downto 0);  -- active high
+    GPIO_0       : out std_ulogic_vector(35 downto 0);
     
     -- Audio codec
     oI2cSclk     : out   std_ulogic;

@@ -1,0 +1,121 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "oSEG2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "oSEG2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "oSEG2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "oSEG3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "oSEG3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "oSEG3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "oLed[1]",
+					"strict" : false
+				},
+				{
+					"name" : "oLed[2]",
+					"strict" : false
+				},
+				{
+					"name" : "oLed[5]",
+					"strict" : false
+				},
+				{
+					"name" : "oLed[6]",
+					"strict" : false
+				},
+				{
+					"name" : "oLed[7]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "oI2cSclk",
+					"strict" : false
+				},
+				{
+					"name" : "oMclk",
+					"strict" : false
+				},
+				{
+					"name" : "oBclk",
+					"strict" : false
+				},
+				{
+					"name" : "oDACdat",
+					"strict" : false
+				},
+				{
+					"name" : "oADClrc",
+					"strict" : false
+				},
+				{
+					"name" : "oDAClrc",
+					"strict" : false
+				},
+				{
+					"name" : "ioI2cSdin",
+					"strict" : false
+				},
+				{
+					"name" : "inButton[1]",
+					"strict" : false
+				},
+				{
+					"name" : "iSwitch[9]",
+					"strict" : false
+				},
+				{
+					"name" : "iSwitch[0]",
+					"strict" : false
+				},
+				{
+					"name" : "inResetAsync",
+					"strict" : false
+				},
+				{
+					"name" : "iSwitch[1]",
+					"strict" : false
+				},
+				{
+					"name" : "iSwitch[2]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
