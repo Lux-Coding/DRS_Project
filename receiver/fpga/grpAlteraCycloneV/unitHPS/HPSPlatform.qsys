@@ -81,6 +81,22 @@
          type = "String";
       }
    }
+   element HPSPlatform
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element HPSPlatform
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
@@ -119,6 +135,11 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface
+   name="drs_receiver_interface_0_ibytedetected"
+   internal="DRS_Receiver_Interface_0.iByteDetected"
+   type="conduit"
+   dir="end" />
  <interface name="h2f_reset" internal="hps_0.h2f_reset" type="reset" dir="start" />
  <interface
    name="hps_0_f2h_cold_reset_req"
@@ -699,7 +720,7 @@
    kind="clock"
    version="18.1"
    start="clk_0.clk"
-   end="DRS_Receiver_Interface_0.clock_sink" />
+   end="DRS_Receiver_Interface_0.csi_clk" />
  <connection
    kind="clock"
    version="18.1"
@@ -716,10 +737,17 @@
    start="clk_0.clk"
    end="hps_0.h2f_lw_axi_clock" />
  <connection
+   kind="interrupt"
+   version="18.1"
+   start="hps_0.f2h_irq0"
+   end="DRS_Receiver_Interface_0.oByteDetected_int">
+  <parameter name="irqNumber" value="0" />
+ </connection>
+ <connection
    kind="reset"
    version="18.1"
    start="clk_0.clk_reset"
-   end="DRS_Receiver_Interface_0.reset_sink" />
+   end="DRS_Receiver_Interface_0.rsi_reset_n" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
