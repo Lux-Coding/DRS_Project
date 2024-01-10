@@ -964,7 +964,46 @@ set_global_assignment -name ECO_REGENERATE_REPORT ON
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VERILOG_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48/AlteraPLL50to48_0002.v
+set_global_assignment -name QIP_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48/AlteraPLL50to48_0002.qip
+set_global_assignment -name SOURCE_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48_sim.f
+set_global_assignment -name VHDL_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48.vhd
+set_global_assignment -name SOURCE_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48.spd
+set_global_assignment -name SIP_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48.sip
+set_global_assignment -name QIP_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48.qip
+set_global_assignment -name SOURCE_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48.ppf
+set_global_assignment -name SOURCE_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48.cmp
+set_global_assignment -name BSF_FILE ../unitPLL50to48/megafunction/AlteraPLL50to48.bsf
+set_global_assignment -name VHDL_FILE "../../grpI2s/unitI2sToPar/src/I2sToPar-Rtl-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpI2s/unitI2sToPar/src/I2sToPar-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpComFsk/pkgDefinitionsFsk/src/DefinitionsFsk-p.vhd"
+set_global_assignment -name VHDL_FILE "../../grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd"
+set_global_assignment -name VHDL_FILE "../../grpIeeeProposed/pkgfixed_float_types/src/fixed_float_types-p.vhd"
+set_global_assignment -name VHDL_FILE "../../grpDsp/unitDspFir/src/DspFir-RtlRam-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpDsp/unitDspFir/src/DspFir-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpPackages/pkgInterfaceFunctions/src/InterfaceFunctions-p.vhd"
+set_global_assignment -name VHDL_FILE "../../grpPackages/pkgGlobal/src/Global-p.vhd"
+set_global_assignment -name VHDL_FILE "../../grpI2s/unitParToI2s/src/ParToI2s-Rtl-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpI2s/unitParToI2s/src/ParToI2s-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpComFsk/unitRxFsk/src/RxFsk-Rtl-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpComFsk/unitRxFsk/src/RxFsk-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpSync/unitSync/src/Sync-Rtl-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpSync/unitSync/src/Sync-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpWm8731/pkgDefinitionsCodec/src/DefinitionsCodec-p.vhd"
+set_global_assignment -name VHDL_FILE "../../grpWm8731/unitConfigureCodecViaI2c/src/ConfigureCodecViaI2c-Rtl-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpWm8731/unitConfigureCodecViaI2c/src/ConfigureCodecViaI2c-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpParameterize/pkgParamCodec/src/ParamCodec-p.vhd"
+set_global_assignment -name VHDL_FILE "../unitPLL50to48/src/PLL50to48-Inst-a.vhd"
+set_global_assignment -name VHDL_FILE "../unitPLL50to48/src/PLL50to48-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpStrobesClocks/unitStrobeGen/src/StrobeGen-Rtl-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpStrobesClocks/unitStrobeGen/src/StrobeGen-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpStrobesClocks/unitClkMaster/src/ClkMaster-Rtl-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpStrobesClocks/unitClkMaster/src/ClkMaster-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpDrsReceiver/unitDrsReceiver/src/DrsReceiver-Rtl-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpDrsReceiver/unitDrsReceiver/src/DrsReceiver-e.vhd"
+set_global_assignment -name VHDL_FILE "../../grpDrsReceiver/unitDataDetector/src/DataDetector-Rtl-a.vhd"
+set_global_assignment -name VHDL_FILE "../../grpDrsReceiver/unitDataDetector/src/DataDetector-e.vhd"
 set_global_assignment -name QSYS_FILE HPSPlatform.qsys
 set_global_assignment -name VHDL_FILE template.vhd
 set_global_assignment -name SDC_FILE template.sdc
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

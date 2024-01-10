@@ -190,7 +190,7 @@ begin
         iClk         => iClk,
         inResetAsync => inResetAsync,
         iAsync       => iDistanceSelect(0),
-        oSync        => DistanceSelectSync(1)
+        oSync        => DistanceSelectSync(0)
     );
 
     SyncDistanceSelect1: entity work.Sync
@@ -201,7 +201,7 @@ begin
     port map (
         iClk         => iClk,
         inResetAsync => inResetAsync,
-        iAsync       => iDistanceSelect(0),
+        iAsync       => iDistanceSelect(1),
         oSync        => DistanceSelectSync(1)
     );
 
@@ -219,7 +219,7 @@ begin
       oByteDetected   => oByteDetected
     );
 
-    oSeg <= not ToSevSeg(to_unsigned(RxChannelSelect, 4)); -- show selected channel on hex segment display
+    oSeg <= not std_logic_vector(ToSevSeg(to_unsigned(RxChannelSelect, 4))); -- show selected channel on hex segment display
 
     oLed  <= (0 => PllLocked,
             1 => Start,

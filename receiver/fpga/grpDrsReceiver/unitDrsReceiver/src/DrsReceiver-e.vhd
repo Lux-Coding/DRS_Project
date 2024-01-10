@@ -80,7 +80,7 @@ entity DrsReceiver is
 
         iChannelSelect : in std_ulogic; -- 0 => 4, 1 => 7
         
-        oSeg         : out std_ulogic_vector(6 downto 0);  -- active low
-        oLed         : out std_ulogic_vector(9 downto 0)  -- active high
+        oSeg         : out std_logic_vector(6 downto 0);  -- active low
+        oLed         : out std_logic_vector(9 downto 0)  -- active high
     );
 end entity DrsReceiver;

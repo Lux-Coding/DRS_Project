@@ -20,31 +20,13 @@
          
 		    
 
-			hmi_leds: gpio@100000410 {
-				compatible = "altr,pio-17.1", "altr,pio-1.0";
-				reg = <0x00000001 0x00000410 0x00000010>;
+			DRS_Receiver_Interface_0: unknown@100000000 {
+				compatible = "unknown,unknown-1.0";
+				reg = <0x00000001 0x00000000 0x00000010>;
+				interrupt-parent = <&hps_0_arm_gic_0>;
+				interrupts = <0 40 4>;
 				clocks = <&clk_0>;
-				altr,gpio-bank-width = <10>;	/* embeddedsw.dts.params.altr,gpio-bank-width type NUMBER */
-				resetvalue = <1023>;	/* embeddedsw.dts.params.resetvalue type NUMBER */
-				#gpio-cells = <2>;
-				gpio-controller;
-			}; //end gpio@0x100000410 (hmi_leds)
-
-			hmi_seven_segment: display@100000000 {
-				compatible = "hof,sevensegment-1.0";
-				reg = <0x00000001 0x00000000 0x00000400>;
-				clocks = <&clk_0>;
-			}; //end display@0x100000000 (hmi_seven_segment)
-
-			hmi_switches: gpio@100000400 {
-				compatible = "altr,pio-17.1", "altr,pio-1.0";
-				reg = <0x00000001 0x00000400 0x00000010>;
-				clocks = <&clk_0>;
-				altr,gpio-bank-width = <10>;	/* embeddedsw.dts.params.altr,gpio-bank-width type NUMBER */
-				resetvalue = <0>;	/* embeddedsw.dts.params.resetvalue type NUMBER */
-				#gpio-cells = <2>;
-				gpio-controller;
-			}; //end gpio@0x100000400 (hmi_switches)
+			}; //end unknown@0x100000000 (DRS_Receiver_Interface_0)
 		
 
 			
