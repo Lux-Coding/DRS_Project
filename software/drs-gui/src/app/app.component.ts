@@ -23,8 +23,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
 
   private subscription!: Subscription;
-  private posApiUrl: string = 'localhost:5000/pos';
-  private confApiUrl: string = 'https://testomat.free.beeceptor.com';
+  private apiUrl: string = 'http://localhost:5000/pos';  // Replace with your full URL
 
 
   constructor(private http: HttpClient) {}
@@ -56,11 +55,14 @@ export class AppComponent implements OnInit, OnDestroy{
     //     console.error('Error fetching coordinates:', error);
     //   }
     // });
-    this.subscription = interval(1000).pipe(
-      switchMap(() => this.http.get<[x: number, y: number ]>(this.posApiUrl))
+    this.subscription = interval(200).pipe(
+      //switchMap(() => this.http.get<[ x: number, y: number ]>(this.apiUrl))
+      switchMap(() => this.http.get<number[]>( this.apiUrl))
     ).subscribe({
       next: (response) => {
-        this.quadraticFieldComponent.setPoint(response.x, response.y);
+        this.quadraticFieldComponent.setPoint(response[0]/2 * 100, response[1]/ 2 * 100);
+        // Print coordinates to the console
+        console.log('Received coordinates:', response[0], response[1]);
       },
       error: (error) => {
         console.error('Error fetching coordinates:', error);
