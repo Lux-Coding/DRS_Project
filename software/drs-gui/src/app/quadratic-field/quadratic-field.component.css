@@ -1,0 +1,26 @@
+.quadratic-field-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quadratic-field {
+  position: relative;
+  width: 800px; /* Change as needed */
+  height: 800px; /* Equal to width for quadratic field */
+  border: 1px solid black;
+}
+
+.point {
+  position: absolute;
+  width: 10px; /* Change as needed */
+  height: 10px; /* Equal to width for circular point */
+  background-color: red;
+  color: red;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.coordinates {
+  margin-left: 20px;
+}

@@ -1,0 +1,14 @@
+<div>
+  <h2>Node List</h2>
+  <ul>
+    <li *ngFor="let node of nodes">
+      <app-node
+        [name]="node.name"
+        [status]="node.status"
+        [rcvCounter]="node.rcvCounter"
+        [lastToa]="node.lastToa">
+      </app-node>
+      <br>
+    </li>
+  </ul>
+</div>

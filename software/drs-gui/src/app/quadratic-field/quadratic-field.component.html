@@ -1,0 +1,11 @@
+<div class="quadratic-field-container">
+  <div class="quadratic-field" #quadraticField>
+<!--    <div class="point" *ngIf="point" [ngStyle]="{'left': point.x + '%', 'top': point.y + '%'}"></div>-->
+    <div class="point" [ngStyle]="{'left': point.x + '%', 'top': point.y + '%'}"></div>
+<!--    <div class="point" [ngStyle]="{'left': 50 + '%', 'top': 50 + '%'}"></div>-->
+  </div>
+  <div class="coordinates">
+    <p>X: {{ point.x }}</p>
+    <p>Y: {{ point.y }}</p>
+  </div>
+</div>
