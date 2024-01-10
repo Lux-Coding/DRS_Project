@@ -7,8 +7,13 @@ from multiprocessing import Process, Manager, Event
 from scipy.optimize import minimize
 from listener import udp_server
 
+from flask_cors import CORS
+
 # Configuration and global variables
 app = Flask(__name__)
+
+CORS(app)
+
 pos_config = {
     "00:00:00:00": [0, 0],
     "00:00:00:01": [0, 2],
