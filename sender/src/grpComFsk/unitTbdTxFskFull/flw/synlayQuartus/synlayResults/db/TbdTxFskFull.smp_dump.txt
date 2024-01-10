@@ -1,0 +1,28 @@
+
+State Machine - |TbdTxFskFull|ParToI2s:TheParToI2s|State
+Name State.SendingR State.FirstBitEmptyR State.SendingL State.FirstBitEmptyL State.SyncingToBclk State.WaitingValL 
+State.WaitingValL 0 0 0 0 0 0 
+State.SyncingToBclk 0 0 0 0 1 1 
+State.FirstBitEmptyL 0 0 0 1 0 1 
+State.SendingL 0 0 1 0 0 1 
+State.FirstBitEmptyR 0 1 0 0 0 1 
+State.SendingR 1 0 0 0 0 1 
+
+State Machine - |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|R.FrameState
+Name R.FrameState.Stop R.FrameState.Ack3 R.FrameState.Data2 R.FrameState.Ack2 R.FrameState.Data1 R.FrameState.Ack1 R.FrameState.RWBit R.FrameState.Address R.FrameState.Start R.FrameState.Idle 
+R.FrameState.Idle 0 0 0 0 0 0 0 0 0 0 
+R.FrameState.Start 0 0 0 0 0 0 0 0 1 1 
+R.FrameState.Address 0 0 0 0 0 0 0 1 0 1 
+R.FrameState.RWBit 0 0 0 0 0 0 1 0 0 1 
+R.FrameState.Ack1 0 0 0 0 0 1 0 0 0 1 
+R.FrameState.Data1 0 0 0 0 1 0 0 0 0 1 
+R.FrameState.Ack2 0 0 0 1 0 0 0 0 0 1 
+R.FrameState.Data2 0 0 1 0 0 0 0 0 0 1 
+R.FrameState.Ack3 0 1 0 0 0 0 0 0 0 1 
+R.FrameState.Stop 1 0 0 0 0 0 0 0 0 1 
+
+State Machine - |TbdTxFskFull|FskSender:fsksender_inst|Reg.state
+Name Reg.state.Send Reg.state.WaitForFirstBaud Reg.state.WaitForSend 
+Reg.state.WaitForSend 0 0 0 
+Reg.state.WaitForFirstBaud 0 1 1 
+Reg.state.Send 1 0 1 

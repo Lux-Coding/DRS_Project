@@ -1,0 +1,483 @@
+# Reading C:/intelFPGA/18.1/modelsim_ase/tcl/vsim/pref.tcl
+# do ../../../../fhlow/simQuestasim/CompSim.do
+# 
+# 
+# --------------------------------------------------------------------------------
+#     Begin script for Questasim.
+# --------------------------------------------------------------------------------
+# 
+# .
+# ../../../..
+# ../../../../fhlow/simQuestasim
+#   ############################################################################
+#   ##  
+#   ##  fhlow - fast handling of a lot of work
+#   ##          A working environment that speeds up the development of
+#   ##          and structures FPGA design projects
+#   ##  
+#   ##  Version 2.2 (2019-09-24), <https://github.com/michaelroland/fhlow>
+#   ##  
+#   ##  
+#   ##  Copyright (c) 2003-2005 Markus Pfaff <markus.pfaff@fh-hagenberg.at>
+#   ##  Copyright (c) 2005 Christian Kitzler
+#   ##  Copyright (c) 2005 Simon Lasselsberger
+#   ##  Copyright (c) 2011-2019 Michael Roland <michael.roland@fh-hagenberg.at>
+#   ##  
+#   ##  
+#   ##  This program is free software: you can redistribute it and/or modify
+#   ##  it under the terms of the GNU General Public License as published by
+#   ##  the Free Software Foundation, either version 3 of the License, or
+#   ##  (at your option) any later version.
+#   ##  
+#   ##  This program is distributed in the hope that it will be useful,
+#   ##  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   ##  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   ##  GNU General Public License for more details.
+#   ##  
+#   ##  You should have received a copy of the GNU General Public License
+#   ##  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#   ##  
+#   ############################################################################
+# 
+# 
+# ---------------------------- start of compilation ------------------------------
+# Preparing    library                                        ieee_proposed
+# Compiling    package                                        grpIeeeProposed, pkgfixed_float_types
+# Compiling    package                                        grpIeeeProposed, pkgfixed_pkg
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1470): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1471): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1472): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(6888): (vcom-1246) Range 2 to 1 is null.
+# Compiling    package                                        grpPackages, pkgGlobal
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpPackages/pkgGlobal/src/Global-p.vhd(127): (vcom-1073) Non-locally static choice (association #1, choice #1) is allowed only if it is the only choice of the only association.
+# Compiling    package                                        grpWm8731, pkgDefinitionsCodec
+# Compiling    package                                        grpParameterize, pkgParamCodec
+# Compiling    package                                        grpWavFile, pkgRiffFileTreatment
+# Compiling    package                                        grpComFsk, pkgDefinitionsFsk
+# Compiling    entity                                         grpStrobesClocks, unitClkMaster
+# Compiling    entity                                         grpSync, unitSync
+# Compiling    entity                                         grpDsp, unitDspDds
+# Compiling    entity                                         grpComFsk, unitTxFsk
+# Compiling    architecture                                   grpStrobesClocks, unitClkMaster, Rtl
+# Compiling    architecture                                   grpSync, unitSync, Rtl
+# Compiling    architecture                                   grpDsp, unitDspDds, Rtl
+# Compiling    architecture                                   grpComFsk, unitTxFsk, Rtl
+# Compiling    bhv entity                                     grpStrobesClocks, unitPwrOnReset, PwrOnReset
+# Compiling    bhv entity                                     grpStrobesClocks, unitOscillator, Oscillator
+# Compiling    bhv entity                                     grpWavFile, unitWavToPar, WavToPar
+# Compiling    bhv entity                                     grpWavFile, unitWavToI2s, WavToI2s
+# Compiling    bhv entity                                     grpWavFile, unitParToWav, ParToWav
+# Compiling    bhv architecture                               grpStrobesClocks, unitPwrOnReset, Bhv
+# Compiling    bhv architecture                               grpStrobesClocks, unitOscillator, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitWavToPar, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitWavToI2s, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitParToWav, Bhv
+# Compiling    testbench entity-architecture                  grpComFsk, unitTxFsk, Bhv
+# ----------------------------- end of compilation -------------------------------
+# 
+# 
+# 
+# ---------------------------- start of simulation -------------------------------
+# 
+# vsim -quiet -novopt work.tbTxFsk 
+# Start time: 17:40:35 on Jan 10,2024
+# ** Warning: Design size of 14147 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# ** Warning: Mp: Using the non standard sample rate of 44117 Hz.
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/DUT_R/TheDDS
+# ** Warning: :ieee_proposed:fixed_pkg:TO_INTEGER (sfixed): metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /tbtxfsk/DUT_R/TheDDS/PhaseCounterDithering
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/DUT_L/TheDDS
+# ** Warning: :ieee_proposed:fixed_pkg:TO_INTEGER (sfixed): metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /tbtxfsk/DUT_L/TheDDS/PhaseCounterDithering
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tbtxfsk/DUT_R/TheDDS
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tbtxfsk/DUT_L/TheDDS
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5325701 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5325701 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15658373 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15658373 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# 
+# ----------------------------- end of simulation --------------------------------
+# 
+# 
+# Duration of Simulation: 91 sec
+# 
+# 
+# --------------------------------------------------------------------------------
+#     End of script for Questasim.
+# --------------------------------------------------------------------------------
+# 
+# 
+do ../../../../fhlow/simQuestasim/CompSim.do
+# 
+# 
+# --------------------------------------------------------------------------------
+#     Begin script for Questasim.
+# --------------------------------------------------------------------------------
+# 
+# .
+# ../../../..
+# ../../../../fhlow/simQuestasim
+#   ############################################################################
+#   ##  
+#   ##  fhlow - fast handling of a lot of work
+#   ##          A working environment that speeds up the development of
+#   ##          and structures FPGA design projects
+#   ##  
+#   ##  Version 2.2 (2019-09-24), <https://github.com/michaelroland/fhlow>
+#   ##  
+#   ##  
+#   ##  Copyright (c) 2003-2005 Markus Pfaff <markus.pfaff@fh-hagenberg.at>
+#   ##  Copyright (c) 2005 Christian Kitzler
+#   ##  Copyright (c) 2005 Simon Lasselsberger
+#   ##  Copyright (c) 2011-2019 Michael Roland <michael.roland@fh-hagenberg.at>
+#   ##  
+#   ##  
+#   ##  This program is free software: you can redistribute it and/or modify
+#   ##  it under the terms of the GNU General Public License as published by
+#   ##  the Free Software Foundation, either version 3 of the License, or
+#   ##  (at your option) any later version.
+#   ##  
+#   ##  This program is distributed in the hope that it will be useful,
+#   ##  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   ##  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   ##  GNU General Public License for more details.
+#   ##  
+#   ##  You should have received a copy of the GNU General Public License
+#   ##  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#   ##  
+#   ############################################################################
+# 
+# 
+# ---------------------------- start of compilation ------------------------------
+# Preparing    library                                        ieee_proposed
+# Preparing    library                                        ieee_proposed
+# Compiling    package                                        grpIeeeProposed, pkgfixed_float_types
+# Compiling    package                                        grpIeeeProposed, pkgfixed_pkg
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1470): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1471): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1472): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(6888): (vcom-1246) Range 2 to 1 is null.
+# Compiling    package                                        grpPackages, pkgGlobal
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpPackages/pkgGlobal/src/Global-p.vhd(127): (vcom-1073) Non-locally static choice (association #1, choice #1) is allowed only if it is the only choice of the only association.
+# Compiling    package                                        grpWm8731, pkgDefinitionsCodec
+# Compiling    package                                        grpParameterize, pkgParamCodec
+# Compiling    package                                        grpWavFile, pkgRiffFileTreatment
+# Compiling    package                                        grpComFsk, pkgDefinitionsFsk
+# Compiling    entity                                         grpStrobesClocks, unitClkMaster
+# Compiling    entity                                         grpSync, unitSync
+# Compiling    entity                                         grpDsp, unitDspDds
+# Compiling    entity                                         grpComFsk, unitTxFsk
+# Compiling    architecture                                   grpStrobesClocks, unitClkMaster, Rtl
+# Compiling    architecture                                   grpSync, unitSync, Rtl
+# Compiling    architecture                                   grpDsp, unitDspDds, Rtl
+# Compiling    architecture                                   grpComFsk, unitTxFsk, Rtl
+# Compiling    bhv entity                                     grpStrobesClocks, unitPwrOnReset, PwrOnReset
+# Compiling    bhv entity                                     grpStrobesClocks, unitOscillator, Oscillator
+# Compiling    bhv entity                                     grpWavFile, unitWavToPar, WavToPar
+# Compiling    bhv entity                                     grpWavFile, unitWavToI2s, WavToI2s
+# Compiling    bhv entity                                     grpWavFile, unitParToWav, ParToWav
+# Compiling    bhv architecture                               grpStrobesClocks, unitPwrOnReset, Bhv
+# Compiling    bhv architecture                               grpStrobesClocks, unitOscillator, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitWavToPar, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitWavToI2s, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitParToWav, Bhv
+# Compiling    testbench entity-architecture                  grpComFsk, unitTxFsk, Bhv
+# ----------------------------- end of compilation -------------------------------
+# 
+# 
+# 
+# ---------------------------- start of simulation -------------------------------
+# 
+# End time: 17:46:30 on Jan 10,2024, Elapsed time: 0:05:55
+# Errors: 0, Warnings: 17
+# vsim -quiet -novopt work.tbTxFsk 
+# Start time: 17:46:30 on Jan 10,2024
+# ** Warning: Design size of 14151 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# ** Warning: Mp: Using the non standard sample rate of 44117 Hz.
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/DUT_R/TheDDS
+# ** Warning: :ieee_proposed:fixed_pkg:TO_INTEGER (sfixed): metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /tbtxfsk/DUT_R/TheDDS/PhaseCounterDithering
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/DUT_L/TheDDS
+# ** Warning: :ieee_proposed:fixed_pkg:TO_INTEGER (sfixed): metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /tbtxfsk/DUT_L/TheDDS/PhaseCounterDithering
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tbtxfsk/DUT_R/TheDDS
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tbtxfsk/DUT_L/TheDDS
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5325701 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5325701 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15658373 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15658373 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# 
+# ----------------------------- end of simulation --------------------------------
+# 
+# 
+# Duration of Simulation: 85 sec
+# 
+# 
+# --------------------------------------------------------------------------------
+#     End of script for Questasim.
+# --------------------------------------------------------------------------------
+# 
+# 
+do ../../../../fhlow/simQuestasim/CompSim.do
+# 
+# 
+# --------------------------------------------------------------------------------
+#     Begin script for Questasim.
+# --------------------------------------------------------------------------------
+# 
+# .
+# ../../../..
+# ../../../../fhlow/simQuestasim
+#   ############################################################################
+#   ##  
+#   ##  fhlow - fast handling of a lot of work
+#   ##          A working environment that speeds up the development of
+#   ##          and structures FPGA design projects
+#   ##  
+#   ##  Version 2.2 (2019-09-24), <https://github.com/michaelroland/fhlow>
+#   ##  
+#   ##  
+#   ##  Copyright (c) 2003-2005 Markus Pfaff <markus.pfaff@fh-hagenberg.at>
+#   ##  Copyright (c) 2005 Christian Kitzler
+#   ##  Copyright (c) 2005 Simon Lasselsberger
+#   ##  Copyright (c) 2011-2019 Michael Roland <michael.roland@fh-hagenberg.at>
+#   ##  
+#   ##  
+#   ##  This program is free software: you can redistribute it and/or modify
+#   ##  it under the terms of the GNU General Public License as published by
+#   ##  the Free Software Foundation, either version 3 of the License, or
+#   ##  (at your option) any later version.
+#   ##  
+#   ##  This program is distributed in the hope that it will be useful,
+#   ##  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   ##  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   ##  GNU General Public License for more details.
+#   ##  
+#   ##  You should have received a copy of the GNU General Public License
+#   ##  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#   ##  
+#   ############################################################################
+# 
+# 
+# ---------------------------- start of compilation ------------------------------
+# Preparing    library                                        ieee_proposed
+# Preparing    library                                        ieee_proposed
+# Preparing    library                                        ieee_proposed
+# Compiling    package                                        grpIeeeProposed, pkgfixed_float_types
+# Compiling    package                                        grpIeeeProposed, pkgfixed_pkg
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1470): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1471): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1472): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(6888): (vcom-1246) Range 2 to 1 is null.
+# Compiling    package                                        grpPackages, pkgGlobal
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpPackages/pkgGlobal/src/Global-p.vhd(127): (vcom-1073) Non-locally static choice (association #1, choice #1) is allowed only if it is the only choice of the only association.
+# Compiling    package                                        grpWm8731, pkgDefinitionsCodec
+# Compiling    package                                        grpParameterize, pkgParamCodec
+# Compiling    package                                        grpWavFile, pkgRiffFileTreatment
+# Compiling    package                                        grpComFsk, pkgDefinitionsFsk
+# Compiling    entity                                         grpStrobesClocks, unitClkMaster
+# Compiling    entity                                         grpSync, unitSync
+# Compiling    entity                                         grpDsp, unitDspDds
+# Compiling    entity                                         grpComFsk, unitTxFsk
+# Compiling    architecture                                   grpStrobesClocks, unitClkMaster, Rtl
+# Compiling    architecture                                   grpSync, unitSync, Rtl
+# Compiling    architecture                                   grpDsp, unitDspDds, Rtl
+# Compiling    architecture                                   grpComFsk, unitTxFsk, Rtl
+# Compiling    bhv entity                                     grpStrobesClocks, unitPwrOnReset, PwrOnReset
+# Compiling    bhv entity                                     grpStrobesClocks, unitOscillator, Oscillator
+# Compiling    bhv entity                                     grpWavFile, unitWavToPar, WavToPar
+# Compiling    bhv entity                                     grpWavFile, unitWavToI2s, WavToI2s
+# Compiling    bhv entity                                     grpWavFile, unitParToWav, ParToWav
+# Compiling    bhv architecture                               grpStrobesClocks, unitPwrOnReset, Bhv
+# Compiling    bhv architecture                               grpStrobesClocks, unitOscillator, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitWavToPar, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitWavToI2s, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitParToWav, Bhv
+# Compiling    testbench entity-architecture                  grpComFsk, unitTxFsk, Bhv
+# ----------------------------- end of compilation -------------------------------
+# 
+# 
+# 
+# ---------------------------- start of simulation -------------------------------
+# 
+# End time: 17:51:15 on Jan 10,2024, Elapsed time: 0:04:45
+# Errors: 0, Warnings: 17
+# vsim -quiet -novopt work.tbTxFsk 
+# Start time: 17:51:15 on Jan 10,2024
+# ** Warning: Design size of 14151 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# ** Warning: Mp: Using the non standard sample rate of 44117 Hz.
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/DUT_R/TheDDS
+# ** Warning: :ieee_proposed:fixed_pkg:TO_INTEGER (sfixed): metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /tbtxfsk/DUT_R/TheDDS/PhaseCounterDithering
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/DUT_L/TheDDS
+# ** Warning: :ieee_proposed:fixed_pkg:TO_INTEGER (sfixed): metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /tbtxfsk/DUT_L/TheDDS/PhaseCounterDithering
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tbtxfsk/DUT_R/TheDDS
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tbtxfsk/DUT_L/TheDDS
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5325701 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5325701 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15658373 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15658373 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# 
+# ----------------------------- end of simulation --------------------------------
+# 
+# 
+# Duration of Simulation: 87 sec
+# 
+# 
+# --------------------------------------------------------------------------------
+#     End of script for Questasim.
+# --------------------------------------------------------------------------------
+# 
+# 
+do ../../../../fhlow/simQuestasim/CompSim.do
+# 
+# 
+# --------------------------------------------------------------------------------
+#     Begin script for Questasim.
+# --------------------------------------------------------------------------------
+# 
+# .
+# ../../../..
+# ../../../../fhlow/simQuestasim
+#   ############################################################################
+#   ##  
+#   ##  fhlow - fast handling of a lot of work
+#   ##          A working environment that speeds up the development of
+#   ##          and structures FPGA design projects
+#   ##  
+#   ##  Version 2.2 (2019-09-24), <https://github.com/michaelroland/fhlow>
+#   ##  
+#   ##  
+#   ##  Copyright (c) 2003-2005 Markus Pfaff <markus.pfaff@fh-hagenberg.at>
+#   ##  Copyright (c) 2005 Christian Kitzler
+#   ##  Copyright (c) 2005 Simon Lasselsberger
+#   ##  Copyright (c) 2011-2019 Michael Roland <michael.roland@fh-hagenberg.at>
+#   ##  
+#   ##  
+#   ##  This program is free software: you can redistribute it and/or modify
+#   ##  it under the terms of the GNU General Public License as published by
+#   ##  the Free Software Foundation, either version 3 of the License, or
+#   ##  (at your option) any later version.
+#   ##  
+#   ##  This program is distributed in the hope that it will be useful,
+#   ##  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   ##  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   ##  GNU General Public License for more details.
+#   ##  
+#   ##  You should have received a copy of the GNU General Public License
+#   ##  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#   ##  
+#   ############################################################################
+# 
+# 
+# ---------------------------- start of compilation ------------------------------
+# Preparing    library                                        ieee_proposed
+# Preparing    library                                        ieee_proposed
+# Preparing    library                                        ieee_proposed
+# Preparing    library                                        ieee_proposed
+# Compiling    package                                        grpIeeeProposed, pkgfixed_float_types
+# Compiling    package                                        grpIeeeProposed, pkgfixed_pkg
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1470): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1471): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(1472): (vcom-1246) Range 0 downto 1 is null.
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd(6888): (vcom-1246) Range 2 to 1 is null.
+# Compiling    package                                        grpPackages, pkgGlobal
+# ** Warning: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpPackages/pkgGlobal/src/Global-p.vhd(127): (vcom-1073) Non-locally static choice (association #1, choice #1) is allowed only if it is the only choice of the only association.
+# Compiling    package                                        grpWm8731, pkgDefinitionsCodec
+# Compiling    package                                        grpParameterize, pkgParamCodec
+# Compiling    package                                        grpWavFile, pkgRiffFileTreatment
+# Compiling    package                                        grpComFsk, pkgDefinitionsFsk
+# Compiling    entity                                         grpStrobesClocks, unitClkMaster
+# Compiling    entity                                         grpSync, unitSync
+# Compiling    entity                                         grpDsp, unitDspDds
+# Compiling    entity                                         grpComFsk, unitTxFsk
+# Compiling    architecture                                   grpStrobesClocks, unitClkMaster, Rtl
+# Compiling    architecture                                   grpSync, unitSync, Rtl
+# Compiling    architecture                                   grpDsp, unitDspDds, Rtl
+# Compiling    architecture                                   grpComFsk, unitTxFsk, Rtl
+# Compiling    bhv entity                                     grpStrobesClocks, unitPwrOnReset, PwrOnReset
+# Compiling    bhv entity                                     grpStrobesClocks, unitOscillator, Oscillator
+# Compiling    bhv entity                                     grpWavFile, unitWavToPar, WavToPar
+# Compiling    bhv entity                                     grpWavFile, unitWavToI2s, WavToI2s
+# Compiling    bhv entity                                     grpWavFile, unitParToWav, ParToWav
+# Compiling    bhv architecture                               grpStrobesClocks, unitPwrOnReset, Bhv
+# Compiling    bhv architecture                               grpStrobesClocks, unitOscillator, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitWavToPar, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitWavToI2s, Bhv
+# Compiling    bhv architecture                               grpWavFile, unitParToWav, Bhv
+# Compiling    testbench entity-architecture                  grpComFsk, unitTxFsk, Bhv
+# ----------------------------- end of compilation -------------------------------
+# 
+# 
+# 
+# ---------------------------- start of simulation -------------------------------
+# 
+# End time: 18:09:53 on Jan 10,2024, Elapsed time: 0:18:38
+# Errors: 0, Warnings: 17
+# vsim -quiet -novopt work.tbTxFsk 
+# Start time: 18:09:54 on Jan 10,2024
+# ** Warning: Design size of 14157 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/DUT_R/TheDDS
+# ** Warning: :ieee_proposed:fixed_pkg:TO_INTEGER (sfixed): metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /tbtxfsk/DUT_R/TheDDS/PhaseCounterDithering
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tbtxfsk/DUT_L/TheDDS
+# ** Warning: :ieee_proposed:fixed_pkg:TO_INTEGER (sfixed): metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /tbtxfsk/DUT_L/TheDDS/PhaseCounterDithering
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tbtxfsk/DUT_R/TheDDS
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /tbtxfsk/DUT_L/TheDDS
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5325701 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5325701 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15658373 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15658373 ps  Iteration: 1  Instance: /tbtxfsk/TheParToWav
+# 
+# ----------------------------- end of simulation --------------------------------
+# 
+# 
+# Duration of Simulation: 87 sec
+# 
+# 
+# --------------------------------------------------------------------------------
+#     End of script for Questasim.
+# --------------------------------------------------------------------------------
+# 
+# 

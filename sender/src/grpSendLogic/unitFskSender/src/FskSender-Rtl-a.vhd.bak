@@ -5,31 +5,6 @@ use ieee.numeric_std.all;
 library work;
 use work.Global.all;
 
-
-entity FskSender is  
-
-generic (   
-            gClkFrequency       : natural := 48E6;
-            gDistanceOne_ms     : natural := 1;
-            gDistanceTwo_ms     : natural := 10;
-            gDistanceThree_ms   : natural := 500;
-            gDistanceFour_ms    : natural := 1000;
-            gBaudRate           : natural := 9600;
-            gDataByte           : std_ulogic_vector(7 downto 0) := x"A"
-
-);
-
-port(
-    iClk            :  in std_ulogic;
-    inResetAsync    :  in std_ulogic;
-    iDistanceSelect :  in std_logic_vector(1 downto 0);
-    oData           :  out std_ulogic;
-    oSendInProgress :  out std_ulogic
-);
-
-end entity;
-
-
 architecture rtl of FskSender is 
     signal BaudStrobe : std_ulogic;
     signal MSStrobe   : std_ulogic;
@@ -57,11 +32,10 @@ architecture rtl of FskSender is
 begin
 
 
-the_comp : process(Reg, iDistanceSelect, BaudStrobe, MSStrobe) is 
+the_comp : process(Reg, iDistanceSelect, BaudStrobe, MSStrobe,iEnable) is 
 
     variable vDelay : natural;
 begin 
-
 
     case (iDistanceSelect) is 
 
@@ -75,15 +49,11 @@ begin
             vDelay := gDistanceFour_ms;
     end case;
 
-
-
-
-
     case (Reg.state) is 
 
         when WaitForSend => 
 
-            if(MSStrobe = '1') then 
+            if(MSStrobe = '1' and iEnable = '1') then 
                 nxtReg.WaitCounter <= Reg.WaitCounter + 1;
             end if;
 
@@ -118,6 +88,9 @@ begin
     end case;
 
 
+    oData <= Reg.Data;
+    oSendInProgress <= Reg.SendActive;
+
 
 end process;
 
@@ -129,7 +102,7 @@ begin
     if(inResetAsync = not('1')) then 
         Reg <= cInitRegVal;
     elsif (rising_edge(iClk)) then 
-        nxtReg <= Reg;
+        Reg <= nxtReg;
     end if;
 
 end process the_registers;

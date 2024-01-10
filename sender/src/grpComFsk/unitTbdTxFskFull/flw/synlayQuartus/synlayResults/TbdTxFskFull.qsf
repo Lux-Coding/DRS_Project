@@ -1,0 +1,329 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2018  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+# Date created = 16:48:35  January 10, 2024
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		TbdTxFskFull_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEMA5F31C6
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:48:35  JANUARY 10, 2024"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name VHDL_INPUT_VERSION VHDL_1993
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_float_types/src/fixed_float_types-p.vhd" -library ieee_proposed
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpIeeeProposed/pkgfixed_pkg/src/fixed_pkg-p.vhd" -library ieee_proposed
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpPackages/pkgGlobal/src/Global-p.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpWm8731/pkgDefinitionsCodec/src/DefinitionsCodec-p.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpParameterize/pkgParamCodec/src/ParamCodec-p.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/pkgDefinitionsFsk/src/DefinitionsFsk-p.vhd" -library work
+set_global_assignment -name QIP_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitPLL50to48/megafunction/AlteraPLL50to48.qip"
+set_global_assignment -name QIP_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitdrs_analyzer/megafunction/synthesis/drs_analyzer.qip"
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grp#/unit" -library work
+set_global_assignment -name QIP_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitHPSComputer1/Computer_System/synthesis/Computer_System.qip"
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitPLL50to48/src/PLL50to48-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitFreqDivider/src/FreqDivider-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitClkMaster/src/ClkMaster-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpWm8731/unitConfigureCodecViaI2c/src/ConfigureCodecViaI2c-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpI2s/unitParToI2s/src/ParToI2s-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpI2s/unitI2sToPar/src/I2sToPar-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSync/unitSync/src/Sync-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpDsp/unitDspDds/src/DspDds-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTxFsk/src/TxFsk-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/src/TbdTxFskFull-e.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitPLL50to48/src/PLL50to48-Inst-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitFreqDivider/src/FreqDivider-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitClkMaster/src/ClkMaster-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpWm8731/unitConfigureCodecViaI2c/src/ConfigureCodecViaI2c-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpI2s/unitParToI2s/src/ParToI2s-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpI2s/unitI2sToPar/src/I2sToPar-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSync/unitSync/src/Sync-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpDsp/unitDspDds/src/DspDds-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTxFsk/src/TxFsk-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-Rtl-a.vhd" -library work
+set_global_assignment -name VHDL_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/src/TbdTxFskFull-Rtl-a.vhd" -library work
+set_global_assignment -name TOP_LEVEL_ENTITY TbdTxFskFull
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 6
+set_location_assignment PIN_AF14 -to iClk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iClk
+set_location_assignment PIN_AA14 -to inResetAsync
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to inResetAsync
+set_location_assignment PIN_AA15 -to inButton[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to inButton[1]
+set_location_assignment PIN_W15 -to inButton[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to inButton[2]
+set_location_assignment PIN_Y16 -to inButton[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to inButton[3]
+set_location_assignment PIN_G7 -to oMclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oMclk
+set_location_assignment PIN_H7 -to oBclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oBclk
+set_location_assignment PIN_K8 -to oADClrc
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oADClrc
+set_location_assignment PIN_K7 -to iADCdat
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iADCdat
+set_location_assignment PIN_H8 -to oDAClrc
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oDAClrc
+set_location_assignment PIN_J7 -to oDACdat
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oDACdat
+set_location_assignment PIN_J12 -to oI2CSclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oI2CSclk
+set_location_assignment PIN_K12 -to ioI2CSdin
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ioI2CSdin
+set_location_assignment PIN_AB12 -to iSwitch[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[0]
+set_location_assignment PIN_AC12 -to iSwitch[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[1]
+set_location_assignment PIN_AF9 -to iSwitch[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[2]
+set_location_assignment PIN_AF10 -to iSwitch[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[3]
+set_location_assignment PIN_AD11 -to iSwitch[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[4]
+set_location_assignment PIN_AD12 -to iSwitch[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[5]
+set_location_assignment PIN_AE11 -to iSwitch[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[6]
+set_location_assignment PIN_AC9 -to iSwitch[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[7]
+set_location_assignment PIN_AD10 -to iSwitch[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[8]
+set_location_assignment PIN_AE12 -to iSwitch[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to iSwitch[9]
+set_location_assignment PIN_V16 -to oLed[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[0]
+set_location_assignment PIN_W16 -to oLed[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[1]
+set_location_assignment PIN_V17 -to oLed[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[2]
+set_location_assignment PIN_V18 -to oLed[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[3]
+set_location_assignment PIN_W17 -to oLed[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[4]
+set_location_assignment PIN_W19 -to oLed[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[5]
+set_location_assignment PIN_Y19 -to oLed[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[6]
+set_location_assignment PIN_W20 -to oLed[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[7]
+set_location_assignment PIN_W21 -to oLed[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[8]
+set_location_assignment PIN_Y21 -to oLed[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oLed[9]
+set_location_assignment PIN_AE26 -to oSEG0[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG0[0]
+set_location_assignment PIN_AE27 -to oSEG0[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG0[1]
+set_location_assignment PIN_AE28 -to oSEG0[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG0[2]
+set_location_assignment PIN_AG27 -to oSEG0[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG0[3]
+set_location_assignment PIN_AF28 -to oSEG0[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG0[4]
+set_location_assignment PIN_AG28 -to oSEG0[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG0[5]
+set_location_assignment PIN_AH28 -to oSEG0[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG0[6]
+set_location_assignment PIN_AJ29 -to oSEG1[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG1[0]
+set_location_assignment PIN_AH29 -to oSEG1[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG1[1]
+set_location_assignment PIN_AH30 -to oSEG1[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG1[2]
+set_location_assignment PIN_AG30 -to oSEG1[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG1[3]
+set_location_assignment PIN_AF29 -to oSEG1[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG1[4]
+set_location_assignment PIN_AF30 -to oSEG1[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG1[5]
+set_location_assignment PIN_AD27 -to oSEG1[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG1[6]
+set_location_assignment PIN_AB23 -to oSEG2[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG2[0]
+set_location_assignment PIN_AE29 -to oSEG2[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG2[1]
+set_location_assignment PIN_AD29 -to oSEG2[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG2[2]
+set_location_assignment PIN_AC28 -to oSEG2[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG2[3]
+set_location_assignment PIN_AD30 -to oSEG2[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG2[4]
+set_location_assignment PIN_AC29 -to oSEG2[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG2[5]
+set_location_assignment PIN_AC30 -to oSEG2[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG2[6]
+set_location_assignment PIN_AD26 -to oSEG3[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG3[0]
+set_location_assignment PIN_AC27 -to oSEG3[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG3[1]
+set_location_assignment PIN_AD25 -to oSEG3[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG3[2]
+set_location_assignment PIN_AC25 -to oSEG3[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG3[3]
+set_location_assignment PIN_AB28 -to oSEG3[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG3[4]
+set_location_assignment PIN_AB25 -to oSEG3[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG3[5]
+set_location_assignment PIN_AB22 -to oSEG3[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG3[6]
+set_location_assignment PIN_AA24 -to oSEG4[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG4[0]
+set_location_assignment PIN_Y23 -to oSEG4[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG4[1]
+set_location_assignment PIN_Y24 -to oSEG4[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG4[2]
+set_location_assignment PIN_W22 -to oSEG4[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG4[3]
+set_location_assignment PIN_W24 -to oSEG4[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG4[4]
+set_location_assignment PIN_V23 -to oSEG4[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG4[5]
+set_location_assignment PIN_W25 -to oSEG4[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG4[6]
+set_location_assignment PIN_V25 -to oSEG5[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG5[0]
+set_location_assignment PIN_AA28 -to oSEG5[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG5[1]
+set_location_assignment PIN_Y27 -to oSEG5[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG5[2]
+set_location_assignment PIN_AB27 -to oSEG5[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG5[3]
+set_location_assignment PIN_AB26 -to oSEG5[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG5[4]
+set_location_assignment PIN_AA26 -to oSEG5[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG5[5]
+set_location_assignment PIN_AA25 -to oSEG5[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to oSEG5[6]
+set_location_assignment PIN_AC18 -to GPIO_0[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[0]
+set_location_assignment PIN_Y17 -to GPIO_0[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[1]
+set_location_assignment PIN_AD17 -to GPIO_0[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[2]
+set_location_assignment PIN_Y18 -to GPIO_0[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[3]
+set_location_assignment PIN_AK16 -to GPIO_0[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[4]
+set_location_assignment PIN_AK18 -to GPIO_0[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[5]
+set_location_assignment PIN_AK19 -to GPIO_0[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[6]
+set_location_assignment PIN_AJ19 -to GPIO_0[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[7]
+set_location_assignment PIN_AJ17 -to GPIO_0[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[8]
+set_location_assignment PIN_AJ16 -to GPIO_0[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[9]
+set_location_assignment PIN_AH18 -to GPIO_0[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[10]
+set_location_assignment PIN_AH17 -to GPIO_0[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[11]
+set_location_assignment PIN_AG16 -to GPIO_0[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[12]
+set_location_assignment PIN_AE16 -to GPIO_0[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[13]
+set_location_assignment PIN_AF16 -to GPIO_0[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[14]
+set_location_assignment PIN_AG17 -to GPIO_0[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[15]
+set_location_assignment PIN_AA18 -to GPIO_0[16]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[16]
+set_location_assignment PIN_AA19 -to GPIO_0[17]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[17]
+set_location_assignment PIN_AE17 -to GPIO_0[18]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[18]
+set_location_assignment PIN_AC20 -to GPIO_0[19]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[19]
+set_location_assignment PIN_AH19 -to GPIO_0[20]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[20]
+set_location_assignment PIN_AJ20 -to GPIO_0[21]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[21]
+set_location_assignment PIN_AH20 -to GPIO_0[22]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[22]
+set_location_assignment PIN_AK21 -to GPIO_0[23]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[23]
+set_location_assignment PIN_AD19 -to GPIO_0[24]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[24]
+set_location_assignment PIN_AD20 -to GPIO_0[25]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[25]
+set_location_assignment PIN_AE18 -to GPIO_0[26]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[26]
+set_location_assignment PIN_AE19 -to GPIO_0[27]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[27]
+set_location_assignment PIN_AF20 -to GPIO_0[28]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[28]
+set_location_assignment PIN_AF21 -to GPIO_0[29]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[29]
+set_location_assignment PIN_AF19 -to GPIO_0[30]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[30]
+set_location_assignment PIN_AG21 -to GPIO_0[31]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[31]
+set_location_assignment PIN_AF18 -to GPIO_0[32]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[32]
+set_location_assignment PIN_AG20 -to GPIO_0[33]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[33]
+set_location_assignment PIN_AG18 -to GPIO_0[34]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[34]
+set_location_assignment PIN_AJ21 -to GPIO_0[35]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[35]
+set_instance_assignment -name FAST_INPUT_REGISTER ON -to *
+set_instance_assignment -name FAST_OUTPUT_ENABLE_REGISTER ON -to *
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED WITH WEAK PULL-UP"
+set_global_assignment -name RESERVE_ASDO_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
+set_global_assignment -name RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE PERFORMANCE"
+set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING ON
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.1V
+set_global_assignment -name VCCPGM_USER_VOLTAGE 3.3V
+set_global_assignment -name VCCBAT_USER_VOLTAGE 2.5V
+set_global_assignment -name VCCRSTCLK_HPS_USER_VOLTAGE 3.3V
+set_global_assignment -name UNIPHY_SEQUENCER_DQS_CONFIG_ENABLE ON
+set_global_assignment -name USE_DLL_FREQUENCY_FOR_DQS_DELAY_CHAIN ON
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim (VHDL)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name FMAX_REQUIREMENT "50 MHz"
+set_global_assignment -name SDC_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/fhlow/synlayQuartus/TimingConstraints.tcl"
+set_global_assignment -name GENERATE_RBF_FILE ON
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

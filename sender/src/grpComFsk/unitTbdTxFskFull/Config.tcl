@@ -84,7 +84,6 @@ append Packages {
     {Packages Global}
     {Wm8731 DefinitionsCodec}
     {Parameterize ParamCodec}
-    {WavFile RiffFileTreatment}
     {ComFsk DefinitionsFsk}
 }
 
@@ -112,7 +111,6 @@ append Packages {
 #*******************************************************************************
 append Units {
     {AlteraCycloneV PLL50to48 Inst}
-    {AlteraCycloneV HPSComputer1 Inst}
     {StrobesClocks StrobeGen Rtl}
     {StrobesClocks FreqDivider Rtl}
     {StrobesClocks ClkMaster Rtl}
@@ -121,9 +119,10 @@ append Units {
     {I2s I2sToPar Rtl}
     {Sync Sync Rtl}
     {Dsp DspDds Rtl}
-    {Dsp DspFir RtlRam}
     {ComFsk TxFsk Rtl}
+    {SendLogic FskSender Rtl}
     {ComFsk TbdTxFskFull Rtl}
+    
 }
 
 
@@ -185,7 +184,8 @@ append BhvUnits {
 #*******************************************************************************
 append ForeignUnits {
     {AlteraCycloneV PLL50to48 megafunction/AlteraPLL50to48.qip 0 QIP}
-    {AlteraCycloneV HPSComputer1 Computer_System/synthesis/Computer_System.qip 0 QIP}
+    {AlteraCycloneV drs_analyzer megafunction/synthesis/drs_analyzer.qip 0 QIP}
+   # {AlteraCycloneV HPSComputer1 Computer_System/synthesis/Computer_System.qip 0 QIP}
 }
 
 
@@ -413,6 +413,46 @@ append Pins {
     {oSEG5[4] AB26 0 "3.3-V LVTTL"}
     {oSEG5[5] AA26 0 "3.3-V LVTTL"}
     {oSEG5[6] AA25 0 "3.3-V LVTTL"}
+}
+
+# GPIO_0
+append Pins {
+   {GPIO_0[0]  AC18 0 "3.3-V LVTTL"}
+   {GPIO_0[1]  Y17  0 "3.3-V LVTTL"}
+   {GPIO_0[2]  AD17 0 "3.3-V LVTTL"}
+   {GPIO_0[3]  Y18  0 "3.3-V LVTTL"}
+   {GPIO_0[4]  AK16 0 "3.3-V LVTTL"}
+   {GPIO_0[5]  AK18 0 "3.3-V LVTTL"}
+   {GPIO_0[6]  AK19 0 "3.3-V LVTTL"}
+   {GPIO_0[7]  AJ19 0 "3.3-V LVTTL"}
+   {GPIO_0[8]  AJ17 0 "3.3-V LVTTL"}
+   {GPIO_0[9]  AJ16 0 "3.3-V LVTTL"}
+   {GPIO_0[10] AH18 0 "3.3-V LVTTL"}
+   {GPIO_0[11] AH17 0 "3.3-V LVTTL"}
+   {GPIO_0[12] AG16 0 "3.3-V LVTTL"}
+   {GPIO_0[13] AE16 0 "3.3-V LVTTL"}
+   {GPIO_0[14] AF16 0 "3.3-V LVTTL"}
+   {GPIO_0[15] AG17 0 "3.3-V LVTTL"}
+   {GPIO_0[16] AA18 0 "3.3-V LVTTL"}
+   {GPIO_0[17] AA19 0 "3.3-V LVTTL"}
+   {GPIO_0[18] AE17 0 "3.3-V LVTTL"}
+   {GPIO_0[19] AC20 0 "3.3-V LVTTL"}
+   {GPIO_0[20] AH19 0 "3.3-V LVTTL"}
+   {GPIO_0[21] AJ20 0 "3.3-V LVTTL"}
+   {GPIO_0[22] AH20 0 "3.3-V LVTTL"}
+   {GPIO_0[23] AK21 0 "3.3-V LVTTL"}
+   {GPIO_0[24] AD19 0 "3.3-V LVTTL"}
+   {GPIO_0[25] AD20 0 "3.3-V LVTTL"}
+   {GPIO_0[26] AE18 0 "3.3-V LVTTL"}
+   {GPIO_0[27] AE19 0 "3.3-V LVTTL"}
+   {GPIO_0[28] AF20 0 "3.3-V LVTTL"}
+   {GPIO_0[29] AF21 0 "3.3-V LVTTL"}
+   {GPIO_0[30] AF19 0 "3.3-V LVTTL"}
+   {GPIO_0[31] AG21 0 "3.3-V LVTTL"}
+   {GPIO_0[32] AF18 0 "3.3-V LVTTL"}
+   {GPIO_0[33] AG20 0 "3.3-V LVTTL"}
+   {GPIO_0[34] AG18 0 "3.3-V LVTTL"}
+   {GPIO_0[35] AJ21 0 "3.3-V LVTTL"}
 }
 
 # HPS

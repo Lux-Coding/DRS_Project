@@ -1,0 +1,28 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate C:\Users\hanne\OneDrive\WS2324\DRS\DRS_Project\sender\src\grpComFsk\unitTbdTxFskFull\flw\synlayQuartus\synlayResults\drs_analyzer.qsys --block-symbol-file --output-directory=C:\Users\hanne\OneDrive\WS2324\DRS\DRS_Project\sender\src\grpComFsk\unitTbdTxFskFull\flw\synlayQuartus\synlayResults\drs_analyzer --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading synlayResults/drs_analyzer.qsys
+Progress: Reading input file
+Progress: Adding signaltap_ii_logic_analyzer_0 [altera_signaltap_ii_logic_analyzer 18.1]
+Progress: Parameterizing module signaltap_ii_logic_analyzer_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\Users\hanne\OneDrive\WS2324\DRS\DRS_Project\sender\src\grpComFsk\unitTbdTxFskFull\flw\synlayQuartus\synlayResults\drs_analyzer.qsys --synthesis=VHDL --output-directory=C:\Users\hanne\OneDrive\WS2324\DRS\DRS_Project\sender\src\grpComFsk\unitTbdTxFskFull\flw\synlayQuartus\synlayResults\drs_analyzer\synthesis --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading synlayResults/drs_analyzer.qsys
+Progress: Reading input file
+Progress: Adding signaltap_ii_logic_analyzer_0 [altera_signaltap_ii_logic_analyzer 18.1]
+Progress: Parameterizing module signaltap_ii_logic_analyzer_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: drs_analyzer: Generating drs_analyzer "drs_analyzer" for QUARTUS_SYNTH
+Info: signaltap_ii_logic_analyzer_0: "drs_analyzer" instantiated altera_signaltap_ii_logic_analyzer "signaltap_ii_logic_analyzer_0"
+Info: drs_analyzer: Done "drs_analyzer" with 2 modules, 1 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

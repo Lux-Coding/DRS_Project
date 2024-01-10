@@ -1,0 +1,358 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/flw/simQuestasim
+Pdefinitionscodec
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 w1641647404
+R0
+Z5 8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpWm8731/pkgDefinitionsCodec/src/DefinitionsCodec-p.vhd
+Z6 FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpWm8731/pkgDefinitionsCodec/src/DefinitionsCodec-p.vhd
+l0
+L18
+VD;D>k9X_i8Nee?Fglj<jX1
+!s100 eBjPMKgCJ1YXd>;Nh>@b30
+Z7 OV;C;10.5b;63
+31
+b1
+Z8 !s110 1704815317
+!i10b 1
+Z9 !s108 1704815317.000000
+Z10 !s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpWm8731/pkgDefinitionsCodec/src/DefinitionsCodec-p.vhd|
+Z11 !s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpWm8731/pkgDefinitionsCodec/src/DefinitionsCodec-p.vhd|
+!i113 1
+Z12 o-quiet -93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Bbody
+Z14 DPx4 work 16 definitionscodec 0 22 D;D>k9X_i8Nee?Fglj<jX1
+R1
+R2
+R3
+l0
+L278
+VLJGEQ5MVcNV;ode;92W3O3
+!s100 hWBE5`fgj]7WhV[hjeHDo2
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Efsksender
+w1704813376
+Z15 DPx13 ieee_proposed 9 fixed_pkg 0 22 C3]fg@0Y[KRn_oa<O7mfo3
+Z16 DPx13 ieee_proposed 17 fixed_float_types 0 22 o8TjJ@BF1Najb@=^@:3aX2
+Z17 DPx4 work 6 global 0 22 X51oCQHlZ5mYTmo:45M@C3
+R1
+R2
+R3
+R0
+8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-e.vhd
+FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-e.vhd
+l0
+L9
+Ve6mlck>dUUPeeM8oznj^z0
+!s100 d4XB<>L]>fO3PN?dSnkgk3
+R7
+31
+Z18 !s110 1704815318
+!i10b 1
+Z19 !s108 1704815318.000000
+!s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-e.vhd|
+!s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-e.vhd|
+!i113 1
+R12
+R13
+Artl
+w1704815160
+Z20 DEx4 work 9 strobegen 0 22 ?T@ITiB8OhWXJO4EXz[511
+Z21 DEx4 work 9 fsksender 0 22 e6mlck>dUUPeeM8oznj^z0
+R15
+R16
+R17
+R1
+R2
+R3
+8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-Rtl-a.vhd
+FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-Rtl-a.vhd
+l32
+L8
+VK]IgB<30=z7Z8H9QKhkN^3
+!s100 aFnK9`kB]MbRMS1KI_eXc0
+R7
+31
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-Rtl-a.vhd|
+!s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/FskSender-Rtl-a.vhd|
+!i113 1
+R12
+R13
+Pglobal
+R15
+R16
+R1
+R2
+R3
+Z22 w1641647406
+R0
+Z23 8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpPackages/pkgGlobal/src/Global-p.vhd
+Z24 FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpPackages/pkgGlobal/src/Global-p.vhd
+l0
+L32
+VX51oCQHlZ5mYTmo:45M@C3
+!s100 3N0ZE35;a83Nn:7M?5cKb2
+R7
+31
+b1
+R8
+!i10b 1
+R9
+Z25 !s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpPackages/pkgGlobal/src/Global-p.vhd|
+Z26 !s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpPackages/pkgGlobal/src/Global-p.vhd|
+!i113 1
+R12
+R13
+Bbody
+R17
+R15
+R16
+R1
+R2
+R3
+l0
+L92
+VHCZ@]aJI7nJRmGLzVWg;G0
+!s100 RZZeaI@W=o1IP_]kPVOCn2
+R7
+31
+R8
+!i10b 1
+R9
+R25
+R26
+!i113 1
+R12
+R13
+Eoscillator
+Z27 w1641647407
+R1
+R2
+R3
+R0
+8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitOscillator/src/Oscillator-e.vhd
+FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitOscillator/src/Oscillator-e.vhd
+l0
+L27
+VmoZWzA00?IaV6ILl1f[=G0
+!s100 @QV;VZGh?bcAPgOR5D5P_2
+R7
+31
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitOscillator/src/Oscillator-e.vhd|
+!s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitOscillator/src/Oscillator-e.vhd|
+!i113 1
+R12
+R13
+Abhv
+R1
+R2
+R3
+DEx4 work 10 oscillator 0 22 moZWzA00?IaV6ILl1f[=G0
+8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitOscillator/src/Oscillator-Bhv-a.vhd
+FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitOscillator/src/Oscillator-Bhv-a.vhd
+l27
+L23
+VlBE]F4G^7UiUIh0WV8]4e0
+!s100 :OjbJaU[TM_NXC]X`O>eO0
+R7
+31
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitOscillator/src/Oscillator-Bhv-a.vhd|
+!s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitOscillator/src/Oscillator-Bhv-a.vhd|
+!i113 1
+R12
+R13
+Pparamcodec
+R14
+R15
+R16
+R17
+R1
+R2
+R3
+w1641647408
+R0
+8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpParameterize/pkgParamCodec/src/ParamCodec-p.vhd
+FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpParameterize/pkgParamCodec/src/ParamCodec-p.vhd
+l0
+L25
+VHh>;]ok6`7J;[@C6GZWS21
+!s100 WNH7ONZT<kBa81cz>clNM2
+R7
+31
+R18
+!i10b 1
+R9
+!s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpParameterize/pkgParamCodec/src/ParamCodec-p.vhd|
+!s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpParameterize/pkgParamCodec/src/ParamCodec-p.vhd|
+!i113 1
+R12
+R13
+Epwronreset
+R27
+R1
+R2
+R3
+R0
+8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitPwrOnReset/src/PwrOnReset-e.vhd
+FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitPwrOnReset/src/PwrOnReset-e.vhd
+l0
+L27
+V<Wd;gELT7=BJ?1nCM=]zE1
+!s100 aCF1Y`6`N5?@nVg9dG5W`0
+R7
+31
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitPwrOnReset/src/PwrOnReset-e.vhd|
+!s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitPwrOnReset/src/PwrOnReset-e.vhd|
+!i113 1
+R12
+R13
+Abhv
+R1
+R2
+R3
+DEx4 work 10 pwronreset 0 22 <Wd;gELT7=BJ?1nCM=]zE1
+8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitPwrOnReset/src/PwrOnReset-Bhv-a.vhd
+FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitPwrOnReset/src/PwrOnReset-Bhv-a.vhd
+l24
+L23
+VRlmmZ@CLUSClG6[ASD?C_1
+!s100 JSY]1bC311U<_3o@zoIPO1
+R7
+31
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitPwrOnReset/src/PwrOnReset-Bhv-a.vhd|
+!s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitPwrOnReset/src/PwrOnReset-Bhv-a.vhd|
+!i113 1
+R12
+R13
+Estrobegen
+R27
+R15
+R16
+R17
+R1
+R2
+R3
+R0
+8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-e.vhd
+FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-e.vhd
+l0
+L22
+V?T@ITiB8OhWXJO4EXz[511
+!s100 7f3dY]7ZSSldC8:KEBhQ11
+R7
+31
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-e.vhd|
+!s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-e.vhd|
+!i113 1
+R12
+R13
+Artl
+R15
+R16
+R17
+R1
+R2
+R3
+R20
+8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-Rtl-a.vhd
+FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-Rtl-a.vhd
+l40
+L16
+Vg5kQLZmkTUG^=[iVfm`3O1
+!s100 =^O<BCO6Gd5@4>aHm`<f33
+R7
+31
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-Rtl-a.vhd|
+!s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpStrobesClocks/unitStrobeGen/src/StrobeGen-Rtl-a.vhd|
+!i113 1
+R12
+R13
+Etbfsksender
+Z28 w1704815313
+R15
+R16
+R17
+R1
+R2
+R3
+R0
+Z29 8C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/tbFskSender-bhv-ea.vhd
+Z30 FC:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/tbFskSender-bhv-ea.vhd
+l0
+L8
+VG4bD_NAHX]enXezZ96boF3
+!s100 Y^@1^P:T;[BU709NE=[IF1
+R7
+31
+R18
+!i10b 1
+R19
+Z31 !s90 -reportprogress|300|-quiet|-93|-work|work|C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/tbFskSender-bhv-ea.vhd|
+Z32 !s107 C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpSendLogic/unitFskSender/src/tbFskSender-bhv-ea.vhd|
+!i113 1
+R12
+R13
+Abhv
+R21
+R15
+R16
+R17
+R1
+R2
+R3
+DEx4 work 11 tbfsksender 0 22 G4bD_NAHX]enXezZ96boF3
+l20
+L12
+VEM6NeS@DaMZFnlM`[:[:Y1
+!s100 fhc:BHA]FKb4>D4nJLC=:3
+R7
+31
+R18
+!i10b 1
+R19
+R31
+R32
+!i113 1
+R12
+R13

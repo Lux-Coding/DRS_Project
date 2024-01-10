@@ -15,6 +15,7 @@ architecture Rtl of TbdTxFskFull is
   constant cI2cStrobeFrequency : natural := 750E3;
   constant cMclkFrequency      : natural := 12E6;
   constant cCodecParamSet      : aParamSetName := MicroSlaveSampleRate44k1;
+  constant cSampleRate         : natural := cDefaultSampleRate;
 
   signal Clk48MHz    : std_ulogic;
   signal PllLocked   : std_ulogic;
@@ -28,11 +29,9 @@ architecture Rtl of TbdTxFskFull is
   signal Mclk             : std_ulogic;
   signal Bclk             : std_ulogic;
   signal ADClrc           : std_ulogic;
-  signal ValDryL, ValDryR : std_ulogic;
-  signal micro_strobe     : std_ulogic;
-  signal Ddry             : aAudioData(0 downto -(gAudioBitWidth-1));
   signal ValWetL, ValWetR : std_ulogic;
   signal DwetL, DwetR     : aAudioData(0 downto -(gAudioBitWidth-1));
+  signal DwetGate         : aAudioData(0 downto -(gAudioBitWidth-1));
 
   signal TxChannelInput  : unsigned(3 downto 0);
   signal TxChannelSync   : std_ulogic;
@@ -40,13 +39,18 @@ architecture Rtl of TbdTxFskFull is
   
   signal TxDataInput  : std_ulogic;
   signal TxDataSync   : std_ulogic;
-  
-  signal MirrorHpsLed : std_ulogic;
+
+  signal SenderData : std_ulogic;
+  signal SendingInProgress : std_ulogic;
+  signal ValWetGate : std_ulogic;
 
   signal PhaseStrobe          : std_ulogic;
   signal oldADClrc            : std_ulogic;
 
 begin
+
+
+  nResetAsync <= inButton(1);
 
   PLL_50MHz_48MHz : entity work.PLL50to48
     port map (
@@ -55,6 +59,7 @@ begin
       oClk48MHz    => Clk48MHz,
       oLocked      => PllLocked
     );
+
 
    -- Start will be activated some strobes after reset is released. And
   -- will be deactivated as soon as the codec is configured.
@@ -81,6 +86,27 @@ begin
       end if;
     end process CountDownOnce;
 
+    fsksender_inst: entity work.FskSender
+    generic map (
+      gClkFrequency     => 48E6,
+      gDistanceOne_ms   => 100,
+      gDistanceTwo_ms   => 500,
+      gDistanceThree_ms => 1000,
+      gDistanceFour_ms  => 5000,
+      gBaudRate         => 281,
+      gDataByte         => x"55"
+    )
+    port map (
+      iClk            => Clk48MHz,
+      inResetAsync    => inResetAsync,
+      iDistanceSelect => iSwitch(2 downto 1),
+      iEnable         => StartSending,
+      oData           => SenderData,
+      oSendInProgress => SendingInProgress
+    );
+
+    TxDataInput <= SenderData;
+
   -- Audio codec configuration programmer
   ConfigureCodec : entity work.ConfigureCodecViaI2c
     generic map (
@@ -92,7 +118,8 @@ begin
       iStart       => Start,
       oConfigured  => Configured,
       oI2cSclk     => oI2cSclk,
-      ioI2cSdin    => ioI2cSdin
+      ioI2cSdin    => ioI2cSdin,
+      oAckError => open
     );
 
 
@@ -107,22 +134,12 @@ begin
       oStrobe      => StrobeI2C);
 
 
-    -- Strobe for configuration speed control
-  GenStrobeSendSignal : entity work.StrobeGen
-    generic map (
-      gClkFrequency    => gClkFrequency,
-      gStrobeFrequency => 1000_000)
-    port map (
-      iClk         => Clk48MHz,
-      inResetAsync => nResetAsync,
-      oStrobe      => micro_strobe);
-
   -- Audio codec clock generation
   GenClks : entity work.ClkMaster
     generic map (
       gClkFrequency  => gClkFrequency,
       gMclkFrequency => cMclkFrequency,
-      gSampleRate    => gSampleRate)
+      gSampleRate    => cSampleRate)
     port map (
       iClk         => Clk48MHz,
       inResetAsync => nResetAsync,
@@ -131,31 +148,22 @@ begin
       oADClrc      => ADClrc
     );
 
+    GPIO_0(0) <= Mclk;
+    GPIO_0(1) <= Bclk;
+    GPIO_0(2) <= ADClrc;
+    GPIO_0(3) <= PhaseStrobe;
+    GPIO_0(35 downto 4) <= (others => '0');
+
   oADClrc <= ADClrc;
   oMclk   <= Mclk;
   oBclk   <= Bclk;
-
-  -- Audio codec ADC data input processor
-  TheI2sToPar : entity work.I2sToPar
-    generic map (
-      gAudioBitWidth => gAudioBitWidth)
-    port map (
-      iClk         => Clk48MHz,
-      inResetAsync => nResetAsync,
-      iBclk        => Bclk,
-      iLrc         => ADClrc,
-      iSd          => iADCdat,
-      oD           => Ddry,
-      oValL        => ValDryL,
-      oValR        => ValDryR
-    );
 
   -- Sync the channel selector
   TheChannelSelSync : entity work.Sync
     port map(
       iClk            => Clk48MHz,
       inResetAsync    => nResetAsync,
-      iAsync          => TxChannelInput(0),
+      iAsync          => iSwitch(9),
       oSync           => TxChannelSync
     );
 
@@ -191,7 +199,8 @@ begin
   -- FSK unit with DDS inside
   TheTxFsk : entity work.TxFsk
     generic map(
-    gChannels  => gChannels
+    gChannels  => gChannels,
+    gSampleRate => cSampleRate
     )
     -- (
     --     0 => (Frequency0 => 8099.6054687500,   -- Hz
@@ -205,110 +214,34 @@ begin
       iChannelSelect  => TxChannelSelect,
       iD              => TxDataSync,
       iSampleStrobe   => PhaseStrobe,
-      oVal            => ValWetL,
-      oD              => DwetL
+      oVal            => ValWetGate,
+      oD              => DwetGate
     );
 
 
-  -- HPS_Inst : entity work.HPSComputer1
-  --   port map (
-  --     -- CLOCK
-  --     CLOCK_50         => iClk,
-      
-  --     -- RESET (for FPGA, generated by HPS)
-  --     FPGA_RESET_N     => nResetAsync,
+  the_gate : process(Clk48MHz) is 
+  begin 
 
-  --     -- UART (HPS LOAN I/O -> FPGA)
-  --     FPGA_UART_TX     => cActivated,
-  --     FPGA_UART_RX     => TxDataInput,
-      
-  --     -- HPS GPIO DEBUG
-  --     MIRROR_HPS_LED   => MirrorHpsLed,
-      
-  --     -- DDR3 SDRAM
-  --     HPS_DDR3_ADDR    => HPS_DDR3_ADDR,
-  --     HPS_DDR3_BA      => HPS_DDR3_BA,
-  --     HPS_DDR3_CK_P    => HPS_DDR3_CK_P,
-  --     HPS_DDR3_CK_N    => HPS_DDR3_CK_N,
-  --     HPS_DDR3_CKE     => HPS_DDR3_CKE,
-  --     HPS_DDR3_CS_N    => HPS_DDR3_CS_N,
-  --     HPS_DDR3_RAS_N   => HPS_DDR3_RAS_N,
-  --     HPS_DDR3_CAS_N   => HPS_DDR3_CAS_N,
-  --     HPS_DDR3_WE_N    => HPS_DDR3_WE_N,
-  --     HPS_DDR3_RESET_N => HPS_DDR3_RESET_N,
-  --     HPS_DDR3_DQ      => HPS_DDR3_DQ,
-  --     HPS_DDR3_DQS_P   => HPS_DDR3_DQS_P,
-  --     HPS_DDR3_DQS_N   => HPS_DDR3_DQS_N,
-  --     HPS_DDR3_ODT     => HPS_DDR3_ODT,
-  --     HPS_DDR3_DM      => HPS_DDR3_DM,
-  --     HPS_DDR3_RZQ     => HPS_DDR3_RZQ,
-      
-  --     -- ETHERNET
-  --     HPS_ENET_GTX_CLK => HPS_ENET_GTX_CLK,
-  --     HPS_ENET_MDC     => HPS_ENET_MDC,
-  --     HPS_ENET_MDIO    => HPS_ENET_MDIO,
-  --     HPS_ENET_RX_CLK  => HPS_ENET_RX_CLK,
-  --     HPS_ENET_RX_DATA => HPS_ENET_RX_DATA,
-  --     HPS_ENET_RX_DV   => HPS_ENET_RX_DV,
-  --     HPS_ENET_TX_DATA => HPS_ENET_TX_DATA,
-  --     HPS_ENET_TX_EN   => HPS_ENET_TX_EN,
-  --     HPS_ENET_INT_N   => HPS_ENET_INT_N,
-      
-  --     -- QSPI FLASH
-  --     HPS_FLASH_DATA   => HPS_FLASH_DATA,
-  --     HPS_FLASH_DCLK   => HPS_FLASH_DCLK,
-  --     HPS_FLASH_NCSO   => HPS_FLASH_NCSO,
-      
-  --     -- I2C
-  --     HPS_I2C_CONTROL  => HPS_I2C_CONTROL,
-  --     HPS_I2C1_SCLK    => HPS_I2C1_SCLK,
-  --     HPS_I2C1_SDAT    => HPS_I2C1_SDAT,
-  --     HPS_I2C2_SCLK    => HPS_I2C2_SCLK,
-  --     HPS_I2C2_SDAT    => HPS_I2C2_SDAT,
-      
-  --     -- SD CARD
-  --     HPS_SD_CMD       => HPS_SD_CMD,
-  --     HPS_SD_CLK       => HPS_SD_CLK,
-  --     HPS_SD_DATA      => HPS_SD_DATA,
-      
-  --     -- USB
-  --     HPS_USB_CLKOUT   => HPS_USB_CLKOUT,
-  --     HPS_USB_DATA     => HPS_USB_DATA,
-  --     HPS_USB_DIR      => HPS_USB_DIR,
-  --     HPS_USB_NXT      => HPS_USB_NXT,
-  --     HPS_USB_STP      => HPS_USB_STP,
-  --     HPS_CONV_USB_N   => HPS_CONV_USB_N,
-      
-  --     -- SPI
-  --     HPS_SPIM_CLK     => HPS_SPIM_CLK,
-  --     HPS_SPIM_MISO    => HPS_SPIM_MISO,
-  --     HPS_SPIM_MOSI    => HPS_SPIM_MOSI,
-  --     HPS_SPIM_SS      => HPS_SPIM_SS,
+    if(nResetAsync = not'1') then 
+      DwetL    <= (others => '0');
+      DwetR    <= (others => '0');
+      ValWetL <= '0';
+      ValWetR <= '0';
+    elsif (rising_edge(Clk48MHz)) then 
 
-  --     -- UART
-  --     HPS_UART_TX      => HPS_UART_TX,
-  --     HPS_UART_RX      => HPS_UART_RX,
-      
-  --     -- GPIO
-  --     HPS_KEY          => HPS_KEY,
-  --     HPS_LED          => HPS_LED,
-  --     HPS_LTC_GPIO     => HPS_LTC_GPIO,
-  --     HPS_GSENSOR_INT  => HPS_GSENSOR_INT,
+      if(iSwitch(0) = '1') then 
+        DwetL <= DwetGate;
+        DwetR <= DwetGate;
+      else 
+        DwetL <= (others => '0');
+        DwetR <= (others => '0');
+      end if;
 
-  --     -- MODEM CHANNEL SELECTION
-  --     MODEM_TX_CHANNEL => TxChannelInput,
-  --     MODEM_TX_7SEG    => oSEG0,
-  --     MODEM_RX_CHANNEL => open,
-  --     MODEM_RX_7SEG    => oSEG1,
+      ValWetL <= ValWetGate;
+      ValWetR <= ValWetGate;
+    end if;
 
-  --     -- 7-SEGMENT DISPLAY (7-Segment Hex Digit Controller)
-  --     SEVEN_SEGMENT_0  => oSEG4,
-  --     SEVEN_SEGMENT_1  => oSEG5
-  --   );
-
-  DwetR   <= DwetL;
-  ValWetR <= ValWetL;
-
+  end process; 
 
   -- Audio codec DAC data output processor
   TheParToI2s : entity work.ParToI2s
@@ -327,6 +260,10 @@ begin
 
   oSEG2 <= "0011001" when TxChannelSync = '1' else "0000000";
   oSEG3 <= "0011001" when TxChannelSync = '1' else "0000000";
+  oSEG0 <= (others => '0');
+  oSEG1 <= (others => '0');
+  oSEG4 <= (others => '0');
+  oSEG5 <= (others => '0');
 
   oLed  <= (0 => PllLocked,
             1 => Start,
@@ -334,7 +271,7 @@ begin
             5 => TxDataSync,
             6 => TxDataSync,
             7 => TxChannelSync,
-            9 => MirrorHpsLed,
+            9 => '0',
             others => cInactivated);
 
 end architecture Rtl;

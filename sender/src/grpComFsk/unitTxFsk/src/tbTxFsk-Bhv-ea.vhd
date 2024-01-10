@@ -43,7 +43,7 @@ architecture Bhv of tbTxFsk is
   constant cIsLowPercentageOfDutyCycle : natural := 65;
   constant cInResetDuration            : time    := 140 ns;
   constant cMclkFrequency              : natural := 12E6;
-  constant cSampleRate                 : natural := cDefaultSampleRate;
+  constant cSampleRate                 : natural := 96000;
   constant cAudioBitWidth              : natural := cDefaultAudioBitWidth;
 
   constant cWetWavFileName : string := "WetWavFile.wav";
@@ -109,7 +109,13 @@ begin
     generic map (
       gClkFrequency  => cClkFrequency,
       gAudioBitWidth => cAudioBitWidth,
-      gSampleRate    => cSampleRate)
+      gSampleRate    => cSampleRate,
+      gChannels => (
+        0 => (Frequency0 =>  8099.6054687500,   -- Hz
+              Frequency1 => 12924.9023437500),  -- Hz
+        1 => (Frequency0 => 27000.0,       -- Hz
+              Frequency1 => 43500.0))     -- Hz
+      )
 
     port map (
       iClk            => Clk,
@@ -125,7 +131,13 @@ begin
     generic map (
       gClkFrequency  => cClkFrequency,
       gAudioBitWidth => cAudioBitWidth,
-      gSampleRate    => cSampleRate)
+      gSampleRate    => cSampleRate,
+            gChannels => (
+        0 => (Frequency0 =>  8099.6054687500,   -- Hz
+              Frequency1 => 12924.9023437500),  -- Hz
+        1 => (Frequency0 => 27000.0,       -- Hz
+              Frequency1 => 43500.0))     -- Hz
+    )
 
     port map (
       iClk            => Clk,
@@ -144,10 +156,10 @@ begin
       gWavFileName                 => cWetWavFileName,
       gRawWavFileName              => cWetRawWavFileName,
       gRecordingDurationAftWaveEnd => cRecordingDurationAftWaveEnd,
-      gFormatTag                   => open,
-      gAudioBitWidth               => open,
-      gChannels                    => open,
-      gSampleRate                  => cDefaultSampleRate)
+      gFormatTag                   => 1,
+      gAudioBitWidth               => cAudioBitWidth,
+      gChannels                    => 2,
+      gSampleRate                  => cSampleRate)
     port map (
       iClk       => Clk,
       iDL        => DwetL,
