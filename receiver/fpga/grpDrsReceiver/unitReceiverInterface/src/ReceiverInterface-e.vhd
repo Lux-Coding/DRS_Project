@@ -2,6 +2,19 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+-----------------------------------------------------------------------------------------
+-- Avalon Registers:
+-----------------------------------------------------------------------------------------
+--                      [0x00]  time stamp upper (read/write)
+--                        Bits 31-0   : time stamp upper 4 bytes
+--------------------------------------------------------------
+--                      [0x04]  time stamp lower (read/write)
+--                        Bits 31-0   : time stamp lower 4 bytes
+--------------------------------------------------------------
+--                      [0x08]  data interrupt reset (write)
+--                        Bits 31-0   : write any bit to reset interrupt
+--------------------------------------------------------------
+
 entity ReceiverInterface is
     generic (
         gClkFrequency       : integer := 50E6
