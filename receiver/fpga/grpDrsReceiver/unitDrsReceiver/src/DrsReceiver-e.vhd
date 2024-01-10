@@ -78,9 +78,10 @@ entity DrsReceiver is
         oADClrc      : out std_ulogic;
         oDAClrc      : out std_ulogic;
 
-        iChannelSelect : in std_ulogic; -- 0 => 4, 1 => 7
+        iChannelSelect  : in std_ulogic; -- 0 => 4, 1 => 7
         
-        oSeg         : out std_logic_vector(6 downto 0);  -- active low
-        oLed         : out std_logic_vector(9 downto 0)  -- active high
+        oSegChannel     : out std_logic_vector(6 downto 0);  -- active low
+        oSegDistance    : out std_logic_vector(6 downto 0);  -- active low
+        oLed            : out std_logic_vector(9 downto 0)  -- active high
     );
 end entity DrsReceiver;

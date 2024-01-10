@@ -14,6 +14,7 @@ architecture Rtl of DataDetector is
         BitCount   : unsigned(LogDualis(gDetectData'length + 1) downto 0);
         Bits       : std_ulogic_vector(gDetectData'range);
         ByteDetected : std_ulogic;
+        SegDistance : std_logic_vector(6 downto 0);
     end record;
 
     constant cInitRegs : aRegs := (
@@ -21,7 +22,8 @@ architecture Rtl of DataDetector is
         CycleCount => (others => '0'),
         BitCount => (others => '0'),
         Bits => (others => '0'),
-        ByteDetected => '0'
+        ByteDetected => '0',
+        SegDistance => (others => '0')
     );
 
     signal R, NextR : aRegs;
@@ -29,7 +31,7 @@ architecture Rtl of DataDetector is
 
 begin
 
-    comb: process(R, iData) is    
+    comb: process(R, iData, iDistanceSelect, HundredUsStrobe) is    
     variable vDelay : integer;
     begin
         NextR <= R;
@@ -37,12 +39,16 @@ begin
         case iDistanceSelect is
             when "00" => 
                 vDelay := cHundresUsCountsOne;
+                NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(1, 4)));
             when "01" => 
                 vDelay := cHundresUsCountsTwo;
+                NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(2, 4)));
             when "10" => 
                 vDelay := cHundresUsCountsThree;
+                NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(3, 4)));
             when others => 
                 vDelay := cHundresUsCountsFour;
+                NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(4, 4)));
         end case;
 
         case R.State is
@@ -114,5 +120,6 @@ begin
     );
 
     oByteDetected <= R.ByteDetected;
+    oSegDistance <= R.SegDistance;
 
 end architecture Rtl;

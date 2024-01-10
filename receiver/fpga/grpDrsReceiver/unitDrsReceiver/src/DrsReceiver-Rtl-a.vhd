@@ -23,11 +23,13 @@ architecture Rtl of DrsReceiver is
     signal RxChannelSelect : natural range 0 to 11;
 
     signal DistanceSelectSync : std_ulogic_vector(1 downto 0);
+    signal DistanceSelected : natural range 0 to 3;
 
     signal RxDataOutput     : std_ulogic;
     signal RxDataOutputSync : std_ulogic;
     
     signal RxChannelLedOutput: std_ulogic;
+    signal ByteDetected : std_ulogic;
 
 begin
 
@@ -216,10 +218,13 @@ begin
       inResetAsync    => inResetAsync,
       iData           => RxDataOutputSync,
       iDistanceSelect => DistanceSelectSync,
-      oByteDetected   => oByteDetected
+      oByteDetected   => ByteDetected,
+      oSegDistance    => oSegDistance
     );
 
-    oSeg <= not std_logic_vector(ToSevSeg(to_unsigned(RxChannelSelect, 4))); -- show selected channel on hex segment display
+    oByteDetected <= ByteDetected;
+
+    oSegChannel <= not std_logic_vector(ToSevSeg(to_unsigned(RxChannelSelect, 4))); -- show selected channel on hex segment display
 
     oLed  <= (0 => PllLocked,
             1 => Start,
@@ -227,6 +232,7 @@ begin
             3 => RxChannelSync, -- synced switch input
             4 => RxChannelLedOutput, -- 1 when Channel 4, 0 when Channel 7
             5 => RxDataOutputSync, -- received data output
+            6 => ByteDetected,
             others => cInactivated);
 
 end architecture Rtl;

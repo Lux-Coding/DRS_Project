@@ -7,7 +7,7 @@ ENTITY template IS
     PORT(
         ---------FPGA Connections-------------
         CLOCK_50    : in std_logic;
-        SW      : in std_logic_vector(9 downto 0);
+        SW          : in std_logic_vector(9 downto 0);
         LEDR        : out std_logic_vector(9 downto 0);
 
 
@@ -309,11 +309,11 @@ BEGIN
         oADClrc         => AUD_ADCLRCK,
         oDAClrc         => AUD_DACLRCK,
         iChannelSelect  => SW(2),
-        oSeg            => HEX0,
+        oSegChannel     => HEX0,
+        oSegDistance    => HEX1,
         oLed            => LEDR
     );
 
-    HEX1 <= (others => '0');
     HEX2 <= (others => '0');
     HEX3 <= (others => '0');
     HEX4 <= (others => '0');
