@@ -11,12 +11,12 @@ use work.InterfaceFunctions.all;
 entity DataDetector is
     generic (
         gClkFrequency       : integer := cDefaultClkFrequency;
-        gDistanceOne_us     : integer := 900;
-        gDistanceTwo_us     : integer := 99900;
-        gDistanceThree_us   : integer := 499900;
-        gDistanceFour_us    : integer := 999900;
-        gBaudRate           : integer := 9600;
-        gDetectData         : std_ulogic_vector(7 downto 0) := x"0A";
+        gDistanceOne_ms     : integer := 100;
+        gDistanceTwo_ms     : integer := 500;
+        gDistanceThree_ms   : integer := 1000;
+        gDistanceFour_ms    : integer := 5000;
+        gBaudRate           : integer := 281;
+        gDetectData         : std_ulogic_vector(7 downto 0) := x"55";
         gDetectCycleLength  : integer := 4
     );
     port (

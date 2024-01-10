@@ -56,8 +56,8 @@ entity DrsReceiver is
             11 => (Bandpass0 => ( cZeroBandpass ),    -- band pass for Channel 11/freq. 0
                 Bandpass1 => ( cZeroBandpass )));   -- band pass for Channel 11/freq. 1
         gLowpass         : aSetOfFactors := ( cLowpass ); -- low pass
-        gBaudRate        : natural := 9600;
-        gDetectData      : std_ulogic_vector(7 downto 0) := x"0A"
+        gBaudRate        : natural := 281;
+        gDetectData      : std_ulogic_vector(7 downto 0) := x"55"
     );
     port (
         iClk          : in std_ulogic;

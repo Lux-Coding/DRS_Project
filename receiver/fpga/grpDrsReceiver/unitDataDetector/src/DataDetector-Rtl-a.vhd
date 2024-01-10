@@ -1,20 +1,16 @@
 architecture Rtl of DataDetector is
 
     constant cCyclesPerBit : integer := gClkFrequency / gBaudRate;
-    constant cHundresUsCountsOne : integer := gDistanceOne_us / 100;
-    constant cHundresUsCountsTwo : integer := gDistanceTwo_us / 100;
-    constant cHundresUsCountsThree : integer := gDistanceThree_us / 100;
-    constant cHundresUsCountsFour : integer := gDistanceFour_us / 100;
 
     type aState is (WaitForRisingEdge, WaitUntilFirstSample, Sampling, OutputDetected, IgnoreIncoming);
 
     type aRegs is record
-        State      : aState;
-        CycleCount : unsigned(LogDualis(cHundresUsCountsFour + 1) downto 0);
-        BitCount   : unsigned(LogDualis(gDetectData'length + 1) downto 0);
-        Bits       : std_ulogic_vector(gDetectData'range);
+        State        : aState;
+        CycleCount   : unsigned(LogDualis(cCyclesPerBit + 1) downto 0);
+        BitCount     : unsigned(LogDualis(gDetectData'length + 1) downto 0);
+        Bits         : std_ulogic_vector(gDetectData'range);
         ByteDetected : std_ulogic;
-        SegDistance : std_logic_vector(6 downto 0);
+        SegDistance  : std_logic_vector(6 downto 0);
     end record;
 
     constant cInitRegs : aRegs := (
@@ -27,27 +23,27 @@ architecture Rtl of DataDetector is
     );
 
     signal R, NextR : aRegs;
-    signal HundredUsStrobe : std_ulogic;
+    signal MsStrobe : std_ulogic;
 
 begin
 
-    comb: process(R, iData, iDistanceSelect, HundredUsStrobe) is    
+    comb: process(R, iData, iDistanceSelect, MsStrobe) is
     variable vDelay : integer;
     begin
         NextR <= R;
 
         case iDistanceSelect is
             when "00" => 
-                vDelay := cHundresUsCountsOne;
+                vDelay := gDistanceOne_ms;
                 NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(1, 4)));
             when "01" => 
-                vDelay := cHundresUsCountsTwo;
+                vDelay := gDistanceTwo_ms;
                 NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(2, 4)));
             when "10" => 
-                vDelay := cHundresUsCountsThree;
+                vDelay := gDistanceThree_ms;
                 NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(3, 4)));
             when others => 
-                vDelay := cHundresUsCountsFour;
+                vDelay := gDistanceFour_ms;
                 NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(4, 4)));
         end case;
 
@@ -67,12 +63,13 @@ begin
                 end if;
             when Sampling =>
                 NextR.CycleCount <= R.CycleCount + 1;
-                if to_integer(R.CycleCount) = cCyclesPerBit then
+                -- immediately sample first bit
+                if to_integer(R.BitCount) = 0 or to_integer(R.CycleCount) = cCyclesPerBit then
                     NextR.CycleCount <= (others => '0');
                     NextR.Bits(to_integer(R.BitCount)) <= iData;
                     NextR.BitCount <= R.BitCount + 1;                    
                 end if;
-                if to_integer(R.BitCount) = gDetectData'length - 1 then
+                if to_integer(R.BitCount) = gDetectData'length then
                     NextR.CycleCount <= (others => '0');
                     NextR.State <= IgnoreIncoming;
                     if iData & R.Bits(6 downto 0) = gDetectData then
@@ -88,7 +85,7 @@ begin
                     NextR.CycleCount <= (others => '0');
                 end if;
             when IgnoreIncoming =>
-                if HundredUsStrobe = '1' then 
+                if MsStrobe = '1' then 
                     NextR.CycleCount <= R.CycleCount + 1;
                 end if;
                 if to_integer(R.CycleCount) = vDelay then
@@ -108,15 +105,15 @@ begin
         end if;
     end process;
 
-    hundredUs_strobe_generator: entity work.StrobeGen
+    ms_strobe_generator: entity work.StrobeGen
     generic map (
         gClkFrequency    => gClkFrequency,
-        gStrobeFrequency => 10000
+        gStrobeFrequency => 1000
     )
     port map (
         iClk         => iClk,
         inResetAsync => inResetAsync,
-        oStrobe      => HundredUsStrobe
+        oStrobe      => MsStrobe
     );
 
     oByteDetected <= R.ByteDetected;
