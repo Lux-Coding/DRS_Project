@@ -13,9 +13,11 @@ import signal
 
 app = Flask(__name__)
 
-
-# Global data structure to store receiver data
-data_store = {}
+pos_config = {  "00:00:00:00":[0, 0],   \
+                "00:00:00:01":[0, 2],   \
+                "00:00:00:02":[2, 0],   \
+                "00:00:00:03":[2, 2],}
+pos = [1,1]
 
 def toa_multilateration_solve(timestamps, microphone_coordinates, speed_of_sound=343.2):
     def error(x, c, t):
@@ -24,12 +26,8 @@ def toa_multilateration_solve(timestamps, microphone_coordinates, speed_of_sound
     x0 = numpy.zeros(2)  # Initial guess for 2D coordinates
     result_2d = minimize(error, x0, args=(microphone_coordinates, timestamps), method='Nelder-Mead')
 
-    return result_2d.x
-    # microphones = numpy.array([[0, 0], [0, 2], [2, 0], [2, 2]])  # 4 microphone coordinates
-    # timestamps_list = [
-    #     [1.5811/343.2, 0.7071/343.2, 2.12/343.2, 1.5811/343.2],  # Timestamps for the first set
-    #   #  [2.0, 2.1, 2.2, 2.3],  # Timestamps for the second set
-    # ]
+    print(result_2d.x)
+    return result_2d.x.tolist()
 
 def data_processing_thread(shared_data, data_event):
     while not shutdown_event.is_set():
@@ -37,17 +35,39 @@ def data_processing_thread(shared_data, data_event):
             data_event.clear()  # Clear the event
 
             # Perform your calculations here
-            calculate_something(shared_data) 
+            calculate_pos(shared_data) 
         
     
+def calculate_pos(shared_data):
+    global pos
+    print("Calculating pos with the new data...")
+
+    try:
+        mics = []
+        timestamps = []
+        for mac_address, coordinates in shared_data.items():
+            print(f"MAC Address: {mac_address}, Coordinates: {coordinates}")
+            mics.append(pos_config[mac_address])
+            timestamps.append(shared_data[mac_address][0])
+            
+        print(mics)
+        print(timestamps)
+
+        if len(shared_data) >= 3:
+            microphones = numpy.array(mics)  # 4 microphone coordinates
+            pos = toa_multilateration_solve(timestamps, microphones)
+
+    except Exception as e:
+        print("Error, invalid mac addresse or no data" + str(e))
 
 
-def calculate_something(shared_data):
-    # Placeholder for your calculation logic
-    print("Calculating something with the new data...")
-    # Example: Print the latest data
-    for mac, data in shared_data.items():
-        print(f"MAC: {mac}, Data: {data}")
+    # microphones = numpy.array([[0, 0], [0, 2], [2, 0], [2, 2]])  # 4 microphone coordinates
+    # timestamps_list = [
+    #     [1.5811/343.2, 0.7071/343.2, 2.12/343.2, 1.5811/343.2],  # Timestamps for the first set
+    #   #  [2.0, 2.1, 2.2, 2.3],  # Timestamps for the second set
+    # ]
+
+  #  
 
 # Start the UDP server in a separate process
 
@@ -64,17 +84,40 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 # REST endpoint to get data
-@app.route('/data', methods=['GET'])
+@app.route('/status', methods=['GET'])
 def get_data():
-    return jsonify(data_store)
+    return jsonify(dict(shared_data))
+
+# REST endpoint to get pos
+@app.route('/pos', methods=['GET'])
+def get_pos():
+    global pos
+    print(pos)
+    return jsonify(list(pos))
+
 
 # REST endpoint to configure parameters (example)
-@app.route('/configure', methods=['POST'])
+@app.route('/config', methods=['POST'])
+def configure_parameters_post():
+    global pos_config
+    try:
+        # Get JSON data from the request
+        json_data = request.get_json()
+        pos_config = {}
+        # Update the data_dict with the received data
+        for key, value in json_data.items():
+            pos_config[key] = value
+            print(pos_config)
+
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
+
+# REST endpoint to configure parameters (example)
+@app.route('/config', methods=['GET'])
 def configure_parameters():
-    # Process incoming configuration parameters
-    params = request.json
-    # Add configuration logic here
-    return jsonify({params})
+    return jsonify(pos_config)
 
 # Main function to start the server and web application
 if __name__ == '__main__':
