@@ -80,8 +80,8 @@ begin
                         NextR.ByteDetected <= '1';
                         NextR.State <= OutputDetected;
                     end if;
-                    NextR.Seg0 <= not std_logic_vector(ToSevSeg(R.Bits(3 downto 0)));
-                    NextR.Seg1 <= not std_logic_vector(ToSevSeg(iData & R.Bits(6 downto 4)));
+                    NextR.Seg0 <= not std_logic_vector(ToSevSeg(unsigned(R.Bits(3 downto 0))));
+                    NextR.Seg1 <= not std_logic_vector(ToSevSeg(unsigned(iData & R.Bits(6 downto 4))));
                 end if;
             when OutputDetected =>
                 NextR.CycleCount <= R.CycleCount + 1;

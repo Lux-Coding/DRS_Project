@@ -79,6 +79,7 @@ begin
 
         if R.interrupt_state = '0' and iByteDetected = '1' then
             NextR.TimeStampCapture <= R.TimeStampCounter;
+            NextR.interrupt_state <= '1';
         end if;
     end process;
 
