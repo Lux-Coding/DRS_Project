@@ -114,3 +114,6 @@ IMAGE_INSTALL += "git"
 # ptp and stuff
 IMAGE_INSTALL += "ethtool"
 IMAGE_INSTALL += "linuxptp"
+
+# drs app software
+IMAGE_INSTALL += "drsapp"
