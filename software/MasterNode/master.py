@@ -114,4 +114,4 @@ if __name__ == '__main__':
     udp_process.start()
     processing_thread = threading.Thread(target=data_processing_thread)
     processing_thread.start()
-    app.run(port=5000)
+    app.run(host="0.0.0.0", port=5000)
