@@ -219,7 +219,9 @@ begin
       iData           => RxDataOutputSync,
       iDistanceSelect => DistanceSelectSync,
       oByteDetected   => ByteDetected,
-      oSegDistance    => oSegDistance
+      oSegDistance    => oSegDistance,
+      oSeg0 => oSeg0,
+      oSeg1 => oSeg1
     );
 
     oByteDetected <= ByteDetected;

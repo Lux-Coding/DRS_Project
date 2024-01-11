@@ -1,0 +1,105 @@
+Assembler report for TbdTxFskFull
+Wed Jan 10 21:56:33 2024
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Assembler Summary
+  3. Assembler Settings
+  4. Assembler Generated Files
+  5. Assembler Device Options: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/flw/synlayQuartus/synlayResults/TbdTxFskFull.sof
+  6. Assembler Device Options: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/flw/synlayQuartus/synlayResults/TbdTxFskFull.rbf
+  7. Assembler Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++---------------------------------------------------------------+
+; Assembler Summary                                             ;
++-----------------------+---------------------------------------+
+; Assembler Status      ; Successful - Wed Jan 10 21:56:33 2024 ;
+; Revision Name         ; TbdTxFskFull                          ;
+; Top-level Entity Name ; TbdTxFskFull                          ;
+; Family                ; Cyclone V                             ;
+; Device                ; 5CSEMA5F31C6                          ;
++-----------------------+---------------------------------------+
+
+
++----------------------------------+
+; Assembler Settings               ;
++--------+---------+---------------+
+; Option ; Setting ; Default Value ;
++--------+---------+---------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                                             ;
++---------------------------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                                             ;
++---------------------------------------------------------------------------------------------------------------------------------------+
+; C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/flw/synlayQuartus/synlayResults/TbdTxFskFull.sof ;
+; C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/flw/synlayQuartus/synlayResults/TbdTxFskFull.rbf ;
++---------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/flw/synlayQuartus/synlayResults/TbdTxFskFull.sof ;
++----------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                                                        ;
++----------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x00BAC1B7                                                                                                                                     ;
+; Checksum       ; 0x00BAC1B7                                                                                                                                     ;
++----------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/flw/synlayQuartus/synlayResults/TbdTxFskFull.rbf ;
++---------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+; Option              ; Setting                                                                                                                                   ;
++---------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+; Raw Binary File     ;                                                                                                                                           ;
+;  Compression Ratio  ; 3                                                                                                                                         ;
++---------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------+
+; Assembler Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Assembler
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Wed Jan 10 21:56:26 2024
+Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off TbdTxFskFull -c TbdTxFskFull
+Warning (125092): Tcl Script File C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitHPSComputer1/Computer_System/synthesis/Computer_System.qip not found
+    Info (125063): set_global_assignment -name QIP_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitHPSComputer1/Computer_System/synthesis/Computer_System.qip"
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (115030): Assembler is generating device programming files
+Warning (12914): The file, C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitdrs_analyzer/drs_analyzer.sopcinfo, is not embedded into sof file as expected.  Some tools, such as System Console, may not function fully.
+Info: Quartus Prime Assembler was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 4836 megabytes
+    Info: Processing ended: Wed Jan 10 21:56:33 2024
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:06
+
+

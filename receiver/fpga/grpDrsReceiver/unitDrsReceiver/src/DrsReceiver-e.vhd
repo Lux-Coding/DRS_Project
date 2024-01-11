@@ -82,6 +82,8 @@ entity DrsReceiver is
         
         oSegChannel     : out std_logic_vector(6 downto 0);  -- active low
         oSegDistance    : out std_logic_vector(6 downto 0);  -- active low
+        oSeg0    : out std_logic_vector(6 downto 0);  -- active low
+        oSeg1    : out std_logic_vector(6 downto 0);  -- active low
         oLed            : out std_logic_vector(9 downto 0)  -- active high
     );
 end entity DrsReceiver;

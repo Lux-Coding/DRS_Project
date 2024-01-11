@@ -23,9 +23,9 @@
 create_clock -name "SYSCLK" -period 20ns [get_ports {iClk}] -waveform {0.000ns 10.000ns}
 
 # HPS inputs
-create_clock -name "HPS_I2C1_SCLK" -period 2500ns [get_ports {HPS_I2C1_SCLK}] -waveform {0.000ns 1250.000ns}
-create_clock -name "HPS_I2C2_SCLK" -period 2500ns [get_ports {HPS_I2C2_SCLK}] -waveform {0.000ns 1250.000ns}
-create_clock -name "HPS_USB_CLKOUT" -period 16ns [get_ports {HPS_USB_CLKOUT}] -waveform {0.000ns 8.000ns}
+#create_clock -name "HPS_I2C1_SCLK" -period 2500ns [get_ports {HPS_I2C1_SCLK}] -waveform {0.000ns 1250.000ns}
+#create_clock -name "HPS_I2C2_SCLK" -period 2500ns [get_ports {HPS_I2C2_SCLK}] -waveform {0.000ns 1250.000ns}
+#create_clock -name "HPS_USB_CLKOUT" -period 16ns [get_ports {HPS_USB_CLKOUT}] -waveform {0.000ns 8.000ns}
 
 # for enhancing USB BlasterII to be reliable, 25MHz
 #create_clock -name {altera_reserved_tck} -period 40 {altera_reserved_tck}

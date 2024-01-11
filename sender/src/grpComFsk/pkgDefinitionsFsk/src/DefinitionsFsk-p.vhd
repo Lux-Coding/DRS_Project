@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- Title       : Parameter definitions for FSK modem
 -- Project     : FPGA Based Digital Signal Processing
---               FH OÖ Hagenberg/HSD, SCD5
+--               FH Oï¿½ Hagenberg/HSD, SCD5
 --------------------------------------------------------------------------------
 -- RevCtrl     : $Id: DefinitionsFsk-p.vhd 733 2017-12-04 02:28:35Z mroland $
 -- Authors     : Michael Roland, Hagenberg/Austria, Copyright (c) 2015-2017
@@ -41,6 +41,15 @@ package DefinitionsFsk is
 
   type aSetOfRxBandpasses is array (natural range <>) of aRxBandpassSet;
   
+
+    component drs_analyzer is
+        port (
+            acq_clk        : in std_logic                      := 'X';             -- clk
+            acq_data_in    : in std_logic_vector(127 downto 0) := (others => 'X'); -- acq_data_in
+            acq_trigger_in : in std_logic_vector(0 downto 0)   := (others => 'X'); -- acq_trigger_in
+            trigger_in     : in std_logic                      := 'X'              -- trigger_in
+        );
+    end component drs_analyzer;
 
 end package DefinitionsFsk;
 

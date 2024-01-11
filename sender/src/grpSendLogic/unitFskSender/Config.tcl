@@ -82,6 +82,8 @@ append Packages {
     {IeeeProposed fixed_float_types ieee_proposed}
     {IeeeProposed fixed_pkg ieee_proposed}
     {Packages Global}
+    {Wm8731 DefinitionsCodec}
+    {Parameterize ParamCodec}
 }
 
 
@@ -107,7 +109,8 @@ append Packages {
 #* 
 #*******************************************************************************
 append Units {
-    {StrobesClocks ClkMaster Rtl}
+    {StrobesClocks StrobeGen Rtl}
+    {SendLogic FskSender Rtl}
 }
 
 
@@ -133,8 +136,8 @@ append Units {
 #* 
 #*******************************************************************************
 append BhvUnits {
-    {StrobesClocks Oscillator Bhv}
     {StrobesClocks PwrOnReset Bhv}
+    {StrobesClocks Oscillator Bhv}
 }
 
 
@@ -217,7 +220,7 @@ append ForeignTbUnits {
 #* 
 #*******************************************************************************
 set tbUnits  {
-    {StrobesClocks ClkMaster Bhv}
+    {SendLogic FskSender Bhv}
 }
 
 
@@ -235,7 +238,7 @@ set tbUnits  {
 #*     set SimTime "10 ns"
 #* 
 #*******************************************************************************
-set SimTime "100 ms"
+set SimTime "400 ms"
 
 
 #*******************************************************************************
