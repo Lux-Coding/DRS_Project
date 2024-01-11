@@ -109,7 +109,7 @@ static irqreturn_t handler(int irq, void *data)
 	iowrite32(irq_config, rcvr->register_base + RECEIVER_CONFIG_REG);
 
 	if(wake_up){
-		wake_up_interruptible(rcvr->wq); 
+		wake_up_interruptible(&rcvr->wq); 
 	}
 
 	return IRQ_HANDLED;
