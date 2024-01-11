@@ -31,6 +31,10 @@ entity ReceiverInterface is
         -- data byte detected
         iByteDetected   :  in std_ulogic;
         -- byte detected and timestamp captured
-        oByteDetected_int : out std_ulogic
+        oByteDetected_int : out std_ulogic;
+        -- stored timestamp
+        oTimestampCounter : out std_ulogic_vector(63 downto 0);
+        -- captured timestamp
+        oTimestampCapture : out std_ulogic_vector(63 downto 0)
     );
 end entity ReceiverInterface;

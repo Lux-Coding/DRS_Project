@@ -155,5 +155,7 @@ begin
     end process;
 
     oByteDetected_int <= R.interrupt_state;
+    oTimestampCounter <= std_ulogic_vector(R.TimeStampCounter);
+    oTimestampCapture <= std_ulogic_vector(R.TimeStampCapture);
 
 end architecture Rtl;

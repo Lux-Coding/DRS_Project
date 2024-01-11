@@ -202,7 +202,9 @@ ARCHITECTURE MAIN OF template IS
             memory_mem_odt                                      : out   std_logic;                                        -- mem_odt
             memory_mem_dm                                       : out   std_logic_vector(3 downto 0);                     -- mem_dm
             memory_oct_rzqin                                    : in    std_logic                     := 'X';             -- oct_rzqin
-            reset_reset_n                                       : in    std_logic                     := 'X'              -- reset_n
+            reset_reset_n                                       : in    std_logic                     := 'X';             -- reset_n
+            drs_receiver_interface_0_otimestampcounter_otimestampcounter : out   std_logic_vector(63 downto 0);           -- otimestampcounter
+            drs_receiver_interface_0_otimestampcapture_otimestampcapture : out   std_logic_vector(63 downto 0)            -- otimestampcapture
         );
     end component HPSPlatform;
 
@@ -215,6 +217,11 @@ ARCHITECTURE MAIN OF template IS
     signal stm_hw_events : std_logic_vector(27 downto 0);
 
     signal ByteDetected : std_ulogic := '0';
+
+    signal TimeStampCapture : std_ulogic_vector(63 downto 0) := (others => '0');
+    signal TimeStampCounter : std_ulogic_vector(63 downto 0) := (others => '0');
+
+    signal LedOutput : std_logic_vector(9 downto 0) := (others => '0');
 
 BEGIN
 
@@ -292,7 +299,9 @@ BEGIN
             memory_mem_odt                  => HPS_DDR3_ODT,                  --                        .mem_odt
             memory_mem_dm                   => HPS_DDR3_DM,                   --                        .mem_dm
             memory_oct_rzqin                => HPS_DDR3_RZQ,                --                        .oct_rzqin                        --                                       .oct_rzqin
-            reset_reset_n                   => HPS_H2F_RST                                        --                                  reset.reset_n
+            reset_reset_n                   => HPS_H2F_RST,                                      --                                  reset.reset_n
+            drs_receiver_interface_0_otimestampcounter_otimestampcounter => TimeStampCounter, -- drs_receiver_interface_0_otimestampcounter.otimestampcounter
+            drs_receiver_interface_0_otimestampcapture_otimestampcapture => TimeStampCapture  -- drs_receiver_interface_0_otimestampcapture.otimestampcapture
         );
 
     receiver: entity work.DrsReceiver
@@ -317,7 +326,9 @@ BEGIN
         oSeg2 => HEX4,
         oSeg3 => HEX5,
         iSetDetectedKey => KEY(0),
-        oLed            => LEDR
+        oLed            => LedOutput
     );
+
+    LEDR <= std_logic_vector(TimeStampCounter(9 downto 0)) when SW(3) = '1' else LedOutput;
 
 END ARCHITECTURE;
