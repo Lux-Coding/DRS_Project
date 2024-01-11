@@ -11,8 +11,7 @@ architecture Rtl of DataDetector is
         Bits         : std_ulogic_vector(gDetectData'range);
         ByteDetected : std_ulogic;
         SegDistance  : std_logic_vector(6 downto 0);
-        Seg0  : std_logic_vector(6 downto 0);
-        Seg1  : std_logic_vector(6 downto 0);
+        DetectedCounter : unsigned(7 downto 0);
     end record;
 
     constant cInitRegs : aRegs := (
@@ -21,17 +20,17 @@ architecture Rtl of DataDetector is
         BitCount => (others => '0'),
         Bits => (others => '0'),
         ByteDetected => '0',
-        SegDistance => (others => '0'),        
-        Seg0 => (others => '0'),
-        Seg1 => (others => '0')
+        SegDistance => (others => '0'),
+        DetectedCounter => (others => '0')
     );
 
     signal R, NextR : aRegs;
-    signal MsStrobe : std_ulogic;
+    signal MsStrobe : std_ulogic := '0';
+    signal SecondsStrobe : std_ulogic := '0';
 
 begin
 
-    comb: process(R, iData, iDistanceSelect, MsStrobe) is
+    comb: process(R, iData, iDistanceSelect, MsStrobe, iSetDetectedKey, SecondsStrobe) is
     variable vDelay : integer;
     begin
         NextR <= R;
@@ -50,6 +49,13 @@ begin
                 vDelay := gDistanceFour_ms;
                 NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(4, 4)));
         end case;
+
+        if SecondsStrobe = '1' and iSetDetectedKey = '1' then
+            NextR.CycleCount <= (others => '0');
+            NextR.ByteDetected <= '1';
+            NextR.State <= OutputDetected;
+            NextR.DetectedCounter <= R.DetectedCounter + 1;
+        end if;
 
         case R.State is
             when WaitForRisingEdge =>
@@ -79,9 +85,8 @@ begin
                     if iData & R.Bits(6 downto 0) = gDetectData then
                         NextR.ByteDetected <= '1';
                         NextR.State <= OutputDetected;
+                        NextR.DetectedCounter <= R.DetectedCounter + 1;
                     end if;
-                    NextR.Seg0 <= not std_logic_vector(ToSevSeg(unsigned(R.Bits(3 downto 0))));
-                    NextR.Seg1 <= not std_logic_vector(ToSevSeg(unsigned(iData & R.Bits(6 downto 4))));
                 end if;
             when OutputDetected =>
                 NextR.CycleCount <= R.CycleCount + 1;
@@ -122,9 +127,24 @@ begin
         oStrobe      => MsStrobe
     );
 
+    s_strobe_generator: entity work.StrobeGen
+    generic map (
+        gClkFrequency    => gClkFrequency,
+        gStrobeFrequency => 1
+    )
+    port map (
+        iClk         => iClk,
+        inResetAsync => inResetAsync,
+        oStrobe      => SecondsStrobe
+    );
+
     oByteDetected <= R.ByteDetected;
     oSegDistance <= R.SegDistance;
-    oSeg0 <= R.Seg0;
-    oSeg1 <= R.Seg1;
+    
+    oSeg0 <= not std_logic_vector(ToSevSeg(unsigned(R.Bits(3 downto 0))));
+    oSeg1 <= not std_logic_vector(ToSevSeg(unsigned(R.Bits(7 downto 4))));
+    
+    oSeg2 <= not std_logic_vector(ToSevSeg(unsigned(R.DetectedCounter(3 downto 0))));
+    oSeg3 <= not std_logic_vector(ToSevSeg(unsigned(R.DetectedCounter(7 downto 4))));
 
 end architecture Rtl;

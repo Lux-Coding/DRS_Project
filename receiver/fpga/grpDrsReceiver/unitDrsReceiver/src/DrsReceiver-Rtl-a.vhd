@@ -221,7 +221,10 @@ begin
       oByteDetected   => ByteDetected,
       oSegDistance    => oSegDistance,
       oSeg0 => oSeg0,
-      oSeg1 => oSeg1
+      oSeg1 => oSeg1,
+      oSeg2 => oSeg2,
+      oSeg3 => oSeg3,
+      iSetDetectedKey => iSetDetectedKey
     );
 
     oByteDetected <= ByteDetected;
