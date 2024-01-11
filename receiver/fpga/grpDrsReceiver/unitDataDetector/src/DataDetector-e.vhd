@@ -17,7 +17,7 @@ entity DataDetector is
         gDistanceFour_ms    : integer := 5000;
         gBaudRate           : integer := 281;
         gDetectData         : std_ulogic_vector(7 downto 0) := x"55";
-        gDetectCycleLength  : integer := 4
+        gDetectCycleLength  : integer := 1
     );
     port (
         iClk            :  in std_ulogic;

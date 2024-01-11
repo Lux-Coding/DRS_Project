@@ -55,56 +55,56 @@ begin
             NextR.ByteDetected <= '1';
             NextR.State <= OutputDetected;
             NextR.DetectedCounter <= R.DetectedCounter + 1;
-        end if;
-
-        case R.State is
-            when WaitForRisingEdge =>
-                if iData = '1' then                    
-                    NextR.State <= WaitUntilFirstSample;
-                    NextR.CycleCount <= (others => '0');
-                end if;
-            when WaitUntilFirstSample =>
-                if to_integer(R.CycleCount) < cCyclesPerBit / 2 then
-                    NextR.CycleCount <= R.CycleCount + 1;
-                else
-                    NextR.State <= Sampling;
-                    NextR.CycleCount <= (others => '0');
-                    NextR.BitCount <= (others => '0');
-                end if;
-            when Sampling =>
-                NextR.CycleCount <= R.CycleCount + 1;
-                -- immediately sample first bit
-                if to_integer(R.BitCount) = 0 or to_integer(R.CycleCount) = cCyclesPerBit then
-                    NextR.CycleCount <= (others => '0');
-                    NextR.Bits(to_integer(R.BitCount)) <= iData;
-                    NextR.BitCount <= R.BitCount + 1;                    
-                end if;
-                if to_integer(R.BitCount) = gDetectData'length then
-                    NextR.CycleCount <= (others => '0');
-                    NextR.State <= IgnoreIncoming;
-                    if iData & R.Bits(6 downto 0) = gDetectData then
-                        NextR.ByteDetected <= '1';
-                        NextR.State <= OutputDetected;
-                        NextR.DetectedCounter <= R.DetectedCounter + 1;
+        else
+            case R.State is
+                when WaitForRisingEdge =>
+                    if iData = '1' then                    
+                        NextR.State <= WaitUntilFirstSample;
+                        NextR.CycleCount <= (others => '0');
                     end if;
-                end if;
-            when OutputDetected =>
-                NextR.CycleCount <= R.CycleCount + 1;
-                if to_integer(R.CycleCount) = gDetectCycleLength then
-                    NextR.ByteDetected <= '0';
-                    NextR.State <= IgnoreIncoming;
-                    NextR.CycleCount <= (others => '0');
-                end if;
-            when IgnoreIncoming =>
-                if MsStrobe = '1' then 
+                when WaitUntilFirstSample =>
+                    if to_integer(R.CycleCount) < cCyclesPerBit / 2 then
+                        NextR.CycleCount <= R.CycleCount + 1;
+                    else
+                        NextR.State <= Sampling;
+                        NextR.CycleCount <= (others => '0');
+                        NextR.BitCount <= (others => '0');
+                    end if;
+                when Sampling =>
                     NextR.CycleCount <= R.CycleCount + 1;
-                end if;
-                if to_integer(R.CycleCount) = vDelay then
-                    NextR.State <= WaitForRisingEdge;
-                end if;
-            when others =>
-                null;        
-        end case;
+                    -- immediately sample first bit
+                    if to_integer(R.BitCount) = 0 or to_integer(R.CycleCount) = cCyclesPerBit then
+                        NextR.CycleCount <= (others => '0');
+                        NextR.Bits(to_integer(R.BitCount)) <= iData;
+                        NextR.BitCount <= R.BitCount + 1;                    
+                    end if;
+                    if to_integer(R.BitCount) = gDetectData'length then
+                        NextR.CycleCount <= (others => '0');
+                        NextR.State <= IgnoreIncoming;
+                        if iData & R.Bits(6 downto 0) = gDetectData then
+                            NextR.State <= OutputDetected;
+                            NextR.DetectedCounter <= R.DetectedCounter + 1;
+                        end if;
+                    end if;
+                when OutputDetected =>
+                    NextR.ByteDetected <= '1';
+                    NextR.CycleCount <= R.CycleCount + 1;
+                    if to_integer(R.CycleCount) = gDetectCycleLength then
+                        NextR.ByteDetected <= '0';
+                        NextR.State <= IgnoreIncoming;
+                        NextR.CycleCount <= (others => '0');
+                    end if;
+                when IgnoreIncoming =>
+                    if MsStrobe = '1' then 
+                        NextR.CycleCount <= R.CycleCount + 1;
+                    end if;
+                    if to_integer(R.CycleCount) = vDelay then
+                        NextR.State <= WaitForRisingEdge;
+                    end if;
+                when others =>
+                    null;        
+            end case;        
+        end if;
     end process;
 
     registering : process (iClk, inResetAsync)
