@@ -84,6 +84,7 @@ static irqreturn_t handler(int irq, void *data)
 	struct receiver *rcvr = data;
 	unsigned long flags;
 	int val = 0;
+	int wake_up = 0;
 	
 	u32 const time_high = ioread32(rcvr->register_base + RECEIVER_TIME_HIGH_REG);
 	u32 const time_low = ioread32(rcvr->register_base + RECEIVER_TIME_LOW_REG);
@@ -94,6 +95,11 @@ static irqreturn_t handler(int irq, void *data)
 	irq_config |= RECEIVER_IRQ_RESET;
 	
 	spin_lock_irqsave(&rcvr->lock, flags);	
+
+	if(kfifo_is_empty(&timestamps)){
+		wake_up = 1;
+	}
+
 	if (kfifo_is_full(&timestamps) == 1) {
 		val = kfifo_get(&timestamps, &old_time);
 	}
@@ -101,6 +107,10 @@ static irqreturn_t handler(int irq, void *data)
 	spin_unlock_irqrestore(&rcvr->lock, flags);
 
 	iowrite32(irq_config, rcvr->register_base + RECEIVER_CONFIG_REG);
+
+	if(wake_up){
+		wake_up_interruptible(rcvr->wq); 
+	}
 
 	return IRQ_HANDLED;
 }
@@ -209,30 +219,61 @@ static int receiver_remove(struct platform_device *pdev)
 	return 0;
 }
 
+// static ssize_t receiver_read(struct file *filp, char __user *buff,
+// 	size_t count, loff_t *offp)
+// {
+// 	int ret = 0;
+// 	ssize_t copied = 0;
+// 	unsigned long flags;
+
+// 	struct receiver *rcvr = container_of(
+// 		filp->private_data, struct receiver, misc);
+
+// 	// check if at least one sample can be read
+// 	if (count >= sizeof(u64)) {
+// 		// set count a multiple of the size of a sample
+// 		if (count % sizeof(u64) != 0)
+// 			count -= count % sizeof(u64);
+
+// 		// wait until the fifo is not empty
+// 		wait_event_interruptible(rcvr->wq, !kfifo_is_empty(&timestamps));
+
+// 		// output the samples of the fifo to the user
+// 		spin_lock_irqsave(&rcvr->lock, flags);
+// 		ret = kfifo_to_user(&timestamps, buff, count, &copied);
+// 		spin_unlock_irqrestore(&rcvr->lock, flags);
+// 	}
+	
+// 	pr_info("receiver: written: %d Bytes\n", copied);
+	
+// 	return copied;
+// }
+
 static ssize_t receiver_read(struct file *filp, char __user *buff,
 	size_t count, loff_t *offp)
 {
 	int ret = 0;
 	ssize_t copied = 0;
 	unsigned long flags;
+	int err = 0;
 
 	struct receiver *rcvr = container_of(
 		filp->private_data, struct receiver, misc);
 
-	// check if at least one sample can be read
-	if (count >= sizeof(u64)) {
-		// set count a multiple of the size of a sample
-		if (count % sizeof(u64) != 0)
-			count -= count % sizeof(u64);
-
-		// wait until the fifo is not empty
-		wait_event_interruptible(rcvr->wq, !kfifo_is_empty(&timestamps));
-
-		// output the samples of the fifo to the user
-		spin_lock_irqsave(&rcvr->lock, flags);
-		ret = kfifo_to_user(&timestamps, buff, count, &copied);
-		spin_unlock_irqrestore(&rcvr->lock, flags);
+	if(count < sizeof(u64)){
+		return 0;
 	}
+
+	// wait until the fifo is not empty
+	 if ((err = wait_event_interruptible(rcvr->wq, !kfifo_is_empty(&timestamps))))
+	 {
+		return err;
+	 }
+
+	// output the samples of the fifo to the user
+	spin_lock_irqsave(&rcvr->lock, flags);
+	ret = kfifo_to_user(&timestamps, buff, sizeof(u64), &copied);
+	spin_unlock_irqrestore(&rcvr->lock, flags);
 	
 	pr_info("receiver: written: %d Bytes\n", copied);
 	
