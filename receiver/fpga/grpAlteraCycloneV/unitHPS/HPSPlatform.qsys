@@ -17,6 +17,22 @@
          type = "int";
       }
    }
+   element DRS_Receiver_Interface_0.s0
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
+      }
+   }
+   element HPSPlatform
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element HPSPlatform
    {
       datum _originalDeviceFamily
