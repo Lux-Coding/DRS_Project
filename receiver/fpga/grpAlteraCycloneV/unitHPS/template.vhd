@@ -131,7 +131,7 @@ ARCHITECTURE MAIN OF template IS
     component HPSPlatform is
         port (
             clk_clk                                             : in    std_logic                     := 'X';             -- clk
-            drs_receiver_interface_0_ibytedetected_bytedetected : in    std_logic                     := 'X';             -- bytedetected
+            drs_receiver_interface_0_ibytedetected_ibytedetected : in    std_logic                     := 'X';             -- bytedetected
             h2f_reset_reset_n                                   : out   std_logic;                                        -- reset_n
             hps_0_f2h_cold_reset_req_reset_n                    : in    std_logic                     := 'X';             -- reset_n
             hps_0_f2h_debug_reset_req_reset_n                   : in    std_logic                     := 'X';             -- reset_n
@@ -218,8 +218,8 @@ ARCHITECTURE MAIN OF template IS
 
     signal ByteDetected : std_ulogic := '0';
 
-    signal TimeStampCapture : std_ulogic_vector(63 downto 0) := (others => '0');
-    signal TimeStampCounter : std_ulogic_vector(63 downto 0) := (others => '0');
+    signal TimeStampCapture : std_logic_vector(63 downto 0) := (others => '0');
+    signal TimeStampCounter : std_logic_vector(63 downto 0) := (others => '0');
 
     signal LedOutput : std_logic_vector(9 downto 0) := (others => '0');
 
@@ -228,7 +228,7 @@ BEGIN
     u0 : component HPSPlatform
         port map (
             clk_clk                                             => CLOCK_50,                                             --                                    clk.clk
-            drs_receiver_interface_0_ibytedetected_bytedetected => ByteDetected, -- drs_receiver_interface_0_ibytedetected.bytedetected
+            drs_receiver_interface_0_ibytedetected_ibytedetected => ByteDetected, -- drs_receiver_interface_0_ibytedetected.bytedetected
             h2f_reset_reset_n                                   => HPS_H2F_RST,                                   --                              h2f_reset.reset_n
             hps_0_f2h_cold_reset_req_reset_n     => not(hps_cold_reset),     --     hps_0_f2h_cold_reset_req.reset_n
             hps_0_f2h_debug_reset_req_reset_n    => not(hps_debug_reset),    --    hps_0_f2h_debug_reset_req.reset_n
@@ -329,6 +329,6 @@ BEGIN
         oLed            => LedOutput
     );
 
-    LEDR <= std_logic_vector(TimeStampCounter(9 downto 0)) when SW(3) = '1' else LedOutput;
+    LEDR <= TimeStampCounter(9 downto 0) when SW(3) = '1' else LedOutput;
 
 END ARCHITECTURE;

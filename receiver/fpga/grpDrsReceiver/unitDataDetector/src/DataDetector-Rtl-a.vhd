@@ -50,7 +50,7 @@ begin
                 NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(4, 4)));
         end case;
 
-        if SecondsStrobe = '1' and iSetDetectedKey = '1' then
+        if SecondsStrobe = '1' and iSetDetectedKey = '0' then
             NextR.CycleCount <= (others => '0');
             NextR.ByteDetected <= '1';
             NextR.State <= OutputDetected;
