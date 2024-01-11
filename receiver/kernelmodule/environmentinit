@@ -1,6 +1,6 @@
-source /opt/poky/2.6.4/environment-setup-cortexa9hf-neon-poky-linux-gnueabi
+source /opt/poky/3.1.30/environment-setup-cortexa9hf-neon-poky-linux-gnueabi
 
-export KERNEL_SRC=/opt/poky/2.6.4/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/src/kernel/
+export KERNEL_SRC=/opt/poky/3.1.30/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/src/kernel/
 export LDFLAGS=""
 
 export DEPLOYSSH=root@192.168.0.103
