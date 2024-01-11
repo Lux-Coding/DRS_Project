@@ -9,6 +9,7 @@ ENTITY template IS
         CLOCK_50    : in std_logic;
         SW          : in std_logic_vector(9 downto 0);
         LEDR        : out std_logic_vector(9 downto 0);
+        KEY      : in  std_logic_vector(3 downto 0);
 
 
         -- //////////// SEG7 //////////
@@ -313,10 +314,10 @@ BEGIN
         oSegDistance    => HEX1,
         oSeg0 => HEX2,
         oSeg1 => HEX3,
+        oSeg2 => HEX4,
+        oSeg3 => HEX5,
+        iSetDetectedKey => KEY(0),
         oLed            => LEDR
     );
-
-    HEX4 <= (others => '0');
-    HEX5 <= (others => '0');
 
 END ARCHITECTURE;

@@ -84,6 +84,9 @@ entity DrsReceiver is
         oSegDistance    : out std_logic_vector(6 downto 0);  -- active low
         oSeg0    : out std_logic_vector(6 downto 0);  -- active low
         oSeg1    : out std_logic_vector(6 downto 0);  -- active low
-        oLed            : out std_logic_vector(9 downto 0)  -- active high
+        oSeg2    : out std_logic_vector(6 downto 0);  -- active low
+        oSeg3    : out std_logic_vector(6 downto 0);  -- active low
+        oLed            : out std_logic_vector(9 downto 0);  -- active high
+        iSetDetectedKey : in std_ulogic
     );
 end entity DrsReceiver;
