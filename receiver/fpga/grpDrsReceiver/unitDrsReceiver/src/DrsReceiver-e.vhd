@@ -64,8 +64,12 @@ entity DrsReceiver is
         inResetAsync : in std_ulogic;
         -- wait time selection
         iDistanceSelect :  in std_logic_vector(1 downto 0);
+        
         -- data byte detected
+        ----- warning! both synced to iClk!!!, rest is 48MHz ------
         oByteDetected : out std_ulogic;
+        iByteDetectedAck : in std_ulogic;
+        ---------------------------------------
         -- Audio codec
         oI2cSclk     : out   std_ulogic;
         ioI2cSdin    : inout std_logic;

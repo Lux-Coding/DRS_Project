@@ -30,29 +30,12 @@ architecture Rtl of DataDetector is
 
 begin
 
-    comb: process(R, iData, iDistanceSelect, MsStrobe, iSetDetectedKey, SecondsStrobe) is
-    variable vDelay : integer;
+    comb: process(R, iData, MsStrobe, iSetDetectedKey, SecondsStrobe, iByteDetectedAck) is
     begin
         NextR <= R;
 
-        case iDistanceSelect is
-            when "00" => 
-                vDelay := gDistanceOne_ms;
-                NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(1, 4)));
-            when "01" => 
-                vDelay := gDistanceTwo_ms;
-                NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(2, 4)));
-            when "10" => 
-                vDelay := gDistanceThree_ms;
-                NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(3, 4)));
-            when others => 
-                vDelay := gDistanceFour_ms;
-                NextR.SegDistance <= not std_logic_vector(ToSevSeg(to_unsigned(4, 4)));
-        end case;
-
         if SecondsStrobe = '1' and iSetDetectedKey = '0' then
             NextR.CycleCount <= (others => '0');
-            NextR.ByteDetected <= '1';
             NextR.State <= OutputDetected;
             NextR.DetectedCounter <= R.DetectedCounter + 1;
         else
@@ -88,17 +71,12 @@ begin
                     end if;
                 when OutputDetected =>
                     NextR.ByteDetected <= '1';
-                    NextR.CycleCount <= R.CycleCount + 1;
-                    if to_integer(R.CycleCount) = gDetectCycleLength then
+                    if iByteDetectedAck = '1' then
                         NextR.ByteDetected <= '0';
                         NextR.State <= IgnoreIncoming;
-                        NextR.CycleCount <= (others => '0');
                     end if;
                 when IgnoreIncoming =>
-                    if MsStrobe = '1' then 
-                        NextR.CycleCount <= R.CycleCount + 1;
-                    end if;
-                    if to_integer(R.CycleCount) = vDelay then
+                    if iByteDetectedAck = '0' then
                         NextR.State <= WaitForRisingEdge;
                     end if;
                 when others =>

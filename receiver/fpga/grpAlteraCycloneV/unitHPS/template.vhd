@@ -131,7 +131,9 @@ ARCHITECTURE MAIN OF template IS
     component HPSPlatform is
         port (
             clk_clk                                             : in    std_logic                     := 'X';             -- clk
-            drs_receiver_interface_0_ibytedetected_ibytedetected : in    std_logic                     := 'X';             -- bytedetected
+            drs_receiver_interface_0_ibytedetected_1_ibytedetected          : in    std_logic                     := 'X';             -- ibytedetected
+            drs_receiver_interface_0_ibytedetected_1_obytedetectedack       : out   std_logic;                                        -- obytedetectedack
+            drs_receiver_interface_0_ibytedetected_1_obytedetected_int_cond : out   std_logic;       
             h2f_reset_reset_n                                   : out   std_logic;                                        -- reset_n
             hps_0_f2h_cold_reset_req_reset_n                    : in    std_logic                     := 'X';             -- reset_n
             hps_0_f2h_debug_reset_req_reset_n                   : in    std_logic                     := 'X';             -- reset_n
@@ -218,6 +220,9 @@ ARCHITECTURE MAIN OF template IS
 
     signal ByteDetected : std_ulogic := '0';
 
+    signal ByteDetectedAck : std_ulogic := '0';
+    signal ByteDetectedInt : std_ulogic := '0';
+
     signal TimeStampCapture : std_logic_vector(63 downto 0) := (others => '0');
     signal TimeStampCounter : std_logic_vector(63 downto 0) := (others => '0');
 
@@ -228,7 +233,9 @@ BEGIN
     u0 : component HPSPlatform
         port map (
             clk_clk                                             => CLOCK_50,                                             --                                    clk.clk
-            drs_receiver_interface_0_ibytedetected_ibytedetected => ByteDetected, -- drs_receiver_interface_0_ibytedetected.bytedetected
+            drs_receiver_interface_0_ibytedetected_1_ibytedetected          => ByteDetected,          --   drs_receiver_interface_0_ibytedetected_1.ibytedetected
+            drs_receiver_interface_0_ibytedetected_1_obytedetectedack       => ByteDetectedAck,       --                                           .obytedetectedack
+            drs_receiver_interface_0_ibytedetected_1_obytedetected_int_cond => ByteDetectedInt,
             h2f_reset_reset_n                                   => HPS_H2F_RST,                                   --                              h2f_reset.reset_n
             hps_0_f2h_cold_reset_req_reset_n     => not(hps_cold_reset),     --     hps_0_f2h_cold_reset_req.reset_n
             hps_0_f2h_debug_reset_req_reset_n    => not(hps_debug_reset),    --    hps_0_f2h_debug_reset_req.reset_n
@@ -310,6 +317,7 @@ BEGIN
         inResetAsync    => HPS_H2F_RST,
         iDistanceSelect => SW(1 downto 0),
         oByteDetected   => ByteDetected,
+        iByteDetectedAck => ByteDetectedAck,
         oI2cSclk        => FPGA_I2C_SCLK,
         ioI2cSdin       => FPGA_I2C_SDAT,
         oMclk           => AUD_XCK,
@@ -329,6 +337,7 @@ BEGIN
         oLed            => LedOutput
     );
 
-    LEDR <= TimeStampCounter(9 downto 0) when SW(3) = '1' else LedOutput;
+
+    LEDR <= TimeStampCounter(9 downto 0) when SW(3) = '1' else LedOutput(9) & ByteDetectedInt & LedOutput(7 downto 0);
 
 END ARCHITECTURE;

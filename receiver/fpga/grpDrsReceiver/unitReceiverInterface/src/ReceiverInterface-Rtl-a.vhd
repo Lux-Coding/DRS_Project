@@ -15,6 +15,7 @@ architecture Rtl of ReceiverInterface is
         -- interrup handling for driver
         interrupt_state    : std_ulogic;
         interrupt_dbg_tggl : std_ulogic;
+        byteDetectAck      : std_ulogic;
     end record;
 
     constant cInitialControlRegState : aControlRegs := (
@@ -22,7 +23,8 @@ architecture Rtl of ReceiverInterface is
         TimeStampCounter    => (others => '0'),
         TimeStampCapture    => (others => '0'),
         interrupt_state     => '0',
-        interrupt_dbg_tggl  => '0'
+        interrupt_dbg_tggl  => '0',
+        byteDetectAck       => '0'
     );
 
     -- avalon interface registers
@@ -62,6 +64,7 @@ begin
         -- reset the interrupt if the reset was written
         if(R.interrupt_dbg_tggl /= RegsAvalon.interrupt_reset) then
             NextR.interrupt_state <= '0';
+            NextR.byteDetectAck <= '0';
         end if;
 
         -- register the time stamp set data for edge detection
@@ -80,6 +83,8 @@ begin
         if R.interrupt_state = '0' and iByteDetected = '1' then
             NextR.TimeStampCapture <= R.TimeStampCounter;
             NextR.interrupt_state <= '1';
+            NextR.byteDetectAck <= '1';
+            
         end if;
     end process;
 
@@ -157,5 +162,7 @@ begin
     oByteDetected_int <= R.interrupt_state;
     oTimestampCounter <= std_ulogic_vector(R.TimeStampCounter);
     oTimestampCapture <= std_ulogic_vector(R.TimeStampCapture);
+    oByteDetectedAck <= R.byteDetectAck;
+    oByteDetected_int_cond <= R.interrupt_state;
 
 end architecture Rtl;

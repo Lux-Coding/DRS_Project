@@ -29,10 +29,12 @@ entity ReceiverInterface is
         avs_s0_read      : in std_logic;
         avs_s0_readdata  : out std_logic_vector(31 downto 0) := (others => '0');
         -- data byte detected
-        iByteDetected   :  in std_ulogic;
+        iByteDetected    :  in std_ulogic;
+        oByteDetectedAck :  out std_ulogic; 
         -- byte detected and timestamp captured
         oByteDetected_int : out std_ulogic;
-        -- stored timestamp
+        oByteDetected_int_cond : out std_ulogic;
+                -- stored timestamp
         oTimestampCounter : out std_ulogic_vector(63 downto 0);
         -- captured timestamp
         oTimestampCapture : out std_ulogic_vector(63 downto 0)

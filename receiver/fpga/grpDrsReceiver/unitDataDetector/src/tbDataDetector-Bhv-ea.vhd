@@ -18,6 +18,7 @@ architecture Bhv of tbDataDetector is
     signal DistanceSelect : std_ulogic_vector(1 downto 0) := "01"; -- distance two
 
     signal ByteDetected : std_ulogic;
+    signal ByteDetectedAck : std_ulogic;
 
 begin
 
@@ -38,8 +39,9 @@ begin
       iClk            => Clk,
       inResetAsync    => nReset,
       iData           => DataIn,
-      iDistanceSelect => DistanceSelect,
       oByteDetected   => ByteDetected,
+      iSetDetectedKey => '0',
+      iByteDetectedAck => ByteDetectedAck, 
       oSegDistance    => open
     );
 
@@ -67,6 +69,11 @@ begin
 
         -- wait half bit
         wait for cCyclesPerBit / 2 * 20 ns;
+        ByteDetectedAck <= '1';
+        wait until falling_edge(ByteDetected);
+        ByteDetectedAck <= '0';
+
+        report("got here");
 
         -- next byte while ignoring input
         for i in 0 to cDetectData'length - 1 loop
@@ -98,7 +105,11 @@ begin
 
         -- wait for 50 cycles for middle of detect length
         wait for 50 * 20 ns;
-        assert(ByteDetected = '1');
+        ByteDetectedAck <= '1';
+        wait until falling_edge(ByteDetected);
+        ByteDetectedAck <= '0';
+
+        assert(false) severity failure;
 
         wait;
     end process stimul;

@@ -17,6 +17,22 @@
          type = "int";
       }
    }
+   element DRS_Receiver_Interface_0.s0
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
+      }
+   }
+   element HPSPlatform
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element HPSPlatform
    {
       datum _originalDeviceFamily
@@ -153,7 +169,10 @@
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
    name="drs_receiver_interface_0_ibytedetected"
-   internal="DRS_Receiver_Interface_0.iByteDetected"
+   internal="DRS_Receiver_Interface_0.iByteDetected" />
+ <interface
+   name="drs_receiver_interface_0_ibytedetected_1"
+   internal="DRS_Receiver_Interface_0.iByteDetected_1"
    type="conduit"
    dir="end" />
  <interface

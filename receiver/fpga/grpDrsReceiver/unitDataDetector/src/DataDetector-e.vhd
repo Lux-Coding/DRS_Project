@@ -20,18 +20,18 @@ entity DataDetector is
         gDetectCycleLength  : integer := 1
     );
     port (
-        iClk            :  in std_ulogic;
-        inResetAsync    :  in std_ulogic;
+        iClk             :  in std_ulogic;
+        inResetAsync     :  in std_ulogic;
         -- input data
-        iData           :  in std_ulogic;
-        iDistanceSelect :  in std_ulogic_vector(1 downto 0);
+        iData            :  in std_ulogic;
         -- data byte detected
-        oByteDetected   : out std_ulogic;
-        oSegDistance    : out std_logic_vector(6 downto 0);
-        oSeg0    : out std_logic_vector(6 downto 0);
-        oSeg1    : out std_logic_vector(6 downto 0);
-        oSeg2    : out std_logic_vector(6 downto 0);
-        oSeg3    : out std_logic_vector(6 downto 0);
-        iSetDetectedKey : in std_ulogic
+        oByteDetected    : out std_ulogic;
+        iByteDetectedAck : in std_ulogic;
+        oSegDistance     : out std_logic_vector(6 downto 0);
+        oSeg0            : out std_logic_vector(6 downto 0);
+        oSeg1            : out std_logic_vector(6 downto 0);
+        oSeg2            : out std_logic_vector(6 downto 0);
+        oSeg3            : out std_logic_vector(6 downto 0);
+        iSetDetectedKey  : in std_ulogic
     );
 end entity DataDetector;
