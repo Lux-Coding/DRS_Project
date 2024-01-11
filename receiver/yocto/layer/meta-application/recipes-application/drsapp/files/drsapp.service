@@ -4,9 +4,9 @@ Description=Daemon for DRS application
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=rm /etc/nginx/sites-enabled/default_server
+ExecStart=rm -rf /etc/nginx/sites-enabled/default_server
 ExecStart=systemctl start nginx
-ExecStart=ptp4l -i eth0 -f /etc/linuxptp/drs.cfg -S &
+ExecStart=ptp4l -i eth0 -f /etc/linuxptp/drs.cfg -S -m &
 ExecStop=/usr/bin/killall -s KILL ptp4l
 
 [Install]
