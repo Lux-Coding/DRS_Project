@@ -1,50 +1,50 @@
-import numpy as np
 from scipy.optimize import minimize
+import numpy
 
-# Constants
-SPEED_OF_SOUND = 343  # Speed of sound in air in m/s
-
-def triangulate_sound_source(mic_positions, arrival_times):
+def calculate_time_differences(timestamps):
     """
-    Triangulate the position of a sound source given the positions of microphones and the arrival times of the sound at each microphone.
+    Calculate the time differences between a list of timestamps in nanoseconds.
 
-    :param mic_positions: A list of tuples (x, y, z) representing the positions of the microphones.
-    :param arrival_times: A list of timestamps (in seconds) when each microphone receives the sound.
-    :return: Estimated position of the sound source (x, y, z).
+    :param timestamps: A list of timestamps in 64-bit nanoseconds format.
+    :return: A list of time differences in seconds, relative to the lowest timestamp.
     """
+    min_timestamp = min(timestamps)
 
-    # Reference microphone (first microphone)
-    ref_pos = mic_positions[0]
-    ref_time = arrival_times[0]
+    timestamps = [(ts - min_timestamp) for ts in timestamps] 
+    #print(timestamps)
+    # Convert nanosecond timestamps to seconds
+    timestamps_in_seconds = [(ts / 1000000) for ts in timestamps]
 
-    # Function to minimize (sum of squared differences between actual and calculated distances)
-    def objective_function(source_pos):
-        x, y, z = source_pos
-        errors = []
+    # Find the lowest timestamp
+   
 
-        for (mx, my, mz), t in zip(mic_positions, arrival_times):
-            measured_dist = SPEED_OF_SOUND * (t - ref_time)
-            calculated_dist = np.sqrt((x - mx)**2 + (y - my)**2 + (z - mz)**2)
-            errors.append((measured_dist - calculated_dist)**2)
+    # Calculate differences from the lowest timestamp
+    #time_differences = [ts - min_timestamp for ts in timestamps_in_seconds]
 
-        return sum(errors)
+    return timestamps_in_seconds
 
-    # Initial guess for the source's position
-    initial_guess = np.mean(mic_positions, axis=0)
 
-    # Minimize the objective function
-    result = minimize(objective_function, initial_guess, method='L-BFGS-B')
+def tdoa_solve(delays_to_stations, stations_coordinates):
+    # inspired by https://www.ece.ucf.edu/seniordesign/sp2019su2019/g04/Docs/CONFERENCEPAPER.pdf
+    def error(x, c, d):
+        value = sum([(numpy.linalg.norm(x - c[i]) - numpy.linalg.norm(x - c[0]) - 331.3 * (d[i] - d[0])) ** 2 for i in range(1, len(d))])
+#         print((x, value))
+        return value
+    x0 = numpy.array([1,1])
+    return minimize(error, x0, args=(stations_coordinates, delays_to_stations), method='Nelder-Mead').x
 
-    return result.x if result.success else None
-
-# 0,707 ; 6,18
-# 1,5811 ; 
-# 2,12
-# 1,5811
-timestamp = 56765
-# Example usage
-mic_positions = [(0, 0, 0), (2, 0, 0), (0, 2, 0), (2, 2, 0)]  # Positions of four microphones
-arrival_times = [timestamp+(1.5811/SPEED_OF_SOUND) , timestamp+(0.707/SPEED_OF_SOUND),timestamp+ (1.5811/SPEED_OF_SOUND),timestamp+ (2.12/SPEED_OF_SOUND)]  # Arrival times at each microphone in seconds
-
-estimated_source_position = triangulate_sound_source(mic_positions, arrival_times)
-print("Estimated Source Position:", estimated_source_position)
+if __name__ == "__main__":
+    stations = list(numpy.array([[0,0], [0,2], [2,0], [2,2]])) # the four sensors must be non-planar otherwise it won't be able to solve for the third dimension.
+    delays_to_stations_list = [
+      
+        [1672527601004600, 1672527601002000, 1672527601006100, 1672527601004600],# 0.75,0.75,0
+    ]
+    delays_to_stations_list2 = [
+        [ 0.004607047873205681,0.002060334444016747,  0.006181003332050241, 0.0046070478732056812],  # 0.5,0.5,0.5
+    ]
+    for delays_to_stations in delays_to_stations_list:
+        print(calculate_time_differences(delays_to_stations))
+        print(tdoa_solve(calculate_time_differences(delays_to_stations) , stations))
+    for delays_to_stations in delays_to_stations_list2:
+        print(delays_to_stations)
+        print(tdoa_solve(delays_to_stations , stations))

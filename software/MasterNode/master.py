@@ -22,24 +22,39 @@ pos_config = {
 }
 pos = [1, 1]
 
-def toa_multilateration_solve(timestamps, microphone_coordinates, speed_of_sound=343.2):
-    """
-    Solves the Time of Arrival multilateration problem.
-    
-    Args:
-    - timestamps: The timestamps of signals received.
-    - microphone_coordinates: Coordinates of the microphones.
-    - speed_of_sound: Speed of sound in the medium.
 
-    Returns:
-    - A list of calculated 2D coordinates.
+def calculate_time_differences(timestamps):
     """
-    def error(x, c, t):
-        return sum([(numpy.linalg.norm(x - c[i]) - speed_of_sound * t[i]) ** 2 for i in range(len(t))])
+    Calculate the time differences between a list of timestamps in nanoseconds.
 
-    x0 = numpy.zeros(2)  # Initial guess for 2D coordinates
-    result_2d = minimize(error, x0, args=(microphone_coordinates, timestamps), method='Nelder-Mead')
-    return result_2d.x.tolist()
+    :param timestamps: A list of timestamps in 64-bit nanoseconds format.
+    :return: A list of time differences in seconds, relative to the lowest timestamp.
+    """
+    min_timestamp = min(timestamps)
+
+    timestamps = [(ts - min_timestamp) for ts in timestamps] 
+    #print(timestamps)
+    # Convert nanosecond timestamps to seconds
+    timestamps_in_seconds = [(ts / 1000000) for ts in timestamps]
+
+    # Find the lowest timestamp
+   
+
+    # Calculate differences from the lowest timestamp
+    #time_differences = [ts - min_timestamp for ts in timestamps_in_seconds]
+
+    return timestamps_in_seconds
+
+
+def tdoa_solve(delays_to_stations, stations_coordinates):
+    # inspired by https://www.ece.ucf.edu/seniordesign/sp2019su2019/g04/Docs/CONFERENCEPAPER.pdf
+    list(numpy.array(stations_coordinates))
+    def error(x, c, d):
+        value = sum([(numpy.linalg.norm(x - c[i]) - numpy.linalg.norm(x - c[0]) - 331.3 * (d[i] - d[0])) ** 2 for i in range(1, len(d))])
+#         print((x, value))
+        return value
+    x0 = numpy.array([1,1])
+    return minimize(error, x0, args=(stations_coordinates, delays_to_stations), method='Nelder-Mead').x.tolist()
 
 
 def data_processing_thread():
@@ -61,7 +76,8 @@ def calculate_pos():
                                  for mac_address in shared_data if mac_address in pos_config])
         if len(shared_data) >= 3:
             microphones = numpy.array(mics)
-            pos = toa_multilateration_solve(timestamps, microphones)
+            print(timestamps, microphones)
+            pos = tdoa_solve(calculate_time_differences(timestamps), microphones)
     except KeyError as e:
         print(f"Invalid MAC address: {e}")
     except Exception as e:
