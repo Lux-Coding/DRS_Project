@@ -85,7 +85,6 @@ static irqreturn_t handler(int irq, void *data)
 	struct receiver *rcvr = data;
 	unsigned long flags;
 	int val = 0;
-	int wake_up = 0;
 	
 	u32 const time_high = ioread32(rcvr->register_base + RECEIVER_TIME_HIGH_REG);
 	u32 const time_low = ioread32(rcvr->register_base + RECEIVER_TIME_LOW_REG);
@@ -99,10 +98,6 @@ static irqreturn_t handler(int irq, void *data)
 	printk(KERN_INFO "timestamp written data: %llu\n",timestamp);
 
 	spin_lock_irqsave(&rcvr->lock, flags);
-
-	if(kfifo_is_empty(&timestamps)){
-		wake_up = 1;
-	}
 	
 	if (kfifo_is_full(&timestamps) == 1) {
 		val = kfifo_get(&timestamps, &old_time);
@@ -112,10 +107,6 @@ static irqreturn_t handler(int irq, void *data)
 
 	wake_up_interruptible(&rcvr->wq);
 	iowrite32(irq_config, rcvr->register_base + RECEIVER_CONFIG_REG);
-
-	if(wake_up){
-		wake_up_interruptible(&rcvr->wq); 
-	}
 
 	return IRQ_HANDLED;
 }
