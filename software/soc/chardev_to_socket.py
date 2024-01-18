@@ -37,7 +37,7 @@ def send_udp(timestamp, mac_address, count, host='your_udp_server_ip', port=1234
 def main():
     char_device_path = '/dev/receiver'
     eth_device_name = 'eth0'
-    udp_server_ip = '10.24.99.94'
+    udp_server_ip = '10.24.99.103'
     udp_server_port = 12345
 
     try:
