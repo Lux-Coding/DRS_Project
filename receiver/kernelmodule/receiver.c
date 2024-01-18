@@ -88,7 +88,7 @@ static irqreturn_t handler(int irq, void *data)
 	
 	u32 const time_high = ioread32(rcvr->register_base + RECEIVER_TIME_HIGH_REG);
 	u32 const time_low = ioread32(rcvr->register_base + RECEIVER_TIME_LOW_REG);
-	u64 const timestamp = ((u64)time_high << 32) & time_low;
+	u64 const timestamp = ((u64)time_high << 32) | time_low;
     u64 old_time = 0;
 
 	printk(KERN_INFO "got an interrupt, time high is %u, time low is %u",time_high,time_low);
