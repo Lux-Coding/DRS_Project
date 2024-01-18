@@ -2,7 +2,7 @@ architecture Rtl of DrsReceiver is
 
     constant cI2cStrobeFrequency : natural := 750E3;
     constant cMclkFrequency      : natural := 12E6;
-    constant cCodecParamSet      : aParamSetName := MicroSlaveSampleRate44k1;
+    constant cCodecParamSet      : aParamSetName := MicroSlaveSampleRate96k;
 
     signal Clk48MHz    : std_ulogic;
     signal PllLocked   : std_ulogic;
@@ -117,8 +117,8 @@ begin
         oSync        => RxChannelSync
     );
 
-    RxChannelSelect <= 4 when RxChannelSync = cInactivated else 7;
-    RxChannelLedOutput <= cActivated when RxChannelSelect = 4 else cInactivated;
+    RxChannelSelect <= 0 when RxChannelSync = cInactivated else 7;
+    RxChannelLedOutput <= cActivated when RxChannelSelect = 0 else cInactivated;
 
     -- Audio codec ADC data input processor
     TheI2sToPar : entity work.I2sToPar

@@ -45,8 +45,8 @@ entity TbdRxFskBasic is
     -- The values used as filter coefficients. The number of those
     -- coefficients determines the number of taps the filter has.
     gChannelBandpasses : aSetOfRxBandpasses := (
-        0 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 0/freq. 0
-              Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 0/freq. 1
+        0 => (Bandpass0 => ( cBandpass0DRS ),     -- band pass for Channel 0/freq. 0
+              Bandpass1 => ( cBandpass1DRS )),    -- band pass for Channel 0/freq. 1
         1 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 1/freq. 0
               Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 1/freq. 1
         2 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 2/freq. 0
@@ -69,7 +69,9 @@ entity TbdRxFskBasic is
               Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 10/freq. 1
         11 => (Bandpass0 => ( cZeroBandpass ),    -- band pass for Channel 11/freq. 0
               Bandpass1 => ( cZeroBandpass )));   -- band pass for Channel 11/freq. 1
-    gLowpass           : aSetOfFactors := ( cLowpass ) -- low pass
+--     gLowpass           : aSetOfFactors := ( cLowpass ) -- low pass
+      gLowpass           : aSetOfFactors := ( cLowpassDRS ) -- low pass
+
   );
 
   port (

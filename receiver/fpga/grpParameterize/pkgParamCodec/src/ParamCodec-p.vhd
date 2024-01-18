@@ -40,10 +40,7 @@ package ParamCodec is
     LineSlaveSampleRate44k1,
     MicroMasterSampleRate44k1,
     LineMasterSampleRate44k1,
-    MicroMasterSampleRate8kAnd48k,
-    MicroMasterSampleRate48kAnd8k,
-    DacOnlySlaveSampleRate44k1,
-    UnusedSet6,
+    MicroSlaveSampleRate96k,
     UnusedSet7,
     UnusedSet8,
     UnusedSet9);
@@ -428,159 +425,7 @@ package ParamCodec is
         (
           ClockOutputDivider         => cUseMclk,
           ClockInputDivider          => cUseMclk,
-          CodecSampleRate            => cAdc44117Dac44117
-          ),
-        Reg9                         =>
-        (
-          InterfaceActivation        => cInterfaceActivated
-          )
-        ),
-        ---------------------------------
-      MicroMasterSampleRate48kAnd8k      =>
-      ---------------------------------
-      (
-        Reg0                         =>
-        (
-          LineLeftRightSimul         => cSimulLineVolUpdateDisabled,
-          LineLeftMute               => cLineInputMuted,
-          LineLeftVol                => -34.5
-          ),
-        Reg1                         =>
-        (
-          LineRightLeftSimul         => cSimulLineVolUpdateDisabled,
-          LineRightMute              => cLineInputMuted,
-          LineRightVol               => -34.5
-          ),
-        Reg2                         =>
-        (
-          PhonesLeftRightSimul       => cSimulPhonesVolUpdateDisabled,
-          PhonesLeftZeroCrossDetect  => cZeroCrossDetectOff,
-          PhonesLeftVol              => 0
-          ),
-        Reg3                         =>
-        (
-          PhonesRightLeftSimul       => cSimulPhonesVolUpdateDisabled,
-          PhonesRightZeroCrossDetect => cZeroCrossDetectOff,
-          PhonesRightVol             => 0
-          ),
-        Reg4                         =>
-        (
-          SidetoneAttenuation        => -15,
-          SidetoneEnable             => cSidetoneDisabled,
-          DacSelect                  => cDacSelected,
-          AnalogBypass               => cAnalogBypassDisabled,
-          AdcInputSelect             => cAdcInputMicroSelected,
-          MicroMute                  => cMicroUnmuted,
-          MicroBoost                 => cMicroNoBoost
-          ),
-        Reg5                         =>
-        (
-          HPOR                       => cHPORClearOffset,
-          DacSoftMute                => cDacSoftMuteDisabled,
-          Deemphasis                 => cDeemphasisDisabled,
-          AdcHighpassFilter          => cAdcHighpassFilterDisabled
-          ),
-        Reg6                         =>
-        (
-          DevicePower                => cPowerOn,
-          ClkPower                   => cPowerOff,
-          OscillatorPower            => cPowerOff,
-          OutputsPower               => cPowerOn,
-          DacPower                   => cPowerOn,
-          AdcPower                   => cPowerOn,
-          MicroPower                 => cPowerOn,
-          LinePower                  => cPowerOff
-          ),
-        Reg7                         =>
-        (
-          BclkInvert                 => cDontInvertBlck,
-          MasterSlaveMode            => cIsMaster,  -- cIsMaster IS THE *INSECURE* SETTING
-          DacLeftRightSwap           => cDontSwapLeftRight,
-          LeftRightPhase             => cLrcinHighOrDspMode1stBlck,
-          InputBitLength             => BitWidthToCodecBitLengthSetting(cDefaultAudioBitWidth),
-          DataFormat                 => cI2s
-          ),
-        Reg8                         =>
-        (
-          ClockOutputDivider         => cUseMclk,
-          ClockInputDivider          => cUseMclk,
-          CodecSampleRate            => cAdc48000Dac8000
-          ),
-        Reg9                         =>
-        (
-          InterfaceActivation        => cInterfaceActivated
-          )
-        ),
-        ---------------------------------
-      MicroMasterSampleRate8kAnd48k      =>
-      ---------------------------------
-      (
-        Reg0                         =>
-        (
-          LineLeftRightSimul         => cSimulLineVolUpdateDisabled,
-          LineLeftMute               => cLineInputMuted,
-          LineLeftVol                => -34.5
-          ),
-        Reg1                         =>
-        (
-          LineRightLeftSimul         => cSimulLineVolUpdateDisabled,
-          LineRightMute              => cLineInputMuted,
-          LineRightVol               => -34.5
-          ),
-        Reg2                         =>
-        (
-          PhonesLeftRightSimul       => cSimulPhonesVolUpdateDisabled,
-          PhonesLeftZeroCrossDetect  => cZeroCrossDetectOff,
-          PhonesLeftVol              => 0
-          ),
-        Reg3                         =>
-        (
-          PhonesRightLeftSimul       => cSimulPhonesVolUpdateDisabled,
-          PhonesRightZeroCrossDetect => cZeroCrossDetectOff,
-          PhonesRightVol             => 0
-          ),
-        Reg4                         =>
-        (
-          SidetoneAttenuation        => -15,
-          SidetoneEnable             => cSidetoneDisabled,
-          DacSelect                  => cDacSelected,
-          AnalogBypass               => cAnalogBypassDisabled,
-          AdcInputSelect             => cAdcInputMicroSelected,
-          MicroMute                  => cMicroUnmuted,
-          MicroBoost                 => cMicroNoBoost
-          ),
-        Reg5                         =>
-        (
-          HPOR                       => cHPORClearOffset,
-          DacSoftMute                => cDacSoftMuteDisabled,
-          Deemphasis                 => cDeemphasisDisabled,
-          AdcHighpassFilter          => cAdcHighpassFilterDisabled
-          ),
-        Reg6                         =>
-        (
-          DevicePower                => cPowerOn,
-          ClkPower                   => cPowerOff,
-          OscillatorPower            => cPowerOff,
-          OutputsPower               => cPowerOn,
-          DacPower                   => cPowerOn,
-          AdcPower                   => cPowerOn,
-          MicroPower                 => cPowerOn,
-          LinePower                  => cPowerOff
-          ),
-        Reg7                         =>
-        (
-          BclkInvert                 => cDontInvertBlck,
-          MasterSlaveMode            => cIsMaster,  -- cIsMaster IS THE *INSECURE* SETTING
-          DacLeftRightSwap           => cDontSwapLeftRight,
-          LeftRightPhase             => cLrcinHighOrDspMode1stBlck,
-          InputBitLength             => BitWidthToCodecBitLengthSetting(cDefaultAudioBitWidth),
-          DataFormat                 => cI2s
-          ),
-        Reg8                         =>
-        (
-          ClockOutputDivider         => cUseMclk,
-          ClockInputDivider          => cUseMclk,
-          CodecSampleRate            => cAdc8000Dac48000
+          CodecSampleRate            => cAdc8000Dac48000 
           ),
         Reg9                         =>
         (
@@ -663,86 +508,10 @@ package ParamCodec is
           InterfaceActivation        => cInterfaceActivated
           )
         ),
-            ---------------------------------
-      DacOnlySlaveSampleRate44k1        =>
       ---------------------------------
-      (
-        Reg0                         =>
-        (
-          LineLeftRightSimul         => cSimulLineVolUpdateDisabled,
-          LineLeftMute               => cLineInputUnmuted,
-          LineLeftVol                => 12.0
-          ),
-        Reg1                         =>
-        (
-          LineRightLeftSimul         => cSimulLineVolUpdateDisabled,
-          LineRightMute              => cLineInputUnmuted,
-          LineRightVol               => 12.0
-          ),
-        Reg2                         =>
-        (
-          PhonesLeftRightSimul       => cSimulPhonesVolUpdateDisabled,
-          PhonesLeftZeroCrossDetect  => cZeroCrossDetectOff,
-          PhonesLeftVol              => 0
-          ),
-        Reg3                         =>
-        (
-          PhonesRightLeftSimul       => cSimulPhonesVolUpdateDisabled,
-          PhonesRightZeroCrossDetect => cZeroCrossDetectOff,
-          PhonesRightVol             => 0
-          ),
-        Reg4                         =>
-        (
-          SidetoneAttenuation        => -15,
-          SidetoneEnable             => cSidetoneDisabled,
-          DacSelect                  => cDacSelected,
-          AnalogBypass               => cAnalogBypassDisabled,
-          AdcInputSelect             => cAdcInputLineSelected,
-          MicroMute                  => cMicroMuted,
-          MicroBoost                 => cMicroNoBoost
-          ),
-        Reg5                         =>
-        (
-          HPOR                       => cHPORClearOffset,
-          DacSoftMute                => cDacSoftMuteDisabled,
-          Deemphasis                 => cDeemphasisDisabled,
-          AdcHighpassFilter          => cAdcHighpassFilterDisabled
-          ),
-        Reg6                         =>
-        (
-          DevicePower                => cPowerOn,
-          ClkPower                   => cPowerOff,
-          OscillatorPower            => cPowerOff,
-          OutputsPower               => cPowerOn,
-          DacPower                   => cPowerOn,
-          AdcPower                   => cPowerOff,
-          MicroPower                 => cPowerOff,
-          LinePower                  => cPowerOff
-          ),
-        Reg7                         =>
-        (
-          BclkInvert                 => cDontInvertBlck,
-          MasterSlaveMode            => cIsSlave,  -- cIsSlave is the secure setting!
-          DacLeftRightSwap           => cDontSwapLeftRight,
-          LeftRightPhase             => cLrcinHighOrDspMode1stBlck,
-          InputBitLength             => BitWidthToCodecBitLengthSetting(cDefaultAudioBitWidth),
-          DataFormat                 => cI2s
-          ),
-        Reg8                         =>
-        (
-          ClockOutputDivider         => cUseMclk,
-          ClockInputDivider          => cUseMclk,
-          CodecSampleRate            => cAdc44117Dac44117
-          ),
-        Reg9                         =>
-        (
-          InterfaceActivation        => cInterfaceActivated
-          )
-        ),
+      MicroSlaveSampleRate96k                     =>
       ---------------------------------
-      UnusedSet6                     =>
-      ---------------------------------
-      (
+       (
         Reg0                         =>
         (
           LineLeftRightSimul         => cSimulLineVolUpdateDisabled,
@@ -769,12 +538,12 @@ package ParamCodec is
           ),
         Reg4                         =>
         (
-          SidetoneAttenuation        => -6,
+          SidetoneAttenuation        => -15,
           SidetoneEnable             => cSidetoneDisabled,
-          DacSelect                  => cDacOff,
+          DacSelect                  => cDacSelected,
           AnalogBypass               => cAnalogBypassDisabled,
-          AdcInputSelect             => cAdcInputLineSelected,
-          MicroMute                  => cMicroMuted,
+          AdcInputSelect             => cAdcInputMicroSelected,
+          MicroMute                  => cMicroUnmuted,
           MicroBoost                 => cMicroNoBoost
           ),
         Reg5                         =>
@@ -789,10 +558,10 @@ package ParamCodec is
           DevicePower                => cPowerOn,
           ClkPower                   => cPowerOff,
           OscillatorPower            => cPowerOff,
-          OutputsPower               => cPowerOff,
-          DacPower                   => cPowerOff,
-          AdcPower                   => cPowerOff,
-          MicroPower                 => cPowerOff,
+          OutputsPower               => cPowerOn,
+          DacPower                   => cPowerOn,
+          AdcPower                   => cPowerOn,
+          MicroPower                 => cPowerOn,
           LinePower                  => cPowerOff
           ),
         Reg7                         =>
@@ -808,7 +577,7 @@ package ParamCodec is
         (
           ClockOutputDivider         => cUseMclk,
           ClockInputDivider          => cUseMclk,
-          CodecSampleRate            => cAdc44117Dac44117
+          CodecSampleRate            => cAdc96000Dac96000
           ),
         Reg9                         =>
         (
