@@ -289,7 +289,7 @@ static ssize_t receiver_read(struct file *filp, char __user *buff,
 
 	pr_info("receiver: written: %d Bytes\n", copied);
 	
-	return copied;
+	return sizeof(u64);
 }
 
 MODULE_LICENSE("GPL");
