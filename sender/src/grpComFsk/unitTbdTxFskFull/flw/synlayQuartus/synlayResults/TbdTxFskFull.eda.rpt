@@ -1,5 +1,5 @@
 EDA Netlist Writer report for TbdTxFskFull
-Wed Jan 10 21:56:45 2024
+Thu Jan 18 11:17:04 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -36,7 +36,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Jan 10 21:56:45 2024 ;
+; EDA Netlist Writer Status ; Successful - Thu Jan 18 11:17:04 2024 ;
 ; Revision Name             ; TbdTxFskFull                          ;
 ; Top-level Entity Name     ; TbdTxFskFull                          ;
 ; Family                    ; Cyclone V                             ;
@@ -81,7 +81,7 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Jan 10 21:56:43 2024
+    Info: Processing started: Thu Jan 18 11:17:01 2024
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off TbdTxFskFull -c TbdTxFskFull
 Warning (125092): Tcl Script File C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitHPSComputer1/Computer_System/synthesis/Computer_System.qip not found
     Info (125063): set_global_assignment -name QIP_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitHPSComputer1/Computer_System/synthesis/Computer_System.qip"
@@ -89,9 +89,9 @@ Warning (18236): Number of processors has not been specified which may cause ove
 Warning (10905): Generated the EDA functional simulation netlist because it is the only supported netlist type for this device.
 Info (204019): Generated file TbdTxFskFull.vho in folder "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/flw/synlayQuartus/synlayResults/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 4850 megabytes
-    Info: Processing ended: Wed Jan 10 21:56:45 2024
-    Info: Elapsed time: 00:00:02
+    Info: Peak virtual memory: 4851 megabytes
+    Info: Processing ended: Thu Jan 18 11:17:04 2024
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 
 

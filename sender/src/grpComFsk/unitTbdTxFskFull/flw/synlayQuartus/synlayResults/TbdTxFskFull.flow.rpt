@@ -1,5 +1,5 @@
 Flow report for TbdTxFskFull
-Wed Jan 10 21:56:45 2024
+Thu Jan 18 11:17:04 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,14 +40,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Jan 10 21:56:45 2024       ;
+; Flow Status                     ; Successful - Thu Jan 18 11:17:04 2024       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; TbdTxFskFull                                ;
 ; Top-level Entity Name           ; TbdTxFskFull                                ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 163 / 32,070 ( < 1 % )                      ;
+; Logic utilization (in ALMs)     ; 161 / 32,070 ( < 1 % )                      ;
 ; Total registers                 ; 269                                         ;
 ; Total pins                      ; 111 / 457 ( 24 % )                          ;
 ; Total virtual pins              ; 0                                           ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/10/2024 21:55:34 ;
+; Start date & time ; 01/18/2024 11:15:51 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; TbdTxFskFull        ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------+
 ; Assignment Name                       ; Value                                                                                                                                           ; Default Value ; Entity Name  ; Section Id     ;
 +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------+
-; COMPILER_SIGNATURE_ID                 ; 134660532263222.170492013324812                                                                                                                 ; --            ; --           ; --             ;
+; COMPILER_SIGNATURE_ID                 ; 134660532263222.170557295002356                                                                                                                 ; --            ; --           ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT                ; Vhdl                                                                                                                                            ; --            ; --           ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                   ; ModelSim (VHDL)                                                                                                                                 ; <None>        ; --           ; --             ;
 ; EDA_TIME_SCALE                        ; 1 ps                                                                                                                                            ; --            ; --           ; eda_simulation ;
@@ -118,12 +118,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4989 MB             ; 00:00:20                           ;
-; Fitter               ; 00:00:39     ; 1.1                     ; 8157 MB             ; 00:02:30                           ;
-; Assembler            ; 00:00:07     ; 1.0                     ; 4835 MB             ; 00:00:06                           ;
-; Timing Analyzer      ; 00:00:08     ; 1.2                     ; 5457 MB             ; 00:00:09                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4850 MB             ; 00:00:02                           ;
-; Total                ; 00:01:07     ; --                      ; --                  ; 00:03:07                           ;
+; Analysis & Synthesis ; 00:00:12     ; 1.0                     ; 4982 MB             ; 00:00:20                           ;
+; Fitter               ; 00:00:40     ; 1.1                     ; 8160 MB             ; 00:02:38                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 4837 MB             ; 00:00:06                           ;
+; Timing Analyzer      ; 00:00:08     ; 1.2                     ; 5462 MB             ; 00:00:09                           ;
+; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 4851 MB             ; 00:00:03                           ;
+; Total                ; 00:01:09     ; --                      ; --                  ; 00:03:16                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

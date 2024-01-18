@@ -41,8 +41,8 @@ entity TbdTxFskFull is
     gSampleRate             : natural := cDefaultSampleRate;
     -- Tx parameters
     gChannels         : aSetOfTxChannels(0 to 1) := (
-        0 => (Frequency0 =>  8099.6054687500,   -- Hz
-              Frequency1 => 12924.9023437500),  -- Hz
+        0 => (Frequency0 => 40000.030518,       -- Hz
+              Frequency1 => 27000.00000),     -- Hz
         1 => (Frequency0 => 7237.9453125,       -- Hz
               Frequency1 => 12063.2421875))     -- Hz
   );

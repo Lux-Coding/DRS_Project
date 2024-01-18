@@ -113,8 +113,8 @@ begin
       gChannels => (
         0 => (Frequency0 =>  8099.6054687500,   -- Hz
               Frequency1 => 12924.9023437500),  -- Hz
-        1 => (Frequency0 => 27000.0,       -- Hz
-              Frequency1 => 43500.0))     -- Hz
+        1 => (Frequency0 => 36000.0,       -- Hz
+              Frequency1 => 40999.969482))     -- Hz
       )
 
     port map (

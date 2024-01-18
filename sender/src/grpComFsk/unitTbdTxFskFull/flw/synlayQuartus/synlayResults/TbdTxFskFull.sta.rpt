@@ -1,5 +1,5 @@
 Timing Analyzer report for TbdTxFskFull
-Wed Jan 10 21:56:42 2024
+Thu Jan 18 11:17:00 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -115,7 +115,7 @@ refer to the applicable agreement for further details.
 ;     Processor 9            ;   1.1%      ;
 ;     Processor 10           ;   1.1%      ;
 ;     Processor 11           ;   1.1%      ;
-;     Processor 12           ;   1.0%      ;
+;     Processor 12           ;   1.1%      ;
 ;     Processor 13           ;   1.0%      ;
 ;     Processor 14           ;   1.0%      ;
 ;     Processor 15           ;   1.0%      ;
@@ -128,7 +128,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------+--------+--------------------------+
 ; SDC File Path                                            ; Status ; Read at                  ;
 +----------------------------------------------------------+--------+--------------------------+
-; ../../../../../fhlow/synlayQuartus/TimingConstraints.tcl ; OK     ; Wed Jan 10 21:56:36 2024 ;
+; ../../../../../fhlow/synlayQuartus/TimingConstraints.tcl ; OK     ; Thu Jan 18 11:16:55 2024 ;
 +----------------------------------------------------------+--------+--------------------------+
 
 
@@ -148,7 +148,7 @@ refer to the applicable agreement for further details.
 +------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                                                                                         ; Note ;
 +------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------+------+
-; 150.31 MHz ; 150.31 MHz      ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ;      ;
+; 146.01 MHz ; 146.01 MHz      ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ;      ;
 +------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -164,7 +164,7 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                              ; Slack  ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 14.180 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 13.984 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -173,7 +173,7 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                                                                              ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 0.229 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 0.343 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
 
@@ -195,7 +195,7 @@ No paths to report.
 ; Clock                                                                                                                              ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]   ; 1.041 ; 0.000         ;
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 9.207 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 9.206 ; 0.000         ;
 ; SYSCLK                                                                                                                             ; 9.670 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
@@ -207,7 +207,7 @@ The design MTBF is not calculated because there are no specified synchronizers i
 Number of Synchronizer Chains Found: 16
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 19.489 ns
+Worst Case Available Settling Time: 19.480 ns
 
 
 
@@ -217,7 +217,7 @@ Worst Case Available Settling Time: 19.489 ns
 +------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                                                                                         ; Note ;
 +------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------+------+
-; 156.81 MHz ; 156.81 MHz      ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ;      ;
+; 152.86 MHz ; 152.86 MHz      ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ;      ;
 +------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -227,7 +227,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                              ; Slack  ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 14.456 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 14.291 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -236,7 +236,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                                                                              ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 0.219 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 0.326 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
 
@@ -258,7 +258,7 @@ No paths to report.
 ; Clock                                                                                                                              ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]   ; 1.041 ; 0.000         ;
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 9.185 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 9.188 ; 0.000         ;
 ; SYSCLK                                                                                                                             ; 9.673 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
@@ -270,7 +270,7 @@ The design MTBF is not calculated because there are no specified synchronizers i
 Number of Synchronizer Chains Found: 16
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 19.497 ns
+Worst Case Available Settling Time: 19.485 ns
 
 
 
@@ -280,7 +280,7 @@ Worst Case Available Settling Time: 19.497 ns
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                              ; Slack  ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 16.052 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 15.864 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -289,7 +289,7 @@ Worst Case Available Settling Time: 19.497 ns
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                                                                              ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 0.135 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 0.180 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
 
@@ -311,7 +311,7 @@ No paths to report.
 ; Clock                                                                                                                              ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]   ; 1.041 ; 0.000         ;
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 9.310 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 9.309 ; 0.000         ;
 ; SYSCLK                                                                                                                             ; 9.336 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
@@ -323,7 +323,7 @@ The design MTBF is not calculated because there are no specified synchronizers i
 Number of Synchronizer Chains Found: 16
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 19.996 ns
+Worst Case Available Settling Time: 19.995 ns
 
 
 
@@ -333,7 +333,7 @@ Worst Case Available Settling Time: 19.996 ns
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                              ; Slack  ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 16.639 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 16.495 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -342,7 +342,7 @@ Worst Case Available Settling Time: 19.996 ns
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                                                                              ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 0.123 ; 0.000         ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 0.171 ; 0.000         ;
 +------------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
 
@@ -376,7 +376,7 @@ The design MTBF is not calculated because there are no specified synchronizers i
 Number of Synchronizer Chains Found: 16
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 20.055 ns
+Worst Case Available Settling Time: 20.058 ns
 
 
 
@@ -386,9 +386,9 @@ Worst Case Available Settling Time: 20.055 ns
 +-------------------------------------------------------------------------------------------------------------------------------------+--------+-------+----------+---------+---------------------+
 ; Clock                                                                                                                               ; Setup  ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +-------------------------------------------------------------------------------------------------------------------------------------+--------+-------+----------+---------+---------------------+
-; Worst-case Slack                                                                                                                    ; 14.180 ; 0.123 ; N/A      ; N/A     ; 1.041               ;
+; Worst-case Slack                                                                                                                    ; 13.984 ; 0.171 ; N/A      ; N/A     ; 1.041               ;
 ;  PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]   ; N/A    ; N/A   ; N/A      ; N/A     ; 1.041               ;
-;  PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 14.180 ; 0.123 ; N/A      ; N/A     ; 9.185               ;
+;  PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 13.984 ; 0.171 ; N/A      ; N/A     ; 9.188               ;
 ;  SYSCLK                                                                                                                             ; N/A    ; N/A   ; N/A      ; N/A     ; 9.286               ;
 ; Design-wide TNS                                                                                                                     ; 0.0    ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
 ;  PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]   ; N/A    ; N/A   ; N/A      ; N/A     ; 0.000               ;
@@ -942,7 +942,7 @@ Worst Case Available Settling Time: 20.055 ns
 +------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                                                                                                         ; To Clock                                                                                                                           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+----------+----------+----------+----------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 4036     ; 0        ; 0        ; 0        ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 5178     ; 0        ; 0        ; 0        ;
 +------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -952,7 +952,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                                                                                                         ; To Clock                                                                                                                           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+----------+----------+----------+----------+
-; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 4036     ; 0        ; 0        ; 0        ;
+; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 5178     ; 0        ; 0        ; 0        ;
 +------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1089,7 +1089,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Jan 10 21:56:34 2024
+    Info: Processing started: Thu Jan 18 11:16:52 2024
 Info: Command: quartus_sta TbdTxFskFull -c TbdTxFskFull
 Info: qsta_default_script.tcl version: #1
 Warning (20013): Ignored 19 assignments for entity "drs_analyzer" -- entity does not exist in design
@@ -1112,28 +1112,28 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
-Info (332146): Worst-case setup slack is 14.180
+Info (332146): Worst-case setup slack is 13.984
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    14.180               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case hold slack is 0.229
+    Info (332119):    13.984               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+Info (332146): Worst-case hold slack is 0.343
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.229               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     0.343               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is 1.041
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):     1.041               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0] 
-    Info (332119):     9.207               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     9.206               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
     Info (332119):     9.670               0.000 SYSCLK 
 Info (332114): Report Metastability: Found 16 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
     Info (332114): Number of Synchronizer Chains Found: 16
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 19.489 ns
+    Info (332114): Worst Case Available Settling Time: 19.480 ns
     Info (332114): 
 Info: Analyzing Slow 1100mV 0C Model
 Info (334003): Started post-fitting delay annotation
@@ -1145,28 +1145,28 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): Cell: PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER  from: vco0ph[0]  to: divclk
     Info (332098): Cell: PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_REFCLK_SELECT  from: clkin[0]  to: clkout
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 14.456
+Info (332146): Worst-case setup slack is 14.291
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    14.456               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case hold slack is 0.219
+    Info (332119):    14.291               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+Info (332146): Worst-case hold slack is 0.326
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.219               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     0.326               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is 1.041
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):     1.041               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0] 
-    Info (332119):     9.185               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     9.188               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
     Info (332119):     9.673               0.000 SYSCLK 
 Info (332114): Report Metastability: Found 16 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
     Info (332114): Number of Synchronizer Chains Found: 16
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 19.497 ns
+    Info (332114): Worst Case Available Settling Time: 19.485 ns
     Info (332114): 
 Info: Analyzing Fast 1100mV 85C Model
 Info (334003): Started post-fitting delay annotation
@@ -1178,28 +1178,28 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): Cell: PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER  from: vco0ph[0]  to: divclk
     Info (332098): Cell: PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_REFCLK_SELECT  from: clkin[0]  to: clkout
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 16.052
+Info (332146): Worst-case setup slack is 15.864
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    16.052               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case hold slack is 0.135
+    Info (332119):    15.864               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+Info (332146): Worst-case hold slack is 0.180
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.135               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     0.180               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is 1.041
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):     1.041               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0] 
-    Info (332119):     9.310               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     9.309               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
     Info (332119):     9.336               0.000 SYSCLK 
 Info (332114): Report Metastability: Found 16 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
     Info (332114): Number of Synchronizer Chains Found: 16
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 19.996 ns
+    Info (332114): Worst Case Available Settling Time: 19.995 ns
     Info (332114): 
 Info: Analyzing Fast 1100mV 0C Model
 Warning (332060): Node: ClkMaster:GenClks|Mclk was determined to be a clock but was found without an associated clock assignment.
@@ -1209,14 +1209,14 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): Cell: PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER  from: vco0ph[0]  to: divclk
     Info (332098): Cell: PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_REFCLK_SELECT  from: clkin[0]  to: clkout
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 16.639
+Info (332146): Worst-case setup slack is 16.495
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    16.639               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case hold slack is 0.123
+    Info (332119):    16.495               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+Info (332146): Worst-case hold slack is 0.171
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.123               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     0.171               0.000 PLL_50MHz_48MHz|\GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is 1.041
@@ -1230,13 +1230,13 @@ Info (332114): Report Metastability: Found 16 synchronizer chains.
     Info (332114): Number of Synchronizer Chains Found: 16
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 20.055 ns
+    Info (332114): Worst Case Available Settling Time: 20.058 ns
     Info (332114): 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 5457 megabytes
-    Info: Processing ended: Wed Jan 10 21:56:42 2024
+    Info: Peak virtual memory: 5462 megabytes
+    Info: Processing ended: Thu Jan 18 11:17:00 2024
     Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:09
 

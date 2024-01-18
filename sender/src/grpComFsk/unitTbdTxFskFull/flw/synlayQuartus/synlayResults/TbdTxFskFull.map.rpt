@@ -1,5 +1,5 @@
 Analysis & Synthesis report for TbdTxFskFull
-Wed Jan 10 21:55:45 2024
+Thu Jan 18 11:16:02 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -71,13 +71,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Jan 10 21:55:45 2024       ;
+; Analysis & Synthesis Status     ; Successful - Thu Jan 18 11:16:02 2024       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; TbdTxFskFull                                ;
 ; Top-level Entity Name           ; TbdTxFskFull                                ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 236                                         ;
+; Total registers                 ; 234                                         ;
 ; Total pins                      ; 111                                         ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 14,336                                      ;
@@ -254,16 +254,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                                                                                                             ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 170                                                                                                                                                               ;
+; Estimate of Logic utilization (ALMs needed) ; 168                                                                                                                                                               ;
 ;                                             ;                                                                                                                                                                   ;
-; Combinational ALUT usage for logic          ; 284                                                                                                                                                               ;
+; Combinational ALUT usage for logic          ; 274                                                                                                                                                               ;
 ;     -- 7 input functions                    ; 2                                                                                                                                                                 ;
-;     -- 6 input functions                    ; 47                                                                                                                                                                ;
-;     -- 5 input functions                    ; 36                                                                                                                                                                ;
-;     -- 4 input functions                    ; 27                                                                                                                                                                ;
-;     -- <=3 input functions                  ; 172                                                                                                                                                               ;
+;     -- 6 input functions                    ; 52                                                                                                                                                                ;
+;     -- 5 input functions                    ; 32                                                                                                                                                                ;
+;     -- 4 input functions                    ; 33                                                                                                                                                                ;
+;     -- <=3 input functions                  ; 155                                                                                                                                                               ;
 ;                                             ;                                                                                                                                                                   ;
-; Dedicated logic registers                   ; 236                                                                                                                                                               ;
+; Dedicated logic registers                   ; 234                                                                                                                                                               ;
 ;                                             ;                                                                                                                                                                   ;
 ; I/O pins                                    ; 111                                                                                                                                                               ;
 ; Total MLAB memory bits                      ; 0                                                                                                                                                                 ;
@@ -276,8 +276,8 @@ refer to the applicable agreement for further details.
 ;                                             ;                                                                                                                                                                   ;
 ; Maximum fan-out node                        ; PLL50to48:PLL_50MHz_48MHz|AlteraPLL50to48:\GeneratePLLForSyn:AlteraPLL50to48_rtl|AlteraPLL50to48_0002:alterapll50to48_inst|altera_pll:altera_pll_i|outclk_wire[0] ;
 ; Maximum fan-out                             ; 243                                                                                                                                                               ;
-; Total fan-out                               ; 2115                                                                                                                                                              ;
-; Average fan-out                             ; 2.79                                                                                                                                                              ;
+; Total fan-out                               ; 2122                                                                                                                                                              ;
+; Average fan-out                             ; 2.84                                                                                                                                                              ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -286,8 +286,8 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+
 ; Compilation Hierarchy Node                                     ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                              ; Entity Name          ; Library Name    ;
 +----------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+
-; |TbdTxFskFull                                                  ; 284 (5)             ; 236 (21)                  ; 14336             ; 0          ; 111  ; 0            ; |TbdTxFskFull                                                                                                                                                    ; TbdTxFskFull         ; work            ;
-;    |ClkMaster:GenClks|                                         ; 14 (14)             ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |TbdTxFskFull|ClkMaster:GenClks                                                                                                                                  ; ClkMaster            ; work            ;
+; |TbdTxFskFull                                                  ; 274 (5)             ; 234 (21)                  ; 14336             ; 0          ; 111  ; 0            ; |TbdTxFskFull                                                                                                                                                    ; TbdTxFskFull         ; work            ;
+;    |ClkMaster:GenClks|                                         ; 10 (10)             ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |TbdTxFskFull|ClkMaster:GenClks                                                                                                                                  ; ClkMaster            ; work            ;
 ;    |ConfigureCodecViaI2c:ConfigureCodec|                       ; 71 (71)             ; 41 (41)                   ; 0                 ; 0          ; 0    ; 0            ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec                                                                                                                ; ConfigureCodecViaI2c ; work            ;
 ;    |FskSender:fsksender_inst|                                  ; 97 (40)             ; 57 (21)                   ; 0                 ; 0          ; 0    ; 0            ; |TbdTxFskFull|FskSender:fsksender_inst                                                                                                                           ; FskSender            ; work            ;
 ;       |StrobeGen:baudrate_generator|                           ; 30 (30)             ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |TbdTxFskFull|FskSender:fsksender_inst|StrobeGen:baudrate_generator                                                                                              ; StrobeGen            ; work            ;
@@ -300,8 +300,8 @@ refer to the applicable agreement for further details.
 ;    |StrobeGen:GenStrobeI2C|                                    ; 8 (8)               ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |TbdTxFskFull|StrobeGen:GenStrobeI2C                                                                                                                             ; StrobeGen            ; work            ;
 ;    |Sync:TheChannelSelSync|                                    ; 0 (0)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |TbdTxFskFull|Sync:TheChannelSelSync                                                                                                                             ; Sync                 ; work            ;
 ;    |Sync:TheTxDataSync|                                        ; 0 (0)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |TbdTxFskFull|Sync:TheTxDataSync                                                                                                                                 ; Sync                 ; work            ;
-;    |TxFsk:TheTxFsk|                                            ; 63 (0)              ; 69 (0)                    ; 14336             ; 0          ; 0    ; 0            ; |TbdTxFskFull|TxFsk:TheTxFsk                                                                                                                                     ; TxFsk                ; work            ;
-;       |DspDds:TheDDS|                                          ; 63 (63)             ; 69 (69)                   ; 14336             ; 0          ; 0    ; 0            ; |TbdTxFskFull|TxFsk:TheTxFsk|DspDds:TheDDS                                                                                                                       ; DspDds               ; work            ;
+;    |TxFsk:TheTxFsk|                                            ; 57 (2)              ; 69 (0)                    ; 14336             ; 0          ; 0    ; 0            ; |TbdTxFskFull|TxFsk:TheTxFsk                                                                                                                                     ; TxFsk                ; work            ;
+;       |DspDds:TheDDS|                                          ; 55 (55)             ; 69 (69)                   ; 14336             ; 0          ; 0    ; 0            ; |TbdTxFskFull|TxFsk:TheTxFsk|DspDds:TheDDS                                                                                                                       ; DspDds               ; work            ;
 ;          |altsyncram:Mux8_rtl_0|                               ; 0 (0)               ; 0 (0)                     ; 14336             ; 0          ; 0    ; 0            ; |TbdTxFskFull|TxFsk:TheTxFsk|DspDds:TheDDS|altsyncram:Mux8_rtl_0                                                                                                 ; altsyncram           ; work            ;
 ;             |altsyncram_gq71:auto_generated|                   ; 0 (0)               ; 0 (0)                     ; 14336             ; 0          ; 0    ; 0            ; |TbdTxFskFull|TxFsk:TheTxFsk|DspDds:TheDDS|altsyncram:Mux8_rtl_0|altsyncram_gq71:auto_generated                                                                  ; altsyncram_gq71      ; work            ;
 +----------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+
@@ -435,10 +435,10 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 236   ;
+; Total registers                              ; 234   ;
 ; Number of registers using Synchronous Clear  ; 36    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 236   ;
+; Number of registers using Asynchronous Clear ; 234   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 111   ;
 ; Number of registers using Preset             ; 0     ;
@@ -502,16 +502,16 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                     ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|R.AddrCtr[5] ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|R.AddrCtr[4] ;
 ; 3:1                ; 14 bits   ; 28 LEs        ; 0 LEs                ; 28 LEs                 ; Yes        ; |TbdTxFskFull|FskSender:fsksender_inst|Reg.WaitCounter[10]     ;
-; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |TbdTxFskFull|DwetL[-12]                                       ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |TbdTxFskFull|ParToI2s:TheParToI2s|BclkCtr[3]                  ;
-; 9:1                ; 4 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|R.BitCtr[0]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |TbdTxFskFull|DwetL[-10]                                       ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |TbdTxFskFull|ParToI2s:TheParToI2s|BclkCtr[0]                  ;
+; 9:1                ; 4 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|R.BitCtr[3]  ;
 ; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |TbdTxFskFull|FskSender:fsksender_inst|Selector0               ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |TbdTxFskFull|ParToI2s:TheParToI2s|Selector0                   ;
-; 13:1               ; 3 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; No         ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|Selector6    ;
-; 15:1               ; 2 bits    ; 20 LEs        ; 6 LEs                ; 14 LEs                 ; No         ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|Selector4    ;
-; 15:1               ; 2 bits    ; 20 LEs        ; 6 LEs                ; 14 LEs                 ; No         ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|Selector8    ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |TbdTxFskFull|ParToI2s:TheParToI2s|Selector4                   ;
+; 13:1               ; 3 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; No         ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|Selector1    ;
+; 15:1               ; 2 bits    ; 20 LEs        ; 6 LEs                ; 14 LEs                 ; No         ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|Selector0    ;
+; 15:1               ; 2 bits    ; 20 LEs        ; 6 LEs                ; 14 LEs                 ; No         ; |TbdTxFskFull|ConfigureCodecViaI2c:ConfigureCodec|Selector3    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------+
 
 
@@ -524,16 +524,16 @@ Encoding Type:  One-Hot
 +---------------------------------+--------------------+------+--------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |TbdTxFskFull                                   ;
-+----------------+------------------------------------------------------------------------------+----------------+
-; Parameter Name ; Value                                                                        ; Type           ;
-+----------------+------------------------------------------------------------------------------+----------------+
-; gClkFrequency  ; 48000000                                                                     ; Signed Integer ;
-; gAudioBitWidth ; 16                                                                           ; Signed Integer ;
-; gSampleRate    ; 44117                                                                        ; Signed Integer ;
-; gChannels      ; A(A(F"8099.60546875",F"12924.90234375"),A(F"7237.9453125",F"12063.2421875")) ; Array/Record   ;
-+----------------+------------------------------------------------------------------------------+----------------+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |TbdTxFskFull                           ;
++----------------+----------------------------------------------------------------------+----------------+
+; Parameter Name ; Value                                                                ; Type           ;
++----------------+----------------------------------------------------------------------+----------------+
+; gClkFrequency  ; 48000000                                                             ; Signed Integer ;
+; gAudioBitWidth ; 16                                                                   ; Signed Integer ;
+; gSampleRate    ; 44117                                                                ; Signed Integer ;
+; gChannels      ; A(A(F"40000.030518",F"27000.0"),A(F"7237.9453125",F"12063.2421875")) ; Array/Record   ;
++----------------+----------------------------------------------------------------------+----------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -824,12 +824,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 +----------------------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: ConfigureCodecViaI2c:ConfigureCodec ;
-+------------------+--------------------------+------------------------------------+
-; Parameter Name   ; Value                    ; Type                               ;
-+------------------+--------------------------+------------------------------------+
-; gchoosenparamset ; MicroSlaveSampleRate44k1 ; Enumerated                         ;
-; gi2caddress      ; 0011010                  ; Unsigned Binary                    ;
-+------------------+--------------------------+------------------------------------+
++------------------+-------------------------+-------------------------------------+
+; Parameter Name   ; Value                   ; Type                                ;
++------------------+-------------------------+-------------------------------------+
+; gchoosenparamset ; MicroSlaveSampleRate96k ; Enumerated                          ;
+; gi2caddress      ; 0011010                 ; Unsigned Binary                     ;
++------------------+-------------------------+-------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -851,7 +851,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+----------+------------------------------------+
 ; gclkfrequency  ; 48000000 ; Signed Integer                     ;
 ; gmclkfrequency ; 12000000 ; Signed Integer                     ;
-; gsamplerate    ; 44117    ; Signed Integer                     ;
+; gsamplerate    ; 96000    ; Signed Integer                     ;
 +----------------+----------+------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -878,16 +878,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+----------------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: TxFsk:TheTxFsk                                                    ;
-+----------------+------------------------------------------------------------------------------+----------------+
-; Parameter Name ; Value                                                                        ; Type           ;
-+----------------+------------------------------------------------------------------------------+----------------+
-; gclkfrequency  ; 48000000                                                                     ; Signed Integer ;
-; gaudiobitwidth ; 16                                                                           ; Signed Integer ;
-; gsamplerate    ; 44117                                                                        ; Signed Integer ;
-; gchannels      ; A(A(F"8099.60546875",F"12924.90234375"),A(F"7237.9453125",F"12063.2421875")) ; Array/Record   ;
-+----------------+------------------------------------------------------------------------------+----------------+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: TxFsk:TheTxFsk                                            ;
++----------------+----------------------------------------------------------------------+----------------+
+; Parameter Name ; Value                                                                ; Type           ;
++----------------+----------------------------------------------------------------------+----------------+
+; gclkfrequency  ; 48000000                                                             ; Signed Integer ;
+; gaudiobitwidth ; 16                                                                   ; Signed Integer ;
+; gsamplerate    ; 96000                                                                ; Signed Integer ;
+; gchannels      ; A(A(F"40000.030518",F"27000.0"),A(F"7237.9453125",F"12063.2421875")) ; Array/Record   ;
++----------------+----------------------------------------------------------------------+----------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -2097,13 +2097,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 +----------------------------------------------------------+
 ; Port Connectivity Checks: "TxFsk:TheTxFsk|DspDds:TheDDS" ;
-+------------------------+-------+----------+--------------+
-; Port                   ; Type  ; Severity ; Details      ;
-+------------------------+-------+----------+--------------+
-; iphaseincrement[11..0] ; Input ; Info     ; Stuck at GND ;
-; iphaseincrement[16]    ; Input ; Info     ; Stuck at GND ;
-; iphaseincrement[13]    ; Input ; Info     ; Stuck at VCC ;
-+------------------------+-------+----------+--------------+
++---------------------+-------+----------+-----------------+
+; Port                ; Type  ; Severity ; Details         ;
++---------------------+-------+----------+-----------------+
+; iphaseincrement[14] ; Input ; Info     ; Stuck at GND    ;
+; iphaseincrement[8]  ; Input ; Info     ; Stuck at GND    ;
+; iphaseincrement[2]  ; Input ; Info     ; Stuck at GND    ;
++---------------------+-------+----------+-----------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------+
@@ -2129,32 +2129,36 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 236                         ;
-;     CLR               ; 110                         ;
+; arriav_ff             ; 234                         ;
+;     CLR               ; 108                         ;
 ;     CLR SCLR          ; 15                          ;
 ;     ENA CLR           ; 90                          ;
 ;     ENA CLR SCLR      ; 21                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 286                         ;
-;     arith             ; 106                         ;
-;         1 data inputs ; 78                          ;
-;         2 data inputs ; 26                          ;
-;         3 data inputs ; 2                           ;
+; arriav_lcell_comb     ; 276                         ;
+;     arith             ; 70                          ;
+;         1 data inputs ; 56                          ;
+;         2 data inputs ; 14                          ;
 ;     extend            ; 2                           ;
 ;         7 data inputs ; 2                           ;
-;     normal            ; 178                         ;
+;     normal            ; 184                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 13                          ;
-;         2 data inputs ; 38                          ;
+;         1 data inputs ; 14                          ;
+;         2 data inputs ; 39                          ;
 ;         3 data inputs ; 16                          ;
-;         4 data inputs ; 27                          ;
-;         5 data inputs ; 36                          ;
-;         6 data inputs ; 47                          ;
+;         4 data inputs ; 30                          ;
+;         5 data inputs ; 32                          ;
+;         6 data inputs ; 52                          ;
+;     shared            ; 20                          ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 10                          ;
+;         4 data inputs ; 3                           ;
 ; boundary_port         ; 111                         ;
 ; generic_pll           ; 1                           ;
 ; stratixv_ram_block    ; 14                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.80                        ;
+; Max LUT depth         ; 4.20                        ;
 ; Average LUT depth     ; 2.24                        ;
 +-----------------------+-----------------------------+
 
@@ -2174,7 +2178,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Jan 10 21:55:33 2024
+    Info: Processing started: Thu Jan 18 11:15:49 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off TbdTxFskFull -c TbdTxFskFull
 Warning (125092): Tcl Script File C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitHPSComputer1/Computer_System/synthesis/Computer_System.qip not found
     Info (125063): set_global_assignment -name QIP_FILE "C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpAlteraCycloneV/unitHPSComputer1/Computer_System/synthesis/Computer_System.qip"
@@ -2452,17 +2456,17 @@ Warning (21074): Design contains 9 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "inButton[2]" File: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/src/TbdTxFskFull-e.vhd Line: 55
     Warning (15610): No output dependent on input pin "inButton[3]" File: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/src/TbdTxFskFull-e.vhd Line: 55
     Warning (15610): No output dependent on input pin "iADCdat" File: C:/Users/hanne/OneDrive/WS2324/DRS/DRS_Project/sender/src/grpComFsk/unitTbdTxFskFull/src/TbdTxFskFull-e.vhd Line: 72
-Info (21057): Implemented 482 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 472 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 16 input pins
     Info (21059): Implemented 94 output pins
     Info (21060): Implemented 1 bidirectional pins
-    Info (21061): Implemented 356 logic cells
+    Info (21061): Implemented 346 logic cells
     Info (21064): Implemented 14 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 100 warnings
-    Info: Peak virtual memory: 4989 megabytes
-    Info: Processing ended: Wed Jan 10 21:55:45 2024
-    Info: Elapsed time: 00:00:12
+    Info: Peak virtual memory: 4982 megabytes
+    Info: Processing ended: Thu Jan 18 11:16:02 2024
+    Info: Elapsed time: 00:00:13
     Info: Total CPU time (on all processors): 00:00:20
 
 

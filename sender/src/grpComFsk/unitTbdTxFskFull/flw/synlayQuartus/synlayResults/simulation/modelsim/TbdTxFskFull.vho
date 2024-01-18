@@ -16,7 +16,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition"
 
--- DATE "01/10/2024 21:56:45"
+-- DATE "01/18/2024 11:17:03"
 
 -- 
 -- Device: Altera 5CSEMA5F31C6 Package FBGA896
@@ -250,6 +250,7 @@ SIGNAL \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_in
 SIGNAL \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL_O_VCOPH6\ : std_logic;
 SIGNAL \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL_O_VCOPH7\ : std_logic;
 SIGNAL \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\ : std_logic;
+SIGNAL \ioI2cSdin~input_o\ : std_logic;
 SIGNAL \GenStrobeI2C|ClkCounter[0]~5_combout\ : std_logic;
 SIGNAL \inButton[1]~inputCLKENA0_outclk\ : std_logic;
 SIGNAL \GenStrobeI2C|ClkCounter[1]~4_combout\ : std_logic;
@@ -260,11 +261,12 @@ SIGNAL \GenStrobeI2C|ClkCounter[4]~1_combout\ : std_logic;
 SIGNAL \GenStrobeI2C|ClkCounter[5]~0_combout\ : std_logic;
 SIGNAL \GenStrobeI2C|Equal0~1_combout\ : std_logic;
 SIGNAL \GenStrobeI2C|oStrobe~q\ : std_logic;
-SIGNAL \ConfigureCodec|R.Sclk~q\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Start~q\ : std_logic;
 SIGNAL \ConfigureCodec|Add0~2\ : std_logic;
 SIGNAL \ConfigureCodec|Add0~25_sumout\ : std_logic;
 SIGNAL \ConfigureCodec|Add0~26\ : std_logic;
 SIGNAL \ConfigureCodec|Add0~21_sumout\ : std_logic;
+SIGNAL \ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|Add0~22\ : std_logic;
 SIGNAL \ConfigureCodec|Add0~17_sumout\ : std_logic;
 SIGNAL \ConfigureCodec|Add0~18\ : std_logic;
@@ -274,7 +276,15 @@ SIGNAL \ConfigureCodec|Add0~9_sumout\ : std_logic;
 SIGNAL \ConfigureCodec|Add0~10\ : std_logic;
 SIGNAL \ConfigureCodec|Add0~5_sumout\ : std_logic;
 SIGNAL \ConfigureCodec|Equal0~0_combout\ : std_logic;
-SIGNAL \Start~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|R.Sclk~q\ : std_logic;
+SIGNAL \ConfigureCodec|R.Configured~1_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.Configured~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.Configured~2_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.Configured~q\ : std_logic;
+SIGNAL \WaitCtr[1]~0_combout\ : std_logic;
+SIGNAL \WaitCtr[0]~1_combout\ : std_logic;
+SIGNAL \Start~0_combout\ : std_logic;
+SIGNAL \Start~q\ : std_logic;
 SIGNAL \ConfigureCodec|R.Configured~3_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.Configured~4_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.AddrCtr[6]~0_combout\ : std_logic;
@@ -282,116 +292,115 @@ SIGNAL \ConfigureCodec|Add0~1_sumout\ : std_logic;
 SIGNAL \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|R.Activity~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.Activity~q\ : std_logic;
-SIGNAL \ConfigureCodec|R.Configured~1_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.Configured~2_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.Configured~q\ : std_logic;
-SIGNAL \WaitCtr[0]~1_combout\ : std_logic;
-SIGNAL \WaitCtr[0]~DUPLICATE_q\ : std_logic;
-SIGNAL \WaitCtr[1]~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.Configured~DUPLICATE_q\ : std_logic;
-SIGNAL \Start~0_combout\ : std_logic;
-SIGNAL \Start~q\ : std_logic;
-SIGNAL \ConfigureCodec|R.Configured~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Selector1~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ : std_logic;
-SIGNAL \ioI2cSdin~input_o\ : std_logic;
-SIGNAL \GenStrobeI2C|oStrobe~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|NextStateAndOutput~2_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.Data2~q\ : std_logic;
-SIGNAL \ConfigureCodec|Selector7~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ : std_logic;
-SIGNAL \ConfigureCodec|NextR~8_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Selector8~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.Ack3~q\ : std_logic;
+SIGNAL \ConfigureCodec|Selector10~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Stop~q\ : std_logic;
 SIGNAL \ConfigureCodec|Selector13~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector5~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.Data1~q\ : std_logic;
-SIGNAL \ConfigureCodec|Selector5~1_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ : std_logic;
-SIGNAL \ConfigureCodec|Selector11~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Selector11~1_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector12~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Selector15~6_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Selector2~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.Address~q\ : std_logic;
-SIGNAL \ConfigureCodec|Selector10~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Selector11~2_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Selector11~3_combout\ : std_logic;
-SIGNAL \ConfigureCodec|NextR~11_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Selector11~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector12~1_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|Add1~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector10~1_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector1~1_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector10~2_combout\ : std_logic;
-SIGNAL \ConfigureCodec|NextR~9_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.RWBit~q\ : std_logic;
-SIGNAL \ConfigureCodec|Selector3~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\ : std_logic;
-SIGNAL \ConfigureCodec|Selector4~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.Ack1~q\ : std_logic;
+SIGNAL \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|NextR~11_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector13~1_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector13~2_combout\ : std_logic;
+SIGNAL \ConfigureCodec|NextR~9_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Selector2~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Address~q\ : std_logic;
+SIGNAL \ConfigureCodec|Selector3~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.RWBit~q\ : std_logic;
+SIGNAL \ConfigureCodec|Selector4~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Ack1~q\ : std_logic;
+SIGNAL \ConfigureCodec|Selector11~1_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Selector15~6_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Selector11~2_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Selector11~3_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|NextR~10_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Data1~q\ : std_logic;
+SIGNAL \ConfigureCodec|Selector5~1_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|NextR~8_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector6~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.FrameState.Ack2~q\ : std_logic;
+SIGNAL \ConfigureCodec|Selector7~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Data2~q\ : std_logic;
+SIGNAL \ConfigureCodec|Selector8~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Ack3~q\ : std_logic;
 SIGNAL \ConfigureCodec|Selector16~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector16~1_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.AckError~q\ : std_logic;
 SIGNAL \ConfigureCodec|Selector9~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.Stop~q\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|Selector0~1_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector0~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector0~2_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.FrameState.Idle~q\ : std_logic;
-SIGNAL \ConfigureCodec|Selector1~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.FrameState.Start~q\ : std_logic;
 SIGNAL \ConfigureCodec|Selector14~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.Sclk~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.Address~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|Selector15~2_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector15~3_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector15~4_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|Selector15~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector15~1_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Mux7~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Mux2~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.Data[15]~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|R.AddrCtr[1]~DUPLICATE_q\ : std_logic;
-SIGNAL \ConfigureCodec|Mux5~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Mux9~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Mux3~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Mux1~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Mux9~1_combout\ : std_logic;
+SIGNAL \ConfigureCodec|R.AddrCtr[3]~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|Mux0~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Mux9~3_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Mux4~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Mux6~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Mux9~2_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Mux0~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Mux2~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|Mux9~3_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Mux1~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Mux3~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Mux9~1_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Mux5~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Mux7~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|Mux9~0_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Mux9~4_combout\ : std_logic;
 SIGNAL \ConfigureCodec|Selector15~5_combout\ : std_logic;
 SIGNAL \ConfigureCodec|R.Sdin~q\ : std_logic;
 SIGNAL \iSwitch[9]~input_o\ : std_logic;
 SIGNAL \TheChannelSelSync|Metastable[1]~feeder_combout\ : std_logic;
-SIGNAL \inResetAsync~input_o\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[13]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[3]~DUPLICATE_q\ : std_logic;
+SIGNAL \TheChannelSelSync|Metastable[1]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~29_sumout\ : std_logic;
+SIGNAL \inResetAsync~input_o\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~30\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~25_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~2_combout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~26\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~21_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~22\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~17_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~18\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~13_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~14\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~9_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~2\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~49_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~50\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~45_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~46\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~41_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~4_combout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[15]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~42\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~37_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[17]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~38\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~33_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~3_combout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Equal0~1_combout\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Equal0~0_combout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~10\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[8]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~6\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~69_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[7]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~70\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~65_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~7_combout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Equal0~2_combout\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~66\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~61_sumout\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~6_combout\ : std_logic;
@@ -404,48 +413,33 @@ SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~5_combout\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~54\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~1_sumout\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~0_combout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~2\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~49_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[14]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~50\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~45_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~46\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~41_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~4_combout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[15]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~42\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~37_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter[16]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~38\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~33_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~3_combout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Equal0~1_combout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~2_combout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~26\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~21_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~22\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~17_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~18\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~13_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~14\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~9_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|Add0~10\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Add0~5_sumout\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~1_combout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Add0~65_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter~7_combout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|Equal0~2_combout\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|Equal0~3_combout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|oStrobe~q\ : std_logic;
-SIGNAL \fsksender_inst|Reg.SendCounter[0]~3_combout\ : std_logic;
 SIGNAL \iSwitch[1]~input_o\ : std_logic;
-SIGNAL \iSwitch[2]~input_o\ : std_logic;
 SIGNAL \fsksender_inst|Add0~53_sumout\ : std_logic;
-SIGNAL \fsksender_inst|Add0~26\ : std_logic;
-SIGNAL \fsksender_inst|Add0~21_sumout\ : std_logic;
-SIGNAL \fsksender_inst|LessThan0~5_combout\ : std_logic;
-SIGNAL \fsksender_inst|LessThan0~4_combout\ : std_logic;
-SIGNAL \fsksender_inst|LessThan0~6_combout\ : std_logic;
-SIGNAL \fsksender_inst|Reg.SendCounter[2]~1_combout\ : std_logic;
-SIGNAL \fsksender_inst|Reg.SendCounter[2]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|Reg.SendCounter[0]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|Selector0~0_combout\ : std_logic;
 SIGNAL \fsksender_inst|Add0~34\ : std_logic;
 SIGNAL \fsksender_inst|Add0~29_sumout\ : std_logic;
-SIGNAL \fsksender_inst|LessThan0~7_combout\ : std_logic;
-SIGNAL \fsksender_inst|Selector0~1_combout\ : std_logic;
-SIGNAL \fsksender_inst|Reg.state.WaitForSend~q\ : std_logic;
+SIGNAL \iSwitch[2]~input_o\ : std_logic;
+SIGNAL \fsksender_inst|LessThan0~4_combout\ : std_logic;
+SIGNAL \fsksender_inst|LessThan0~5_combout\ : std_logic;
+SIGNAL \fsksender_inst|LessThan0~6_combout\ : std_logic;
+SIGNAL \fsksender_inst|LessThan0~0_combout\ : std_logic;
+SIGNAL \fsksender_inst|LessThan0~1_combout\ : std_logic;
+SIGNAL \fsksender_inst|LessThan0~2_combout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~21_sumout\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~22\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~17_sumout\ : std_logic;
@@ -453,27 +447,9 @@ SIGNAL \fsksender_inst|msstrobe_generator|Add0~18\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~13_sumout\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~14\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~9_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Equal0~0_combout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~10\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~5_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~6\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~61_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~62\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~57_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~58\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~53_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter~6_combout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~54\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~49_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Equal0~2_combout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~50\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~45_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter~4_combout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~46\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|Add0~1_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Equal0~0_combout\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~2\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~41_sumout\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter~3_combout\ : std_logic;
@@ -489,21 +465,31 @@ SIGNAL \fsksender_inst|msstrobe_generator|Add0~30\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Add0~25_sumout\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter~0_combout\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Equal0~1_combout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~6\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~61_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~62\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~57_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~58\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~53_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter~6_combout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~54\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~49_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter[5]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Equal0~2_combout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~50\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~45_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter~4_combout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~46\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|Add0~1_sumout\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|Equal0~3_combout\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|oStrobe~q\ : std_logic;
 SIGNAL \StartSending~0_combout\ : std_logic;
 SIGNAL \StartSending~q\ : std_logic;
 SIGNAL \fsksender_inst|the_comp~0_combout\ : std_logic;
 SIGNAL \fsksender_inst|Reg.WaitCounter[13]~0_combout\ : std_logic;
-SIGNAL \fsksender_inst|Add0~22\ : std_logic;
-SIGNAL \fsksender_inst|Add0~17_sumout\ : std_logic;
-SIGNAL \fsksender_inst|Add0~18\ : std_logic;
-SIGNAL \fsksender_inst|Add0~45_sumout\ : std_logic;
-SIGNAL \fsksender_inst|Add0~46\ : std_logic;
-SIGNAL \fsksender_inst|Add0~41_sumout\ : std_logic;
-SIGNAL \fsksender_inst|Add0~42\ : std_logic;
-SIGNAL \fsksender_inst|Add0~33_sumout\ : std_logic;
-SIGNAL \fsksender_inst|LessThan0~3_combout\ : std_logic;
+SIGNAL \fsksender_inst|LessThan0~7_combout\ : std_logic;
 SIGNAL \fsksender_inst|LessThan0~10_combout\ : std_logic;
 SIGNAL \fsksender_inst|LessThan0~11_combout\ : std_logic;
 SIGNAL \fsksender_inst|LessThan0~8_combout\ : std_logic;
@@ -523,18 +509,34 @@ SIGNAL \fsksender_inst|Add0~14\ : std_logic;
 SIGNAL \fsksender_inst|Add0~9_sumout\ : std_logic;
 SIGNAL \fsksender_inst|Add0~10\ : std_logic;
 SIGNAL \fsksender_inst|Add0~25_sumout\ : std_logic;
-SIGNAL \fsksender_inst|LessThan0~1_combout\ : std_logic;
-SIGNAL \fsksender_inst|LessThan0~0_combout\ : std_logic;
-SIGNAL \fsksender_inst|LessThan0~2_combout\ : std_logic;
+SIGNAL \fsksender_inst|Add0~26\ : std_logic;
+SIGNAL \fsksender_inst|Add0~21_sumout\ : std_logic;
+SIGNAL \fsksender_inst|Add0~22\ : std_logic;
+SIGNAL \fsksender_inst|Add0~17_sumout\ : std_logic;
+SIGNAL \fsksender_inst|Add0~18\ : std_logic;
+SIGNAL \fsksender_inst|Add0~45_sumout\ : std_logic;
+SIGNAL \fsksender_inst|Add0~46\ : std_logic;
+SIGNAL \fsksender_inst|Add0~41_sumout\ : std_logic;
+SIGNAL \fsksender_inst|Add0~42\ : std_logic;
+SIGNAL \fsksender_inst|Add0~33_sumout\ : std_logic;
+SIGNAL \fsksender_inst|LessThan0~3_combout\ : std_logic;
 SIGNAL \fsksender_inst|Selector1~0_combout\ : std_logic;
 SIGNAL \fsksender_inst|Selector1~1_combout\ : std_logic;
 SIGNAL \fsksender_inst|Reg.state.WaitForFirstBaud~q\ : std_logic;
+SIGNAL \fsksender_inst|Reg.SendCounter[0]~3_combout\ : std_logic;
+SIGNAL \fsksender_inst|Reg.SendCounter[1]~2_combout\ : std_logic;
+SIGNAL \fsksender_inst|Reg.SendCounter[0]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|Equal0~0_combout\ : std_logic;
 SIGNAL \fsksender_inst|Selector2~0_combout\ : std_logic;
 SIGNAL \fsksender_inst|Reg.state.Send~q\ : std_logic;
 SIGNAL \fsksender_inst|Reg.SendCounter[3]~0_combout\ : std_logic;
-SIGNAL \fsksender_inst|Reg.SendCounter[1]~2_combout\ : std_logic;
-SIGNAL \fsksender_inst|Equal0~0_combout\ : std_logic;
+SIGNAL \fsksender_inst|Reg.SendCounter[1]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|Reg.SendCounter[2]~1_combout\ : std_logic;
+SIGNAL \fsksender_inst|Reg.SendCounter[2]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|Reg.state.Send~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|Selector0~0_combout\ : std_logic;
+SIGNAL \fsksender_inst|Selector0~1_combout\ : std_logic;
+SIGNAL \fsksender_inst|Reg.state.WaitForSend~q\ : std_logic;
 SIGNAL \fsksender_inst|Reg.Data~0_combout\ : std_logic;
 SIGNAL \fsksender_inst|Reg.Data~q\ : std_logic;
 SIGNAL \TheTxDataSync|Metastable[0]~feeder_combout\ : std_logic;
@@ -542,74 +544,69 @@ SIGNAL \TheTxDataSync|Metastable[1]~feeder_combout\ : std_logic;
 SIGNAL \GenClks|MclkCounter[0]~0_combout\ : std_logic;
 SIGNAL \GenClks|Mclk~0_combout\ : std_logic;
 SIGNAL \GenClks|Mclk~q\ : std_logic;
-SIGNAL \GenClks|Add1~9_sumout\ : std_logic;
-SIGNAL \GenClks|Add1~10\ : std_logic;
-SIGNAL \GenClks|Add1~5_sumout\ : std_logic;
-SIGNAL \GenClks|Add1~6\ : std_logic;
-SIGNAL \GenClks|Add1~1_sumout\ : std_logic;
-SIGNAL \GenClks|Add1~2\ : std_logic;
-SIGNAL \GenClks|Add1~29_sumout\ : std_logic;
+SIGNAL \GenClks|ADCCounter[0]~5_combout\ : std_logic;
+SIGNAL \GenClks|ADCCounter~4_combout\ : std_logic;
+SIGNAL \GenClks|ADCCounter[2]~feeder_combout\ : std_logic;
 SIGNAL \GenClks|ADCCounter~1_combout\ : std_logic;
-SIGNAL \GenClks|Add1~30\ : std_logic;
-SIGNAL \GenClks|Add1~25_sumout\ : std_logic;
-SIGNAL \GenClks|Add1~26\ : std_logic;
-SIGNAL \GenClks|Add1~21_sumout\ : std_logic;
-SIGNAL \GenClks|Add1~22\ : std_logic;
-SIGNAL \GenClks|Add1~17_sumout\ : std_logic;
-SIGNAL \GenClks|ADCCounter[6]~feeder_combout\ : std_logic;
-SIGNAL \GenClks|Add1~18\ : std_logic;
-SIGNAL \GenClks|Add1~13_sumout\ : std_logic;
+SIGNAL \GenClks|ADCCounter[5]~feeder_combout\ : std_logic;
+SIGNAL \GenClks|ADCCounter~2_combout\ : std_logic;
+SIGNAL \GenClks|ADCCounter~3_combout\ : std_logic;
 SIGNAL \GenClks|ADCCounter~0_combout\ : std_logic;
+SIGNAL \GenClks|ADCCounter[1]~feeder_combout\ : std_logic;
 SIGNAL \GenClks|Equal0~0_combout\ : std_logic;
 SIGNAL \GenClks|ADClrc~0_combout\ : std_logic;
+SIGNAL \GenClks|ADClrc~feeder_combout\ : std_logic;
 SIGNAL \GenClks|ADClrc~q\ : std_logic;
 SIGNAL \oldADClrc~q\ : std_logic;
 SIGNAL \PhaseStrobe~combout\ : std_logic;
 SIGNAL \TheParToI2s|BclkDlyd~q\ : std_logic;
 SIGNAL \ValWetR~q\ : std_logic;
-SIGNAL \TheParToI2s|State.SendingR~DUPLICATE_q\ : std_logic;
+SIGNAL \TheParToI2s|State.SyncingToBclk~q\ : std_logic;
+SIGNAL \TheParToI2s|NextBclkCtr~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector8~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector7~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector9~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector9~1_combout\ : std_logic;
+SIGNAL \TheParToI2s|Add0~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector7~1_combout\ : std_logic;
+SIGNAL \TheParToI2s|BclkCtr[0]~DUPLICATE_q\ : std_logic;
+SIGNAL \TheParToI2s|NextBclkCtr~1_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector8~1_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector6~1_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector6~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector6~2_combout\ : std_logic;
+SIGNAL \TheParToI2s|BclkCtr[2]~DUPLICATE_q\ : std_logic;
+SIGNAL \TheParToI2s|BclkCtr[1]~DUPLICATE_q\ : std_logic;
+SIGNAL \TheParToI2s|NextState~6_combout\ : std_logic;
+SIGNAL \TheParToI2s|Selector4~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|State.FirstBitEmptyR~q\ : std_logic;
+SIGNAL \TheParToI2s|Selector5~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|State.SendingR~q\ : std_logic;
 SIGNAL \TheParToI2s|Selector0~0_combout\ : std_logic;
 SIGNAL \TheParToI2s|State.WaitingValL~q\ : std_logic;
-SIGNAL \TheParToI2s|State.SyncingToBclk~q\ : std_logic;
 SIGNAL \TheParToI2s|Selector1~0_combout\ : std_logic;
 SIGNAL \TheParToI2s|State.SyncingToBclk~DUPLICATE_q\ : std_logic;
 SIGNAL \TheParToI2s|State.FirstBitEmptyL~0_combout\ : std_logic;
 SIGNAL \TheParToI2s|State.FirstBitEmptyL~q\ : std_logic;
 SIGNAL \TheParToI2s|Selector3~0_combout\ : std_logic;
 SIGNAL \TheParToI2s|State.SendingL~q\ : std_logic;
-SIGNAL \TheParToI2s|Selector4~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|State.FirstBitEmptyR~q\ : std_logic;
-SIGNAL \TheParToI2s|Selector9~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|Selector8~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|NextBclkCtr~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|Selector8~1_combout\ : std_logic;
-SIGNAL \TheParToI2s|BclkCtr[1]~DUPLICATE_q\ : std_logic;
-SIGNAL \TheParToI2s|Add0~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|Selector7~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|Selector7~1_combout\ : std_logic;
-SIGNAL \TheParToI2s|Selector6~1_combout\ : std_logic;
-SIGNAL \TheParToI2s|Selector6~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|Selector6~2_combout\ : std_logic;
-SIGNAL \TheParToI2s|BclkCtr[2]~DUPLICATE_q\ : std_logic;
-SIGNAL \TheParToI2s|NextBclkCtr~1_combout\ : std_logic;
-SIGNAL \TheParToI2s|Selector9~1_combout\ : std_logic;
-SIGNAL \TheParToI2s|BclkCtr[0]~DUPLICATE_q\ : std_logic;
-SIGNAL \TheParToI2s|NextState~6_combout\ : std_logic;
-SIGNAL \TheParToI2s|Selector5~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|State.SendingR~q\ : std_logic;
+SIGNAL \TheParToI2s|State.SendingR~DUPLICATE_q\ : std_logic;
 SIGNAL \TheParToI2s|Selector10~0_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RegsLFSR[0]~0_combout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|RegsLFSR[0]~DUPLICATE_q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RegsLFSR[1]~feeder_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RegsLFSR[3]~feeder_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|RegsLFSR[5]~feeder_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RegsLFSR[5]~DUPLICATE_q\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|RegsLFSR[6]~feeder_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RegsLFSR[8]~feeder_combout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|RegsLFSR[14]~feeder_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RegsLFSR[24]~feeder_combout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|RegsLFSR[25]~feeder_combout\ : std_logic;
+SIGNAL \TheTxFsk|PhaseIncrement[7]~0_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-1]~0_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-1]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-2]~1_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-2]~q\ : std_logic;
+SIGNAL \TheTxFsk|PhaseIncrement[16]~1_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-3]~2_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-3]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-4]~3_combout\ : std_logic;
@@ -622,89 +619,77 @@ SIGNAL \TheTxFsk|TheDDS|RandomValue[-7]~6_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-7]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-8]~7_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|RandomValue[-8]~q\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~77_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~78\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~73_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~74\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~69_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~70\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~65_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~66\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~61_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~62\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~57_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~58\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~53_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~54\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~49_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~50\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~9_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[0]_OTERM21\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~9_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~10\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~13_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~14\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~17_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~18\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~21_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~22\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~25_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|PhaseAddr[12]~feeder_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~10\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~13_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~26\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~29_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~14\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~17_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~30\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~33_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~18\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~21_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~34\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~37_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~22\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~25_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~38\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~41_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~26\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~29_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~42\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~45_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~30\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~5_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~46\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~5_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[0]~77_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[0]~78\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[0]~79\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[1]~73_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[1]~74\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[1]~75\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[2]~69_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[2]~70\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[2]~71\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[3]~65_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[3]~66\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[3]~67\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[4]~61_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[4]~62\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[4]~63\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[5]~57_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[5]~58\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[5]~59\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[6]~53_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[6]~54\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[6]~55\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[7]~49_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[7]~50\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[7]~51\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[8]~9_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[8]~10\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[8]~11\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[9]~13_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[9]~14\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[9]~15\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[10]~17_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[10]~18\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[10]~19\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[11]~21_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[11]~22\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[11]~23\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[12]~25_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[12]~26\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[12]~27\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[13]~29_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[13]~30\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[13]~31\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[14]~33_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[14]~34\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[14]~35\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[15]~37_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[15]~38\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[15]~39\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[16]~41_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[16]~42\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[16]~43\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[17]~45_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[17]~46\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[17]~47\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[18]~6\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[18]~7\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|NxtPhaseAddr[19]~1_sumout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[0]~0_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[1]_OTERM19\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[1]~1_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[2]_OTERM17~feeder_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[2]_OTERM17\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[2]~2_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[3]_OTERM15\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[3]~3_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[4]_OTERM13\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[4]~4_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[5]_OTERM11~feeder_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[5]_OTERM11\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[5]~5_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[6]_OTERM9\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[6]~6_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[7]_OTERM7\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[7]~7_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Address[8]_OTERM5\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Address[9]_OTERM1\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[8]~8_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Address[9]_OTERM3\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Address[9]_OTERM1\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|NxtAddress[9]~9_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a5\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~6\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add0~1_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~6\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add1~1_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add2~29_sumout\ : std_logic;
-SIGNAL \iSwitch[0]~input_o\ : std_logic;
-SIGNAL \DwetL[-14]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a8\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a7\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a6\ : std_logic;
@@ -713,6 +698,7 @@ SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1~portadataout\ : s
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a2\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a3\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a4\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a5\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~30\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~2\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~38\ : std_logic;
@@ -722,39 +708,42 @@ SIGNAL \TheTxFsk|TheDDS|Add2~22\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~54\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~6\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~33_sumout\ : std_logic;
+SIGNAL \iSwitch[0]~input_o\ : std_logic;
 SIGNAL \DwetL[-6]~q\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Add2~37_sumout\ : std_logic;
+SIGNAL \DwetL[-12]~q\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Add2~29_sumout\ : std_logic;
+SIGNAL \DwetL[-14]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a10\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a9\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~34\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~10\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~41_sumout\ : std_logic;
 SIGNAL \DwetL[-4]~q\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add2~37_sumout\ : std_logic;
-SIGNAL \DwetL[-12]~q\ : std_logic;
 SIGNAL \TheParToI2s|Mux1~2_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add2~53_sumout\ : std_logic;
-SIGNAL \DwetL[-8]~q\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Add2~45_sumout\ : std_logic;
+SIGNAL \DwetL[-10]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a12\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a11\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~42\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~18\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~49_sumout\ : std_logic;
 SIGNAL \DwetL[-2]~q\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Add2~53_sumout\ : std_logic;
+SIGNAL \DwetL[-8]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a13\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~50\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~26\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~57_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add2~45_sumout\ : std_logic;
-SIGNAL \DwetL[-10]~q\ : std_logic;
 SIGNAL \TheParToI2s|Mux1~3_combout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add2~25_sumout\ : std_logic;
-SIGNAL \DwetL[-1]~q\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Add2~17_sumout\ : std_logic;
-SIGNAL \DwetL[-3]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~21_sumout\ : std_logic;
 SIGNAL \DwetL[-9]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~13_sumout\ : std_logic;
 SIGNAL \DwetL[-11]~q\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Add2~17_sumout\ : std_logic;
+SIGNAL \DwetL[-3]~q\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Add2~25_sumout\ : std_logic;
+SIGNAL \DwetL[-1]~q\ : std_logic;
 SIGNAL \TheParToI2s|Mux1~1_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~5_sumout\ : std_logic;
 SIGNAL \DwetL[-7]~q\ : std_logic;
@@ -762,25 +751,27 @@ SIGNAL \TheTxFsk|TheDDS|Add2~9_sumout\ : std_logic;
 SIGNAL \DwetL[-5]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|Add2~1_sumout\ : std_logic;
 SIGNAL \DwetL[-13]~q\ : std_logic;
+SIGNAL \TheParToI2s|LastValidDL[2]~feeder_combout\ : std_logic;
 SIGNAL \TheParToI2s|Mux1~0_combout\ : std_logic;
 SIGNAL \TheParToI2s|Selector10~1_combout\ : std_logic;
 SIGNAL \TheParToI2s|oLrc~0_combout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ClkCounter\ : std_logic_vector(17 DOWNTO 0);
-SIGNAL \TheParToI2s|BclkCtr\ : std_logic_vector(3 DOWNTO 0);
-SIGNAL \ConfigureCodec|R.AddrCtr\ : std_logic_vector(6 DOWNTO 0);
-SIGNAL \TheTxDataSync|Metastable\ : std_logic_vector(1 DOWNTO 0);
 SIGNAL \TheChannelSelSync|Metastable\ : std_logic_vector(1 DOWNTO 0);
+SIGNAL \ConfigureCodec|R.AddrCtr\ : std_logic_vector(6 DOWNTO 0);
+SIGNAL \TheParToI2s|BclkCtr\ : std_logic_vector(3 DOWNTO 0);
+SIGNAL \TheTxDataSync|Metastable\ : std_logic_vector(1 DOWNTO 0);
 SIGNAL DwetL : std_logic_vector(0 DOWNTO 0);
 SIGNAL \GenStrobeI2C|ClkCounter\ : std_logic_vector(5 DOWNTO 0);
 SIGNAL \fsksender_inst|Reg.WaitCounter\ : std_logic_vector(13 DOWNTO 0);
-SIGNAL \GenClks|MclkCounter\ : std_logic_vector(0 DOWNTO 0);
-SIGNAL \TheParToI2s|LastValidDL\ : std_logic_vector(15 DOWNTO 0);
 SIGNAL WaitCtr : std_logic_vector(1 DOWNTO 0);
-SIGNAL \GenClks|ADCCounter\ : std_logic_vector(7 DOWNTO 0);
+SIGNAL \TheParToI2s|LastValidDL\ : std_logic_vector(15 DOWNTO 0);
+SIGNAL \GenClks|MclkCounter\ : std_logic_vector(0 DOWNTO 0);
+SIGNAL \GenClks|ADCCounter\ : std_logic_vector(5 DOWNTO 0);
 SIGNAL \ConfigureCodec|R.BitCtr\ : std_logic_vector(3 DOWNTO 0);
 SIGNAL \fsksender_inst|Reg.SendCounter\ : std_logic_vector(3 DOWNTO 0);
 SIGNAL \TheTxFsk|TheDDS|PhaseAddr\ : std_logic_vector(19 DOWNTO 0);
 SIGNAL \ConfigureCodec|R.Data\ : std_logic_vector(15 DOWNTO 0);
+SIGNAL \fsksender_inst|baudrate_generator|ClkCounter\ : std_logic_vector(17 DOWNTO 0);
+SIGNAL \TheTxFsk|TheDDS|Address\ : std_logic_vector(12 DOWNTO 0);
 SIGNAL \fsksender_inst|msstrobe_generator|ClkCounter\ : std_logic_vector(15 DOWNTO 0);
 SIGNAL \TheTxFsk|TheDDS|RandomValue\ : std_logic_vector(0 DOWNTO 0);
 SIGNAL \TheTxFsk|TheDDS|RegsLFSR\ : std_logic_vector(29 DOWNTO 0);
@@ -788,131 +779,40 @@ SIGNAL \TheTxFsk|TheDDS|NextRegsLFSR\ : std_logic_vector(29 DOWNTO 0);
 SIGNAL \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|fboutclk_wire\ : std_logic_vector(0 DOWNTO 0);
 SIGNAL \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|locked_wire\ : std_logic_vector(0 DOWNTO 0);
 SIGNAL \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire\ : std_logic_vector(0 DOWNTO 0);
-SIGNAL \TheParToI2s|ALT_INV_Selector8~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_NextBclkCtr~1_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_Selector6~1_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_NextBclkCtr~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_State.SyncingToBclk~q\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_State.WaitingValL~q\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_Selector6~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_BclkDlyd~q\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\ : std_logic;
-SIGNAL \ALT_INV_ValWetR~q\ : std_logic;
-SIGNAL \GenClks|ALT_INV_Equal0~0_combout\ : std_logic;
-SIGNAL \GenClks|ALT_INV_ADCCounter\ : std_logic_vector(7 DOWNTO 0);
-SIGNAL \GenClks|ALT_INV_MclkCounter\ : std_logic_vector(0 DOWNTO 0);
-SIGNAL \TheTxDataSync|ALT_INV_Metastable\ : std_logic_vector(1 DOWNTO 0);
-SIGNAL \ConfigureCodec|ALT_INV_R.Configured~1_combout\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_R.Sclk~q\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_Equal0~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_R.Configured~0_combout\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_R.Activity~q\ : std_logic;
-SIGNAL ALT_INV_WaitCtr : std_logic_vector(1 DOWNTO 0);
-SIGNAL \GenStrobeI2C|ALT_INV_oStrobe~q\ : std_logic;
-SIGNAL \TheChannelSelSync|ALT_INV_Metastable\ : std_logic_vector(1 DOWNTO 0);
-SIGNAL \TheParToI2s|ALT_INV_oLrc~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_Selector10~0_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_State.SendingR~q\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_State.SendingL~q\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_BclkCtr\ : std_logic_vector(3 DOWNTO 0);
-SIGNAL \TheParToI2s|ALT_INV_Mux1~3_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_LastValidDL\ : std_logic_vector(15 DOWNTO 1);
-SIGNAL \TheParToI2s|ALT_INV_Mux1~2_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_Mux1~1_combout\ : std_logic;
-SIGNAL \TheParToI2s|ALT_INV_Mux1~0_combout\ : std_logic;
-SIGNAL \ALT_INV_oldADClrc~q\ : std_logic;
-SIGNAL \GenClks|ALT_INV_ADClrc~q\ : std_logic;
-SIGNAL \GenClks|ALT_INV_Mclk~q\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_R.Configured~q\ : std_logic;
-SIGNAL \ALT_INV_Start~q\ : std_logic;
-SIGNAL \fsksender_inst|ALT_INV_Reg.WaitCounter\ : std_logic_vector(13 DOWNTO 0);
-SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~53_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~49_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~45_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~41_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~37_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~33_sumout\ : std_logic;
-SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~25_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add0~29_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add0~25_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add0~21_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add0~17_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add0~13_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add0~9_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add0~5_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add1~29_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add1~25_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add1~17_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Add0~1_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~65_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~61_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~53_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~41_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~33_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~25_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~5_sumout\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~1_sumout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a6\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a10\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a12\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a1~portadataout\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a2\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a3\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a4\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a5\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a7\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a8\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a9\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a11\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a13\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a0~portadataout\ : std_logic;
-SIGNAL \GenClks|ALT_INV_Add1~29_sumout\ : std_logic;
-SIGNAL \GenClks|ALT_INV_Add1~17_sumout\ : std_logic;
-SIGNAL \GenClks|ALT_INV_Add1~13_sumout\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_R.AddrCtr\ : std_logic_vector(6 DOWNTO 0);
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_RegsLFSR[0]~DUPLICATE_q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RegsLFSR[5]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[5]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[8]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[4]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[7]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[8]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[9]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[13]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[14]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[15]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[16]~DUPLICATE_q\ : std_logic;
-SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[3]~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[17]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[12]~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Address~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~DUPLICATE_q\ : std_logic;
+SIGNAL \fsksender_inst|ALT_INV_Reg.SendCounter[1]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|ALT_INV_Reg.SendCounter[2]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|ALT_INV_Reg.SendCounter[0]~DUPLICATE_q\ : std_logic;
 SIGNAL \fsksender_inst|ALT_INV_Reg.state.Send~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.RWBit~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.BitCtr[2]~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Data2~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\ : std_logic;
 SIGNAL \TheParToI2s|ALT_INV_State.SyncingToBclk~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Stop~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\ : std_logic;
-SIGNAL \ALT_INV_WaitCtr[0]~DUPLICATE_q\ : std_logic;
-SIGNAL \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\ : std_logic;
 SIGNAL \TheParToI2s|ALT_INV_State.SendingR~DUPLICATE_q\ : std_logic;
 SIGNAL \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\ : std_logic;
 SIGNAL \TheParToI2s|ALT_INV_BclkCtr[2]~DUPLICATE_q\ : std_logic;
 SIGNAL \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_R.Configured~DUPLICATE_q\ : std_logic;
-SIGNAL \ALT_INV_Start~DUPLICATE_q\ : std_logic;
-SIGNAL \ConfigureCodec|ALT_INV_R.AddrCtr[1]~DUPLICATE_q\ : std_logic;
+SIGNAL \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.AddrCtr[3]~DUPLICATE_q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[0]_OTERM21\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[1]_OTERM19\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[2]_OTERM17\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[3]_OTERM15\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[4]_OTERM13\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[5]_OTERM11\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[6]_OTERM9\ : std_logic;
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[7]_OTERM7\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[8]_OTERM5\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM3\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1\ : std_logic;
@@ -922,14 +822,16 @@ SIGNAL \ALT_INV_iSwitch[0]~input_o\ : std_logic;
 SIGNAL \ALT_INV_inButton[1]~input_o\ : std_logic;
 SIGNAL \ALT_INV_ioI2cSdin~input_o\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\ : std_logic_vector(29 DOWNTO 0);
-SIGNAL \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\ : std_logic_vector(19 DOWNTO 0);
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RandomValue[-8]~q\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\ : std_logic_vector(19 DOWNTO 0);
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RandomValue[-7]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RandomValue[-6]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RandomValue[-5]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RandomValue[-4]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RandomValue[-3]~q\ : std_logic;
+SIGNAL \TheTxFsk|ALT_INV_PhaseIncrement[16]~1_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RandomValue[-2]~q\ : std_logic;
+SIGNAL \TheTxFsk|ALT_INV_PhaseIncrement[7]~0_combout\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RandomValue[-1]~q\ : std_logic;
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_NextRegsLFSR\ : std_logic_vector(0 DOWNTO 0);
 SIGNAL \TheTxFsk|TheDDS|ALT_INV_RandomValue\ : std_logic_vector(0 DOWNTO 0);
@@ -1000,6 +902,9 @@ SIGNAL \ConfigureCodec|ALT_INV_R.BitCtr\ : std_logic_vector(3 DOWNTO 0);
 SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Data2~q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_NextR~8_combout\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_R.Sdin~q\ : std_logic;
+SIGNAL \GenClks|ALT_INV_ADCCounter~4_combout\ : std_logic;
+SIGNAL \GenClks|ALT_INV_ADCCounter~1_combout\ : std_logic;
+SIGNAL \GenClks|ALT_INV_ADCCounter~0_combout\ : std_logic;
 SIGNAL \fsksender_inst|ALT_INV_Reg.Data~q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Start~q\ : std_logic;
 SIGNAL \ConfigureCodec|ALT_INV_Selector0~1_combout\ : std_logic;
@@ -1018,6 +923,88 @@ SIGNAL \TheParToI2s|ALT_INV_NextState~6_combout\ : std_logic;
 SIGNAL \TheParToI2s|ALT_INV_Selector9~0_combout\ : std_logic;
 SIGNAL \TheParToI2s|ALT_INV_Selector7~0_combout\ : std_logic;
 SIGNAL \TheParToI2s|ALT_INV_Add0~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_Selector8~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_NextBclkCtr~1_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_Selector6~1_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_NextBclkCtr~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_State.SyncingToBclk~q\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_State.WaitingValL~q\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_Selector6~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_BclkDlyd~q\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\ : std_logic;
+SIGNAL \ALT_INV_ValWetR~q\ : std_logic;
+SIGNAL \GenClks|ALT_INV_ADClrc~0_combout\ : std_logic;
+SIGNAL \GenClks|ALT_INV_Equal0~0_combout\ : std_logic;
+SIGNAL \GenClks|ALT_INV_ADCCounter\ : std_logic_vector(5 DOWNTO 0);
+SIGNAL \GenClks|ALT_INV_MclkCounter\ : std_logic_vector(0 DOWNTO 0);
+SIGNAL \TheTxDataSync|ALT_INV_Metastable\ : std_logic_vector(1 DOWNTO 0);
+SIGNAL \ConfigureCodec|ALT_INV_R.Configured~1_combout\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.Sclk~q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_Equal0~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.Configured~0_combout\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.Activity~q\ : std_logic;
+SIGNAL ALT_INV_WaitCtr : std_logic_vector(1 DOWNTO 0);
+SIGNAL \GenStrobeI2C|ALT_INV_oStrobe~q\ : std_logic;
+SIGNAL \TheChannelSelSync|ALT_INV_Metastable\ : std_logic_vector(1 DOWNTO 0);
+SIGNAL \TheParToI2s|ALT_INV_oLrc~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_Selector10~0_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_State.SendingR~q\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_State.SendingL~q\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_BclkCtr\ : std_logic_vector(3 DOWNTO 0);
+SIGNAL \TheParToI2s|ALT_INV_Mux1~3_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_LastValidDL\ : std_logic_vector(15 DOWNTO 1);
+SIGNAL \TheParToI2s|ALT_INV_Mux1~2_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_Mux1~1_combout\ : std_logic;
+SIGNAL \TheParToI2s|ALT_INV_Mux1~0_combout\ : std_logic;
+SIGNAL \ALT_INV_oldADClrc~q\ : std_logic;
+SIGNAL \GenClks|ALT_INV_ADClrc~q\ : std_logic;
+SIGNAL \GenClks|ALT_INV_Mclk~q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.Configured~q\ : std_logic;
+SIGNAL \ALT_INV_Start~q\ : std_logic;
+SIGNAL \fsksender_inst|ALT_INV_Reg.WaitCounter\ : std_logic_vector(13 DOWNTO 0);
+SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~53_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~49_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~45_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~41_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~37_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~33_sumout\ : std_logic;
+SIGNAL \fsksender_inst|msstrobe_generator|ALT_INV_Add0~25_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[15]~37_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[14]~33_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[13]~29_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[12]~25_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[11]~21_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[10]~17_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[9]~13_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[8]~9_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~65_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~61_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~53_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~41_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~33_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~25_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~5_sumout\ : std_logic;
+SIGNAL \fsksender_inst|baudrate_generator|ALT_INV_Add0~1_sumout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a6\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a10\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a12\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a1~portadataout\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a2\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a3\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a4\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a5\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a7\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a8\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a9\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a11\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a13\ : std_logic;
+SIGNAL \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a0~portadataout\ : std_logic;
+SIGNAL \ALT_INV_DwetL[-13]~q\ : std_logic;
+SIGNAL \ConfigureCodec|ALT_INV_R.AddrCtr\ : std_logic_vector(6 DOWNTO 0);
 
 BEGIN
 
@@ -1044,9 +1031,8 @@ ww_devoe <= devoe;
 ww_devclrn <= devclrn;
 ww_devpor <= devpor;
 
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0_PORTAADDR_bus\ <= (\TheTxFsk|TheDDS|NxtAddress[9]~9_combout\ & \TheTxFsk|TheDDS|NxtAddress[8]~8_combout\ & \TheTxFsk|TheDDS|NxtAddress[7]~7_combout\ & \TheTxFsk|TheDDS|NxtAddress[6]~6_combout\ & 
-\TheTxFsk|TheDDS|NxtAddress[5]~5_combout\ & \TheTxFsk|TheDDS|NxtAddress[4]~4_combout\ & \TheTxFsk|TheDDS|NxtAddress[3]~3_combout\ & \TheTxFsk|TheDDS|NxtAddress[2]~2_combout\ & \TheTxFsk|TheDDS|NxtAddress[1]~1_combout\ & 
-\TheTxFsk|TheDDS|NxtAddress[0]~0_combout\);
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0_PORTAADDR_bus\ <= (\TheTxFsk|TheDDS|NxtAddress[9]~9_combout\ & \TheTxFsk|TheDDS|NxtAddress[8]~8_combout\ & \TheTxFsk|TheDDS|Address\(7) & \TheTxFsk|TheDDS|Address\(6) & 
+\TheTxFsk|TheDDS|Address\(5) & \TheTxFsk|TheDDS|Address\(4) & \TheTxFsk|TheDDS|Address\(3) & \TheTxFsk|TheDDS|Address\(2) & \TheTxFsk|TheDDS|Address\(1) & \TheTxFsk|TheDDS|Address\(0));
 
 \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0~portadataout\ <= \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0_PORTADATAOUT_bus\(0);
 \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a2\ <= \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0_PORTADATAOUT_bus\(1);
@@ -1059,9 +1045,8 @@ ww_devpor <= devpor;
 \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a11\ <= \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0_PORTADATAOUT_bus\(8);
 \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a13\ <= \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0_PORTADATAOUT_bus\(9);
 
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1_PORTAADDR_bus\ <= (\TheTxFsk|TheDDS|NxtAddress[9]~9_combout\ & \TheTxFsk|TheDDS|NxtAddress[8]~8_combout\ & \TheTxFsk|TheDDS|NxtAddress[7]~7_combout\ & \TheTxFsk|TheDDS|NxtAddress[6]~6_combout\ & 
-\TheTxFsk|TheDDS|NxtAddress[5]~5_combout\ & \TheTxFsk|TheDDS|NxtAddress[4]~4_combout\ & \TheTxFsk|TheDDS|NxtAddress[3]~3_combout\ & \TheTxFsk|TheDDS|NxtAddress[2]~2_combout\ & \TheTxFsk|TheDDS|NxtAddress[1]~1_combout\ & 
-\TheTxFsk|TheDDS|NxtAddress[0]~0_combout\);
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1_PORTAADDR_bus\ <= (\TheTxFsk|TheDDS|NxtAddress[9]~9_combout\ & \TheTxFsk|TheDDS|NxtAddress[8]~8_combout\ & \TheTxFsk|TheDDS|Address\(7) & \TheTxFsk|TheDDS|Address\(6) & 
+\TheTxFsk|TheDDS|Address\(5) & \TheTxFsk|TheDDS|Address\(4) & \TheTxFsk|TheDDS|Address\(3) & \TheTxFsk|TheDDS|Address\(2) & \TheTxFsk|TheDDS|Address\(1) & \TheTxFsk|TheDDS|Address\(0));
 
 \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1~portadataout\ <= \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1_PORTADATAOUT_bus\(0);
 \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a6\ <= \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1_PORTADATAOUT_bus\(1);
@@ -1109,177 +1094,40 @@ ww_devpor <= devpor;
 \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL_O_VCOPH2\ & 
 \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL_O_VCOPH1\ & 
 \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL_O_VCOPH0\);
-\TheParToI2s|ALT_INV_Selector8~0_combout\ <= NOT \TheParToI2s|Selector8~0_combout\;
-\TheParToI2s|ALT_INV_NextBclkCtr~1_combout\ <= NOT \TheParToI2s|NextBclkCtr~1_combout\;
-\TheParToI2s|ALT_INV_Selector6~1_combout\ <= NOT \TheParToI2s|Selector6~1_combout\;
-\TheParToI2s|ALT_INV_NextBclkCtr~0_combout\ <= NOT \TheParToI2s|NextBclkCtr~0_combout\;
-\TheParToI2s|ALT_INV_State.SyncingToBclk~q\ <= NOT \TheParToI2s|State.SyncingToBclk~q\;
-\TheParToI2s|ALT_INV_State.WaitingValL~q\ <= NOT \TheParToI2s|State.WaitingValL~q\;
-\TheParToI2s|ALT_INV_Selector6~0_combout\ <= NOT \TheParToI2s|Selector6~0_combout\;
-\TheParToI2s|ALT_INV_BclkDlyd~q\ <= NOT \TheParToI2s|BclkDlyd~q\;
-\TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\ <= NOT \TheParToI2s|State.FirstBitEmptyR~q\;
-\ALT_INV_ValWetR~q\ <= NOT \ValWetR~q\;
-\GenClks|ALT_INV_Equal0~0_combout\ <= NOT \GenClks|Equal0~0_combout\;
-\GenClks|ALT_INV_ADCCounter\(3) <= NOT \GenClks|ADCCounter\(3);
-\GenClks|ALT_INV_ADCCounter\(4) <= NOT \GenClks|ADCCounter\(4);
-\GenClks|ALT_INV_ADCCounter\(5) <= NOT \GenClks|ADCCounter\(5);
-\GenClks|ALT_INV_ADCCounter\(6) <= NOT \GenClks|ADCCounter\(6);
-\GenClks|ALT_INV_ADCCounter\(7) <= NOT \GenClks|ADCCounter\(7);
-\GenClks|ALT_INV_ADCCounter\(0) <= NOT \GenClks|ADCCounter\(0);
-\GenClks|ALT_INV_ADCCounter\(1) <= NOT \GenClks|ADCCounter\(1);
-\GenClks|ALT_INV_ADCCounter\(2) <= NOT \GenClks|ADCCounter\(2);
-\GenClks|ALT_INV_MclkCounter\(0) <= NOT \GenClks|MclkCounter\(0);
-\TheTxDataSync|ALT_INV_Metastable\(0) <= NOT \TheTxDataSync|Metastable\(0);
-\ConfigureCodec|ALT_INV_R.Configured~1_combout\ <= NOT \ConfigureCodec|R.Configured~1_combout\;
-\ConfigureCodec|ALT_INV_R.FrameState.Stop~q\ <= NOT \ConfigureCodec|R.FrameState.Stop~q\;
-\ConfigureCodec|ALT_INV_R.Sclk~q\ <= NOT \ConfigureCodec|R.Sclk~q\;
-\ConfigureCodec|ALT_INV_Equal0~0_combout\ <= NOT \ConfigureCodec|Equal0~0_combout\;
-\ConfigureCodec|ALT_INV_R.Configured~0_combout\ <= NOT \ConfigureCodec|R.Configured~0_combout\;
-\ConfigureCodec|ALT_INV_R.FrameState.Idle~q\ <= NOT \ConfigureCodec|R.FrameState.Idle~q\;
-\ConfigureCodec|ALT_INV_R.Activity~q\ <= NOT \ConfigureCodec|R.Activity~q\;
-ALT_INV_WaitCtr(0) <= NOT WaitCtr(0);
-ALT_INV_WaitCtr(1) <= NOT WaitCtr(1);
-\GenStrobeI2C|ALT_INV_oStrobe~q\ <= NOT \GenStrobeI2C|oStrobe~q\;
-\TheChannelSelSync|ALT_INV_Metastable\(0) <= NOT \TheChannelSelSync|Metastable\(0);
-\TheParToI2s|ALT_INV_oLrc~0_combout\ <= NOT \TheParToI2s|oLrc~0_combout\;
-\TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\ <= NOT \TheParToI2s|State.FirstBitEmptyL~q\;
-\TheParToI2s|ALT_INV_Selector10~0_combout\ <= NOT \TheParToI2s|Selector10~0_combout\;
-\TheParToI2s|ALT_INV_State.SendingR~q\ <= NOT \TheParToI2s|State.SendingR~q\;
-\TheParToI2s|ALT_INV_State.SendingL~q\ <= NOT \TheParToI2s|State.SendingL~q\;
-\TheParToI2s|ALT_INV_BclkCtr\(0) <= NOT \TheParToI2s|BclkCtr\(0);
-\TheParToI2s|ALT_INV_BclkCtr\(2) <= NOT \TheParToI2s|BclkCtr\(2);
-\TheParToI2s|ALT_INV_Mux1~3_combout\ <= NOT \TheParToI2s|Mux1~3_combout\;
-\TheParToI2s|ALT_INV_LastValidDL\(15) <= NOT \TheParToI2s|LastValidDL\(15);
-\TheParToI2s|ALT_INV_LastValidDL\(7) <= NOT \TheParToI2s|LastValidDL\(7);
-\TheParToI2s|ALT_INV_LastValidDL\(13) <= NOT \TheParToI2s|LastValidDL\(13);
-\TheParToI2s|ALT_INV_LastValidDL\(5) <= NOT \TheParToI2s|LastValidDL\(5);
-\TheParToI2s|ALT_INV_Mux1~2_combout\ <= NOT \TheParToI2s|Mux1~2_combout\;
-\TheParToI2s|ALT_INV_LastValidDL\(11) <= NOT \TheParToI2s|LastValidDL\(11);
-\TheParToI2s|ALT_INV_LastValidDL\(3) <= NOT \TheParToI2s|LastValidDL\(3);
-\TheParToI2s|ALT_INV_LastValidDL\(9) <= NOT \TheParToI2s|LastValidDL\(9);
-\TheParToI2s|ALT_INV_LastValidDL\(1) <= NOT \TheParToI2s|LastValidDL\(1);
-\TheParToI2s|ALT_INV_Mux1~1_combout\ <= NOT \TheParToI2s|Mux1~1_combout\;
-\TheParToI2s|ALT_INV_LastValidDL\(14) <= NOT \TheParToI2s|LastValidDL\(14);
-\TheParToI2s|ALT_INV_LastValidDL\(6) <= NOT \TheParToI2s|LastValidDL\(6);
-\TheParToI2s|ALT_INV_LastValidDL\(12) <= NOT \TheParToI2s|LastValidDL\(12);
-\TheParToI2s|ALT_INV_LastValidDL\(4) <= NOT \TheParToI2s|LastValidDL\(4);
-\TheParToI2s|ALT_INV_Mux1~0_combout\ <= NOT \TheParToI2s|Mux1~0_combout\;
-\TheParToI2s|ALT_INV_LastValidDL\(10) <= NOT \TheParToI2s|LastValidDL\(10);
-\TheParToI2s|ALT_INV_LastValidDL\(8) <= NOT \TheParToI2s|LastValidDL\(8);
-\TheParToI2s|ALT_INV_BclkCtr\(1) <= NOT \TheParToI2s|BclkCtr\(1);
-\TheParToI2s|ALT_INV_BclkCtr\(3) <= NOT \TheParToI2s|BclkCtr\(3);
-\TheParToI2s|ALT_INV_LastValidDL\(2) <= NOT \TheParToI2s|LastValidDL\(2);
-\ALT_INV_oldADClrc~q\ <= NOT \oldADClrc~q\;
-\GenClks|ALT_INV_ADClrc~q\ <= NOT \GenClks|ADClrc~q\;
-\GenClks|ALT_INV_Mclk~q\ <= NOT \GenClks|Mclk~q\;
-\TheTxDataSync|ALT_INV_Metastable\(1) <= NOT \TheTxDataSync|Metastable\(1);
-\ConfigureCodec|ALT_INV_R.Configured~q\ <= NOT \ConfigureCodec|R.Configured~q\;
-\ALT_INV_Start~q\ <= NOT \Start~q\;
-\TheChannelSelSync|ALT_INV_Metastable\(1) <= NOT \TheChannelSelSync|Metastable\(1);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(0) <= NOT \fsksender_inst|Reg.WaitCounter\(0);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(1) <= NOT \fsksender_inst|Reg.WaitCounter\(1);
-\fsksender_inst|msstrobe_generator|ALT_INV_Add0~53_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~53_sumout\;
-\fsksender_inst|msstrobe_generator|ALT_INV_Add0~49_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~49_sumout\;
-\fsksender_inst|msstrobe_generator|ALT_INV_Add0~45_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~45_sumout\;
-\fsksender_inst|msstrobe_generator|ALT_INV_Add0~41_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~41_sumout\;
-\fsksender_inst|msstrobe_generator|ALT_INV_Add0~37_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~37_sumout\;
-\fsksender_inst|msstrobe_generator|ALT_INV_Add0~33_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~33_sumout\;
-\fsksender_inst|msstrobe_generator|ALT_INV_Add0~25_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~25_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add0~29_sumout\ <= NOT \TheTxFsk|TheDDS|Add0~29_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add0~25_sumout\ <= NOT \TheTxFsk|TheDDS|Add0~25_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add0~21_sumout\ <= NOT \TheTxFsk|TheDDS|Add0~21_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add0~17_sumout\ <= NOT \TheTxFsk|TheDDS|Add0~17_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add0~13_sumout\ <= NOT \TheTxFsk|TheDDS|Add0~13_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add0~9_sumout\ <= NOT \TheTxFsk|TheDDS|Add0~9_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add0~5_sumout\ <= NOT \TheTxFsk|TheDDS|Add0~5_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add1~29_sumout\ <= NOT \TheTxFsk|TheDDS|Add1~29_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add1~25_sumout\ <= NOT \TheTxFsk|TheDDS|Add1~25_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add1~17_sumout\ <= NOT \TheTxFsk|TheDDS|Add1~17_sumout\;
-\TheTxFsk|TheDDS|ALT_INV_Add0~1_sumout\ <= NOT \TheTxFsk|TheDDS|Add0~1_sumout\;
-\fsksender_inst|baudrate_generator|ALT_INV_Add0~65_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~65_sumout\;
-\fsksender_inst|baudrate_generator|ALT_INV_Add0~61_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~61_sumout\;
-\fsksender_inst|baudrate_generator|ALT_INV_Add0~53_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~53_sumout\;
-\fsksender_inst|baudrate_generator|ALT_INV_Add0~41_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~41_sumout\;
-\fsksender_inst|baudrate_generator|ALT_INV_Add0~33_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~33_sumout\;
-\fsksender_inst|baudrate_generator|ALT_INV_Add0~25_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~25_sumout\;
-\fsksender_inst|baudrate_generator|ALT_INV_Add0~5_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~5_sumout\;
-\fsksender_inst|baudrate_generator|ALT_INV_Add0~1_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~1_sumout\;
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(10) <= NOT \fsksender_inst|Reg.WaitCounter\(10);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(11) <= NOT \fsksender_inst|Reg.WaitCounter\(11);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(2) <= NOT \fsksender_inst|Reg.WaitCounter\(2);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(12) <= NOT \fsksender_inst|Reg.WaitCounter\(12);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(13) <= NOT \fsksender_inst|Reg.WaitCounter\(13);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(7) <= NOT \fsksender_inst|Reg.WaitCounter\(7);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(8) <= NOT \fsksender_inst|Reg.WaitCounter\(8);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(9) <= NOT \fsksender_inst|Reg.WaitCounter\(9);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(5) <= NOT \fsksender_inst|Reg.WaitCounter\(5);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(6) <= NOT \fsksender_inst|Reg.WaitCounter\(6);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(3) <= NOT \fsksender_inst|Reg.WaitCounter\(3);
-\fsksender_inst|ALT_INV_Reg.WaitCounter\(4) <= NOT \fsksender_inst|Reg.WaitCounter\(4);
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a6\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a6\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a10\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a10\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a12\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a12\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a1~portadataout\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1~portadataout\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a2\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a2\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a3\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a3\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a4\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a4\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a5\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a5\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a7\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a7\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a8\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a8\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a9\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a9\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a11\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a11\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a13\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a13\;
-\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a0~portadataout\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0~portadataout\;
-\GenClks|ALT_INV_Add1~29_sumout\ <= NOT \GenClks|Add1~29_sumout\;
-\GenClks|ALT_INV_Add1~17_sumout\ <= NOT \GenClks|Add1~17_sumout\;
-\GenClks|ALT_INV_Add1~13_sumout\ <= NOT \GenClks|Add1~13_sumout\;
-\ConfigureCodec|ALT_INV_R.AddrCtr\(1) <= NOT \ConfigureCodec|R.AddrCtr\(1);
-\ConfigureCodec|ALT_INV_R.AddrCtr\(2) <= NOT \ConfigureCodec|R.AddrCtr\(2);
-\ConfigureCodec|ALT_INV_R.AddrCtr\(3) <= NOT \ConfigureCodec|R.AddrCtr\(3);
-\ConfigureCodec|ALT_INV_R.AddrCtr\(4) <= NOT \ConfigureCodec|R.AddrCtr\(4);
-\ConfigureCodec|ALT_INV_R.AddrCtr\(5) <= NOT \ConfigureCodec|R.AddrCtr\(5);
-\ConfigureCodec|ALT_INV_R.AddrCtr\(6) <= NOT \ConfigureCodec|R.AddrCtr\(6);
-\ConfigureCodec|ALT_INV_R.AddrCtr\(0) <= NOT \ConfigureCodec|R.AddrCtr\(0);
-\TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\ <= NOT \TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\;
+\TheTxFsk|TheDDS|ALT_INV_RegsLFSR[0]~DUPLICATE_q\ <= NOT \TheTxFsk|TheDDS|RegsLFSR[0]~DUPLICATE_q\;
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR[5]~DUPLICATE_q\ <= NOT \TheTxFsk|TheDDS|RegsLFSR[5]~DUPLICATE_q\;
+\fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[5]~DUPLICATE_q\ <= NOT \fsksender_inst|msstrobe_generator|ClkCounter[5]~DUPLICATE_q\;
 \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[8]~DUPLICATE_q\ <= NOT \fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE_q\;
 \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[4]~DUPLICATE_q\ <= NOT \fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\;
-\fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[7]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[7]~DUPLICATE_q\;
+\fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[8]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[8]~DUPLICATE_q\;
 \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[9]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[9]~DUPLICATE_q\;
-\fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[13]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[13]~DUPLICATE_q\;
-\fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[14]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[14]~DUPLICATE_q\;
 \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[15]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[15]~DUPLICATE_q\;
-\fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[16]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[16]~DUPLICATE_q\;
-\fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[3]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[3]~DUPLICATE_q\;
+\fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[17]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[17]~DUPLICATE_q\;
 \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[12]~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\;
+\ConfigureCodec|ALT_INV_R.FrameState.Address~DUPLICATE_q\ <= NOT \ConfigureCodec|R.FrameState.Address~DUPLICATE_q\;
+\fsksender_inst|baudrate_generator|ALT_INV_oStrobe~DUPLICATE_q\ <= NOT \fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\;
+\fsksender_inst|ALT_INV_Reg.SendCounter[1]~DUPLICATE_q\ <= NOT \fsksender_inst|Reg.SendCounter[1]~DUPLICATE_q\;
 \fsksender_inst|ALT_INV_Reg.SendCounter[2]~DUPLICATE_q\ <= NOT \fsksender_inst|Reg.SendCounter[2]~DUPLICATE_q\;
 \fsksender_inst|ALT_INV_Reg.SendCounter[0]~DUPLICATE_q\ <= NOT \fsksender_inst|Reg.SendCounter[0]~DUPLICATE_q\;
 \fsksender_inst|ALT_INV_Reg.state.Send~DUPLICATE_q\ <= NOT \fsksender_inst|Reg.state.Send~DUPLICATE_q\;
 \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\ <= NOT \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\;
 \ConfigureCodec|ALT_INV_R.FrameState.RWBit~DUPLICATE_q\ <= NOT \ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\;
 \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\ <= NOT \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\;
+\ConfigureCodec|ALT_INV_R.BitCtr[2]~DUPLICATE_q\ <= NOT \ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\;
+\ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\ <= NOT \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\;
 \ConfigureCodec|ALT_INV_R.FrameState.Data2~DUPLICATE_q\ <= NOT \ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\;
 \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\ <= NOT \ConfigureCodec|R.FrameState.Start~DUPLICATE_q\;
 \TheParToI2s|ALT_INV_State.SyncingToBclk~DUPLICATE_q\ <= NOT \TheParToI2s|State.SyncingToBclk~DUPLICATE_q\;
+\ConfigureCodec|ALT_INV_R.FrameState.Stop~DUPLICATE_q\ <= NOT \ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\;
 \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\ <= NOT \ConfigureCodec|R.Sclk~DUPLICATE_q\;
-\ALT_INV_WaitCtr[0]~DUPLICATE_q\ <= NOT \WaitCtr[0]~DUPLICATE_q\;
-\GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\ <= NOT \GenStrobeI2C|oStrobe~DUPLICATE_q\;
 \TheParToI2s|ALT_INV_State.SendingR~DUPLICATE_q\ <= NOT \TheParToI2s|State.SendingR~DUPLICATE_q\;
 \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\ <= NOT \TheParToI2s|BclkCtr[0]~DUPLICATE_q\;
 \TheParToI2s|ALT_INV_BclkCtr[2]~DUPLICATE_q\ <= NOT \TheParToI2s|BclkCtr[2]~DUPLICATE_q\;
 \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\ <= NOT \TheParToI2s|BclkCtr[1]~DUPLICATE_q\;
-\ConfigureCodec|ALT_INV_R.Configured~DUPLICATE_q\ <= NOT \ConfigureCodec|R.Configured~DUPLICATE_q\;
-\ALT_INV_Start~DUPLICATE_q\ <= NOT \Start~DUPLICATE_q\;
-\ConfigureCodec|ALT_INV_R.AddrCtr[1]~DUPLICATE_q\ <= NOT \ConfigureCodec|R.AddrCtr[1]~DUPLICATE_q\;
+\TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\ <= NOT \TheChannelSelSync|Metastable[1]~DUPLICATE_q\;
+\ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\ <= NOT \ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\;
+\ConfigureCodec|ALT_INV_R.AddrCtr[3]~DUPLICATE_q\ <= NOT \ConfigureCodec|R.AddrCtr[3]~DUPLICATE_q\;
 \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\ <= NOT \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\;
-\TheTxFsk|TheDDS|ALT_INV_Address[0]_OTERM21\ <= NOT \TheTxFsk|TheDDS|Address[0]_OTERM21\;
-\TheTxFsk|TheDDS|ALT_INV_Address[1]_OTERM19\ <= NOT \TheTxFsk|TheDDS|Address[1]_OTERM19\;
-\TheTxFsk|TheDDS|ALT_INV_Address[2]_OTERM17\ <= NOT \TheTxFsk|TheDDS|Address[2]_OTERM17\;
-\TheTxFsk|TheDDS|ALT_INV_Address[3]_OTERM15\ <= NOT \TheTxFsk|TheDDS|Address[3]_OTERM15\;
-\TheTxFsk|TheDDS|ALT_INV_Address[4]_OTERM13\ <= NOT \TheTxFsk|TheDDS|Address[4]_OTERM13\;
-\TheTxFsk|TheDDS|ALT_INV_Address[5]_OTERM11\ <= NOT \TheTxFsk|TheDDS|Address[5]_OTERM11\;
-\TheTxFsk|TheDDS|ALT_INV_Address[6]_OTERM9\ <= NOT \TheTxFsk|TheDDS|Address[6]_OTERM9\;
-\TheTxFsk|TheDDS|ALT_INV_Address[7]_OTERM7\ <= NOT \TheTxFsk|TheDDS|Address[7]_OTERM7\;
 \TheTxFsk|TheDDS|ALT_INV_Address[8]_OTERM5\ <= NOT \TheTxFsk|TheDDS|Address[8]_OTERM5\;
 \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM3\ <= NOT \TheTxFsk|TheDDS|Address[9]_OTERM3\;
 \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1\ <= NOT \TheTxFsk|TheDDS|Address[9]_OTERM1\;
@@ -1288,32 +1136,30 @@ ALT_INV_WaitCtr(1) <= NOT WaitCtr(1);
 \ALT_INV_iSwitch[0]~input_o\ <= NOT \iSwitch[0]~input_o\;
 \ALT_INV_inButton[1]~input_o\ <= NOT \inButton[1]~input_o\;
 \ALT_INV_ioI2cSdin~input_o\ <= NOT \ioI2cSdin~input_o\;
+\TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(13) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(13);
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(7) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(7);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(0) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(0);
 \TheTxFsk|TheDDS|ALT_INV_RandomValue[-8]~q\ <= NOT \TheTxFsk|TheDDS|RandomValue[-8]~q\;
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(0) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(0);
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(6) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(6);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(1) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(1);
 \TheTxFsk|TheDDS|ALT_INV_RandomValue[-7]~q\ <= NOT \TheTxFsk|TheDDS|RandomValue[-7]~q\;
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(1) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(1);
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(23) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(23);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(2) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(2);
 \TheTxFsk|TheDDS|ALT_INV_RandomValue[-6]~q\ <= NOT \TheTxFsk|TheDDS|RandomValue[-6]~q\;
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(3) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(3);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(2) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(2);
+\TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(24) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(24);
 \TheTxFsk|TheDDS|ALT_INV_RandomValue[-5]~q\ <= NOT \TheTxFsk|TheDDS|RandomValue[-5]~q\;
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(4) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(4);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(3) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(3);
 \TheTxFsk|TheDDS|ALT_INV_RandomValue[-4]~q\ <= NOT \TheTxFsk|TheDDS|RandomValue[-4]~q\;
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(5) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(5);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(4) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(4);
 \TheTxFsk|TheDDS|ALT_INV_RandomValue[-3]~q\ <= NOT \TheTxFsk|TheDDS|RandomValue[-3]~q\;
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(5) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(5);
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(1) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(1);
+\TheTxFsk|ALT_INV_PhaseIncrement[16]~1_combout\ <= NOT \TheTxFsk|PhaseIncrement[16]~1_combout\;
 \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(6) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(6);
 \TheTxFsk|TheDDS|ALT_INV_RandomValue[-2]~q\ <= NOT \TheTxFsk|TheDDS|RandomValue[-2]~q\;
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(2) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(2);
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(4) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(4);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(17) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(17);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(16) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(16);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(15) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(15);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(14) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(14);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(13) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(13);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(12) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(12);
+\TheTxFsk|ALT_INV_PhaseIncrement[7]~0_combout\ <= NOT \TheTxFsk|PhaseIncrement[7]~0_combout\;
 \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(7) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(7);
 \TheTxFsk|TheDDS|ALT_INV_RandomValue[-1]~q\ <= NOT \TheTxFsk|TheDDS|RandomValue[-1]~q\;
 \TheTxFsk|TheDDS|ALT_INV_NextRegsLFSR\(0) <= NOT \TheTxFsk|TheDDS|NextRegsLFSR\(0);
@@ -1321,12 +1167,18 @@ ALT_INV_WaitCtr(1) <= NOT WaitCtr(1);
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(3) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(3);
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(5) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(5);
 \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(29) <= NOT \TheTxFsk|TheDDS|RegsLFSR\(29);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(18) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(18);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(17) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(17);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(16) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(16);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(15) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(15);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(14) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(14);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(13) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(13);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(12) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(12);
 \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(11) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(11);
 \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(10) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(10);
 \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(9) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(9);
-\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(8) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(8);
 \TheTxFsk|TheDDS|ALT_INV_RandomValue\(0) <= NOT \TheTxFsk|TheDDS|RandomValue\(0);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(8) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(8);
+\TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(18) <= NOT \TheTxFsk|TheDDS|PhaseAddr\(18);
 \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~3_combout\ <= NOT \fsksender_inst|msstrobe_generator|Equal0~3_combout\;
 \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~2_combout\ <= NOT \fsksender_inst|msstrobe_generator|Equal0~2_combout\;
 \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(5) <= NOT \fsksender_inst|msstrobe_generator|ClkCounter\(5);
@@ -1446,6 +1298,9 @@ ALT_INV_WaitCtr(1) <= NOT WaitCtr(1);
 \ConfigureCodec|ALT_INV_R.FrameState.Data2~q\ <= NOT \ConfigureCodec|R.FrameState.Data2~q\;
 \ConfigureCodec|ALT_INV_NextR~8_combout\ <= NOT \ConfigureCodec|NextR~8_combout\;
 \ConfigureCodec|ALT_INV_R.Sdin~q\ <= NOT \ConfigureCodec|R.Sdin~q\;
+\GenClks|ALT_INV_ADCCounter~4_combout\ <= NOT \GenClks|ADCCounter~4_combout\;
+\GenClks|ALT_INV_ADCCounter~1_combout\ <= NOT \GenClks|ADCCounter~1_combout\;
+\GenClks|ALT_INV_ADCCounter~0_combout\ <= NOT \GenClks|ADCCounter~0_combout\;
 \fsksender_inst|ALT_INV_Reg.Data~q\ <= NOT \fsksender_inst|Reg.Data~q\;
 \ConfigureCodec|ALT_INV_R.FrameState.Start~q\ <= NOT \ConfigureCodec|R.FrameState.Start~q\;
 \ConfigureCodec|ALT_INV_Selector0~1_combout\ <= NOT \ConfigureCodec|Selector0~1_combout\;
@@ -1469,6 +1324,132 @@ ALT_INV_WaitCtr(1) <= NOT WaitCtr(1);
 \TheParToI2s|ALT_INV_Selector9~0_combout\ <= NOT \TheParToI2s|Selector9~0_combout\;
 \TheParToI2s|ALT_INV_Selector7~0_combout\ <= NOT \TheParToI2s|Selector7~0_combout\;
 \TheParToI2s|ALT_INV_Add0~0_combout\ <= NOT \TheParToI2s|Add0~0_combout\;
+\TheParToI2s|ALT_INV_Selector8~0_combout\ <= NOT \TheParToI2s|Selector8~0_combout\;
+\TheParToI2s|ALT_INV_NextBclkCtr~1_combout\ <= NOT \TheParToI2s|NextBclkCtr~1_combout\;
+\TheParToI2s|ALT_INV_Selector6~1_combout\ <= NOT \TheParToI2s|Selector6~1_combout\;
+\TheParToI2s|ALT_INV_NextBclkCtr~0_combout\ <= NOT \TheParToI2s|NextBclkCtr~0_combout\;
+\TheParToI2s|ALT_INV_State.SyncingToBclk~q\ <= NOT \TheParToI2s|State.SyncingToBclk~q\;
+\TheParToI2s|ALT_INV_State.WaitingValL~q\ <= NOT \TheParToI2s|State.WaitingValL~q\;
+\TheParToI2s|ALT_INV_Selector6~0_combout\ <= NOT \TheParToI2s|Selector6~0_combout\;
+\TheParToI2s|ALT_INV_BclkDlyd~q\ <= NOT \TheParToI2s|BclkDlyd~q\;
+\TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\ <= NOT \TheParToI2s|State.FirstBitEmptyR~q\;
+\ALT_INV_ValWetR~q\ <= NOT \ValWetR~q\;
+\GenClks|ALT_INV_ADClrc~0_combout\ <= NOT \GenClks|ADClrc~0_combout\;
+\GenClks|ALT_INV_Equal0~0_combout\ <= NOT \GenClks|Equal0~0_combout\;
+\GenClks|ALT_INV_ADCCounter\(2) <= NOT \GenClks|ADCCounter\(2);
+\GenClks|ALT_INV_ADCCounter\(3) <= NOT \GenClks|ADCCounter\(3);
+\GenClks|ALT_INV_ADCCounter\(4) <= NOT \GenClks|ADCCounter\(4);
+\GenClks|ALT_INV_ADCCounter\(5) <= NOT \GenClks|ADCCounter\(5);
+\GenClks|ALT_INV_ADCCounter\(0) <= NOT \GenClks|ADCCounter\(0);
+\GenClks|ALT_INV_ADCCounter\(1) <= NOT \GenClks|ADCCounter\(1);
+\GenClks|ALT_INV_MclkCounter\(0) <= NOT \GenClks|MclkCounter\(0);
+\TheTxDataSync|ALT_INV_Metastable\(0) <= NOT \TheTxDataSync|Metastable\(0);
+\ConfigureCodec|ALT_INV_R.Configured~1_combout\ <= NOT \ConfigureCodec|R.Configured~1_combout\;
+\ConfigureCodec|ALT_INV_R.FrameState.Stop~q\ <= NOT \ConfigureCodec|R.FrameState.Stop~q\;
+\ConfigureCodec|ALT_INV_R.Sclk~q\ <= NOT \ConfigureCodec|R.Sclk~q\;
+\ConfigureCodec|ALT_INV_Equal0~0_combout\ <= NOT \ConfigureCodec|Equal0~0_combout\;
+\ConfigureCodec|ALT_INV_R.Configured~0_combout\ <= NOT \ConfigureCodec|R.Configured~0_combout\;
+\ConfigureCodec|ALT_INV_R.FrameState.Idle~q\ <= NOT \ConfigureCodec|R.FrameState.Idle~q\;
+\ConfigureCodec|ALT_INV_R.Activity~q\ <= NOT \ConfigureCodec|R.Activity~q\;
+ALT_INV_WaitCtr(0) <= NOT WaitCtr(0);
+ALT_INV_WaitCtr(1) <= NOT WaitCtr(1);
+\GenStrobeI2C|ALT_INV_oStrobe~q\ <= NOT \GenStrobeI2C|oStrobe~q\;
+\TheChannelSelSync|ALT_INV_Metastable\(0) <= NOT \TheChannelSelSync|Metastable\(0);
+\TheParToI2s|ALT_INV_oLrc~0_combout\ <= NOT \TheParToI2s|oLrc~0_combout\;
+\TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\ <= NOT \TheParToI2s|State.FirstBitEmptyL~q\;
+\TheParToI2s|ALT_INV_Selector10~0_combout\ <= NOT \TheParToI2s|Selector10~0_combout\;
+\TheParToI2s|ALT_INV_State.SendingR~q\ <= NOT \TheParToI2s|State.SendingR~q\;
+\TheParToI2s|ALT_INV_State.SendingL~q\ <= NOT \TheParToI2s|State.SendingL~q\;
+\TheParToI2s|ALT_INV_BclkCtr\(0) <= NOT \TheParToI2s|BclkCtr\(0);
+\TheParToI2s|ALT_INV_BclkCtr\(2) <= NOT \TheParToI2s|BclkCtr\(2);
+\TheParToI2s|ALT_INV_Mux1~3_combout\ <= NOT \TheParToI2s|Mux1~3_combout\;
+\TheParToI2s|ALT_INV_LastValidDL\(15) <= NOT \TheParToI2s|LastValidDL\(15);
+\TheParToI2s|ALT_INV_LastValidDL\(7) <= NOT \TheParToI2s|LastValidDL\(7);
+\TheParToI2s|ALT_INV_LastValidDL\(13) <= NOT \TheParToI2s|LastValidDL\(13);
+\TheParToI2s|ALT_INV_LastValidDL\(5) <= NOT \TheParToI2s|LastValidDL\(5);
+\TheParToI2s|ALT_INV_Mux1~2_combout\ <= NOT \TheParToI2s|Mux1~2_combout\;
+\TheParToI2s|ALT_INV_LastValidDL\(11) <= NOT \TheParToI2s|LastValidDL\(11);
+\TheParToI2s|ALT_INV_LastValidDL\(3) <= NOT \TheParToI2s|LastValidDL\(3);
+\TheParToI2s|ALT_INV_LastValidDL\(9) <= NOT \TheParToI2s|LastValidDL\(9);
+\TheParToI2s|ALT_INV_LastValidDL\(1) <= NOT \TheParToI2s|LastValidDL\(1);
+\TheParToI2s|ALT_INV_Mux1~1_combout\ <= NOT \TheParToI2s|Mux1~1_combout\;
+\TheParToI2s|ALT_INV_LastValidDL\(14) <= NOT \TheParToI2s|LastValidDL\(14);
+\TheParToI2s|ALT_INV_LastValidDL\(6) <= NOT \TheParToI2s|LastValidDL\(6);
+\TheParToI2s|ALT_INV_LastValidDL\(12) <= NOT \TheParToI2s|LastValidDL\(12);
+\TheParToI2s|ALT_INV_LastValidDL\(4) <= NOT \TheParToI2s|LastValidDL\(4);
+\TheParToI2s|ALT_INV_Mux1~0_combout\ <= NOT \TheParToI2s|Mux1~0_combout\;
+\TheParToI2s|ALT_INV_LastValidDL\(10) <= NOT \TheParToI2s|LastValidDL\(10);
+\TheParToI2s|ALT_INV_LastValidDL\(8) <= NOT \TheParToI2s|LastValidDL\(8);
+\TheParToI2s|ALT_INV_BclkCtr\(1) <= NOT \TheParToI2s|BclkCtr\(1);
+\TheParToI2s|ALT_INV_BclkCtr\(3) <= NOT \TheParToI2s|BclkCtr\(3);
+\TheParToI2s|ALT_INV_LastValidDL\(2) <= NOT \TheParToI2s|LastValidDL\(2);
+\ALT_INV_oldADClrc~q\ <= NOT \oldADClrc~q\;
+\GenClks|ALT_INV_ADClrc~q\ <= NOT \GenClks|ADClrc~q\;
+\GenClks|ALT_INV_Mclk~q\ <= NOT \GenClks|Mclk~q\;
+\TheTxDataSync|ALT_INV_Metastable\(1) <= NOT \TheTxDataSync|Metastable\(1);
+\ConfigureCodec|ALT_INV_R.Configured~q\ <= NOT \ConfigureCodec|R.Configured~q\;
+\ALT_INV_Start~q\ <= NOT \Start~q\;
+\TheChannelSelSync|ALT_INV_Metastable\(1) <= NOT \TheChannelSelSync|Metastable\(1);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(0) <= NOT \fsksender_inst|Reg.WaitCounter\(0);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(1) <= NOT \fsksender_inst|Reg.WaitCounter\(1);
+\fsksender_inst|msstrobe_generator|ALT_INV_Add0~53_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~53_sumout\;
+\fsksender_inst|msstrobe_generator|ALT_INV_Add0~49_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~49_sumout\;
+\fsksender_inst|msstrobe_generator|ALT_INV_Add0~45_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~45_sumout\;
+\fsksender_inst|msstrobe_generator|ALT_INV_Add0~41_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~41_sumout\;
+\fsksender_inst|msstrobe_generator|ALT_INV_Add0~37_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~37_sumout\;
+\fsksender_inst|msstrobe_generator|ALT_INV_Add0~33_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~33_sumout\;
+\fsksender_inst|msstrobe_generator|ALT_INV_Add0~25_sumout\ <= NOT \fsksender_inst|msstrobe_generator|Add0~25_sumout\;
+\TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[15]~37_sumout\ <= NOT \TheTxFsk|TheDDS|NxtPhaseAddr[15]~37_sumout\;
+\TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[14]~33_sumout\ <= NOT \TheTxFsk|TheDDS|NxtPhaseAddr[14]~33_sumout\;
+\TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[13]~29_sumout\ <= NOT \TheTxFsk|TheDDS|NxtPhaseAddr[13]~29_sumout\;
+\TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[12]~25_sumout\ <= NOT \TheTxFsk|TheDDS|NxtPhaseAddr[12]~25_sumout\;
+\TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[11]~21_sumout\ <= NOT \TheTxFsk|TheDDS|NxtPhaseAddr[11]~21_sumout\;
+\TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[10]~17_sumout\ <= NOT \TheTxFsk|TheDDS|NxtPhaseAddr[10]~17_sumout\;
+\TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[9]~13_sumout\ <= NOT \TheTxFsk|TheDDS|NxtPhaseAddr[9]~13_sumout\;
+\TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[8]~9_sumout\ <= NOT \TheTxFsk|TheDDS|NxtPhaseAddr[8]~9_sumout\;
+\TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\ <= NOT \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\;
+\fsksender_inst|baudrate_generator|ALT_INV_Add0~65_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~65_sumout\;
+\fsksender_inst|baudrate_generator|ALT_INV_Add0~61_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~61_sumout\;
+\fsksender_inst|baudrate_generator|ALT_INV_Add0~53_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~53_sumout\;
+\fsksender_inst|baudrate_generator|ALT_INV_Add0~41_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~41_sumout\;
+\fsksender_inst|baudrate_generator|ALT_INV_Add0~33_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~33_sumout\;
+\fsksender_inst|baudrate_generator|ALT_INV_Add0~25_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~25_sumout\;
+\fsksender_inst|baudrate_generator|ALT_INV_Add0~5_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~5_sumout\;
+\fsksender_inst|baudrate_generator|ALT_INV_Add0~1_sumout\ <= NOT \fsksender_inst|baudrate_generator|Add0~1_sumout\;
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(10) <= NOT \fsksender_inst|Reg.WaitCounter\(10);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(11) <= NOT \fsksender_inst|Reg.WaitCounter\(11);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(2) <= NOT \fsksender_inst|Reg.WaitCounter\(2);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(12) <= NOT \fsksender_inst|Reg.WaitCounter\(12);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(13) <= NOT \fsksender_inst|Reg.WaitCounter\(13);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(7) <= NOT \fsksender_inst|Reg.WaitCounter\(7);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(8) <= NOT \fsksender_inst|Reg.WaitCounter\(8);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(9) <= NOT \fsksender_inst|Reg.WaitCounter\(9);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(5) <= NOT \fsksender_inst|Reg.WaitCounter\(5);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(6) <= NOT \fsksender_inst|Reg.WaitCounter\(6);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(3) <= NOT \fsksender_inst|Reg.WaitCounter\(3);
+\fsksender_inst|ALT_INV_Reg.WaitCounter\(4) <= NOT \fsksender_inst|Reg.WaitCounter\(4);
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a6\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a6\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a10\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a10\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a12\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a12\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a1~portadataout\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1~portadataout\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a2\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a2\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a3\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a3\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a4\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a4\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a5\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a5\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a7\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a7\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a8\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a8\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a9\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a9\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a11\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a11\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a13\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a13\;
+\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a0~portadataout\ <= NOT \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0~portadataout\;
+\ALT_INV_DwetL[-13]~q\ <= NOT \DwetL[-13]~q\;
+\ConfigureCodec|ALT_INV_R.AddrCtr\(1) <= NOT \ConfigureCodec|R.AddrCtr\(1);
+\ConfigureCodec|ALT_INV_R.AddrCtr\(2) <= NOT \ConfigureCodec|R.AddrCtr\(2);
+\ConfigureCodec|ALT_INV_R.AddrCtr\(3) <= NOT \ConfigureCodec|R.AddrCtr\(3);
+\ConfigureCodec|ALT_INV_R.AddrCtr\(4) <= NOT \ConfigureCodec|R.AddrCtr\(4);
+\ConfigureCodec|ALT_INV_R.AddrCtr\(5) <= NOT \ConfigureCodec|R.AddrCtr\(5);
+\ConfigureCodec|ALT_INV_R.AddrCtr\(6) <= NOT \ConfigureCodec|R.AddrCtr\(6);
+\ConfigureCodec|ALT_INV_R.AddrCtr\(0) <= NOT \ConfigureCodec|R.AddrCtr\(0);
 
 -- Location: IOOBUF_X12_Y81_N19
 \oI2cSclk~output\ : cyclonev_io_obuf
@@ -1674,7 +1655,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \TheChannelSelSync|Metastable\(1),
+	i => \TheChannelSelSync|Metastable[1]~DUPLICATE_q\,
 	devoe => ww_devoe,
 	o => ww_oSEG2(0));
 
@@ -1713,7 +1694,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \TheChannelSelSync|Metastable\(1),
+	i => \TheChannelSelSync|Metastable[1]~DUPLICATE_q\,
 	devoe => ww_devoe,
 	o => ww_oSEG2(3));
 
@@ -1726,7 +1707,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \TheChannelSelSync|Metastable\(1),
+	i => \TheChannelSelSync|Metastable[1]~DUPLICATE_q\,
 	devoe => ww_devoe,
 	o => ww_oSEG2(4));
 
@@ -1765,7 +1746,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \TheChannelSelSync|Metastable\(1),
+	i => \TheChannelSelSync|Metastable[1]~DUPLICATE_q\,
 	devoe => ww_devoe,
 	o => ww_oSEG3(0));
 
@@ -1804,7 +1785,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \TheChannelSelSync|Metastable\(1),
+	i => \TheChannelSelSync|Metastable[1]~DUPLICATE_q\,
 	devoe => ww_devoe,
 	o => ww_oSEG3(3));
 
@@ -1817,7 +1798,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \TheChannelSelSync|Metastable\(1),
+	i => \TheChannelSelSync|Metastable[1]~DUPLICATE_q\,
 	devoe => ww_devoe,
 	o => ww_oSEG3(4));
 
@@ -2051,7 +2032,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \Start~DUPLICATE_q\,
+	i => \Start~q\,
 	devoe => ww_devoe,
 	o => ww_oLed(1));
 
@@ -2064,7 +2045,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \ConfigureCodec|R.Configured~DUPLICATE_q\,
+	i => \ConfigureCodec|R.Configured~q\,
 	devoe => ww_devoe,
 	o => ww_oLed(2));
 
@@ -2129,7 +2110,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \TheChannelSelSync|Metastable\(1),
+	i => \TheChannelSelSync|Metastable[1]~DUPLICATE_q\,
 	devoe => ww_devoe,
 	o => ww_oLed(7));
 
@@ -2895,7 +2876,18 @@ PORT MAP (
 	inclk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire\(0),
 	outclk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\);
 
--- Location: LABCELL_X23_Y60_N42
+-- Location: IOIBUF_X12_Y81_N1
+\ioI2cSdin~input\ : cyclonev_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ioI2cSdin,
+	o => \ioI2cSdin~input_o\);
+
+-- Location: LABCELL_X16_Y74_N57
 \GenStrobeI2C|ClkCounter[0]~5\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \GenStrobeI2C|ClkCounter[0]~5_combout\ = ( !\GenStrobeI2C|ClkCounter\(0) )
@@ -2924,7 +2916,7 @@ PORT MAP (
 	inclk => \inButton[1]~input_o\,
 	outclk => \inButton[1]~inputCLKENA0_outclk\);
 
--- Location: FF_X23_Y60_N43
+-- Location: FF_X16_Y74_N59
 \GenStrobeI2C|ClkCounter[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -2939,7 +2931,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \GenStrobeI2C|ClkCounter\(0));
 
--- Location: LABCELL_X23_Y60_N51
+-- Location: LABCELL_X16_Y74_N36
 \GenStrobeI2C|ClkCounter[1]~4\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \GenStrobeI2C|ClkCounter[1]~4_combout\ = ( !\GenStrobeI2C|ClkCounter\(1) & ( \GenStrobeI2C|ClkCounter\(0) ) ) # ( \GenStrobeI2C|ClkCounter\(1) & ( !\GenStrobeI2C|ClkCounter\(0) ) )
@@ -2955,7 +2947,7 @@ PORT MAP (
 	dataf => \GenStrobeI2C|ALT_INV_ClkCounter\(0),
 	combout => \GenStrobeI2C|ClkCounter[1]~4_combout\);
 
--- Location: FF_X23_Y60_N53
+-- Location: FF_X16_Y74_N38
 \GenStrobeI2C|ClkCounter[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -2970,25 +2962,25 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \GenStrobeI2C|ClkCounter\(1));
 
--- Location: LABCELL_X23_Y60_N6
+-- Location: LABCELL_X16_Y74_N33
 \GenStrobeI2C|ClkCounter[2]~3\ : cyclonev_lcell_comb
 -- Equation(s):
--- \GenStrobeI2C|ClkCounter[2]~3_combout\ = ( \GenStrobeI2C|ClkCounter\(2) & ( \GenStrobeI2C|ClkCounter\(0) & ( !\GenStrobeI2C|ClkCounter\(1) ) ) ) # ( !\GenStrobeI2C|ClkCounter\(2) & ( \GenStrobeI2C|ClkCounter\(0) & ( \GenStrobeI2C|ClkCounter\(1) ) ) ) # ( 
--- \GenStrobeI2C|ClkCounter\(2) & ( !\GenStrobeI2C|ClkCounter\(0) ) )
+-- \GenStrobeI2C|ClkCounter[2]~3_combout\ = ( \GenStrobeI2C|ClkCounter\(2) & ( \GenStrobeI2C|ClkCounter\(1) & ( !\GenStrobeI2C|ClkCounter\(0) ) ) ) # ( !\GenStrobeI2C|ClkCounter\(2) & ( \GenStrobeI2C|ClkCounter\(1) & ( \GenStrobeI2C|ClkCounter\(0) ) ) ) # ( 
+-- \GenStrobeI2C|ClkCounter\(2) & ( !\GenStrobeI2C|ClkCounter\(1) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111101010101010101011010101010101010",
+	lut_mask => "0000000000000000111111111111111100001111000011111111000011110000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \GenStrobeI2C|ALT_INV_ClkCounter\(1),
+	datac => \GenStrobeI2C|ALT_INV_ClkCounter\(0),
 	datae => \GenStrobeI2C|ALT_INV_ClkCounter\(2),
-	dataf => \GenStrobeI2C|ALT_INV_ClkCounter\(0),
+	dataf => \GenStrobeI2C|ALT_INV_ClkCounter\(1),
 	combout => \GenStrobeI2C|ClkCounter[2]~3_combout\);
 
--- Location: FF_X23_Y60_N8
+-- Location: FF_X16_Y74_N35
 \GenStrobeI2C|ClkCounter[2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3003,7 +2995,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \GenStrobeI2C|ClkCounter\(2));
 
--- Location: LABCELL_X23_Y60_N27
+-- Location: LABCELL_X16_Y74_N24
 \GenStrobeI2C|ClkCounter[3]~2\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \GenStrobeI2C|ClkCounter[3]~2_combout\ = ( \GenStrobeI2C|ClkCounter\(1) & ( !\GenStrobeI2C|ClkCounter\(3) $ (((!\GenStrobeI2C|ClkCounter\(0)) # (!\GenStrobeI2C|ClkCounter\(2)))) ) ) # ( !\GenStrobeI2C|ClkCounter\(1) & ( \GenStrobeI2C|ClkCounter\(3) ) )
@@ -3011,17 +3003,17 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000011111111000000001111111100000101111110100000010111111010",
+	lut_mask => "0000000011111111000000001111111100000011111111000000001111111100",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \GenStrobeI2C|ALT_INV_ClkCounter\(0),
+	datab => \GenStrobeI2C|ALT_INV_ClkCounter\(0),
 	datac => \GenStrobeI2C|ALT_INV_ClkCounter\(2),
 	datad => \GenStrobeI2C|ALT_INV_ClkCounter\(3),
 	dataf => \GenStrobeI2C|ALT_INV_ClkCounter\(1),
 	combout => \GenStrobeI2C|ClkCounter[3]~2_combout\);
 
--- Location: FF_X23_Y60_N28
+-- Location: FF_X16_Y74_N25
 \GenStrobeI2C|ClkCounter[3]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3036,10 +3028,10 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \GenStrobeI2C|ClkCounter\(3));
 
--- Location: LABCELL_X23_Y60_N24
+-- Location: LABCELL_X16_Y74_N27
 \GenStrobeI2C|Equal0~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \GenStrobeI2C|Equal0~0_combout\ = ( \GenStrobeI2C|ClkCounter\(3) & ( (\GenStrobeI2C|ClkCounter\(0) & (\GenStrobeI2C|ClkCounter\(2) & \GenStrobeI2C|ClkCounter\(1))) ) )
+-- \GenStrobeI2C|Equal0~0_combout\ = ( \GenStrobeI2C|ClkCounter\(2) & ( (\GenStrobeI2C|ClkCounter\(1) & (\GenStrobeI2C|ClkCounter\(0) & \GenStrobeI2C|ClkCounter\(3))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -3048,13 +3040,13 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \GenStrobeI2C|ALT_INV_ClkCounter\(0),
-	datab => \GenStrobeI2C|ALT_INV_ClkCounter\(2),
-	datac => \GenStrobeI2C|ALT_INV_ClkCounter\(1),
-	dataf => \GenStrobeI2C|ALT_INV_ClkCounter\(3),
+	dataa => \GenStrobeI2C|ALT_INV_ClkCounter\(1),
+	datab => \GenStrobeI2C|ALT_INV_ClkCounter\(0),
+	datac => \GenStrobeI2C|ALT_INV_ClkCounter\(3),
+	dataf => \GenStrobeI2C|ALT_INV_ClkCounter\(2),
 	combout => \GenStrobeI2C|Equal0~0_combout\);
 
--- Location: LABCELL_X23_Y60_N33
+-- Location: LABCELL_X16_Y74_N42
 \GenStrobeI2C|ClkCounter[4]~1\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \GenStrobeI2C|ClkCounter[4]~1_combout\ = ( !\GenStrobeI2C|ClkCounter\(4) & ( \GenStrobeI2C|Equal0~0_combout\ ) ) # ( \GenStrobeI2C|ClkCounter\(4) & ( !\GenStrobeI2C|Equal0~0_combout\ ) )
@@ -3070,7 +3062,7 @@ PORT MAP (
 	dataf => \GenStrobeI2C|ALT_INV_Equal0~0_combout\,
 	combout => \GenStrobeI2C|ClkCounter[4]~1_combout\);
 
--- Location: FF_X23_Y60_N35
+-- Location: FF_X16_Y74_N44
 \GenStrobeI2C|ClkCounter[4]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3085,7 +3077,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \GenStrobeI2C|ClkCounter\(4));
 
--- Location: LABCELL_X23_Y60_N12
+-- Location: LABCELL_X16_Y74_N51
 \GenStrobeI2C|ClkCounter[5]~0\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \GenStrobeI2C|ClkCounter[5]~0_combout\ = ( \GenStrobeI2C|Equal0~0_combout\ & ( !\GenStrobeI2C|ClkCounter\(4) $ (!\GenStrobeI2C|ClkCounter\(5)) ) ) # ( !\GenStrobeI2C|Equal0~0_combout\ & ( \GenStrobeI2C|ClkCounter\(5) ) )
@@ -3102,7 +3094,7 @@ PORT MAP (
 	dataf => \GenStrobeI2C|ALT_INV_Equal0~0_combout\,
 	combout => \GenStrobeI2C|ClkCounter[5]~0_combout\);
 
--- Location: FF_X23_Y60_N14
+-- Location: FF_X16_Y74_N53
 \GenStrobeI2C|ClkCounter[5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3117,7 +3109,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \GenStrobeI2C|ClkCounter\(5));
 
--- Location: LABCELL_X23_Y60_N15
+-- Location: LABCELL_X16_Y74_N48
 \GenStrobeI2C|Equal0~1\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \GenStrobeI2C|Equal0~1_combout\ = ( \GenStrobeI2C|Equal0~0_combout\ & ( (\GenStrobeI2C|ClkCounter\(4) & \GenStrobeI2C|ClkCounter\(5)) ) )
@@ -3125,16 +3117,16 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000101000001010000010100000101",
+	lut_mask => "0000000000000000000000000000000000000011000000110000001100000011",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \GenStrobeI2C|ALT_INV_ClkCounter\(4),
+	datab => \GenStrobeI2C|ALT_INV_ClkCounter\(4),
 	datac => \GenStrobeI2C|ALT_INV_ClkCounter\(5),
 	dataf => \GenStrobeI2C|ALT_INV_Equal0~0_combout\,
 	combout => \GenStrobeI2C|Equal0~1_combout\);
 
--- Location: FF_X23_Y60_N17
+-- Location: FF_X16_Y74_N49
 \GenStrobeI2C|oStrobe\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3149,8 +3141,8 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \GenStrobeI2C|oStrobe~q\);
 
--- Location: FF_X22_Y60_N44
-\ConfigureCodec|R.Sclk\ : dffeas
+-- Location: FF_X19_Y74_N5
+\ConfigureCodec|R.FrameState.Start\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -3158,13 +3150,30 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector14~0_combout\,
+	d => \ConfigureCodec|Selector1~0_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Sclk~q\);
+	q => \ConfigureCodec|R.FrameState.Start~q\);
 
--- Location: MLABCELL_X21_Y61_N30
+-- Location: FF_X19_Y73_N37
+\ConfigureCodec|R.AddrCtr[2]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Add0~21_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sclr => \ConfigureCodec|ALT_INV_R.Activity~q\,
+	ena => \ConfigureCodec|R.AddrCtr[6]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.AddrCtr\(2));
+
+-- Location: LABCELL_X19_Y73_N30
 \ConfigureCodec|Add0~1\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \ConfigureCodec|Add0~1_sumout\ = SUM(( \ConfigureCodec|R.AddrCtr\(0) ) + ( VCC ) + ( !VCC ))
@@ -3182,7 +3191,7 @@ PORT MAP (
 	sumout => \ConfigureCodec|Add0~1_sumout\,
 	cout => \ConfigureCodec|Add0~2\);
 
--- Location: MLABCELL_X21_Y61_N33
+-- Location: LABCELL_X19_Y73_N33
 \ConfigureCodec|Add0~25\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \ConfigureCodec|Add0~25_sumout\ = SUM(( \ConfigureCodec|R.AddrCtr\(1) ) + ( GND ) + ( \ConfigureCodec|Add0~2\ ))
@@ -3200,7 +3209,7 @@ PORT MAP (
 	sumout => \ConfigureCodec|Add0~25_sumout\,
 	cout => \ConfigureCodec|Add0~26\);
 
--- Location: FF_X21_Y61_N35
+-- Location: FF_X19_Y73_N35
 \ConfigureCodec|R.AddrCtr[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3217,7 +3226,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.AddrCtr\(1));
 
--- Location: MLABCELL_X21_Y61_N36
+-- Location: LABCELL_X19_Y73_N36
 \ConfigureCodec|Add0~21\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \ConfigureCodec|Add0~21_sumout\ = SUM(( \ConfigureCodec|R.AddrCtr\(2) ) + ( GND ) + ( \ConfigureCodec|Add0~26\ ))
@@ -3235,8 +3244,8 @@ PORT MAP (
 	sumout => \ConfigureCodec|Add0~21_sumout\,
 	cout => \ConfigureCodec|Add0~22\);
 
--- Location: FF_X21_Y61_N37
-\ConfigureCodec|R.AddrCtr[2]\ : dffeas
+-- Location: FF_X19_Y73_N38
+\ConfigureCodec|R.AddrCtr[2]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -3250,9 +3259,9 @@ PORT MAP (
 	ena => \ConfigureCodec|R.AddrCtr[6]~0_combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \ConfigureCodec|R.AddrCtr\(2));
+	q => \ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\);
 
--- Location: MLABCELL_X21_Y61_N39
+-- Location: LABCELL_X19_Y73_N39
 \ConfigureCodec|Add0~17\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \ConfigureCodec|Add0~17_sumout\ = SUM(( \ConfigureCodec|R.AddrCtr\(3) ) + ( GND ) + ( \ConfigureCodec|Add0~22\ ))
@@ -3270,7 +3279,7 @@ PORT MAP (
 	sumout => \ConfigureCodec|Add0~17_sumout\,
 	cout => \ConfigureCodec|Add0~18\);
 
--- Location: FF_X21_Y61_N41
+-- Location: FF_X19_Y73_N41
 \ConfigureCodec|R.AddrCtr[3]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3287,7 +3296,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.AddrCtr\(3));
 
--- Location: MLABCELL_X21_Y61_N42
+-- Location: LABCELL_X19_Y73_N42
 \ConfigureCodec|Add0~13\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \ConfigureCodec|Add0~13_sumout\ = SUM(( \ConfigureCodec|R.AddrCtr\(4) ) + ( GND ) + ( \ConfigureCodec|Add0~18\ ))
@@ -3305,7 +3314,7 @@ PORT MAP (
 	sumout => \ConfigureCodec|Add0~13_sumout\,
 	cout => \ConfigureCodec|Add0~14\);
 
--- Location: FF_X21_Y61_N43
+-- Location: FF_X19_Y73_N43
 \ConfigureCodec|R.AddrCtr[4]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3322,7 +3331,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.AddrCtr\(4));
 
--- Location: MLABCELL_X21_Y61_N45
+-- Location: LABCELL_X19_Y73_N45
 \ConfigureCodec|Add0~9\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \ConfigureCodec|Add0~9_sumout\ = SUM(( \ConfigureCodec|R.AddrCtr\(5) ) + ( GND ) + ( \ConfigureCodec|Add0~14\ ))
@@ -3340,7 +3349,7 @@ PORT MAP (
 	sumout => \ConfigureCodec|Add0~9_sumout\,
 	cout => \ConfigureCodec|Add0~10\);
 
--- Location: FF_X21_Y61_N47
+-- Location: FF_X19_Y73_N47
 \ConfigureCodec|R.AddrCtr[5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3357,7 +3366,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.AddrCtr\(5));
 
--- Location: MLABCELL_X21_Y61_N48
+-- Location: LABCELL_X19_Y73_N48
 \ConfigureCodec|Add0~5\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \ConfigureCodec|Add0~5_sumout\ = SUM(( \ConfigureCodec|R.AddrCtr\(6) ) + ( GND ) + ( \ConfigureCodec|Add0~10\ ))
@@ -3373,7 +3382,7 @@ PORT MAP (
 	cin => \ConfigureCodec|Add0~10\,
 	sumout => \ConfigureCodec|Add0~5_sumout\);
 
--- Location: FF_X21_Y61_N50
+-- Location: FF_X19_Y73_N50
 \ConfigureCodec|R.AddrCtr[6]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3390,28 +3399,204 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.AddrCtr\(6));
 
--- Location: MLABCELL_X21_Y61_N0
+-- Location: LABCELL_X19_Y73_N24
 \ConfigureCodec|Equal0~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Equal0~0_combout\ = ( !\ConfigureCodec|R.AddrCtr\(2) & ( \ConfigureCodec|R.AddrCtr\(3) & ( (!\ConfigureCodec|R.AddrCtr\(6) & (!\ConfigureCodec|R.AddrCtr\(5) & (!\ConfigureCodec|R.AddrCtr\(1) & !\ConfigureCodec|R.AddrCtr\(4)))) ) ) )
+-- \ConfigureCodec|Equal0~0_combout\ = ( !\ConfigureCodec|R.AddrCtr\(4) & ( !\ConfigureCodec|R.AddrCtr\(6) & ( (!\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\ & (\ConfigureCodec|R.AddrCtr\(3) & (!\ConfigureCodec|R.AddrCtr\(1) & !\ConfigureCodec|R.AddrCtr\(5)))) 
+-- ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000010000000000000000000000000000000",
+	lut_mask => "0010000000000000000000000000000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr\(6),
-	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(5),
+	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
 	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
-	datad => \ConfigureCodec|ALT_INV_R.AddrCtr\(4),
-	datae => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
-	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
+	datad => \ConfigureCodec|ALT_INV_R.AddrCtr\(5),
+	datae => \ConfigureCodec|ALT_INV_R.AddrCtr\(4),
+	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(6),
 	combout => \ConfigureCodec|Equal0~0_combout\);
 
--- Location: FF_X22_Y60_N25
-\Start~DUPLICATE\ : dffeas
+-- Location: FF_X19_Y74_N38
+\ConfigureCodec|R.Sclk\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector14~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Sclk~q\);
+
+-- Location: LABCELL_X19_Y74_N51
+\ConfigureCodec|R.Configured~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|R.Configured~1_combout\ = ( \ConfigureCodec|R.Activity~q\ & ( (\ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\ & (\GenStrobeI2C|oStrobe~q\ & !\ConfigureCodec|R.Sclk~q\)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000000101000000000000010100000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Stop~DUPLICATE_q\,
+	datac => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datad => \ConfigureCodec|ALT_INV_R.Sclk~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.Activity~q\,
+	combout => \ConfigureCodec|R.Configured~1_combout\);
+
+-- Location: LABCELL_X19_Y74_N30
+\ConfigureCodec|R.Configured~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|R.Configured~0_combout\ = ( \Start~q\ & ( (!\ConfigureCodec|R.FrameState.Idle~q\ & (!\ConfigureCodec|R.Activity~q\ & \GenStrobeI2C|oStrobe~q\)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000000000101000000000000010100000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
+	datac => \ConfigureCodec|ALT_INV_R.Activity~q\,
+	datad => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	dataf => \ALT_INV_Start~q\,
+	combout => \ConfigureCodec|R.Configured~0_combout\);
+
+-- Location: LABCELL_X19_Y74_N54
+\ConfigureCodec|R.Configured~2\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|R.Configured~2_combout\ = ( \ConfigureCodec|R.Configured~q\ & ( \ConfigureCodec|R.Configured~0_combout\ & ( \ConfigureCodec|R.Activity~q\ ) ) ) # ( !\ConfigureCodec|R.Configured~q\ & ( \ConfigureCodec|R.Configured~0_combout\ & ( 
+-- \ConfigureCodec|R.Activity~q\ ) ) ) # ( \ConfigureCodec|R.Configured~q\ & ( !\ConfigureCodec|R.Configured~0_combout\ & ( ((!\ConfigureCodec|Equal0~0_combout\) # ((!\ConfigureCodec|R.Configured~1_combout\) # (!\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\))) # 
+-- (\ConfigureCodec|R.Activity~q\) ) ) ) # ( !\ConfigureCodec|R.Configured~q\ & ( !\ConfigureCodec|R.Configured~0_combout\ & ( (\ConfigureCodec|R.Activity~q\ & (\ConfigureCodec|Equal0~0_combout\ & (\ConfigureCodec|R.Configured~1_combout\ & 
+-- \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000001111111111111110101010101010101010101010101010101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.Activity~q\,
+	datab => \ConfigureCodec|ALT_INV_Equal0~0_combout\,
+	datac => \ConfigureCodec|ALT_INV_R.Configured~1_combout\,
+	datad => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_R.Configured~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.Configured~0_combout\,
+	combout => \ConfigureCodec|R.Configured~2_combout\);
+
+-- Location: FF_X19_Y74_N56
+\ConfigureCodec|R.Configured\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|R.Configured~2_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Configured~q\);
+
+-- Location: LABCELL_X19_Y74_N15
+\WaitCtr[1]~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \WaitCtr[1]~0_combout\ = ( \ConfigureCodec|R.Configured~q\ & ( WaitCtr(1) ) ) # ( !\ConfigureCodec|R.Configured~q\ & ( ((WaitCtr(0) & \GenStrobeI2C|oStrobe~q\)) # (WaitCtr(1)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000010111111111000001011111111100000000111111110000000011111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => ALT_INV_WaitCtr(0),
+	datac => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datad => ALT_INV_WaitCtr(1),
+	dataf => \ConfigureCodec|ALT_INV_R.Configured~q\,
+	combout => \WaitCtr[1]~0_combout\);
+
+-- Location: FF_X19_Y74_N17
+\WaitCtr[1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \WaitCtr[1]~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => WaitCtr(1));
+
+-- Location: LABCELL_X19_Y74_N27
+\WaitCtr[0]~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \WaitCtr[0]~1_combout\ = ( WaitCtr(0) & ( \ConfigureCodec|R.Configured~q\ ) ) # ( WaitCtr(0) & ( !\ConfigureCodec|R.Configured~q\ & ( (!\GenStrobeI2C|oStrobe~q\) # (WaitCtr(1)) ) ) ) # ( !WaitCtr(0) & ( !\ConfigureCodec|R.Configured~q\ & ( 
+-- \GenStrobeI2C|oStrobe~q\ ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010101010101101011111010111100000000000000001111111111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datac => ALT_INV_WaitCtr(1),
+	datae => ALT_INV_WaitCtr(0),
+	dataf => \ConfigureCodec|ALT_INV_R.Configured~q\,
+	combout => \WaitCtr[0]~1_combout\);
+
+-- Location: FF_X19_Y74_N29
+\WaitCtr[0]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \WaitCtr[0]~1_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => WaitCtr(0));
+
+-- Location: LABCELL_X19_Y74_N12
+\Start~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \Start~0_combout\ = ( !\ConfigureCodec|R.Configured~q\ & ( (!\GenStrobeI2C|oStrobe~q\ & (((\Start~q\)))) # (\GenStrobeI2C|oStrobe~q\ & (WaitCtr(0) & (WaitCtr(1)))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000111110001000000011111000100000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => ALT_INV_WaitCtr(0),
+	datab => ALT_INV_WaitCtr(1),
+	datac => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datad => \ALT_INV_Start~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.Configured~q\,
+	combout => \Start~0_combout\);
+
+-- Location: FF_X19_Y74_N13
+Start : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -3423,62 +3608,63 @@ PORT MAP (
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \Start~DUPLICATE_q\);
+	q => \Start~q\);
 
--- Location: LABCELL_X22_Y60_N0
+-- Location: LABCELL_X19_Y74_N42
 \ConfigureCodec|R.Configured~3\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|R.Configured~3_combout\ = ( !\ConfigureCodec|R.FrameState.Idle~q\ & ( (!\ConfigureCodec|R.Activity~q\ & \Start~DUPLICATE_q\) ) )
+-- \ConfigureCodec|R.Configured~3_combout\ = ( \Start~q\ & ( (!\ConfigureCodec|R.Activity~q\ & !\ConfigureCodec|R.FrameState.Idle~q\) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000110000001100000011000000110000000000000000000000000000000000",
+	lut_mask => "0000000000000000000000000000000011110000000000001111000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \ConfigureCodec|ALT_INV_R.Activity~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
+	dataf => \ALT_INV_Start~q\,
+	combout => \ConfigureCodec|R.Configured~3_combout\);
+
+-- Location: LABCELL_X19_Y74_N33
+\ConfigureCodec|R.Configured~4\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|R.Configured~4_combout\ = ( \ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\ & ( (\ConfigureCodec|R.Activity~q\ & !\ConfigureCodec|R.Sclk~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000110011000000000011001100000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
 	datab => \ConfigureCodec|ALT_INV_R.Activity~q\,
-	datac => \ALT_INV_Start~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
-	combout => \ConfigureCodec|R.Configured~3_combout\);
-
--- Location: LABCELL_X22_Y60_N27
-\ConfigureCodec|R.Configured~4\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|R.Configured~4_combout\ = ( \ConfigureCodec|R.Activity~q\ & ( (!\ConfigureCodec|R.Sclk~q\ & \ConfigureCodec|R.FrameState.Stop~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000111100000000000011110000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \ConfigureCodec|ALT_INV_R.Sclk~q\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.Activity~q\,
+	datad => \ConfigureCodec|ALT_INV_R.Sclk~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Stop~DUPLICATE_q\,
 	combout => \ConfigureCodec|R.Configured~4_combout\);
 
--- Location: LABCELL_X22_Y60_N36
+-- Location: LABCELL_X19_Y74_N45
 \ConfigureCodec|R.AddrCtr[6]~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|R.AddrCtr[6]~0_combout\ = ( \GenStrobeI2C|oStrobe~q\ & ( ((\ConfigureCodec|R.Configured~4_combout\ & ((!\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\) # (!\ConfigureCodec|Equal0~0_combout\)))) # (\ConfigureCodec|R.Configured~3_combout\) ) )
+-- \ConfigureCodec|R.AddrCtr[6]~0_combout\ = ( \ConfigureCodec|R.Configured~4_combout\ & ( (\GenStrobeI2C|oStrobe~q\ & ((!\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\) # ((!\ConfigureCodec|Equal0~0_combout\) # (\ConfigureCodec|R.Configured~3_combout\)))) ) ) # 
+-- ( !\ConfigureCodec|R.Configured~4_combout\ & ( (\GenStrobeI2C|oStrobe~q\ & \ConfigureCodec|R.Configured~3_combout\) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000001111111011110000111111101111",
+	lut_mask => "0000001100000011000000110000001100110011001000110011001100100011",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
 	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
-	datab => \ConfigureCodec|ALT_INV_Equal0~0_combout\,
+	datab => \GenStrobeI2C|ALT_INV_oStrobe~q\,
 	datac => \ConfigureCodec|ALT_INV_R.Configured~3_combout\,
-	datad => \ConfigureCodec|ALT_INV_R.Configured~4_combout\,
-	dataf => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datad => \ConfigureCodec|ALT_INV_Equal0~0_combout\,
+	dataf => \ConfigureCodec|ALT_INV_R.Configured~4_combout\,
 	combout => \ConfigureCodec|R.AddrCtr[6]~0_combout\);
 
--- Location: FF_X21_Y61_N32
+-- Location: FF_X19_Y73_N32
 \ConfigureCodec|R.AddrCtr[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3495,7 +3681,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.AddrCtr\(0));
 
--- Location: FF_X21_Y61_N31
+-- Location: FF_X19_Y73_N31
 \ConfigureCodec|R.AddrCtr[0]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3512,27 +3698,27 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\);
 
--- Location: LABCELL_X22_Y60_N39
+-- Location: LABCELL_X19_Y74_N18
 \ConfigureCodec|R.Activity~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|R.Activity~0_combout\ = ( \ConfigureCodec|R.Configured~1_combout\ & ( !\ConfigureCodec|R.Activity~q\ $ (((!\ConfigureCodec|R.Configured~0_combout\ & ((!\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\) # (!\ConfigureCodec|Equal0~0_combout\))))) ) 
--- ) # ( !\ConfigureCodec|R.Configured~1_combout\ & ( !\ConfigureCodec|R.Configured~0_combout\ $ (!\ConfigureCodec|R.Activity~q\) ) )
+-- \ConfigureCodec|R.Activity~0_combout\ = ( \ConfigureCodec|R.Configured~0_combout\ & ( !\ConfigureCodec|R.Activity~q\ ) ) # ( !\ConfigureCodec|R.Configured~0_combout\ & ( !\ConfigureCodec|R.Activity~q\ $ (((!\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\) # 
+-- ((!\ConfigureCodec|Equal0~0_combout\) # (!\ConfigureCodec|R.Configured~1_combout\)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000111111110000000011111111000000011111111000000001111111100000",
+	lut_mask => "0000000111111110000000011111111011111111000000001111111100000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
 	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
 	datab => \ConfigureCodec|ALT_INV_Equal0~0_combout\,
-	datac => \ConfigureCodec|ALT_INV_R.Configured~0_combout\,
+	datac => \ConfigureCodec|ALT_INV_R.Configured~1_combout\,
 	datad => \ConfigureCodec|ALT_INV_R.Activity~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.Configured~1_combout\,
+	dataf => \ConfigureCodec|ALT_INV_R.Configured~0_combout\,
 	combout => \ConfigureCodec|R.Activity~0_combout\);
 
--- Location: FF_X22_Y60_N41
+-- Location: FF_X19_Y74_N20
 \ConfigureCodec|R.Activity\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3547,211 +3733,26 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.Activity~q\);
 
--- Location: LABCELL_X22_Y60_N33
-\ConfigureCodec|R.Configured~1\ : cyclonev_lcell_comb
+-- Location: LABCELL_X19_Y74_N3
+\ConfigureCodec|Selector1~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|R.Configured~1_combout\ = ( \ConfigureCodec|R.Activity~q\ & ( (\ConfigureCodec|R.FrameState.Stop~q\ & (!\ConfigureCodec|R.Sclk~q\ & \GenStrobeI2C|oStrobe~q\)) ) )
+-- \ConfigureCodec|Selector1~0_combout\ = ( \ConfigureCodec|R.Activity~q\ & ( (!\GenStrobeI2C|oStrobe~q\ & ((\ConfigureCodec|R.FrameState.Start~q\))) # (\GenStrobeI2C|oStrobe~q\ & (!\ConfigureCodec|R.FrameState.Idle~q\)) ) ) # ( 
+-- !\ConfigureCodec|R.Activity~q\ & ( (!\GenStrobeI2C|oStrobe~q\ & \ConfigureCodec|R.FrameState.Start~q\) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000010100000000000001010000",
+	lut_mask => "0000000011001100000000001100110000100010111011100010001011101110",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\,
-	datac => \ConfigureCodec|ALT_INV_R.Sclk~q\,
-	datad => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
+	datab => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Start~q\,
 	dataf => \ConfigureCodec|ALT_INV_R.Activity~q\,
-	combout => \ConfigureCodec|R.Configured~1_combout\);
+	combout => \ConfigureCodec|Selector1~0_combout\);
 
--- Location: LABCELL_X22_Y60_N6
-\ConfigureCodec|R.Configured~2\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|R.Configured~2_combout\ = ( \ConfigureCodec|R.Configured~q\ & ( \ConfigureCodec|R.Activity~q\ ) ) # ( !\ConfigureCodec|R.Configured~q\ & ( \ConfigureCodec|R.Activity~q\ & ( ((\ConfigureCodec|R.Configured~1_combout\ & 
--- (\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & \ConfigureCodec|Equal0~0_combout\))) # (\ConfigureCodec|R.Configured~0_combout\) ) ) ) # ( \ConfigureCodec|R.Configured~q\ & ( !\ConfigureCodec|R.Activity~q\ & ( (!\ConfigureCodec|R.Configured~0_combout\ & 
--- ((!\ConfigureCodec|R.Configured~1_combout\) # ((!\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\) # (!\ConfigureCodec|Equal0~0_combout\)))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000110011001100100000110011001101111111111111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.Configured~1_combout\,
-	datab => \ConfigureCodec|ALT_INV_R.Configured~0_combout\,
-	datac => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_Equal0~0_combout\,
-	datae => \ConfigureCodec|ALT_INV_R.Configured~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.Activity~q\,
-	combout => \ConfigureCodec|R.Configured~2_combout\);
-
--- Location: FF_X22_Y60_N8
-\ConfigureCodec|R.Configured\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|R.Configured~2_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Configured~q\);
-
--- Location: FF_X22_Y60_N58
-\WaitCtr[0]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \WaitCtr[0]~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => WaitCtr(0));
-
--- Location: LABCELL_X22_Y60_N57
-\WaitCtr[0]~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \WaitCtr[0]~1_combout\ = ( WaitCtr(0) & ( \GenStrobeI2C|oStrobe~q\ & ( (WaitCtr(1)) # (\ConfigureCodec|R.Configured~q\) ) ) ) # ( !WaitCtr(0) & ( \GenStrobeI2C|oStrobe~q\ & ( !\ConfigureCodec|R.Configured~q\ ) ) ) # ( WaitCtr(0) & ( 
--- !\GenStrobeI2C|oStrobe~q\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111111001100110011000011111100111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.Configured~q\,
-	datac => ALT_INV_WaitCtr(1),
-	datae => ALT_INV_WaitCtr(0),
-	dataf => \GenStrobeI2C|ALT_INV_oStrobe~q\,
-	combout => \WaitCtr[0]~1_combout\);
-
--- Location: FF_X22_Y60_N59
-\WaitCtr[0]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \WaitCtr[0]~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \WaitCtr[0]~DUPLICATE_q\);
-
--- Location: LABCELL_X22_Y60_N15
-\WaitCtr[1]~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \WaitCtr[1]~0_combout\ = ( WaitCtr(1) & ( \GenStrobeI2C|oStrobe~q\ ) ) # ( !WaitCtr(1) & ( \GenStrobeI2C|oStrobe~q\ & ( (!\ConfigureCodec|R.Configured~q\ & \WaitCtr[0]~DUPLICATE_q\) ) ) ) # ( WaitCtr(1) & ( !\GenStrobeI2C|oStrobe~q\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100001100000011001111111111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.Configured~q\,
-	datac => \ALT_INV_WaitCtr[0]~DUPLICATE_q\,
-	datae => ALT_INV_WaitCtr(1),
-	dataf => \GenStrobeI2C|ALT_INV_oStrobe~q\,
-	combout => \WaitCtr[1]~0_combout\);
-
--- Location: FF_X22_Y60_N17
-\WaitCtr[1]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \WaitCtr[1]~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => WaitCtr(1));
-
--- Location: FF_X22_Y60_N7
-\ConfigureCodec|R.Configured~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|R.Configured~2_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Configured~DUPLICATE_q\);
-
--- Location: LABCELL_X22_Y60_N24
-\Start~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \Start~0_combout\ = ( !\ConfigureCodec|R.Configured~DUPLICATE_q\ & ( (!\GenStrobeI2C|oStrobe~q\ & (((\Start~q\)))) # (\GenStrobeI2C|oStrobe~q\ & (WaitCtr(1) & (WaitCtr(0)))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000110101011000000011010101100000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \GenStrobeI2C|ALT_INV_oStrobe~q\,
-	datab => ALT_INV_WaitCtr(1),
-	datac => ALT_INV_WaitCtr(0),
-	datad => \ALT_INV_Start~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.Configured~DUPLICATE_q\,
-	combout => \Start~0_combout\);
-
--- Location: FF_X22_Y60_N26
-Start : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \Start~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \Start~q\);
-
--- Location: LABCELL_X22_Y60_N48
-\ConfigureCodec|R.Configured~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|R.Configured~0_combout\ = ( !\ConfigureCodec|R.Activity~q\ & ( (!\ConfigureCodec|R.FrameState.Idle~q\ & (\Start~q\ & \GenStrobeI2C|oStrobe~q\)) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000001100000000000000110000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
-	datac => \ALT_INV_Start~q\,
-	datad => \GenStrobeI2C|ALT_INV_oStrobe~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.Activity~q\,
-	combout => \ConfigureCodec|R.Configured~0_combout\);
-
--- Location: FF_X22_Y60_N52
+-- Location: FF_X19_Y74_N4
 \ConfigureCodec|R.FrameState.Start~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3766,85 +3767,23 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.FrameState.Start~DUPLICATE_q\);
 
--- Location: IOIBUF_X12_Y81_N1
-\ioI2cSdin~input\ : cyclonev_io_ibuf
--- pragma translate_off
-GENERIC MAP (
-	bus_hold => "false",
-	simulate_z_as => "z")
--- pragma translate_on
-PORT MAP (
-	i => ioI2cSdin,
-	o => \ioI2cSdin~input_o\);
-
--- Location: FF_X23_Y60_N16
-\GenStrobeI2C|oStrobe~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \GenStrobeI2C|Equal0~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \GenStrobeI2C|oStrobe~DUPLICATE_q\);
-
--- Location: LABCELL_X24_Y61_N39
+-- Location: LABCELL_X17_Y74_N36
 \ConfigureCodec|NextStateAndOutput~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|NextStateAndOutput~2_combout\ = (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & \GenStrobeI2C|oStrobe~DUPLICATE_q\)
+-- \ConfigureCodec|NextStateAndOutput~2_combout\ = ( \GenStrobeI2C|oStrobe~q\ & ( !\ConfigureCodec|R.Sclk~DUPLICATE_q\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000011110000000000001111000000000000111100000000000011110000",
+	lut_mask => "0000000000000000000000000000000011001100110011001100110011001100",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datad => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	dataf => \GenStrobeI2C|ALT_INV_oStrobe~q\,
 	combout => \ConfigureCodec|NextStateAndOutput~2_combout\);
 
--- Location: FF_X23_Y61_N13
-\ConfigureCodec|R.FrameState.Data2\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector7~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.Data2~q\);
-
--- Location: LABCELL_X23_Y61_N12
-\ConfigureCodec|Selector7~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector7~0_combout\ = ( \ConfigureCodec|R.AckError~q\ & ( (!\ConfigureCodec|NextR~9_combout\ & \ConfigureCodec|R.FrameState.Data2~q\) ) ) # ( !\ConfigureCodec|R.AckError~q\ & ( (!\ConfigureCodec|NextStateAndOutput~2_combout\ & 
--- (((!\ConfigureCodec|NextR~9_combout\ & \ConfigureCodec|R.FrameState.Data2~q\)))) # (\ConfigureCodec|NextStateAndOutput~2_combout\ & (((!\ConfigureCodec|NextR~9_combout\ & \ConfigureCodec|R.FrameState.Data2~q\)) # (\ConfigureCodec|R.FrameState.Ack2~q\))) ) 
--- )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0001000111110001000100011111000100000000111100000000000011110000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Ack2~q\,
-	datac => \ConfigureCodec|ALT_INV_NextR~9_combout\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data2~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.AckError~q\,
-	combout => \ConfigureCodec|Selector7~0_combout\);
-
--- Location: FF_X23_Y61_N14
+-- Location: FF_X17_Y74_N19
 \ConfigureCodec|R.FrameState.Data2~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -3859,270 +3798,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\);
 
--- Location: LABCELL_X23_Y61_N30
-\ConfigureCodec|NextR~8\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|NextR~8_combout\ = (\GenStrobeI2C|oStrobe~DUPLICATE_q\ & ((!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ((!\ConfigureCodec|R.AckError~q\))) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ioI2cSdin~input_o\))))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0101000000010001010100000001000101010000000100010101000000010001",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	datab => \ALT_INV_ioI2cSdin~input_o\,
-	datac => \ConfigureCodec|ALT_INV_R.AckError~q\,
-	datad => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	combout => \ConfigureCodec|NextR~8_combout\);
-
--- Location: LABCELL_X23_Y61_N27
-\ConfigureCodec|Selector8~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector8~0_combout\ = ( \ConfigureCodec|NextR~8_combout\ & ( (\ConfigureCodec|NextR~9_combout\ & \ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\) ) ) # ( !\ConfigureCodec|NextR~8_combout\ & ( ((\ConfigureCodec|NextR~9_combout\ & 
--- \ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\)) # (\ConfigureCodec|R.FrameState.Ack3~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000010111111111000001011111111100000101000001010000010100000101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_NextR~9_combout\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Data2~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Ack3~q\,
-	dataf => \ConfigureCodec|ALT_INV_NextR~8_combout\,
-	combout => \ConfigureCodec|Selector8~0_combout\);
-
--- Location: FF_X23_Y61_N29
-\ConfigureCodec|R.FrameState.Ack3\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector8~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.Ack3~q\);
-
--- Location: LABCELL_X23_Y61_N0
-\ConfigureCodec|Selector13~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector13~0_combout\ = ( !\ConfigureCodec|R.FrameState.Ack3~q\ & ( !\ConfigureCodec|R.FrameState.Stop~q\ & ( (\ConfigureCodec|R.FrameState.Idle~q\ & (!\ConfigureCodec|R.FrameState.Ack2~q\ & 
--- (!\ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\ & !\ConfigureCodec|R.FrameState.Ack1~q\))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0100000000000000000000000000000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Ack2~q\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.RWBit~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
-	datae => \ConfigureCodec|ALT_INV_R.FrameState.Ack3~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\,
-	combout => \ConfigureCodec|Selector13~0_combout\);
-
--- Location: LABCELL_X23_Y61_N42
-\ConfigureCodec|Selector5~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector5~0_combout\ = (!\ConfigureCodec|R.AckError~q\ & (\ConfigureCodec|R.FrameState.Ack1~q\ & (\GenStrobeI2C|oStrobe~DUPLICATE_q\ & !\ConfigureCodec|R.Sclk~DUPLICATE_q\)))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000001000000000000000100000000000000010000000000000001000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.AckError~q\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
-	datac => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	combout => \ConfigureCodec|Selector5~0_combout\);
-
--- Location: FF_X23_Y61_N47
-\ConfigureCodec|R.FrameState.Data1\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector5~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.Data1~q\);
-
--- Location: LABCELL_X23_Y61_N45
-\ConfigureCodec|Selector5~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector5~1_combout\ = ( \ConfigureCodec|NextR~10_combout\ & ( \ConfigureCodec|Selector5~0_combout\ ) ) # ( !\ConfigureCodec|NextR~10_combout\ & ( (\ConfigureCodec|R.FrameState.Data1~q\) # (\ConfigureCodec|Selector5~0_combout\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000111111111111000011111111111100001111000011110000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \ConfigureCodec|ALT_INV_Selector5~0_combout\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data1~q\,
-	dataf => \ConfigureCodec|ALT_INV_NextR~10_combout\,
-	combout => \ConfigureCodec|Selector5~1_combout\);
-
--- Location: FF_X23_Y61_N46
-\ConfigureCodec|R.FrameState.Data1~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector5~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\);
-
--- Location: LABCELL_X22_Y61_N15
-\ConfigureCodec|Selector11~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector11~0_combout\ = ( \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( (\ConfigureCodec|Selector13~0_combout\ & (!\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ & \ConfigureCodec|NextStateAndOutput~2_combout\)) ) ) # ( 
--- !\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( (\ConfigureCodec|Selector13~0_combout\ & !\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0100010001000100010001000100010000000000010001000000000001000100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_Selector13~0_combout\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
-	combout => \ConfigureCodec|Selector11~0_combout\);
-
--- Location: LABCELL_X23_Y61_N18
-\ConfigureCodec|Selector11~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector11~1_combout\ = ( \ConfigureCodec|R.FrameState.Ack1~q\ & ( (\GenStrobeI2C|oStrobe~DUPLICATE_q\ & (((!\ConfigureCodec|R.AckError~q\ & !\ConfigureCodec|R.Sclk~DUPLICATE_q\)) # (\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\))) ) ) # 
--- ( !\ConfigureCodec|R.FrameState.Ack1~q\ & ( (\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ & \GenStrobeI2C|oStrobe~DUPLICATE_q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000001010101000000000101010100000000110101010000000011010101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
-	datab => \ConfigureCodec|ALT_INV_R.AckError~q\,
-	datac => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datad => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
-	combout => \ConfigureCodec|Selector11~1_combout\);
-
--- Location: MLABCELL_X25_Y61_N51
-\ConfigureCodec|Selector12~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector12~0_combout\ = ( \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( \ConfigureCodec|NextStateAndOutput~2_combout\ & ( (!\ConfigureCodec|Selector11~1_combout\ & (!\ConfigureCodec|R.BitCtr\(0) $ 
--- (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\))) ) ) ) # ( !\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( \ConfigureCodec|NextStateAndOutput~2_combout\ & ( !\ConfigureCodec|Selector11~1_combout\ ) ) ) # ( \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ 
--- & ( !\ConfigureCodec|NextStateAndOutput~2_combout\ & ( !\ConfigureCodec|Selector11~1_combout\ ) ) ) # ( !\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( !\ConfigureCodec|NextStateAndOutput~2_combout\ & ( !\ConfigureCodec|Selector11~1_combout\ ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1111000011110000111100001111000011110000111100000011000011000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	datac => \ConfigureCodec|ALT_INV_Selector11~1_combout\,
-	datad => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
-	datae => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
-	combout => \ConfigureCodec|Selector12~0_combout\);
-
--- Location: FF_X22_Y61_N56
-\ConfigureCodec|R.BitCtr[1]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector12~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.BitCtr\(1));
-
--- Location: LABCELL_X22_Y61_N9
-\ConfigureCodec|Selector15~6\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector15~6_combout\ = ( !\ConfigureCodec|R.BitCtr\(0) & ( !\ConfigureCodec|R.BitCtr\(1) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1010101010101010101010101010101000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.BitCtr\(1),
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	combout => \ConfigureCodec|Selector15~6_combout\);
-
--- Location: LABCELL_X24_Y61_N45
-\ConfigureCodec|Selector2~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector2~0_combout\ = ( \ConfigureCodec|NextR~9_combout\ & ( (\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ & \GenStrobeI2C|oStrobe~DUPLICATE_q\) ) ) # ( !\ConfigureCodec|NextR~9_combout\ & ( 
--- ((\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ & \GenStrobeI2C|oStrobe~DUPLICATE_q\)) # (\ConfigureCodec|R.FrameState.Address~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000010111111111000001011111111100000101000001010000010100000101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
-	datac => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Address~q\,
-	dataf => \ConfigureCodec|ALT_INV_NextR~9_combout\,
-	combout => \ConfigureCodec|Selector2~0_combout\);
-
--- Location: FF_X24_Y61_N47
-\ConfigureCodec|R.FrameState.Address\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector2~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.Address~q\);
-
--- Location: LABCELL_X23_Y61_N24
+-- Location: LABCELL_X17_Y74_N54
 \ConfigureCodec|Selector10~0\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \ConfigureCodec|Selector10~0_combout\ = ( !\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ( !\ConfigureCodec|R.FrameState.Address~q\ ) )
@@ -4130,524 +3806,15 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1111000011110000111100001111000000000000000000000000000000000000",
+	lut_mask => "1111111100000000111111110000000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Address~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Address~q\,
 	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Data2~DUPLICATE_q\,
 	combout => \ConfigureCodec|Selector10~0_combout\);
 
--- Location: LABCELL_X22_Y61_N18
-\ConfigureCodec|Selector11~2\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector11~2_combout\ = ( \ConfigureCodec|NextStateAndOutput~2_combout\ & ( \ConfigureCodec|R.BitCtr\(3) & ( (!\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & (!\ConfigureCodec|Selector10~0_combout\ & 
--- (!\ConfigureCodec|Selector15~6_combout\ $ (!\ConfigureCodec|R.BitCtr\(2))))) # (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & (!\ConfigureCodec|Selector15~6_combout\ $ ((!\ConfigureCodec|R.BitCtr\(2))))) ) ) ) # ( 
--- !\ConfigureCodec|NextStateAndOutput~2_combout\ & ( \ConfigureCodec|R.BitCtr\(3) & ( (\ConfigureCodec|R.BitCtr\(2) & !\ConfigureCodec|Selector10~0_combout\) ) ) ) # ( \ConfigureCodec|NextStateAndOutput~2_combout\ & ( !\ConfigureCodec|R.BitCtr\(3) & ( 
--- (!\ConfigureCodec|Selector15~6_combout\ & (\ConfigureCodec|R.BitCtr\(2) & ((!\ConfigureCodec|Selector10~0_combout\) # (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)))) # (\ConfigureCodec|Selector15~6_combout\ & (!\ConfigureCodec|R.BitCtr\(2) & 
--- (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\))) ) ) ) # ( !\ConfigureCodec|NextStateAndOutput~2_combout\ & ( !\ConfigureCodec|R.BitCtr\(3) & ( (\ConfigureCodec|R.BitCtr\(2) & !\ConfigureCodec|Selector10~0_combout\) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0011001100000000001001100000011000110011000000000110011000000110",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_Selector15~6_combout\,
-	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_Selector10~0_combout\,
-	datae => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	combout => \ConfigureCodec|Selector11~2_combout\);
-
--- Location: LABCELL_X23_Y61_N36
-\ConfigureCodec|Selector11~3\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector11~3_combout\ = ( \ConfigureCodec|R.BitCtr\(2) & ( \ConfigureCodec|Selector11~2_combout\ ) ) # ( !\ConfigureCodec|R.BitCtr\(2) & ( \ConfigureCodec|Selector11~2_combout\ ) ) # ( \ConfigureCodec|R.BitCtr\(2) & ( 
--- !\ConfigureCodec|Selector11~2_combout\ & ( (!\ConfigureCodec|Selector11~0_combout\) # (\ConfigureCodec|Selector11~1_combout\) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(2) & ( !\ConfigureCodec|Selector11~2_combout\ & ( \ConfigureCodec|Selector11~1_combout\ ) ) 
--- )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000111100001111110011111100111111111111111111111111111111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_Selector11~0_combout\,
-	datac => \ConfigureCodec|ALT_INV_Selector11~1_combout\,
-	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
-	dataf => \ConfigureCodec|ALT_INV_Selector11~2_combout\,
-	combout => \ConfigureCodec|Selector11~3_combout\);
-
--- Location: FF_X23_Y61_N37
-\ConfigureCodec|R.BitCtr[2]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector11~3_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.BitCtr\(2));
-
--- Location: LABCELL_X24_Y61_N30
-\ConfigureCodec|NextR~11\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|NextR~11_combout\ = ( \GenStrobeI2C|oStrobe~DUPLICATE_q\ & ( \ConfigureCodec|R.BitCtr\(2) & ( !\ConfigureCodec|R.Sclk~DUPLICATE_q\ ) ) ) # ( \GenStrobeI2C|oStrobe~DUPLICATE_q\ & ( !\ConfigureCodec|R.BitCtr\(2) & ( 
--- (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (((\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\) # (\ConfigureCodec|R.BitCtr\(3))) # (\ConfigureCodec|R.BitCtr\(0)))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000011111110000000000000000000000001111111100000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datae => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
-	combout => \ConfigureCodec|NextR~11_combout\);
-
--- Location: LABCELL_X22_Y61_N54
-\ConfigureCodec|Selector12~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector12~1_combout\ = ( \ConfigureCodec|R.BitCtr\(1) & ( \ConfigureCodec|Selector10~0_combout\ & ( (!\ConfigureCodec|Selector11~0_combout\) # (!\ConfigureCodec|Selector12~0_combout\) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(1) & ( 
--- \ConfigureCodec|Selector10~0_combout\ & ( !\ConfigureCodec|Selector12~0_combout\ ) ) ) # ( \ConfigureCodec|R.BitCtr\(1) & ( !\ConfigureCodec|Selector10~0_combout\ & ( ((!\ConfigureCodec|Selector11~0_combout\) # ((!\ConfigureCodec|Selector12~0_combout\) # 
--- (!\ConfigureCodec|NextR~11_combout\))) # (\ConfigureCodec|R.BitCtr\(0)) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(1) & ( !\ConfigureCodec|Selector10~0_combout\ & ( (!\ConfigureCodec|Selector12~0_combout\) # ((!\ConfigureCodec|R.BitCtr\(0) & 
--- \ConfigureCodec|NextR~11_combout\)) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1111000011111010111111111111110111110000111100001111110011111100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	datab => \ConfigureCodec|ALT_INV_Selector11~0_combout\,
-	datac => \ConfigureCodec|ALT_INV_Selector12~0_combout\,
-	datad => \ConfigureCodec|ALT_INV_NextR~11_combout\,
-	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(1),
-	dataf => \ConfigureCodec|ALT_INV_Selector10~0_combout\,
-	combout => \ConfigureCodec|Selector12~1_combout\);
-
--- Location: FF_X22_Y61_N55
-\ConfigureCodec|R.BitCtr[1]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector12~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\);
-
--- Location: LABCELL_X24_Y61_N42
-\ConfigureCodec|Add1~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Add1~0_combout\ = ( !\ConfigureCodec|R.BitCtr\(2) & ( (!\ConfigureCodec|R.BitCtr\(0) & !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1111000000000000111100000000000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	datad => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
-	combout => \ConfigureCodec|Add1~0_combout\);
-
--- Location: LABCELL_X22_Y61_N36
-\ConfigureCodec|Selector10~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector10~1_combout\ = ( \ConfigureCodec|NextStateAndOutput~2_combout\ & ( !\ConfigureCodec|Selector5~0_combout\ & ( (!\ConfigureCodec|Add1~0_combout\ & ((!\ConfigureCodec|R.BitCtr\(3)) # ((\ConfigureCodec|Selector10~0_combout\ & 
--- !\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)))) # (\ConfigureCodec|Add1~0_combout\ & (((!\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\) # (\ConfigureCodec|R.BitCtr\(3))))) ) ) ) # ( !\ConfigureCodec|NextStateAndOutput~2_combout\ & ( 
--- !\ConfigureCodec|Selector5~0_combout\ & ( (!\ConfigureCodec|R.BitCtr\(3)) # (\ConfigureCodec|Selector10~0_combout\) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1111111100110011111110100111010100000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_Add1~0_combout\,
-	datab => \ConfigureCodec|ALT_INV_Selector10~0_combout\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	datae => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
-	dataf => \ConfigureCodec|ALT_INV_Selector5~0_combout\,
-	combout => \ConfigureCodec|Selector10~1_combout\);
-
--- Location: LABCELL_X22_Y61_N6
-\ConfigureCodec|Selector1~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector1~1_combout\ = ( \ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ & ( !\GenStrobeI2C|oStrobe~DUPLICATE_q\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011110000111100001111000011110000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
-	combout => \ConfigureCodec|Selector1~1_combout\);
-
--- Location: LABCELL_X22_Y61_N0
-\ConfigureCodec|Selector10~2\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector10~2_combout\ = ( \ConfigureCodec|R.BitCtr\(3) & ( \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( (!\ConfigureCodec|Selector10~1_combout\) # ((!\ConfigureCodec|NextStateAndOutput~2_combout\) # 
--- ((!\ConfigureCodec|Selector13~0_combout\) # (\ConfigureCodec|Selector1~1_combout\))) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(3) & ( \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( !\ConfigureCodec|Selector10~1_combout\ ) ) ) # ( 
--- \ConfigureCodec|R.BitCtr\(3) & ( !\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( (!\ConfigureCodec|Selector10~1_combout\) # ((!\ConfigureCodec|Selector13~0_combout\) # (\ConfigureCodec|Selector1~1_combout\)) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(3) & 
--- ( !\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( !\ConfigureCodec|Selector10~1_combout\ ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1010101010101010111110101111111110101010101010101111111011111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_Selector10~1_combout\,
-	datab => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
-	datac => \ConfigureCodec|ALT_INV_Selector13~0_combout\,
-	datad => \ConfigureCodec|ALT_INV_Selector1~1_combout\,
-	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
-	combout => \ConfigureCodec|Selector10~2_combout\);
-
--- Location: FF_X22_Y61_N1
-\ConfigureCodec|R.BitCtr[3]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector10~2_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.BitCtr\(3));
-
--- Location: LABCELL_X24_Y61_N12
-\ConfigureCodec|NextR~9\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|NextR~9_combout\ = ( \GenStrobeI2C|oStrobe~DUPLICATE_q\ & ( !\ConfigureCodec|R.BitCtr\(2) & ( (!\ConfigureCodec|R.BitCtr\(0) & (!\ConfigureCodec|R.BitCtr\(3) & (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & 
--- !\ConfigureCodec|R.Sclk~DUPLICATE_q\))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000100000000000000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datae => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
-	combout => \ConfigureCodec|NextR~9_combout\);
-
--- Location: FF_X24_Y61_N59
-\ConfigureCodec|R.FrameState.RWBit\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector3~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.RWBit~q\);
-
--- Location: LABCELL_X24_Y61_N57
-\ConfigureCodec|Selector3~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector3~0_combout\ = ( \ConfigureCodec|NextStateAndOutput~2_combout\ & ( (\ConfigureCodec|NextR~9_combout\ & \ConfigureCodec|R.FrameState.Address~q\) ) ) # ( !\ConfigureCodec|NextStateAndOutput~2_combout\ & ( 
--- ((\ConfigureCodec|NextR~9_combout\ & \ConfigureCodec|R.FrameState.Address~q\)) # (\ConfigureCodec|R.FrameState.RWBit~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000001111111111000000111111111100000011000000110000001100000011",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_NextR~9_combout\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Address~q\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.RWBit~q\,
-	dataf => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
-	combout => \ConfigureCodec|Selector3~0_combout\);
-
--- Location: FF_X24_Y61_N58
-\ConfigureCodec|R.FrameState.RWBit~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector3~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\);
-
--- Location: LABCELL_X23_Y61_N6
-\ConfigureCodec|Selector4~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector4~0_combout\ = ( \ConfigureCodec|R.FrameState.Ack1~q\ & ( \ConfigureCodec|R.AckError~q\ & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\) # ((!\GenStrobeI2C|oStrobe~DUPLICATE_q\) # (!\ioI2cSdin~input_o\)) ) ) ) # ( 
--- !\ConfigureCodec|R.FrameState.Ack1~q\ & ( \ConfigureCodec|R.AckError~q\ & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\ & \GenStrobeI2C|oStrobe~DUPLICATE_q\)) ) ) ) # ( \ConfigureCodec|R.FrameState.Ack1~q\ & ( 
--- !\ConfigureCodec|R.AckError~q\ & ( (!\GenStrobeI2C|oStrobe~DUPLICATE_q\) # ((!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\)) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ((!\ioI2cSdin~input_o\)))) ) ) ) # ( 
--- !\ConfigureCodec|R.FrameState.Ack1~q\ & ( !\ConfigureCodec|R.AckError~q\ & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\ & \GenStrobeI2C|oStrobe~DUPLICATE_q\)) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000001000000010111101111111001000000010000000101111111111111010",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.RWBit~DUPLICATE_q\,
-	datac => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	datad => \ALT_INV_ioI2cSdin~input_o\,
-	datae => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.AckError~q\,
-	combout => \ConfigureCodec|Selector4~0_combout\);
-
--- Location: FF_X23_Y61_N8
-\ConfigureCodec|R.FrameState.Ack1\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector4~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.Ack1~q\);
-
--- Location: LABCELL_X23_Y61_N54
-\ConfigureCodec|Selector13~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector13~1_combout\ = ( \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( \ConfigureCodec|R.BitCtr\(0) & ( ((!\GenStrobeI2C|oStrobe~DUPLICATE_q\) # ((\ConfigureCodec|R.FrameState.Ack1~q\ & !\ConfigureCodec|R.AckError~q\))) # 
--- (\ConfigureCodec|R.Sclk~DUPLICATE_q\) ) ) ) # ( !\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( \ConfigureCodec|R.BitCtr\(0) & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ConfigureCodec|R.FrameState.Ack1~q\ & (\GenStrobeI2C|oStrobe~DUPLICATE_q\ & 
--- !\ConfigureCodec|R.AckError~q\))) ) ) ) # ( \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( !\ConfigureCodec|R.BitCtr\(0) & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & \GenStrobeI2C|oStrobe~DUPLICATE_q\) ) ) ) # ( 
--- !\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ( !\ConfigureCodec|R.BitCtr\(0) & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ConfigureCodec|R.FrameState.Ack1~q\ & (\GenStrobeI2C|oStrobe~DUPLICATE_q\ & !\ConfigureCodec|R.AckError~q\))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000001000000000000010100000101000000010000000001111011111110101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
-	datac => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.AckError~q\,
-	datae => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	combout => \ConfigureCodec|Selector13~1_combout\);
-
--- Location: LABCELL_X22_Y61_N48
-\ConfigureCodec|Selector13~2\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector13~2_combout\ = ( \ConfigureCodec|R.BitCtr\(0) & ( \ConfigureCodec|Selector10~0_combout\ & ( ((!\ConfigureCodec|Selector13~0_combout\) # (\ConfigureCodec|Selector1~1_combout\)) # (\ConfigureCodec|Selector13~1_combout\) ) ) ) # ( 
--- !\ConfigureCodec|R.BitCtr\(0) & ( \ConfigureCodec|Selector10~0_combout\ & ( \ConfigureCodec|Selector13~1_combout\ ) ) ) # ( \ConfigureCodec|R.BitCtr\(0) & ( !\ConfigureCodec|Selector10~0_combout\ & ( ((!\ConfigureCodec|NextR~11_combout\) # 
--- ((!\ConfigureCodec|Selector13~0_combout\) # (\ConfigureCodec|Selector1~1_combout\))) # (\ConfigureCodec|Selector13~1_combout\) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(0) & ( !\ConfigureCodec|Selector10~0_combout\ & ( (\ConfigureCodec|NextR~11_combout\) # 
--- (\ConfigureCodec|Selector13~1_combout\) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0111011101110111111111011111111101010101010101011111010111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_Selector13~1_combout\,
-	datab => \ConfigureCodec|ALT_INV_NextR~11_combout\,
-	datac => \ConfigureCodec|ALT_INV_Selector13~0_combout\,
-	datad => \ConfigureCodec|ALT_INV_Selector1~1_combout\,
-	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	dataf => \ConfigureCodec|ALT_INV_Selector10~0_combout\,
-	combout => \ConfigureCodec|Selector13~2_combout\);
-
--- Location: FF_X22_Y61_N50
-\ConfigureCodec|R.BitCtr[0]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector13~2_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.BitCtr\(0));
-
--- Location: LABCELL_X24_Y61_N24
-\ConfigureCodec|NextR~10\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|NextR~10_combout\ = ( \GenStrobeI2C|oStrobe~DUPLICATE_q\ & ( !\ConfigureCodec|R.BitCtr\(2) & ( (!\ConfigureCodec|R.BitCtr\(0) & (\ConfigureCodec|R.BitCtr\(3) & (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & 
--- !\ConfigureCodec|R.Sclk~DUPLICATE_q\))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000001000000000000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datae => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
-	combout => \ConfigureCodec|NextR~10_combout\);
-
--- Location: LABCELL_X23_Y61_N15
-\ConfigureCodec|Selector6~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector6~0_combout\ = ( \ConfigureCodec|NextR~8_combout\ & ( (\ConfigureCodec|NextR~10_combout\ & \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\) ) ) # ( !\ConfigureCodec|NextR~8_combout\ & ( ((\ConfigureCodec|NextR~10_combout\ & 
--- \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)) # (\ConfigureCodec|R.FrameState.Ack2~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0011001100111111001100110011111100000000000011110000000000001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Ack2~q\,
-	datac => \ConfigureCodec|ALT_INV_NextR~10_combout\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_NextR~8_combout\,
-	combout => \ConfigureCodec|Selector6~0_combout\);
-
--- Location: FF_X23_Y61_N17
-\ConfigureCodec|R.FrameState.Ack2\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector6~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.Ack2~q\);
-
--- Location: LABCELL_X23_Y61_N33
-\ConfigureCodec|Selector16~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector16~0_combout\ = ( !\ConfigureCodec|R.FrameState.Ack1~q\ & ( (!\ConfigureCodec|R.FrameState.Ack2~q\ & !\ConfigureCodec|R.FrameState.Ack3~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1111000000000000111100000000000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Ack2~q\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Ack3~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
-	combout => \ConfigureCodec|Selector16~0_combout\);
-
--- Location: LABCELL_X23_Y61_N48
-\ConfigureCodec|Selector16~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector16~1_combout\ = ( !\ConfigureCodec|Selector16~0_combout\ & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (!\ConfigureCodec|R.Configured~0_combout\ & (((\ConfigureCodec|R.AckError~q\))))) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & 
--- ((!\GenStrobeI2C|oStrobe~DUPLICATE_q\ & (!\ConfigureCodec|R.Configured~0_combout\ & ((\ConfigureCodec|R.AckError~q\)))) # (\GenStrobeI2C|oStrobe~DUPLICATE_q\ & (((\ioI2cSdin~input_o\)))))) ) ) # ( \ConfigureCodec|Selector16~0_combout\ & ( 
--- ((!\ConfigureCodec|R.Configured~0_combout\ & (!\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ & ((\ConfigureCodec|R.AckError~q\))))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "on",
-	lut_mask => "0000000000000101000000000000000011001000110011011100000011000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datab => \ConfigureCodec|ALT_INV_R.Configured~0_combout\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
-	datad => \ALT_INV_ioI2cSdin~input_o\,
-	datae => \ConfigureCodec|ALT_INV_Selector16~0_combout\,
-	dataf => \ConfigureCodec|ALT_INV_R.AckError~q\,
-	datag => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	combout => \ConfigureCodec|Selector16~1_combout\);
-
--- Location: FF_X23_Y61_N50
-\ConfigureCodec|R.AckError\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector16~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.AckError~q\);
-
--- Location: LABCELL_X23_Y61_N21
-\ConfigureCodec|Selector9~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector9~0_combout\ = ( \ConfigureCodec|R.FrameState.Ack3~q\ & ( (!\ConfigureCodec|NextStateAndOutput~2_combout\ & ((\ConfigureCodec|R.FrameState.Stop~q\))) # (\ConfigureCodec|NextStateAndOutput~2_combout\ & 
--- (!\ConfigureCodec|R.AckError~q\)) ) ) # ( !\ConfigureCodec|R.FrameState.Ack3~q\ & ( (!\ConfigureCodec|NextStateAndOutput~2_combout\ & \ConfigureCodec|R.FrameState.Stop~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000011110000000000001111000000001100111111000000110011111100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.AckError~q\,
-	datac => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Ack3~q\,
-	combout => \ConfigureCodec|Selector9~0_combout\);
-
--- Location: FF_X23_Y61_N22
+-- Location: FF_X17_Y74_N47
 \ConfigureCodec|R.FrameState.Stop\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -4662,64 +3829,898 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.FrameState.Stop~q\);
 
--- Location: LABCELL_X22_Y60_N21
+-- Location: LABCELL_X17_Y74_N0
+\ConfigureCodec|Selector13~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector13~0_combout\ = ( !\ConfigureCodec|R.FrameState.Stop~q\ & ( \ConfigureCodec|R.FrameState.Idle~q\ & ( (!\ConfigureCodec|R.FrameState.Ack1~q\ & (!\ConfigureCodec|R.FrameState.RWBit~q\ & (!\ConfigureCodec|R.FrameState.Ack2~q\ & 
+-- !\ConfigureCodec|R.FrameState.Ack3~q\))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000010000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
+	datab => \ConfigureCodec|ALT_INV_R.FrameState.RWBit~q\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Ack2~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Ack3~q\,
+	datae => \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
+	combout => \ConfigureCodec|Selector13~0_combout\);
+
+-- Location: LABCELL_X17_Y74_N6
+\ConfigureCodec|Selector5~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector5~0_combout\ = ( \ConfigureCodec|R.FrameState.Ack1~q\ & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (!\ConfigureCodec|R.AckError~q\ & \GenStrobeI2C|oStrobe~q\)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000000000110000000000000011000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	datac => \ConfigureCodec|ALT_INV_R.AckError~q\,
+	datad => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
+	combout => \ConfigureCodec|Selector5~0_combout\);
+
+-- Location: FF_X18_Y74_N38
+\ConfigureCodec|R.BitCtr[1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector12~1_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.BitCtr\(1));
+
+-- Location: LABCELL_X18_Y74_N9
+\ConfigureCodec|Selector12~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector12~0_combout\ = ( \ConfigureCodec|R.BitCtr\(0) & ( (!\ConfigureCodec|Selector11~1_combout\ & ((!\ConfigureCodec|R.BitCtr\(1)) # ((!\ConfigureCodec|NextStateAndOutput~2_combout\) # 
+-- (!\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)))) ) ) # ( !\ConfigureCodec|R.BitCtr\(0) & ( (!\ConfigureCodec|Selector11~1_combout\ & (((!\ConfigureCodec|NextStateAndOutput~2_combout\) # (!\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)) # 
+-- (\ConfigureCodec|R.BitCtr\(1)))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1100110011000100110011001100010011001100110010001100110011001000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.BitCtr\(1),
+	datab => \ConfigureCodec|ALT_INV_Selector11~1_combout\,
+	datac => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	combout => \ConfigureCodec|Selector12~0_combout\);
+
+-- Location: LABCELL_X18_Y74_N12
+\ConfigureCodec|Selector11~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector11~0_combout\ = ( \ConfigureCodec|Selector13~0_combout\ & ( (!\ConfigureCodec|R.FrameState.Start~q\ & ((!\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\) # (\ConfigureCodec|NextStateAndOutput~2_combout\))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011110011000000001111001100000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Start~q\,
+	dataf => \ConfigureCodec|ALT_INV_Selector13~0_combout\,
+	combout => \ConfigureCodec|Selector11~0_combout\);
+
+-- Location: LABCELL_X18_Y74_N36
+\ConfigureCodec|Selector12~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector12~1_combout\ = ( \ConfigureCodec|R.BitCtr\(1) & ( \ConfigureCodec|NextR~11_combout\ & ( (!\ConfigureCodec|Selector12~0_combout\) # ((!\ConfigureCodec|Selector11~0_combout\) # ((\ConfigureCodec|R.BitCtr\(0) & 
+-- !\ConfigureCodec|Selector10~0_combout\))) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(1) & ( \ConfigureCodec|NextR~11_combout\ & ( (!\ConfigureCodec|Selector12~0_combout\) # ((!\ConfigureCodec|R.BitCtr\(0) & !\ConfigureCodec|Selector10~0_combout\)) ) ) ) # ( 
+-- \ConfigureCodec|R.BitCtr\(1) & ( !\ConfigureCodec|NextR~11_combout\ & ( (!\ConfigureCodec|Selector12~0_combout\) # ((!\ConfigureCodec|Selector10~0_combout\) # (!\ConfigureCodec|Selector11~0_combout\)) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(1) & ( 
+-- !\ConfigureCodec|NextR~11_combout\ & ( !\ConfigureCodec|Selector12~0_combout\ ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1010101010101010111111111111101011101010111010101111111110111010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_Selector12~0_combout\,
+	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	datac => \ConfigureCodec|ALT_INV_Selector10~0_combout\,
+	datad => \ConfigureCodec|ALT_INV_Selector11~0_combout\,
+	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(1),
+	dataf => \ConfigureCodec|ALT_INV_NextR~11_combout\,
+	combout => \ConfigureCodec|Selector12~1_combout\);
+
+-- Location: FF_X18_Y74_N37
+\ConfigureCodec|R.BitCtr[1]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector12~1_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\);
+
+-- Location: LABCELL_X18_Y73_N9
+\ConfigureCodec|Add1~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Add1~0_combout\ = ( !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\ & !\ConfigureCodec|R.BitCtr\(0)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1010101000000000101010100000000000000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.BitCtr[2]~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
+	combout => \ConfigureCodec|Add1~0_combout\);
+
+-- Location: LABCELL_X17_Y74_N30
+\ConfigureCodec|Selector10~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector10~1_combout\ = ( \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( \ConfigureCodec|Add1~0_combout\ & ( (!\ConfigureCodec|Selector5~0_combout\ & ((\ConfigureCodec|NextStateAndOutput~2_combout\) # 
+-- (\ConfigureCodec|Selector10~0_combout\))) ) ) ) # ( !\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( \ConfigureCodec|Add1~0_combout\ & ( (!\ConfigureCodec|Selector5~0_combout\ & ((!\ConfigureCodec|NextStateAndOutput~2_combout\) # 
+-- (!\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\))) ) ) ) # ( \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( !\ConfigureCodec|Add1~0_combout\ & ( (\ConfigureCodec|Selector10~0_combout\ & (!\ConfigureCodec|Selector5~0_combout\ & 
+-- ((!\ConfigureCodec|NextStateAndOutput~2_combout\) # (!\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)))) ) ) ) # ( !\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( !\ConfigureCodec|Add1~0_combout\ & ( !\ConfigureCodec|Selector5~0_combout\ ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1100110011001100010001000100000011001100110000000100110001001100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_Selector10~0_combout\,
+	datab => \ConfigureCodec|ALT_INV_Selector5~0_combout\,
+	datac => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
+	dataf => \ConfigureCodec|ALT_INV_Add1~0_combout\,
+	combout => \ConfigureCodec|Selector10~1_combout\);
+
+-- Location: FF_X18_Y74_N49
+\ConfigureCodec|R.BitCtr[3]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector10~2_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.BitCtr\(3));
+
+-- Location: LABCELL_X19_Y74_N6
+\ConfigureCodec|Selector1~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector1~1_combout\ = (!\GenStrobeI2C|oStrobe~q\ & \ConfigureCodec|R.FrameState.Start~DUPLICATE_q\)
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000101000001010000010100000101000001010000010100000101000001010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
+	combout => \ConfigureCodec|Selector1~1_combout\);
+
+-- Location: LABCELL_X18_Y74_N48
+\ConfigureCodec|Selector10~2\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector10~2_combout\ = ( \ConfigureCodec|R.BitCtr\(3) & ( \ConfigureCodec|Selector1~1_combout\ ) ) # ( !\ConfigureCodec|R.BitCtr\(3) & ( \ConfigureCodec|Selector1~1_combout\ & ( !\ConfigureCodec|Selector10~1_combout\ ) ) ) # ( 
+-- \ConfigureCodec|R.BitCtr\(3) & ( !\ConfigureCodec|Selector1~1_combout\ & ( (!\ConfigureCodec|Selector10~1_combout\) # ((!\ConfigureCodec|Selector13~0_combout\) # ((\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & 
+-- !\ConfigureCodec|NextStateAndOutput~2_combout\))) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(3) & ( !\ConfigureCodec|Selector1~1_combout\ & ( !\ConfigureCodec|Selector10~1_combout\ ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1111000011110000111111111111010011110000111100001111111111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
+	datac => \ConfigureCodec|ALT_INV_Selector10~1_combout\,
+	datad => \ConfigureCodec|ALT_INV_Selector13~0_combout\,
+	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
+	dataf => \ConfigureCodec|ALT_INV_Selector1~1_combout\,
+	combout => \ConfigureCodec|Selector10~2_combout\);
+
+-- Location: FF_X18_Y74_N50
+\ConfigureCodec|R.BitCtr[3]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector10~2_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\);
+
+-- Location: FF_X18_Y74_N8
+\ConfigureCodec|R.BitCtr[2]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector11~3_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.BitCtr\(2));
+
+-- Location: LABCELL_X18_Y74_N0
+\ConfigureCodec|NextR~11\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|NextR~11_combout\ = ( !\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ( \ConfigureCodec|R.BitCtr\(0) & ( \GenStrobeI2C|oStrobe~q\ ) ) ) # ( !\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ( !\ConfigureCodec|R.BitCtr\(0) & ( (\GenStrobeI2C|oStrobe~q\ & 
+-- (((\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\) # (\ConfigureCodec|R.BitCtr\(2))) # (\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000011100001111000000000000000000001111000011110000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
+	datac => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datad => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	combout => \ConfigureCodec|NextR~11_combout\);
+
+-- Location: LABCELL_X18_Y74_N18
+\ConfigureCodec|Selector13~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector13~1_combout\ = ( \ConfigureCodec|R.AckError~q\ & ( \ConfigureCodec|R.BitCtr\(0) & ( (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & ((!\GenStrobeI2C|oStrobe~q\) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\))) ) ) ) # ( 
+-- !\ConfigureCodec|R.AckError~q\ & ( \ConfigureCodec|R.BitCtr\(0) & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ((!\GenStrobeI2C|oStrobe~q\ & (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)) # (\GenStrobeI2C|oStrobe~q\ & 
+-- ((\ConfigureCodec|R.FrameState.Ack1~q\))))) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)) ) ) ) # ( \ConfigureCodec|R.AckError~q\ & ( !\ConfigureCodec|R.BitCtr\(0) & ( 
+-- (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & \GenStrobeI2C|oStrobe~q\)) ) ) ) # ( !\ConfigureCodec|R.AckError~q\ & ( !\ConfigureCodec|R.BitCtr\(0) & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & 
+-- (\GenStrobeI2C|oStrobe~q\ & ((\ConfigureCodec|R.FrameState.Ack1~q\) # (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000010000001100000001000000010001010001010111010101000101010001",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	datac => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
+	datae => \ConfigureCodec|ALT_INV_R.AckError~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	combout => \ConfigureCodec|Selector13~1_combout\);
+
+-- Location: LABCELL_X18_Y74_N42
+\ConfigureCodec|Selector13~2\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector13~2_combout\ = ( \ConfigureCodec|R.BitCtr\(0) & ( \ConfigureCodec|Selector1~1_combout\ ) ) # ( !\ConfigureCodec|R.BitCtr\(0) & ( \ConfigureCodec|Selector1~1_combout\ & ( ((!\ConfigureCodec|Selector10~0_combout\ & 
+-- \ConfigureCodec|NextR~11_combout\)) # (\ConfigureCodec|Selector13~1_combout\) ) ) ) # ( \ConfigureCodec|R.BitCtr\(0) & ( !\ConfigureCodec|Selector1~1_combout\ & ( (!\ConfigureCodec|Selector13~0_combout\) # (((!\ConfigureCodec|Selector10~0_combout\ & 
+-- !\ConfigureCodec|NextR~11_combout\)) # (\ConfigureCodec|Selector13~1_combout\)) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(0) & ( !\ConfigureCodec|Selector1~1_combout\ & ( ((!\ConfigureCodec|Selector10~0_combout\ & \ConfigureCodec|NextR~11_combout\)) # 
+-- (\ConfigureCodec|Selector13~1_combout\) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000101011111111111011001111111100001010111111111111111111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_Selector10~0_combout\,
+	datab => \ConfigureCodec|ALT_INV_Selector13~0_combout\,
+	datac => \ConfigureCodec|ALT_INV_NextR~11_combout\,
+	datad => \ConfigureCodec|ALT_INV_Selector13~1_combout\,
+	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	dataf => \ConfigureCodec|ALT_INV_Selector1~1_combout\,
+	combout => \ConfigureCodec|Selector13~2_combout\);
+
+-- Location: FF_X18_Y74_N44
+\ConfigureCodec|R.BitCtr[0]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector13~2_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.BitCtr\(0));
+
+-- Location: LABCELL_X18_Y74_N24
+\ConfigureCodec|NextR~9\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|NextR~9_combout\ = ( !\ConfigureCodec|R.BitCtr\(3) & ( !\ConfigureCodec|R.BitCtr\(2) & ( (\GenStrobeI2C|oStrobe~q\ & (!\ConfigureCodec|R.BitCtr\(0) & (!\ConfigureCodec|R.BitCtr\(1) & !\ConfigureCodec|R.Sclk~DUPLICATE_q\))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0100000000000000000000000000000000000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	datac => \ConfigureCodec|ALT_INV_R.BitCtr\(1),
+	datad => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
+	combout => \ConfigureCodec|NextR~9_combout\);
+
+-- Location: LABCELL_X17_Y74_N57
+\ConfigureCodec|Selector2~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector2~0_combout\ = ( \ConfigureCodec|NextR~9_combout\ & ( (\GenStrobeI2C|oStrobe~q\ & \ConfigureCodec|R.FrameState.Start~DUPLICATE_q\) ) ) # ( !\ConfigureCodec|NextR~9_combout\ & ( ((\GenStrobeI2C|oStrobe~q\ & 
+-- \ConfigureCodec|R.FrameState.Start~DUPLICATE_q\)) # (\ConfigureCodec|R.FrameState.Address~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000010111111111000001011111111100000101000001010000010100000101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Address~q\,
+	dataf => \ConfigureCodec|ALT_INV_NextR~9_combout\,
+	combout => \ConfigureCodec|Selector2~0_combout\);
+
+-- Location: FF_X17_Y74_N59
+\ConfigureCodec|R.FrameState.Address\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector2~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.Address~q\);
+
+-- Location: LABCELL_X17_Y74_N39
+\ConfigureCodec|Selector3~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector3~0_combout\ = ( \ConfigureCodec|NextR~9_combout\ & ( ((!\ConfigureCodec|NextStateAndOutput~2_combout\ & \ConfigureCodec|R.FrameState.RWBit~q\)) # (\ConfigureCodec|R.FrameState.Address~q\) ) ) # ( !\ConfigureCodec|NextR~9_combout\ 
+-- & ( (!\ConfigureCodec|NextStateAndOutput~2_combout\ & \ConfigureCodec|R.FrameState.RWBit~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000010101010000000001010101000001111101011110000111110101111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Address~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.RWBit~q\,
+	dataf => \ConfigureCodec|ALT_INV_NextR~9_combout\,
+	combout => \ConfigureCodec|Selector3~0_combout\);
+
+-- Location: FF_X17_Y74_N41
+\ConfigureCodec|R.FrameState.RWBit\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector3~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.RWBit~q\);
+
+-- Location: LABCELL_X17_Y74_N24
+\ConfigureCodec|Selector4~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector4~0_combout\ = ( \ConfigureCodec|R.FrameState.Ack1~q\ & ( \ConfigureCodec|R.AckError~q\ & ( (!\GenStrobeI2C|oStrobe~q\) # ((!\ioI2cSdin~input_o\) # (!\ConfigureCodec|R.Sclk~DUPLICATE_q\)) ) ) ) # ( 
+-- !\ConfigureCodec|R.FrameState.Ack1~q\ & ( \ConfigureCodec|R.AckError~q\ & ( (\GenStrobeI2C|oStrobe~q\ & (\ConfigureCodec|R.FrameState.RWBit~q\ & !\ConfigureCodec|R.Sclk~DUPLICATE_q\)) ) ) ) # ( \ConfigureCodec|R.FrameState.Ack1~q\ & ( 
+-- !\ConfigureCodec|R.AckError~q\ & ( (!\GenStrobeI2C|oStrobe~q\) # ((!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ConfigureCodec|R.FrameState.RWBit~q\)) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ((!\ioI2cSdin~input_o\)))) ) ) ) # ( 
+-- !\ConfigureCodec|R.FrameState.Ack1~q\ & ( !\ConfigureCodec|R.AckError~q\ & ( (\GenStrobeI2C|oStrobe~q\ & (\ConfigureCodec|R.FrameState.RWBit~q\ & !\ConfigureCodec|R.Sclk~DUPLICATE_q\)) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0001000100000000101110111111101000010001000000001111111111111010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datab => \ConfigureCodec|ALT_INV_R.FrameState.RWBit~q\,
+	datac => \ALT_INV_ioI2cSdin~input_o\,
+	datad => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.AckError~q\,
+	combout => \ConfigureCodec|Selector4~0_combout\);
+
+-- Location: FF_X17_Y74_N26
+\ConfigureCodec|R.FrameState.Ack1\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector4~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.Ack1~q\);
+
+-- Location: LABCELL_X17_Y74_N42
+\ConfigureCodec|Selector11~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector11~1_combout\ = ( \GenStrobeI2C|oStrobe~q\ & ( ((!\ConfigureCodec|R.AckError~q\ & (\ConfigureCodec|R.FrameState.Ack1~q\ & !\ConfigureCodec|R.Sclk~DUPLICATE_q\))) # (\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000111011001100110011101100110011",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.AckError~q\,
+	datab => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
+	datad => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	dataf => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	combout => \ConfigureCodec|Selector11~1_combout\);
+
+-- Location: LABCELL_X18_Y74_N15
+\ConfigureCodec|Selector15~6\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector15~6_combout\ = ( !\ConfigureCodec|R.BitCtr\(0) & ( !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1111000011110000111100001111000000000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	combout => \ConfigureCodec|Selector15~6_combout\);
+
+-- Location: LABCELL_X18_Y74_N54
+\ConfigureCodec|Selector11~2\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector11~2_combout\ = ( \ConfigureCodec|NextStateAndOutput~2_combout\ & ( \ConfigureCodec|Selector10~0_combout\ & ( (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & (!\ConfigureCodec|Selector15~6_combout\ $ 
+-- (!\ConfigureCodec|R.BitCtr\(2)))) ) ) ) # ( \ConfigureCodec|NextStateAndOutput~2_combout\ & ( !\ConfigureCodec|Selector10~0_combout\ & ( (!\ConfigureCodec|Selector15~6_combout\ & (((\ConfigureCodec|R.BitCtr\(2))))) # (\ConfigureCodec|Selector15~6_combout\ 
+-- & (!\ConfigureCodec|R.BitCtr\(2) & ((\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\) # (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)))) ) ) ) # ( !\ConfigureCodec|NextStateAndOutput~2_combout\ & ( !\ConfigureCodec|Selector10~0_combout\ & ( 
+-- \ConfigureCodec|R.BitCtr\(2) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000011111111000100111100110000000000000000000001000101000100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_Selector15~6_combout\,
+	datac => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
+	datae => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
+	dataf => \ConfigureCodec|ALT_INV_Selector10~0_combout\,
+	combout => \ConfigureCodec|Selector11~2_combout\);
+
+-- Location: LABCELL_X18_Y74_N6
+\ConfigureCodec|Selector11~3\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector11~3_combout\ = ( \ConfigureCodec|Selector11~0_combout\ & ( (\ConfigureCodec|Selector11~2_combout\) # (\ConfigureCodec|Selector11~1_combout\) ) ) # ( !\ConfigureCodec|Selector11~0_combout\ & ( ((\ConfigureCodec|R.BitCtr\(2)) # 
+-- (\ConfigureCodec|Selector11~2_combout\)) # (\ConfigureCodec|Selector11~1_combout\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0011111111111111001111111111111100111111001111110011111100111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \ConfigureCodec|ALT_INV_Selector11~1_combout\,
+	datac => \ConfigureCodec|ALT_INV_Selector11~2_combout\,
+	datad => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
+	dataf => \ConfigureCodec|ALT_INV_Selector11~0_combout\,
+	combout => \ConfigureCodec|Selector11~3_combout\);
+
+-- Location: FF_X18_Y74_N7
+\ConfigureCodec|R.BitCtr[2]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector11~3_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\);
+
+-- Location: LABCELL_X18_Y73_N30
+\ConfigureCodec|NextR~10\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|NextR~10_combout\ = ( \GenStrobeI2C|oStrobe~q\ & ( !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\ & (\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & (!\ConfigureCodec|R.BitCtr\(0) & 
+-- !\ConfigureCodec|R.Sclk~DUPLICATE_q\))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000001000000000000000000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.BitCtr[2]~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
+	datac => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	datad => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	datae => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
+	combout => \ConfigureCodec|NextR~10_combout\);
+
+-- Location: FF_X18_Y73_N5
+\ConfigureCodec|R.FrameState.Data1\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector5~1_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.Data1~q\);
+
+-- Location: LABCELL_X18_Y73_N3
+\ConfigureCodec|Selector5~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector5~1_combout\ = ( \ConfigureCodec|Selector5~0_combout\ ) # ( !\ConfigureCodec|Selector5~0_combout\ & ( (!\ConfigureCodec|NextR~10_combout\ & \ConfigureCodec|R.FrameState.Data1~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000011001100000000001100110011111111111111111111111111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \ConfigureCodec|ALT_INV_NextR~10_combout\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data1~q\,
+	dataf => \ConfigureCodec|ALT_INV_Selector5~0_combout\,
+	combout => \ConfigureCodec|Selector5~1_combout\);
+
+-- Location: FF_X18_Y73_N4
+\ConfigureCodec|R.FrameState.Data1~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector5~1_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\);
+
+-- Location: LABCELL_X17_Y74_N12
+\ConfigureCodec|NextR~8\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|NextR~8_combout\ = ( \GenStrobeI2C|oStrobe~q\ & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (!\ConfigureCodec|R.AckError~q\)) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ((\ioI2cSdin~input_o\))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000010001011100010111000101110001011",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.AckError~q\,
+	datab => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	datac => \ALT_INV_ioI2cSdin~input_o\,
+	dataf => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	combout => \ConfigureCodec|NextR~8_combout\);
+
+-- Location: LABCELL_X17_Y74_N21
+\ConfigureCodec|Selector6~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector6~0_combout\ = ( \ConfigureCodec|NextR~8_combout\ & ( (\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & \ConfigureCodec|NextR~10_combout\) ) ) # ( !\ConfigureCodec|NextR~8_combout\ & ( 
+-- ((\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\ & \ConfigureCodec|NextR~10_combout\)) # (\ConfigureCodec|R.FrameState.Ack2~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010101011111010101010101111100000000000011110000000000001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Ack2~q\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_NextR~10_combout\,
+	dataf => \ConfigureCodec|ALT_INV_NextR~8_combout\,
+	combout => \ConfigureCodec|Selector6~0_combout\);
+
+-- Location: FF_X17_Y74_N23
+\ConfigureCodec|R.FrameState.Ack2\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector6~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.Ack2~q\);
+
+-- Location: LABCELL_X17_Y74_N18
+\ConfigureCodec|Selector7~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector7~0_combout\ = ( \ConfigureCodec|R.AckError~q\ & ( (!\ConfigureCodec|NextR~9_combout\ & \ConfigureCodec|R.FrameState.Data2~q\) ) ) # ( !\ConfigureCodec|R.AckError~q\ & ( (!\ConfigureCodec|R.FrameState.Ack2~q\ & 
+-- (!\ConfigureCodec|NextR~9_combout\ & ((\ConfigureCodec|R.FrameState.Data2~q\)))) # (\ConfigureCodec|R.FrameState.Ack2~q\ & (((!\ConfigureCodec|NextR~9_combout\ & \ConfigureCodec|R.FrameState.Data2~q\)) # (\ConfigureCodec|NextStateAndOutput~2_combout\))) ) 
+-- )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000010111001101000001011100110100000000110011000000000011001100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Ack2~q\,
+	datab => \ConfigureCodec|ALT_INV_NextR~9_combout\,
+	datac => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data2~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.AckError~q\,
+	combout => \ConfigureCodec|Selector7~0_combout\);
+
+-- Location: FF_X17_Y74_N20
+\ConfigureCodec|R.FrameState.Data2\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector7~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.Data2~q\);
+
+-- Location: LABCELL_X17_Y74_N9
+\ConfigureCodec|Selector8~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector8~0_combout\ = ( \ConfigureCodec|NextR~8_combout\ & ( (\ConfigureCodec|R.FrameState.Data2~q\ & \ConfigureCodec|NextR~9_combout\) ) ) # ( !\ConfigureCodec|NextR~8_combout\ & ( ((\ConfigureCodec|R.FrameState.Data2~q\ & 
+-- \ConfigureCodec|NextR~9_combout\)) # (\ConfigureCodec|R.FrameState.Ack3~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000010111111111000001011111111100000101000001010000010100000101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Data2~q\,
+	datac => \ConfigureCodec|ALT_INV_NextR~9_combout\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Ack3~q\,
+	dataf => \ConfigureCodec|ALT_INV_NextR~8_combout\,
+	combout => \ConfigureCodec|Selector8~0_combout\);
+
+-- Location: FF_X17_Y74_N11
+\ConfigureCodec|R.FrameState.Ack3\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector8~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.Ack3~q\);
+
+-- Location: LABCELL_X17_Y74_N15
+\ConfigureCodec|Selector16~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector16~0_combout\ = ( !\ConfigureCodec|R.FrameState.Ack1~q\ & ( (!\ConfigureCodec|R.FrameState.Ack3~q\ & !\ConfigureCodec|R.FrameState.Ack2~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1111000000000000111100000000000000000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Ack3~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Ack2~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Ack1~q\,
+	combout => \ConfigureCodec|Selector16~0_combout\);
+
+-- Location: LABCELL_X17_Y74_N48
+\ConfigureCodec|Selector16~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector16~1_combout\ = ( !\ConfigureCodec|Selector16~0_combout\ & ( (!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ((((!\ConfigureCodec|R.Configured~0_combout\ & \ConfigureCodec|R.AckError~q\))))) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & 
+-- ((!\GenStrobeI2C|oStrobe~q\ & (((!\ConfigureCodec|R.Configured~0_combout\ & \ConfigureCodec|R.AckError~q\)))) # (\GenStrobeI2C|oStrobe~q\ & (\ioI2cSdin~input_o\)))) ) ) # ( \ConfigureCodec|Selector16~0_combout\ & ( 
+-- (((!\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ & (!\ConfigureCodec|R.Configured~0_combout\ & \ConfigureCodec|R.AckError~q\)))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "on",
+	lut_mask => "0000000100000001000000000000000011111101000000011111000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ALT_INV_ioI2cSdin~input_o\,
+	datab => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_R.Configured~0_combout\,
+	datae => \ConfigureCodec|ALT_INV_Selector16~0_combout\,
+	dataf => \ConfigureCodec|ALT_INV_R.AckError~q\,
+	datag => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	combout => \ConfigureCodec|Selector16~1_combout\);
+
+-- Location: FF_X17_Y74_N50
+\ConfigureCodec|R.AckError\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector16~1_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.AckError~q\);
+
+-- Location: LABCELL_X17_Y74_N45
+\ConfigureCodec|Selector9~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector9~0_combout\ = ( \ConfigureCodec|NextStateAndOutput~2_combout\ & ( (!\ConfigureCodec|R.AckError~q\ & \ConfigureCodec|R.FrameState.Ack3~q\) ) ) # ( !\ConfigureCodec|NextStateAndOutput~2_combout\ & ( 
+-- \ConfigureCodec|R.FrameState.Stop~q\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000011111111000000001111111100001010000010100000101000001010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.AckError~q\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Ack3~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\,
+	dataf => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
+	combout => \ConfigureCodec|Selector9~0_combout\);
+
+-- Location: FF_X17_Y74_N46
+\ConfigureCodec|R.FrameState.Stop~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector9~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\);
+
+-- Location: LABCELL_X19_Y74_N9
 \ConfigureCodec|Selector0~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector0~1_combout\ = ( \ConfigureCodec|R.Sclk~q\ & ( (!\ConfigureCodec|R.FrameState.Idle~q\) # ((\GenStrobeI2C|oStrobe~q\ & \ioI2cSdin~input_o\)) ) ) # ( !\ConfigureCodec|R.Sclk~q\ & ( (!\ConfigureCodec|R.FrameState.Idle~q\ & 
--- ((!\GenStrobeI2C|oStrobe~q\) # (\ConfigureCodec|R.AckError~q\))) ) )
+-- \ConfigureCodec|Selector0~1_combout\ = ( \ConfigureCodec|R.AckError~q\ & ( (!\ConfigureCodec|R.FrameState.Idle~q\) # ((\GenStrobeI2C|oStrobe~q\ & (\ioI2cSdin~input_o\ & \ConfigureCodec|R.Sclk~q\))) ) ) # ( !\ConfigureCodec|R.AckError~q\ & ( 
+-- (!\GenStrobeI2C|oStrobe~q\ & (((!\ConfigureCodec|R.FrameState.Idle~q\)))) # (\GenStrobeI2C|oStrobe~q\ & (\ConfigureCodec|R.Sclk~q\ & ((!\ConfigureCodec|R.FrameState.Idle~q\) # (\ioI2cSdin~input_o\)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1000100011001100100010001100110011001101110011011100110111001101",
+	lut_mask => "1010000011110001101000001111000111110000111100011111000011110001",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
 	dataa => \GenStrobeI2C|ALT_INV_oStrobe~q\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
-	datac => \ALT_INV_ioI2cSdin~input_o\,
-	datad => \ConfigureCodec|ALT_INV_R.AckError~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.Sclk~q\,
+	datab => \ALT_INV_ioI2cSdin~input_o\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
+	datad => \ConfigureCodec|ALT_INV_R.Sclk~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.AckError~q\,
 	combout => \ConfigureCodec|Selector0~1_combout\);
 
--- Location: LABCELL_X22_Y60_N18
+-- Location: LABCELL_X19_Y74_N0
 \ConfigureCodec|Selector0~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector0~0_combout\ = ( \ConfigureCodec|R.Activity~q\ & ( (!\GenStrobeI2C|oStrobe~q\ & !\ConfigureCodec|R.FrameState.Idle~q\) ) ) # ( !\ConfigureCodec|R.Activity~q\ & ( !\ConfigureCodec|R.FrameState.Idle~q\ ) )
+-- \ConfigureCodec|Selector0~0_combout\ = ( \ConfigureCodec|R.Activity~q\ & ( (!\ConfigureCodec|R.FrameState.Idle~q\ & !\GenStrobeI2C|oStrobe~q\) ) ) # ( !\ConfigureCodec|R.Activity~q\ & ( !\ConfigureCodec|R.FrameState.Idle~q\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1100110011001100110011001100110010001000100010001000100010001000",
+	lut_mask => "1010101010101010101010101010101010001000100010001000100010001000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \GenStrobeI2C|ALT_INV_oStrobe~q\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
+	datab => \GenStrobeI2C|ALT_INV_oStrobe~q\,
 	dataf => \ConfigureCodec|ALT_INV_R.Activity~q\,
 	combout => \ConfigureCodec|Selector0~0_combout\);
 
--- Location: LABCELL_X22_Y60_N30
+-- Location: LABCELL_X19_Y74_N48
 \ConfigureCodec|Selector0~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector0~2_combout\ = ( !\ConfigureCodec|Selector0~0_combout\ & ( (!\ConfigureCodec|R.FrameState.Stop~q\ & (((!\ConfigureCodec|Selector0~1_combout\) # (\ConfigureCodec|Selector16~0_combout\)))) # (\ConfigureCodec|R.FrameState.Stop~q\ & 
--- (!\ConfigureCodec|NextStateAndOutput~2_combout\ & ((!\ConfigureCodec|Selector0~1_combout\) # (\ConfigureCodec|Selector16~0_combout\)))) ) )
+-- \ConfigureCodec|Selector0~2_combout\ = ( \ConfigureCodec|Selector16~0_combout\ & ( (!\ConfigureCodec|Selector0~0_combout\ & ((!\ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\) # (!\ConfigureCodec|NextStateAndOutput~2_combout\))) ) ) # ( 
+-- !\ConfigureCodec|Selector16~0_combout\ & ( (!\ConfigureCodec|Selector0~1_combout\ & (!\ConfigureCodec|Selector0~0_combout\ & ((!\ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\) # (!\ConfigureCodec|NextStateAndOutput~2_combout\)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1110111000001110111011100000111000000000000000000000000000000000",
+	lut_mask => "1100100000000000110010000000000011111010000000001111101000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\,
-	datab => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
-	datac => \ConfigureCodec|ALT_INV_Selector16~0_combout\,
-	datad => \ConfigureCodec|ALT_INV_Selector0~1_combout\,
-	dataf => \ConfigureCodec|ALT_INV_Selector0~0_combout\,
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Stop~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_Selector0~1_combout\,
+	datac => \ConfigureCodec|ALT_INV_NextStateAndOutput~2_combout\,
+	datad => \ConfigureCodec|ALT_INV_Selector0~0_combout\,
+	dataf => \ConfigureCodec|ALT_INV_Selector16~0_combout\,
 	combout => \ConfigureCodec|Selector0~2_combout\);
 
--- Location: FF_X22_Y60_N32
+-- Location: FF_X19_Y74_N50
 \ConfigureCodec|R.FrameState.Idle\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -4734,63 +4735,31 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.FrameState.Idle~q\);
 
--- Location: LABCELL_X22_Y60_N51
-\ConfigureCodec|Selector1~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Selector1~0_combout\ = ( \ConfigureCodec|R.Activity~q\ & ( (!\GenStrobeI2C|oStrobe~q\ & ((\ConfigureCodec|R.FrameState.Start~q\))) # (\GenStrobeI2C|oStrobe~q\ & (!\ConfigureCodec|R.FrameState.Idle~q\)) ) ) # ( 
--- !\ConfigureCodec|R.Activity~q\ & ( (!\GenStrobeI2C|oStrobe~q\ & \ConfigureCodec|R.FrameState.Start~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000010101010000000001010101001010000111110100101000011111010",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \GenStrobeI2C|ALT_INV_oStrobe~q\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Start~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.Activity~q\,
-	combout => \ConfigureCodec|Selector1~0_combout\);
-
--- Location: FF_X22_Y60_N53
-\ConfigureCodec|R.FrameState.Start\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Selector1~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.FrameState.Start~q\);
-
--- Location: LABCELL_X22_Y60_N42
+-- Location: LABCELL_X19_Y74_N36
 \ConfigureCodec|Selector14~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector14~0_combout\ = ( \ConfigureCodec|R.Sclk~q\ & ( \GenStrobeI2C|oStrobe~q\ & ( ((!\ConfigureCodec|R.Activity~q\ & ((\ConfigureCodec|R.FrameState.Stop~q\) # (\ConfigureCodec|R.FrameState.Idle~q\)))) # 
--- (\ConfigureCodec|R.FrameState.Start~q\) ) ) ) # ( !\ConfigureCodec|R.Sclk~q\ & ( \GenStrobeI2C|oStrobe~q\ & ( ((\ConfigureCodec|R.FrameState.Idle~q\ & (!\ConfigureCodec|R.FrameState.Stop~q\ & \ConfigureCodec|R.Activity~q\))) # 
--- (\ConfigureCodec|R.FrameState.Start~q\) ) ) ) # ( \ConfigureCodec|R.Sclk~q\ & ( !\GenStrobeI2C|oStrobe~q\ & ( ((!\ConfigureCodec|R.FrameState.Start~q\ & \ConfigureCodec|R.FrameState.Idle~q\)) # (\ConfigureCodec|R.FrameState.Stop~q\) ) ) )
+-- \ConfigureCodec|Selector14~0_combout\ = ( \ConfigureCodec|R.Sclk~q\ & ( \ConfigureCodec|R.Activity~q\ & ( (!\GenStrobeI2C|oStrobe~q\ & (((\ConfigureCodec|R.FrameState.Idle~q\ & !\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\)) # 
+-- (\ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\))) # (\GenStrobeI2C|oStrobe~q\ & (((\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\)))) ) ) ) # ( !\ConfigureCodec|R.Sclk~q\ & ( \ConfigureCodec|R.Activity~q\ & ( (\GenStrobeI2C|oStrobe~q\ & 
+-- (((\ConfigureCodec|R.FrameState.Idle~q\ & !\ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\)) # (\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\))) ) ) ) # ( \ConfigureCodec|R.Sclk~q\ & ( !\ConfigureCodec|R.Activity~q\ & ( 
+-- ((!\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ & (\ConfigureCodec|R.FrameState.Idle~q\)) # (\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\ & ((\GenStrobeI2C|oStrobe~q\)))) # (\ConfigureCodec|R.FrameState.Stop~DUPLICATE_q\) ) ) ) # ( 
+-- !\ConfigureCodec|R.Sclk~q\ & ( !\ConfigureCodec|R.Activity~q\ & ( (\GenStrobeI2C|oStrobe~q\ & \ConfigureCodec|R.FrameState.Start~DUPLICATE_q\) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000001011110010111101010101011101010111111101010101",
+	lut_mask => "0000000000110011010111110011111100010000001100110100110000111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Start~q\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Stop~q\,
-	datad => \ConfigureCodec|ALT_INV_R.Activity~q\,
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Idle~q\,
+	datab => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Stop~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
 	datae => \ConfigureCodec|ALT_INV_R.Sclk~q\,
-	dataf => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.Activity~q\,
 	combout => \ConfigureCodec|Selector14~0_combout\);
 
--- Location: FF_X22_Y60_N43
+-- Location: FF_X19_Y74_N37
 \ConfigureCodec|R.Sclk~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -4805,97 +4774,129 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.Sclk~DUPLICATE_q\);
 
--- Location: LABCELL_X24_Y61_N36
+-- Location: FF_X17_Y74_N58
+\ConfigureCodec|R.FrameState.Address~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector2~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.Address~DUPLICATE_q\);
+
+-- Location: LABCELL_X18_Y73_N48
 \ConfigureCodec|Selector15~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector15~2_combout\ = ( \ConfigureCodec|R.BitCtr\(2) & ( (\ConfigureCodec|R.FrameState.Address~q\ & (((\ConfigureCodec|R.BitCtr\(0) & \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\)) # (\ConfigureCodec|R.BitCtr\(3)))) ) ) # ( 
--- !\ConfigureCodec|R.BitCtr\(2) & ( (\ConfigureCodec|R.BitCtr\(3) & \ConfigureCodec|R.FrameState.Address~q\) ) )
+-- \ConfigureCodec|Selector15~2_combout\ = ( \ConfigureCodec|R.BitCtr\(0) & ( \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (\ConfigureCodec|R.FrameState.Address~DUPLICATE_q\ & ((\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\) # 
+-- (\ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\))) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(0) & ( \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (\ConfigureCodec|R.FrameState.Address~DUPLICATE_q\ & \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\) ) ) ) # ( 
+-- \ConfigureCodec|R.BitCtr\(0) & ( !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (\ConfigureCodec|R.FrameState.Address~DUPLICATE_q\ & \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(0) & ( 
+-- !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (\ConfigureCodec|R.FrameState.Address~DUPLICATE_q\ & \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000110011000000000011001100000000001101110000000000110111",
+	lut_mask => "0000000000110011000000000011001100000000001100110001000100110011",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Address~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
+	dataa => \ConfigureCodec|ALT_INV_R.BitCtr[2]~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.FrameState.Address~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
 	combout => \ConfigureCodec|Selector15~2_combout\);
 
--- Location: LABCELL_X24_Y61_N18
+-- Location: LABCELL_X18_Y73_N54
 \ConfigureCodec|Selector15~3\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector15~3_combout\ = ( \ConfigureCodec|R.FrameState.Address~q\ & ( !\ConfigureCodec|R.BitCtr\(3) & ( (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ((!\ConfigureCodec|R.BitCtr\(0) & (\ConfigureCodec|R.BitCtr\(2) & 
--- !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\)) # (\ConfigureCodec|R.BitCtr\(0) & (!\ConfigureCodec|R.BitCtr\(2))))) ) ) )
+-- \ConfigureCodec|Selector15~3_combout\ = ( \ConfigureCodec|R.BitCtr\(0) & ( !\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (!\ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\ & 
+-- \ConfigureCodec|R.FrameState.Address~DUPLICATE_q\)) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(0) & ( !\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & 
+-- (\ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\ & \ConfigureCodec|R.FrameState.Address~DUPLICATE_q\))) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000100100001000000000000000000000000000000000000",
+	lut_mask => "0000000000000010000000000011000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	dataa => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
 	datab => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
-	datad => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
-	datae => \ConfigureCodec|ALT_INV_R.FrameState.Address~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
+	datac => \ConfigureCodec|ALT_INV_R.BitCtr[2]~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Address~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
 	combout => \ConfigureCodec|Selector15~3_combout\);
 
--- Location: LABCELL_X24_Y61_N0
+-- Location: LABCELL_X18_Y74_N33
 \ConfigureCodec|Selector15~4\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector15~4_combout\ = ( \ConfigureCodec|Selector16~0_combout\ & ( !\ConfigureCodec|Selector15~3_combout\ & ( (!\ConfigureCodec|Selector0~0_combout\ & (((!\ConfigureCodec|Selector15~2_combout\ & 
--- !\ConfigureCodec|R.FrameState.Start~DUPLICATE_q\)) # (\ConfigureCodec|R.Sdin~q\))) ) ) ) # ( !\ConfigureCodec|Selector16~0_combout\ & ( !\ConfigureCodec|Selector15~3_combout\ & ( (!\ConfigureCodec|Selector0~0_combout\ & \ConfigureCodec|R.Sdin~q\) ) ) )
+-- \ConfigureCodec|Selector15~4_combout\ = ( !\ConfigureCodec|Selector0~0_combout\ & ( !\ConfigureCodec|Selector15~3_combout\ & ( ((!\ConfigureCodec|R.FrameState.Start~q\ & (\ConfigureCodec|Selector16~0_combout\ & !\ConfigureCodec|Selector15~2_combout\))) # 
+-- (\ConfigureCodec|R.Sdin~q\) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000011001100100000001100110000000000000000000000000000000000",
+	lut_mask => "0011101100110011000000000000000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_Selector15~2_combout\,
-	datab => \ConfigureCodec|ALT_INV_Selector0~0_combout\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.Sdin~q\,
-	datae => \ConfigureCodec|ALT_INV_Selector16~0_combout\,
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Start~q\,
+	datab => \ConfigureCodec|ALT_INV_R.Sdin~q\,
+	datac => \ConfigureCodec|ALT_INV_Selector16~0_combout\,
+	datad => \ConfigureCodec|ALT_INV_Selector15~2_combout\,
+	datae => \ConfigureCodec|ALT_INV_Selector0~0_combout\,
 	dataf => \ConfigureCodec|ALT_INV_Selector15~3_combout\,
 	combout => \ConfigureCodec|Selector15~4_combout\);
 
--- Location: LABCELL_X24_Y61_N48
+-- Location: FF_X17_Y74_N40
+\ConfigureCodec|R.FrameState.RWBit~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Selector3~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\);
+
+-- Location: LABCELL_X18_Y73_N42
 \ConfigureCodec|Selector15~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector15~0_combout\ = ( \ConfigureCodec|R.FrameState.Address~q\ & ( \ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ( (\ConfigureCodec|R.Sdin~q\ & ((!\GenStrobeI2C|oStrobe~DUPLICATE_q\) # (!\ConfigureCodec|R.FrameState.RWBit~q\))) ) ) 
--- ) # ( !\ConfigureCodec|R.FrameState.Address~q\ & ( \ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ( (\ConfigureCodec|R.Sdin~q\ & ((!\GenStrobeI2C|oStrobe~DUPLICATE_q\) # (!\ConfigureCodec|R.FrameState.RWBit~q\))) ) ) ) # ( 
--- \ConfigureCodec|R.FrameState.Address~q\ & ( !\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ( (\ConfigureCodec|R.Sdin~q\ & ((!\GenStrobeI2C|oStrobe~DUPLICATE_q\) # (!\ConfigureCodec|R.FrameState.RWBit~q\))) ) ) ) # ( 
--- !\ConfigureCodec|R.FrameState.Address~q\ & ( !\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ( (!\ConfigureCodec|R.FrameState.RWBit~q\ & (((!\ConfigureCodec|R.FrameState.Data1~q\) # (\ConfigureCodec|R.Sdin~q\)))) # 
--- (\ConfigureCodec|R.FrameState.RWBit~q\ & (!\GenStrobeI2C|oStrobe~DUPLICATE_q\ & ((\ConfigureCodec|R.Sdin~q\)))) ) ) )
+-- \ConfigureCodec|Selector15~0_combout\ = ( \ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\ & ( \ConfigureCodec|R.FrameState.Address~DUPLICATE_q\ & ( (\ConfigureCodec|R.Sdin~q\ & !\GenStrobeI2C|oStrobe~q\) ) ) ) # ( 
+-- !\ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\ & ( \ConfigureCodec|R.FrameState.Address~DUPLICATE_q\ & ( \ConfigureCodec|R.Sdin~q\ ) ) ) # ( \ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\ & ( !\ConfigureCodec|R.FrameState.Address~DUPLICATE_q\ & ( 
+-- (\ConfigureCodec|R.Sdin~q\ & !\GenStrobeI2C|oStrobe~q\) ) ) ) # ( !\ConfigureCodec|R.FrameState.RWBit~DUPLICATE_q\ & ( !\ConfigureCodec|R.FrameState.Address~DUPLICATE_q\ & ( ((!\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & 
+-- !\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)) # (\ConfigureCodec|R.Sdin~q\) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1100000011101110000000001110111000000000111011100000000011101110",
+	lut_mask => "1011101100110011001100000011000000110011001100110011000000110000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \GenStrobeI2C|ALT_INV_oStrobe~DUPLICATE_q\,
-	datab => \ConfigureCodec|ALT_INV_R.FrameState.RWBit~q\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Data1~q\,
-	datad => \ConfigureCodec|ALT_INV_R.Sdin~q\,
-	datae => \ConfigureCodec|ALT_INV_R.FrameState.Address~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Data2~DUPLICATE_q\,
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Data2~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.Sdin~q\,
+	datac => \GenStrobeI2C|ALT_INV_oStrobe~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_R.FrameState.RWBit~DUPLICATE_q\,
+	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Address~DUPLICATE_q\,
 	combout => \ConfigureCodec|Selector15~0_combout\);
 
--- Location: LABCELL_X24_Y61_N54
+-- Location: LABCELL_X18_Y73_N0
 \ConfigureCodec|Selector15~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector15~1_combout\ = ( \ConfigureCodec|Selector15~0_combout\ & ( (!\ConfigureCodec|NextR~10_combout\ & ((!\ConfigureCodec|NextR~9_combout\) # ((!\ConfigureCodec|R.FrameState.Data2~q\)))) # (\ConfigureCodec|NextR~10_combout\ & 
--- (!\ConfigureCodec|R.FrameState.Data1~q\ & ((!\ConfigureCodec|NextR~9_combout\) # (!\ConfigureCodec|R.FrameState.Data2~q\)))) ) )
+-- \ConfigureCodec|Selector15~1_combout\ = ( \ConfigureCodec|Selector15~0_combout\ & ( (!\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ((!\ConfigureCodec|NextR~10_combout\) # ((!\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)))) # 
+-- (\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & (!\ConfigureCodec|NextR~9_combout\ & ((!\ConfigureCodec|NextR~10_combout\) # (!\ConfigureCodec|R.FrameState.Data1~DUPLICATE_q\)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -4904,51 +4905,49 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_NextR~10_combout\,
-	datab => \ConfigureCodec|ALT_INV_NextR~9_combout\,
-	datac => \ConfigureCodec|ALT_INV_R.FrameState.Data1~q\,
-	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data2~q\,
+	dataa => \ConfigureCodec|ALT_INV_R.FrameState.Data2~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_NextR~10_combout\,
+	datac => \ConfigureCodec|ALT_INV_NextR~9_combout\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data1~DUPLICATE_q\,
 	dataf => \ConfigureCodec|ALT_INV_Selector15~0_combout\,
 	combout => \ConfigureCodec|Selector15~1_combout\);
 
--- Location: MLABCELL_X21_Y61_N6
-\ConfigureCodec|Mux7~0\ : cyclonev_lcell_comb
+-- Location: LABCELL_X19_Y73_N21
+\ConfigureCodec|Mux2~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Mux7~0_combout\ = ( \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.AddrCtr\(1) $ (!\ConfigureCodec|R.AddrCtr\(2))) # (\ConfigureCodec|R.AddrCtr\(3)) ) ) # ( !\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( 
--- (\ConfigureCodec|R.AddrCtr\(1)) # (\ConfigureCodec|R.AddrCtr\(3)) ) )
+-- \ConfigureCodec|Mux2~0_combout\ = ( \ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\) # (!\ConfigureCodec|R.AddrCtr\(0)) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0011111100111111001111110011111100111111111100110011111111110011",
+	lut_mask => "0000000000000000000000000000000011111010111110101111101011111010",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
-	datad => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
-	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
-	combout => \ConfigureCodec|Mux7~0_combout\);
+	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\,
+	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(0),
+	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
+	combout => \ConfigureCodec|Mux2~0_combout\);
 
--- Location: LABCELL_X22_Y60_N3
+-- Location: LABCELL_X19_Y74_N21
 \ConfigureCodec|R.Data[15]~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|R.Data[15]~0_combout\ = ( \ConfigureCodec|R.FrameState.Start~q\ & ( (\ConfigureCodec|R.Activity~q\ & \GenStrobeI2C|oStrobe~q\) ) )
+-- \ConfigureCodec|R.Data[15]~0_combout\ = ( \GenStrobeI2C|oStrobe~q\ & ( (\ConfigureCodec|R.Activity~q\ & \ConfigureCodec|R.FrameState.Start~DUPLICATE_q\) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000001100110000000000110011",
+	lut_mask => "0000000000000000000000000000000000000000000011110000000000001111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.Activity~q\,
-	datad => \GenStrobeI2C|ALT_INV_oStrobe~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Start~q\,
+	datac => \ConfigureCodec|ALT_INV_R.Activity~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Start~DUPLICATE_q\,
+	dataf => \GenStrobeI2C|ALT_INV_oStrobe~q\,
 	combout => \ConfigureCodec|R.Data[15]~0_combout\);
 
--- Location: FF_X21_Y61_N7
-\ConfigureCodec|R.Data[0]\ : dffeas
+-- Location: FF_X19_Y73_N22
+\ConfigureCodec|R.Data[5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -4956,15 +4955,15 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Mux7~0_combout\,
+	d => \ConfigureCodec|Mux2~0_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \ConfigureCodec|R.Data[15]~0_combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(0));
+	q => \ConfigureCodec|R.Data\(5));
 
--- Location: FF_X21_Y61_N34
-\ConfigureCodec|R.AddrCtr[1]~DUPLICATE\ : dffeas
+-- Location: FF_X19_Y73_N40
+\ConfigureCodec|R.AddrCtr[3]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -4972,138 +4971,34 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Add0~25_sumout\,
+	d => \ConfigureCodec|Add0~17_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	sclr => \ConfigureCodec|ALT_INV_R.Activity~q\,
 	ena => \ConfigureCodec|R.AddrCtr[6]~0_combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \ConfigureCodec|R.AddrCtr[1]~DUPLICATE_q\);
+	q => \ConfigureCodec|R.AddrCtr[3]~DUPLICATE_q\);
 
--- Location: FF_X22_Y61_N35
-\ConfigureCodec|R.Data[10]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \ConfigureCodec|R.AddrCtr[1]~DUPLICATE_q\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(10));
-
--- Location: LABCELL_X22_Y61_N12
-\ConfigureCodec|Mux5~0\ : cyclonev_lcell_comb
+-- Location: LABCELL_X18_Y73_N6
+\ConfigureCodec|Mux0~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Mux5~0_combout\ = ( \ConfigureCodec|R.AddrCtr\(2) & ( (!\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & !\ConfigureCodec|R.AddrCtr[1]~DUPLICATE_q\) ) )
+-- \ConfigureCodec|Mux0~0_combout\ = ( !\ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr[3]~DUPLICATE_q\ & ((!\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\) # (!\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011110000000000001111000000000000",
+	lut_mask => "1111000011000000111100001100000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.AddrCtr[1]~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
-	combout => \ConfigureCodec|Mux5~0_combout\);
-
--- Location: FF_X22_Y61_N14
-\ConfigureCodec|R.Data[2]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Mux5~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(2));
-
--- Location: LABCELL_X22_Y61_N33
-\ConfigureCodec|Mux9~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Mux9~0_combout\ = ( \ConfigureCodec|R.Data\(2) & ( (!\ConfigureCodec|R.BitCtr\(1) & (!\ConfigureCodec|R.BitCtr\(3) & (\ConfigureCodec|R.Data\(0)))) # (\ConfigureCodec|R.BitCtr\(1) & ((!\ConfigureCodec|R.BitCtr\(3)) # 
--- ((\ConfigureCodec|R.Data\(10))))) ) ) # ( !\ConfigureCodec|R.Data\(2) & ( (!\ConfigureCodec|R.BitCtr\(1) & (!\ConfigureCodec|R.BitCtr\(3) & (\ConfigureCodec|R.Data\(0)))) # (\ConfigureCodec|R.BitCtr\(1) & (\ConfigureCodec|R.BitCtr\(3) & 
--- ((\ConfigureCodec|R.Data\(10))))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000100000011001000010000001100101001100010111010100110001011101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.BitCtr\(1),
-	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.Data\(0),
-	datad => \ConfigureCodec|ALT_INV_R.Data\(10),
-	dataf => \ConfigureCodec|ALT_INV_R.Data\(2),
-	combout => \ConfigureCodec|Mux9~0_combout\);
-
--- Location: MLABCELL_X21_Y61_N24
-\ConfigureCodec|Mux3~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Mux3~0_combout\ = ( \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.AddrCtr\(2) & \ConfigureCodec|R.AddrCtr\(1)) ) ) # ( !\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( !\ConfigureCodec|R.AddrCtr\(2) $ 
--- (!\ConfigureCodec|R.AddrCtr\(1)) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0011110000111100001111000011110000001100000011000000110000001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
-	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
-	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
-	combout => \ConfigureCodec|Mux3~0_combout\);
-
--- Location: FF_X21_Y61_N26
-\ConfigureCodec|R.Data[4]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Mux3~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(4));
-
--- Location: MLABCELL_X21_Y61_N27
-\ConfigureCodec|Mux1~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Mux1~0_combout\ = ( \ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr\(2)) # (!\ConfigureCodec|R.AddrCtr\(0)) ) ) # ( !\ConfigureCodec|R.AddrCtr\(1) & ( (\ConfigureCodec|R.AddrCtr\(2) & !\ConfigureCodec|R.AddrCtr\(0)) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0011000000110000001100000011000011111100111111001111110011111100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
-	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(0),
+	datab => \ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\,
+	datac => \ConfigureCodec|ALT_INV_R.AddrCtr[3]~DUPLICATE_q\,
+	datad => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
 	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
-	combout => \ConfigureCodec|Mux1~0_combout\);
+	combout => \ConfigureCodec|Mux0~0_combout\);
 
--- Location: FF_X21_Y61_N28
-\ConfigureCodec|R.Data[6]\ : dffeas
+-- Location: FF_X18_Y73_N8
+\ConfigureCodec|R.Data[7]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -5111,196 +5006,14 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Mux1~0_combout\,
+	d => \ConfigureCodec|Mux0~0_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \ConfigureCodec|R.Data[15]~0_combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(6));
+	q => \ConfigureCodec|R.Data\(7));
 
--- Location: FF_X21_Y61_N22
-\ConfigureCodec|R.Data[14]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \ConfigureCodec|R.AddrCtr\(5),
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(14));
-
--- Location: FF_X21_Y61_N20
-\ConfigureCodec|R.Data[12]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \ConfigureCodec|R.AddrCtr\(3),
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(12));
-
--- Location: MLABCELL_X21_Y61_N18
-\ConfigureCodec|Mux9~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Mux9~1_combout\ = ( \ConfigureCodec|R.Data\(12) & ( \ConfigureCodec|R.BitCtr\(3) & ( (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\) # (\ConfigureCodec|R.Data\(14)) ) ) ) # ( !\ConfigureCodec|R.Data\(12) & ( \ConfigureCodec|R.BitCtr\(3) & ( 
--- (\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & \ConfigureCodec|R.Data\(14)) ) ) ) # ( \ConfigureCodec|R.Data\(12) & ( !\ConfigureCodec|R.BitCtr\(3) & ( (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & (\ConfigureCodec|R.Data\(4))) # 
--- (\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ((\ConfigureCodec|R.Data\(6)))) ) ) ) # ( !\ConfigureCodec|R.Data\(12) & ( !\ConfigureCodec|R.BitCtr\(3) & ( (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & (\ConfigureCodec|R.Data\(4))) # 
--- (\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ((\ConfigureCodec|R.Data\(6)))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0101001101010011010100110101001100000000000011111111000011111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.Data\(4),
-	datab => \ConfigureCodec|ALT_INV_R.Data\(6),
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.Data\(14),
-	datae => \ConfigureCodec|ALT_INV_R.Data\(12),
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	combout => \ConfigureCodec|Mux9~1_combout\);
-
--- Location: LABCELL_X22_Y61_N30
-\ConfigureCodec|Mux4~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Mux4~0_combout\ = ( !\ConfigureCodec|R.AddrCtr\(2) & ( \ConfigureCodec|R.AddrCtr[1]~DUPLICATE_q\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000011111111000000001111111100000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datad => \ConfigureCodec|ALT_INV_R.AddrCtr[1]~DUPLICATE_q\,
-	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
-	combout => \ConfigureCodec|Mux4~0_combout\);
-
--- Location: FF_X22_Y61_N31
-\ConfigureCodec|R.Data[3]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Mux4~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(3));
-
--- Location: FF_X22_Y61_N47
-\ConfigureCodec|R.Data[9]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(9));
-
--- Location: FF_X22_Y61_N44
-\ConfigureCodec|R.Data[11]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \ConfigureCodec|R.AddrCtr\(2),
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(11));
-
--- Location: MLABCELL_X21_Y61_N9
-\ConfigureCodec|Mux6~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Mux6~0_combout\ = ( \ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr\(3) & (\ConfigureCodec|R.AddrCtr\(0) & \ConfigureCodec|R.AddrCtr\(2))) ) ) # ( !\ConfigureCodec|R.AddrCtr\(1) & ( (\ConfigureCodec|R.AddrCtr\(3) & 
--- (!\ConfigureCodec|R.AddrCtr\(0) & !\ConfigureCodec|R.AddrCtr\(2))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0011000000000000001100000000000000000000000011000000000000001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(0),
-	datad => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
-	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
-	combout => \ConfigureCodec|Mux6~0_combout\);
-
--- Location: FF_X21_Y61_N10
-\ConfigureCodec|R.Data[1]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Mux6~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(1));
-
--- Location: LABCELL_X22_Y61_N42
-\ConfigureCodec|Mux9~2\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Mux9~2_combout\ = ( \ConfigureCodec|R.Data\(11) & ( \ConfigureCodec|R.Data\(1) & ( (!\ConfigureCodec|R.BitCtr\(3) & (((!\ConfigureCodec|R.BitCtr\(1))) # (\ConfigureCodec|R.Data\(3)))) # (\ConfigureCodec|R.BitCtr\(3) & 
--- (((\ConfigureCodec|R.Data\(9)) # (\ConfigureCodec|R.BitCtr\(1))))) ) ) ) # ( !\ConfigureCodec|R.Data\(11) & ( \ConfigureCodec|R.Data\(1) & ( (!\ConfigureCodec|R.BitCtr\(3) & (((!\ConfigureCodec|R.BitCtr\(1))) # (\ConfigureCodec|R.Data\(3)))) # 
--- (\ConfigureCodec|R.BitCtr\(3) & (((!\ConfigureCodec|R.BitCtr\(1) & \ConfigureCodec|R.Data\(9))))) ) ) ) # ( \ConfigureCodec|R.Data\(11) & ( !\ConfigureCodec|R.Data\(1) & ( (!\ConfigureCodec|R.BitCtr\(3) & (\ConfigureCodec|R.Data\(3) & 
--- (\ConfigureCodec|R.BitCtr\(1)))) # (\ConfigureCodec|R.BitCtr\(3) & (((\ConfigureCodec|R.Data\(9)) # (\ConfigureCodec|R.BitCtr\(1))))) ) ) ) # ( !\ConfigureCodec|R.Data\(11) & ( !\ConfigureCodec|R.Data\(1) & ( (!\ConfigureCodec|R.BitCtr\(3) & 
--- (\ConfigureCodec|R.Data\(3) & (\ConfigureCodec|R.BitCtr\(1)))) # (\ConfigureCodec|R.BitCtr\(3) & (((!\ConfigureCodec|R.BitCtr\(1) & \ConfigureCodec|R.Data\(9))))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000010000110100000001110011011111000100111101001100011111110111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.Data\(3),
-	datab => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr\(1),
-	datad => \ConfigureCodec|ALT_INV_R.Data\(9),
-	datae => \ConfigureCodec|ALT_INV_R.Data\(11),
-	dataf => \ConfigureCodec|ALT_INV_R.Data\(1),
-	combout => \ConfigureCodec|Mux9~2_combout\);
-
--- Location: FF_X21_Y61_N58
+-- Location: FF_X19_Y73_N17
 \ConfigureCodec|R.Data[13]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -5317,76 +5030,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.Data\(13));
 
--- Location: MLABCELL_X21_Y61_N15
-\ConfigureCodec|Mux0~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Mux0~0_combout\ = ( !\ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr\(3) & ((!\ConfigureCodec|R.AddrCtr\(0)) # (!\ConfigureCodec|R.AddrCtr\(2)))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1100110011000000110011001100000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(0),
-	datad => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
-	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
-	combout => \ConfigureCodec|Mux0~0_combout\);
-
--- Location: FF_X21_Y61_N17
-\ConfigureCodec|R.Data[7]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Mux0~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(7));
-
--- Location: MLABCELL_X21_Y61_N12
-\ConfigureCodec|Mux2~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \ConfigureCodec|Mux2~0_combout\ = ( \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.AddrCtr\(3) & (\ConfigureCodec|R.AddrCtr\(1) & !\ConfigureCodec|R.AddrCtr\(2))) ) ) # ( !\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( 
--- (!\ConfigureCodec|R.AddrCtr\(3) & (\ConfigureCodec|R.AddrCtr\(1))) # (\ConfigureCodec|R.AddrCtr\(3) & (!\ConfigureCodec|R.AddrCtr\(1) & !\ConfigureCodec|R.AddrCtr\(2))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0011110000001100001111000000110000001100000000000000110000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
-	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
-	datad => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
-	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
-	combout => \ConfigureCodec|Mux2~0_combout\);
-
--- Location: FF_X21_Y61_N14
-\ConfigureCodec|R.Data[5]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \ConfigureCodec|Mux2~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	ena => \ConfigureCodec|R.Data[15]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \ConfigureCodec|R.Data\(5));
-
--- Location: FF_X21_Y61_N56
+-- Location: FF_X18_Y73_N26
 \ConfigureCodec|R.Data[15]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -5403,78 +5047,432 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ConfigureCodec|R.Data\(15));
 
--- Location: MLABCELL_X21_Y61_N54
+-- Location: LABCELL_X18_Y73_N24
 \ConfigureCodec|Mux9~3\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Mux9~3_combout\ = ( \ConfigureCodec|R.Data\(15) & ( \ConfigureCodec|R.BitCtr\(3) & ( (\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\) # (\ConfigureCodec|R.Data\(13)) ) ) ) # ( !\ConfigureCodec|R.Data\(15) & ( \ConfigureCodec|R.BitCtr\(3) & ( 
--- (\ConfigureCodec|R.Data\(13) & !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\) ) ) ) # ( \ConfigureCodec|R.Data\(15) & ( !\ConfigureCodec|R.BitCtr\(3) & ( (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ((\ConfigureCodec|R.Data\(5)))) # 
--- (\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & (\ConfigureCodec|R.Data\(7))) ) ) ) # ( !\ConfigureCodec|R.Data\(15) & ( !\ConfigureCodec|R.BitCtr\(3) & ( (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ((\ConfigureCodec|R.Data\(5)))) # 
--- (\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & (\ConfigureCodec|R.Data\(7))) ) ) )
+-- \ConfigureCodec|Mux9~3_combout\ = ( \ConfigureCodec|R.Data\(15) & ( \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\) # (\ConfigureCodec|R.Data\(7)) ) ) ) # ( !\ConfigureCodec|R.Data\(15) & ( 
+-- \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (\ConfigureCodec|R.Data\(7) & !\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\) ) ) ) # ( \ConfigureCodec|R.Data\(15) & ( !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & 
+-- (\ConfigureCodec|R.Data\(5))) # (\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ((\ConfigureCodec|R.Data\(13)))) ) ) ) # ( !\ConfigureCodec|R.Data\(15) & ( !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & 
+-- (\ConfigureCodec|R.Data\(5))) # (\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ((\ConfigureCodec|R.Data\(13)))) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000001111110011000000111111001101010000010100000101111101011111",
+	lut_mask => "0101010100001111010101010000111100110011000000000011001111111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_R.Data\(13),
+	dataa => \ConfigureCodec|ALT_INV_R.Data\(5),
 	datab => \ConfigureCodec|ALT_INV_R.Data\(7),
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
-	datad => \ConfigureCodec|ALT_INV_R.Data\(5),
+	datac => \ConfigureCodec|ALT_INV_R.Data\(13),
+	datad => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
 	datae => \ConfigureCodec|ALT_INV_R.Data\(15),
-	dataf => \ConfigureCodec|ALT_INV_R.BitCtr\(3),
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
 	combout => \ConfigureCodec|Mux9~3_combout\);
 
--- Location: LABCELL_X22_Y61_N24
-\ConfigureCodec|Mux9~4\ : cyclonev_lcell_comb
+-- Location: LABCELL_X19_Y73_N57
+\ConfigureCodec|Mux4~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Mux9~4_combout\ = ( \ConfigureCodec|R.BitCtr\(2) & ( \ConfigureCodec|Mux9~3_combout\ & ( (\ConfigureCodec|R.BitCtr\(0)) # (\ConfigureCodec|Mux9~1_combout\) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(2) & ( \ConfigureCodec|Mux9~3_combout\ & ( 
--- (!\ConfigureCodec|R.BitCtr\(0) & (\ConfigureCodec|Mux9~0_combout\)) # (\ConfigureCodec|R.BitCtr\(0) & ((\ConfigureCodec|Mux9~2_combout\))) ) ) ) # ( \ConfigureCodec|R.BitCtr\(2) & ( !\ConfigureCodec|Mux9~3_combout\ & ( (\ConfigureCodec|Mux9~1_combout\ & 
--- !\ConfigureCodec|R.BitCtr\(0)) ) ) ) # ( !\ConfigureCodec|R.BitCtr\(2) & ( !\ConfigureCodec|Mux9~3_combout\ & ( (!\ConfigureCodec|R.BitCtr\(0) & (\ConfigureCodec|Mux9~0_combout\)) # (\ConfigureCodec|R.BitCtr\(0) & ((\ConfigureCodec|Mux9~2_combout\))) ) ) 
--- )
+-- \ConfigureCodec|Mux4~0_combout\ = ( \ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\ & !\ConfigureCodec|R.AddrCtr\(3)) ) ) # ( !\ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\ & 
+-- (\ConfigureCodec|R.AddrCtr\(3) & !\ConfigureCodec|R.AddrCtr\(0))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0101000001011111001100000011000001010000010111110011111100111111",
+	lut_mask => "0010000000100000001000000010000010001000100010001000100010001000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ConfigureCodec|ALT_INV_Mux9~0_combout\,
-	datab => \ConfigureCodec|ALT_INV_Mux9~1_combout\,
-	datac => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
-	datad => \ConfigureCodec|ALT_INV_Mux9~2_combout\,
-	datae => \ConfigureCodec|ALT_INV_R.BitCtr\(2),
-	dataf => \ConfigureCodec|ALT_INV_Mux9~3_combout\,
-	combout => \ConfigureCodec|Mux9~4_combout\);
+	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
+	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(0),
+	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
+	combout => \ConfigureCodec|Mux4~0_combout\);
 
--- Location: LABCELL_X24_Y61_N6
-\ConfigureCodec|Selector15~5\ : cyclonev_lcell_comb
+-- Location: FF_X19_Y73_N58
+\ConfigureCodec|R.Data[3]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Mux4~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(3));
+
+-- Location: LABCELL_X19_Y73_N18
+\ConfigureCodec|Mux6~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ConfigureCodec|Selector15~5_combout\ = ( \ConfigureCodec|R.FrameState.Data1~q\ & ( \ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ( (\ConfigureCodec|Selector15~4_combout\ & ((!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & 
--- (\ConfigureCodec|Selector15~1_combout\)) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ((!\ConfigureCodec|Mux9~4_combout\))))) ) ) ) # ( !\ConfigureCodec|R.FrameState.Data1~q\ & ( \ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ( 
--- (\ConfigureCodec|Selector15~4_combout\ & ((!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ConfigureCodec|Selector15~1_combout\)) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & ((!\ConfigureCodec|Mux9~4_combout\))))) ) ) ) # ( \ConfigureCodec|R.FrameState.Data1~q\ & ( 
--- !\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ( (\ConfigureCodec|Selector15~4_combout\ & ((!\ConfigureCodec|R.Sclk~DUPLICATE_q\ & (\ConfigureCodec|Selector15~1_combout\)) # (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & 
--- ((!\ConfigureCodec|Mux9~4_combout\))))) ) ) ) # ( !\ConfigureCodec|R.FrameState.Data1~q\ & ( !\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\ & ( (\ConfigureCodec|Selector15~4_combout\ & ((\ConfigureCodec|Selector15~1_combout\) # 
--- (\ConfigureCodec|R.Sclk~DUPLICATE_q\))) ) ) )
+-- \ConfigureCodec|Mux6~0_combout\ = ( \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( (\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\ & \ConfigureCodec|R.AddrCtr\(1)) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0001010100010101000101010000010000010101000001000001010100000100",
+	lut_mask => "0000000000000000000000000000000000000101000001010000010100000101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\,
+	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
+	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
+	combout => \ConfigureCodec|Mux6~0_combout\);
+
+-- Location: FF_X19_Y73_N19
+\ConfigureCodec|R.Data[1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Mux6~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(1));
+
+-- Location: FF_X18_Y73_N47
+\ConfigureCodec|R.Data[9]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(9));
+
+-- Location: FF_X18_Y73_N14
+\ConfigureCodec|R.Data[11]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(11));
+
+-- Location: LABCELL_X18_Y73_N12
+\ConfigureCodec|Mux9~2\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Mux9~2_combout\ = ( \ConfigureCodec|R.Data\(11) & ( \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( (\ConfigureCodec|R.Data\(9)) # (\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\) ) ) ) # ( !\ConfigureCodec|R.Data\(11) & ( 
+-- \ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & \ConfigureCodec|R.Data\(9)) ) ) ) # ( \ConfigureCodec|R.Data\(11) & ( !\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & 
+-- ((\ConfigureCodec|R.Data\(1)))) # (\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & (\ConfigureCodec|R.Data\(3))) ) ) ) # ( !\ConfigureCodec|R.Data\(11) & ( !\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & 
+-- ((\ConfigureCodec|R.Data\(1)))) # (\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & (\ConfigureCodec|R.Data\(3))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0001101100011011000110110001101100000000101010100101010111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.Data\(3),
+	datac => \ConfigureCodec|ALT_INV_R.Data\(1),
+	datad => \ConfigureCodec|ALT_INV_R.Data\(9),
+	datae => \ConfigureCodec|ALT_INV_R.Data\(11),
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
+	combout => \ConfigureCodec|Mux9~2_combout\);
+
+-- Location: FF_X19_Y73_N29
+\ConfigureCodec|R.Data[14]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \ConfigureCodec|R.AddrCtr\(5),
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(14));
+
+-- Location: LABCELL_X19_Y73_N9
+\ConfigureCodec|Mux1~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Mux1~0_combout\ = ( \ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr\(0)) # (!\ConfigureCodec|R.AddrCtr\(2)) ) ) # ( !\ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr\(0) & \ConfigureCodec|R.AddrCtr\(2)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000011110000000000001111000011111111111100001111111111110000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(0),
+	datad => \ConfigureCodec|ALT_INV_R.AddrCtr\(2),
+	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
+	combout => \ConfigureCodec|Mux1~0_combout\);
+
+-- Location: FF_X19_Y73_N11
+\ConfigureCodec|R.Data[6]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Mux1~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(6));
+
+-- Location: LABCELL_X19_Y73_N3
+\ConfigureCodec|Mux3~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Mux3~0_combout\ = ( \ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\ & !\ConfigureCodec|R.AddrCtr\(3)) ) ) # ( !\ConfigureCodec|R.AddrCtr\(1) & ( (!\ConfigureCodec|R.AddrCtr\(0) & 
+-- (!\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\ $ (!\ConfigureCodec|R.AddrCtr\(3)))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0110000001100000011000000110000010001000100010001000100010001000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
+	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(0),
+	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
+	combout => \ConfigureCodec|Mux3~0_combout\);
+
+-- Location: FF_X19_Y73_N5
+\ConfigureCodec|R.Data[4]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Mux3~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(4));
+
+-- Location: FF_X19_Y73_N14
+\ConfigureCodec|R.Data[12]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \ConfigureCodec|R.AddrCtr\(3),
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(12));
+
+-- Location: LABCELL_X19_Y73_N12
+\ConfigureCodec|Mux9~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Mux9~1_combout\ = ( \ConfigureCodec|R.Data\(12) & ( \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ((\ConfigureCodec|R.Data\(6)))) # (\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & 
+-- (\ConfigureCodec|R.Data\(14))) ) ) ) # ( !\ConfigureCodec|R.Data\(12) & ( \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ((\ConfigureCodec|R.Data\(6)))) # (\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & 
+-- (\ConfigureCodec|R.Data\(14))) ) ) ) # ( \ConfigureCodec|R.Data\(12) & ( !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\) # (\ConfigureCodec|R.Data\(4)) ) ) ) # ( !\ConfigureCodec|R.Data\(12) & ( 
+-- !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (\ConfigureCodec|R.Data\(4) & !\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000111100000000000011111111111100110011010101010011001101010101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.Data\(14),
+	datab => \ConfigureCodec|ALT_INV_R.Data\(6),
+	datac => \ConfigureCodec|ALT_INV_R.Data\(4),
+	datad => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_R.Data\(12),
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
+	combout => \ConfigureCodec|Mux9~1_combout\);
+
+-- Location: LABCELL_X19_Y73_N54
+\ConfigureCodec|Mux5~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Mux5~0_combout\ = ( !\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.AddrCtr\(1) & (!\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\ $ (!\ConfigureCodec|R.AddrCtr\(3)))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0110000001100000011000000110000000000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
+	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
+	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
+	combout => \ConfigureCodec|Mux5~0_combout\);
+
+-- Location: FF_X19_Y73_N56
+\ConfigureCodec|R.Data[2]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Mux5~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(2));
+
+-- Location: LABCELL_X19_Y73_N0
+\ConfigureCodec|Mux7~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Mux7~0_combout\ = ( \ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.AddrCtr[2]~DUPLICATE_q\ $ (!\ConfigureCodec|R.AddrCtr\(1))) # (\ConfigureCodec|R.AddrCtr\(3)) ) ) # ( !\ConfigureCodec|R.AddrCtr[0]~DUPLICATE_q\ & ( 
+-- (\ConfigureCodec|R.AddrCtr\(1)) # (\ConfigureCodec|R.AddrCtr\(3)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0011111100111111001111110011111101111011011110110111101101111011",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.AddrCtr[2]~DUPLICATE_q\,
+	datab => \ConfigureCodec|ALT_INV_R.AddrCtr\(3),
+	datac => \ConfigureCodec|ALT_INV_R.AddrCtr\(1),
+	dataf => \ConfigureCodec|ALT_INV_R.AddrCtr[0]~DUPLICATE_q\,
+	combout => \ConfigureCodec|Mux7~0_combout\);
+
+-- Location: FF_X19_Y73_N2
+\ConfigureCodec|R.Data[0]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \ConfigureCodec|Mux7~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(0));
+
+-- Location: FF_X19_Y73_N8
+\ConfigureCodec|R.Data[10]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \ConfigureCodec|R.AddrCtr\(1),
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ConfigureCodec|R.Data[15]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \ConfigureCodec|R.Data\(10));
+
+-- Location: LABCELL_X19_Y73_N6
+\ConfigureCodec|Mux9~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Mux9~0_combout\ = ( \ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & (\ConfigureCodec|R.Data\(2))) # (\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & ((\ConfigureCodec|R.Data\(10)))) ) ) # ( 
+-- !\ConfigureCodec|R.BitCtr[1]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr[3]~DUPLICATE_q\ & \ConfigureCodec|R.Data\(0)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000110000001100000011000000110001000100011101110100010001110111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_R.Data\(2),
+	datab => \ConfigureCodec|ALT_INV_R.BitCtr[3]~DUPLICATE_q\,
+	datac => \ConfigureCodec|ALT_INV_R.Data\(0),
+	datad => \ConfigureCodec|ALT_INV_R.Data\(10),
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr[1]~DUPLICATE_q\,
+	combout => \ConfigureCodec|Mux9~0_combout\);
+
+-- Location: LABCELL_X18_Y73_N18
+\ConfigureCodec|Mux9~4\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Mux9~4_combout\ = ( \ConfigureCodec|Mux9~0_combout\ & ( \ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr\(0) & ((\ConfigureCodec|Mux9~1_combout\))) # (\ConfigureCodec|R.BitCtr\(0) & (\ConfigureCodec|Mux9~3_combout\)) 
+-- ) ) ) # ( !\ConfigureCodec|Mux9~0_combout\ & ( \ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr\(0) & ((\ConfigureCodec|Mux9~1_combout\))) # (\ConfigureCodec|R.BitCtr\(0) & (\ConfigureCodec|Mux9~3_combout\)) ) ) ) # ( 
+-- \ConfigureCodec|Mux9~0_combout\ & ( !\ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\ & ( (!\ConfigureCodec|R.BitCtr\(0)) # (\ConfigureCodec|Mux9~2_combout\) ) ) ) # ( !\ConfigureCodec|Mux9~0_combout\ & ( !\ConfigureCodec|R.BitCtr[2]~DUPLICATE_q\ & ( 
+-- (\ConfigureCodec|Mux9~2_combout\ & \ConfigureCodec|R.BitCtr\(0)) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000001100000011111100111111001100000101111101010000010111110101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ConfigureCodec|ALT_INV_Mux9~3_combout\,
+	datab => \ConfigureCodec|ALT_INV_Mux9~2_combout\,
+	datac => \ConfigureCodec|ALT_INV_R.BitCtr\(0),
+	datad => \ConfigureCodec|ALT_INV_Mux9~1_combout\,
+	datae => \ConfigureCodec|ALT_INV_Mux9~0_combout\,
+	dataf => \ConfigureCodec|ALT_INV_R.BitCtr[2]~DUPLICATE_q\,
+	combout => \ConfigureCodec|Mux9~4_combout\);
+
+-- Location: LABCELL_X18_Y73_N36
+\ConfigureCodec|Selector15~5\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ConfigureCodec|Selector15~5_combout\ = ( \ConfigureCodec|Selector15~1_combout\ & ( \ConfigureCodec|Mux9~4_combout\ & ( (\ConfigureCodec|Selector15~4_combout\ & ((!\ConfigureCodec|R.Sclk~DUPLICATE_q\) # ((!\ConfigureCodec|R.FrameState.Data1~q\ & 
+-- !\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\)))) ) ) ) # ( !\ConfigureCodec|Selector15~1_combout\ & ( \ConfigureCodec|Mux9~4_combout\ & ( (\ConfigureCodec|Selector15~4_combout\ & (\ConfigureCodec|R.Sclk~DUPLICATE_q\ & 
+-- (!\ConfigureCodec|R.FrameState.Data1~q\ & !\ConfigureCodec|R.FrameState.Data2~DUPLICATE_q\))) ) ) ) # ( \ConfigureCodec|Selector15~1_combout\ & ( !\ConfigureCodec|Mux9~4_combout\ & ( \ConfigureCodec|Selector15~4_combout\ ) ) ) # ( 
+-- !\ConfigureCodec|Selector15~1_combout\ & ( !\ConfigureCodec|Mux9~4_combout\ & ( (\ConfigureCodec|Selector15~4_combout\ & \ConfigureCodec|R.Sclk~DUPLICATE_q\) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0001000100010001010101010101010100010000000000000101010001000100",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
 	dataa => \ConfigureCodec|ALT_INV_Selector15~4_combout\,
 	datab => \ConfigureCodec|ALT_INV_R.Sclk~DUPLICATE_q\,
-	datac => \ConfigureCodec|ALT_INV_Selector15~1_combout\,
-	datad => \ConfigureCodec|ALT_INV_Mux9~4_combout\,
-	datae => \ConfigureCodec|ALT_INV_R.FrameState.Data1~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.FrameState.Data2~DUPLICATE_q\,
+	datac => \ConfigureCodec|ALT_INV_R.FrameState.Data1~q\,
+	datad => \ConfigureCodec|ALT_INV_R.FrameState.Data2~DUPLICATE_q\,
+	datae => \ConfigureCodec|ALT_INV_Selector15~1_combout\,
+	dataf => \ConfigureCodec|ALT_INV_Mux9~4_combout\,
 	combout => \ConfigureCodec|Selector15~5_combout\);
 
--- Location: FF_X24_Y61_N8
+-- Location: FF_X18_Y73_N37
 \ConfigureCodec|R.Sdin\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -5515,7 +5513,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheChannelSelSync|Metastable\(0));
 
--- Location: LABCELL_X37_Y3_N42
+-- Location: LABCELL_X40_Y2_N45
 \TheChannelSelSync|Metastable[1]~feeder\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheChannelSelSync|Metastable[1]~feeder_combout\ = ( \TheChannelSelSync|Metastable\(0) )
@@ -5530,8 +5528,8 @@ PORT MAP (
 	dataf => \TheChannelSelSync|ALT_INV_Metastable\(0),
 	combout => \TheChannelSelSync|Metastable[1]~feeder_combout\);
 
--- Location: FF_X37_Y3_N43
-\TheChannelSelSync|Metastable[1]\ : dffeas
+-- Location: FF_X40_Y2_N46
+\TheChannelSelSync|Metastable[1]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -5543,50 +5541,9 @@ PORT MAP (
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheChannelSelSync|Metastable\(1));
+	q => \TheChannelSelSync|Metastable[1]~DUPLICATE_q\);
 
--- Location: IOIBUF_X36_Y0_N1
-\inResetAsync~input\ : cyclonev_io_ibuf
--- pragma translate_off
-GENERIC MAP (
-	bus_hold => "false",
-	simulate_z_as => "z")
--- pragma translate_on
-PORT MAP (
-	i => ww_inResetAsync,
-	o => \inResetAsync~input_o\);
-
--- Location: FF_X27_Y1_N41
-\fsksender_inst|baudrate_generator|ClkCounter[13]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~49_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter[13]~DUPLICATE_q\);
-
--- Location: FF_X27_Y1_N11
-\fsksender_inst|baudrate_generator|ClkCounter[3]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~17_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter[3]~DUPLICATE_q\);
-
--- Location: LABCELL_X27_Y1_N0
+-- Location: LABCELL_X19_Y1_N0
 \fsksender_inst|baudrate_generator|Add0~29\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|baudrate_generator|Add0~29_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(0) ) + ( VCC ) + ( !VCC ))
@@ -5604,7 +5561,18 @@ PORT MAP (
 	sumout => \fsksender_inst|baudrate_generator|Add0~29_sumout\,
 	cout => \fsksender_inst|baudrate_generator|Add0~30\);
 
--- Location: FF_X27_Y1_N2
+-- Location: IOIBUF_X36_Y0_N1
+\inResetAsync~input\ : cyclonev_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_inResetAsync,
+	o => \inResetAsync~input_o\);
+
+-- Location: FF_X19_Y1_N2
 \fsksender_inst|baudrate_generator|ClkCounter[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -5619,7 +5587,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter\(0));
 
--- Location: LABCELL_X27_Y1_N3
+-- Location: LABCELL_X19_Y1_N3
 \fsksender_inst|baudrate_generator|Add0~25\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|baudrate_generator|Add0~25_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(1) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~30\ ))
@@ -5628,446 +5596,16 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(1),
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(1),
 	cin => \fsksender_inst|baudrate_generator|Add0~30\,
 	sumout => \fsksender_inst|baudrate_generator|Add0~25_sumout\,
 	cout => \fsksender_inst|baudrate_generator|Add0~26\);
 
--- Location: MLABCELL_X28_Y1_N3
-\fsksender_inst|baudrate_generator|ClkCounter~2\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|ClkCounter~2_combout\ = ( \fsksender_inst|baudrate_generator|ClkCounter\(6) & ( \fsksender_inst|baudrate_generator|Add0~25_sumout\ & ( (!\fsksender_inst|baudrate_generator|Equal0~1_combout\) # 
--- ((!\fsksender_inst|baudrate_generator|Equal0~0_combout\) # ((!\fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\) # (!\fsksender_inst|baudrate_generator|Equal0~2_combout\))) ) ) ) # ( !\fsksender_inst|baudrate_generator|ClkCounter\(6) & ( 
--- \fsksender_inst|baudrate_generator|Add0~25_sumout\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111110",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[12]~DUPLICATE_q\,
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
-	datae => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
-	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Add0~25_sumout\,
-	combout => \fsksender_inst|baudrate_generator|ClkCounter~2_combout\);
-
--- Location: FF_X28_Y1_N5
-\fsksender_inst|baudrate_generator|ClkCounter[1]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|ClkCounter~2_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(1));
-
--- Location: LABCELL_X27_Y1_N6
-\fsksender_inst|baudrate_generator|Add0~21\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~21_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(2) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~26\ ))
--- \fsksender_inst|baudrate_generator|Add0~22\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(2) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~26\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(2),
-	cin => \fsksender_inst|baudrate_generator|Add0~26\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~21_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~22\);
-
--- Location: FF_X27_Y1_N8
-\fsksender_inst|baudrate_generator|ClkCounter[2]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~21_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(2));
-
--- Location: LABCELL_X27_Y1_N9
-\fsksender_inst|baudrate_generator|Add0~17\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~17_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[3]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~22\ ))
--- \fsksender_inst|baudrate_generator|Add0~18\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[3]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~22\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[3]~DUPLICATE_q\,
-	cin => \fsksender_inst|baudrate_generator|Add0~22\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~17_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~18\);
-
--- Location: FF_X27_Y1_N10
-\fsksender_inst|baudrate_generator|ClkCounter[3]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~17_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(3));
-
--- Location: LABCELL_X27_Y1_N12
-\fsksender_inst|baudrate_generator|Add0~13\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~13_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(4) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~18\ ))
--- \fsksender_inst|baudrate_generator|Add0~14\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(4) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~18\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(4),
-	cin => \fsksender_inst|baudrate_generator|Add0~18\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~13_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~14\);
-
--- Location: FF_X27_Y1_N14
-\fsksender_inst|baudrate_generator|ClkCounter[4]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~13_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(4));
-
--- Location: LABCELL_X27_Y1_N15
-\fsksender_inst|baudrate_generator|Add0~9\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~9_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(5) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~14\ ))
--- \fsksender_inst|baudrate_generator|Add0~10\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(5) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~14\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(5),
-	cin => \fsksender_inst|baudrate_generator|Add0~14\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~9_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~10\);
-
--- Location: FF_X27_Y1_N17
-\fsksender_inst|baudrate_generator|ClkCounter[5]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~9_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(5));
-
--- Location: LABCELL_X27_Y1_N54
-\fsksender_inst|baudrate_generator|Equal0~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Equal0~0_combout\ = ( !\fsksender_inst|baudrate_generator|ClkCounter\(1) & ( !\fsksender_inst|baudrate_generator|ClkCounter\(5) & ( (!\fsksender_inst|baudrate_generator|ClkCounter\(3) & 
--- (!\fsksender_inst|baudrate_generator|ClkCounter\(4) & (\fsksender_inst|baudrate_generator|ClkCounter\(0) & !\fsksender_inst|baudrate_generator|ClkCounter\(2)))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000100000000000000000000000000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(3),
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(4),
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(0),
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(2),
-	datae => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(1),
-	dataf => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(5),
-	combout => \fsksender_inst|baudrate_generator|Equal0~0_combout\);
-
--- Location: LABCELL_X27_Y1_N18
-\fsksender_inst|baudrate_generator|Add0~5\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~5_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(6) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~10\ ))
--- \fsksender_inst|baudrate_generator|Add0~6\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(6) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~10\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
-	cin => \fsksender_inst|baudrate_generator|Add0~10\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~5_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~6\);
-
--- Location: LABCELL_X27_Y1_N21
-\fsksender_inst|baudrate_generator|Add0~69\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~69_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[7]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~6\ ))
--- \fsksender_inst|baudrate_generator|Add0~70\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[7]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~6\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[7]~DUPLICATE_q\,
-	cin => \fsksender_inst|baudrate_generator|Add0~6\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~69_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~70\);
-
--- Location: FF_X27_Y1_N23
-\fsksender_inst|baudrate_generator|ClkCounter[7]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~69_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter[7]~DUPLICATE_q\);
-
--- Location: LABCELL_X27_Y1_N24
-\fsksender_inst|baudrate_generator|Add0~65\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~65_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(8) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~70\ ))
--- \fsksender_inst|baudrate_generator|Add0~66\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(8) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~70\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(8),
-	cin => \fsksender_inst|baudrate_generator|Add0~70\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~65_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~66\);
-
--- Location: LABCELL_X27_Y1_N27
-\fsksender_inst|baudrate_generator|Add0~61\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~61_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[9]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~66\ ))
--- \fsksender_inst|baudrate_generator|Add0~62\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[9]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~66\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[9]~DUPLICATE_q\,
-	cin => \fsksender_inst|baudrate_generator|Add0~66\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~61_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~62\);
-
--- Location: MLABCELL_X28_Y1_N30
-\fsksender_inst|baudrate_generator|ClkCounter~6\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|ClkCounter~6_combout\ = ( \fsksender_inst|baudrate_generator|Equal0~2_combout\ & ( \fsksender_inst|baudrate_generator|Add0~61_sumout\ & ( (!\fsksender_inst|baudrate_generator|ClkCounter\(6)) # 
--- ((!\fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\) # ((!\fsksender_inst|baudrate_generator|Equal0~1_combout\) # (!\fsksender_inst|baudrate_generator|Equal0~0_combout\))) ) ) ) # ( !\fsksender_inst|baudrate_generator|Equal0~2_combout\ & ( 
--- \fsksender_inst|baudrate_generator|Add0~61_sumout\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111110",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[12]~DUPLICATE_q\,
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
-	datae => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
-	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Add0~61_sumout\,
-	combout => \fsksender_inst|baudrate_generator|ClkCounter~6_combout\);
-
--- Location: FF_X28_Y1_N32
-\fsksender_inst|baudrate_generator|ClkCounter[9]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|ClkCounter~6_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter[9]~DUPLICATE_q\);
-
--- Location: LABCELL_X27_Y1_N30
-\fsksender_inst|baudrate_generator|Add0~57\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~57_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(10) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~62\ ))
--- \fsksender_inst|baudrate_generator|Add0~58\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(10) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~62\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(10),
-	cin => \fsksender_inst|baudrate_generator|Add0~62\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~57_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~58\);
-
--- Location: FF_X27_Y1_N32
-\fsksender_inst|baudrate_generator|ClkCounter[10]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~57_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(10));
-
--- Location: LABCELL_X27_Y1_N33
-\fsksender_inst|baudrate_generator|Add0~53\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~53_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(11) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~58\ ))
--- \fsksender_inst|baudrate_generator|Add0~54\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(11) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~58\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(11),
-	cin => \fsksender_inst|baudrate_generator|Add0~58\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~53_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~54\);
-
--- Location: MLABCELL_X28_Y1_N51
-\fsksender_inst|baudrate_generator|ClkCounter~5\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|ClkCounter~5_combout\ = (!\fsksender_inst|baudrate_generator|Equal0~3_combout\ & \fsksender_inst|baudrate_generator|Add0~53_sumout\)
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000011110000000000001111000000000000111100000000000011110000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~3_combout\,
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_Add0~53_sumout\,
-	combout => \fsksender_inst|baudrate_generator|ClkCounter~5_combout\);
-
--- Location: FF_X28_Y1_N53
-\fsksender_inst|baudrate_generator|ClkCounter[11]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|ClkCounter~5_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(11));
-
--- Location: LABCELL_X27_Y1_N36
-\fsksender_inst|baudrate_generator|Add0~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~1_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~54\ ))
--- \fsksender_inst|baudrate_generator|Add0~2\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~54\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[12]~DUPLICATE_q\,
-	cin => \fsksender_inst|baudrate_generator|Add0~54\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~1_sumout\,
-	cout => \fsksender_inst|baudrate_generator|Add0~2\);
-
--- Location: MLABCELL_X28_Y1_N57
-\fsksender_inst|baudrate_generator|ClkCounter~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|ClkCounter~0_combout\ = ( \fsksender_inst|baudrate_generator|Add0~1_sumout\ & ( !\fsksender_inst|baudrate_generator|Equal0~3_combout\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011110000111100001111000011110000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~3_combout\,
-	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Add0~1_sumout\,
-	combout => \fsksender_inst|baudrate_generator|ClkCounter~0_combout\);
-
--- Location: FF_X28_Y1_N59
+-- Location: FF_X18_Y1_N40
 \fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6082,11 +5620,11 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\);
 
--- Location: LABCELL_X27_Y1_N39
-\fsksender_inst|baudrate_generator|Add0~49\ : cyclonev_lcell_comb
+-- Location: LABCELL_X19_Y1_N36
+\fsksender_inst|baudrate_generator|Add0~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~49_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[13]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~2\ ))
--- \fsksender_inst|baudrate_generator|Add0~50\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[13]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~2\ ))
+-- \fsksender_inst|baudrate_generator|Add0~1_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~54\ ))
+-- \fsksender_inst|baudrate_generator|Add0~2\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~54\ ))
 
 -- pragma translate_off
 GENERIC MAP (
@@ -6095,12 +5633,30 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[13]~DUPLICATE_q\,
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[12]~DUPLICATE_q\,
+	cin => \fsksender_inst|baudrate_generator|Add0~54\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~1_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~2\);
+
+-- Location: LABCELL_X19_Y1_N39
+\fsksender_inst|baudrate_generator|Add0~49\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~49_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(13) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~2\ ))
+-- \fsksender_inst|baudrate_generator|Add0~50\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(13) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~2\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(13),
 	cin => \fsksender_inst|baudrate_generator|Add0~2\,
 	sumout => \fsksender_inst|baudrate_generator|Add0~49_sumout\,
 	cout => \fsksender_inst|baudrate_generator|Add0~50\);
 
--- Location: FF_X27_Y1_N40
+-- Location: FF_X19_Y1_N41
 \fsksender_inst|baudrate_generator|ClkCounter[13]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6115,26 +5671,11 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter\(13));
 
--- Location: FF_X27_Y1_N44
-\fsksender_inst|baudrate_generator|ClkCounter[14]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~45_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter[14]~DUPLICATE_q\);
-
--- Location: LABCELL_X27_Y1_N42
+-- Location: LABCELL_X19_Y1_N42
 \fsksender_inst|baudrate_generator|Add0~45\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~45_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[14]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~50\ ))
--- \fsksender_inst|baudrate_generator|Add0~46\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[14]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~50\ ))
+-- \fsksender_inst|baudrate_generator|Add0~45_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(14) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~50\ ))
+-- \fsksender_inst|baudrate_generator|Add0~46\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(14) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~50\ ))
 
 -- pragma translate_off
 GENERIC MAP (
@@ -6143,12 +5684,12 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[14]~DUPLICATE_q\,
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(14),
 	cin => \fsksender_inst|baudrate_generator|Add0~50\,
 	sumout => \fsksender_inst|baudrate_generator|Add0~45_sumout\,
 	cout => \fsksender_inst|baudrate_generator|Add0~46\);
 
--- Location: FF_X27_Y1_N43
+-- Location: FF_X19_Y1_N44
 \fsksender_inst|baudrate_generator|ClkCounter[14]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6163,7 +5704,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter\(14));
 
--- Location: LABCELL_X27_Y1_N45
+-- Location: LABCELL_X19_Y1_N45
 \fsksender_inst|baudrate_generator|Add0~41\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|baudrate_generator|Add0~41_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[15]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~46\ ))
@@ -6181,7 +5722,7 @@ PORT MAP (
 	sumout => \fsksender_inst|baudrate_generator|Add0~41_sumout\,
 	cout => \fsksender_inst|baudrate_generator|Add0~42\);
 
--- Location: MLABCELL_X28_Y1_N21
+-- Location: LABCELL_X18_Y1_N27
 \fsksender_inst|baudrate_generator|ClkCounter~4\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|baudrate_generator|ClkCounter~4_combout\ = ( \fsksender_inst|baudrate_generator|Add0~41_sumout\ & ( !\fsksender_inst|baudrate_generator|Equal0~3_combout\ ) )
@@ -6189,15 +5730,15 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011001100110011001100110011001100",
+	lut_mask => "0000000000000000000000000000000011110000111100001111000011110000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~3_combout\,
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~3_combout\,
 	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Add0~41_sumout\,
 	combout => \fsksender_inst|baudrate_generator|ClkCounter~4_combout\);
 
--- Location: FF_X28_Y1_N23
+-- Location: FF_X18_Y1_N28
 \fsksender_inst|baudrate_generator|ClkCounter[15]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6212,11 +5753,11 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter[15]~DUPLICATE_q\);
 
--- Location: LABCELL_X27_Y1_N48
+-- Location: LABCELL_X19_Y1_N48
 \fsksender_inst|baudrate_generator|Add0~37\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~37_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[16]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~42\ ))
--- \fsksender_inst|baudrate_generator|Add0~38\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[16]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~42\ ))
+-- \fsksender_inst|baudrate_generator|Add0~37_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(16) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~42\ ))
+-- \fsksender_inst|baudrate_generator|Add0~38\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(16) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~42\ ))
 
 -- pragma translate_off
 GENERIC MAP (
@@ -6225,74 +5766,12 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[16]~DUPLICATE_q\,
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(16),
 	cin => \fsksender_inst|baudrate_generator|Add0~42\,
 	sumout => \fsksender_inst|baudrate_generator|Add0~37_sumout\,
 	cout => \fsksender_inst|baudrate_generator|Add0~38\);
 
--- Location: FF_X27_Y1_N50
-\fsksender_inst|baudrate_generator|ClkCounter[16]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|Add0~37_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter[16]~DUPLICATE_q\);
-
--- Location: LABCELL_X27_Y1_N51
-\fsksender_inst|baudrate_generator|Add0~33\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|Add0~33_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(17) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~38\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(17),
-	cin => \fsksender_inst|baudrate_generator|Add0~38\,
-	sumout => \fsksender_inst|baudrate_generator|Add0~33_sumout\);
-
--- Location: MLABCELL_X28_Y1_N18
-\fsksender_inst|baudrate_generator|ClkCounter~3\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|ClkCounter~3_combout\ = (!\fsksender_inst|baudrate_generator|Equal0~3_combout\ & \fsksender_inst|baudrate_generator|Add0~33_sumout\)
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000011001100000000001100110000000000110011000000000011001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~3_combout\,
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_Add0~33_sumout\,
-	combout => \fsksender_inst|baudrate_generator|ClkCounter~3_combout\);
-
--- Location: FF_X28_Y1_N20
-\fsksender_inst|baudrate_generator|ClkCounter[17]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|ClkCounter~3_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(17));
-
--- Location: FF_X27_Y1_N49
+-- Location: FF_X19_Y1_N50
 \fsksender_inst|baudrate_generator|ClkCounter[16]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6307,7 +5786,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter\(16));
 
--- Location: FF_X28_Y1_N22
+-- Location: FF_X18_Y1_N29
 \fsksender_inst|baudrate_generator|ClkCounter[15]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6322,11 +5801,73 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter\(15));
 
--- Location: MLABCELL_X28_Y1_N48
+-- Location: FF_X18_Y1_N43
+\fsksender_inst|baudrate_generator|ClkCounter[17]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|ClkCounter~3_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter[17]~DUPLICATE_q\);
+
+-- Location: LABCELL_X19_Y1_N51
+\fsksender_inst|baudrate_generator|Add0~33\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~33_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[17]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~38\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[17]~DUPLICATE_q\,
+	cin => \fsksender_inst|baudrate_generator|Add0~38\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~33_sumout\);
+
+-- Location: LABCELL_X18_Y1_N42
+\fsksender_inst|baudrate_generator|ClkCounter~3\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|ClkCounter~3_combout\ = ( \fsksender_inst|baudrate_generator|Add0~33_sumout\ & ( !\fsksender_inst|baudrate_generator|Equal0~3_combout\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011001100110011001100110011001100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~3_combout\,
+	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Add0~33_sumout\,
+	combout => \fsksender_inst|baudrate_generator|ClkCounter~3_combout\);
+
+-- Location: FF_X18_Y1_N44
+\fsksender_inst|baudrate_generator|ClkCounter[17]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|ClkCounter~3_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(17));
+
+-- Location: LABCELL_X18_Y1_N24
 \fsksender_inst|baudrate_generator|Equal0~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|baudrate_generator|Equal0~1_combout\ = ( \fsksender_inst|baudrate_generator|ClkCounter\(15) & ( (!\fsksender_inst|baudrate_generator|ClkCounter\(13) & (!\fsksender_inst|baudrate_generator|ClkCounter\(14) & 
--- (\fsksender_inst|baudrate_generator|ClkCounter\(17) & !\fsksender_inst|baudrate_generator|ClkCounter\(16)))) ) )
+-- \fsksender_inst|baudrate_generator|Equal0~1_combout\ = ( \fsksender_inst|baudrate_generator|ClkCounter\(17) & ( (!\fsksender_inst|baudrate_generator|ClkCounter\(13) & (!\fsksender_inst|baudrate_generator|ClkCounter\(16) & 
+-- (\fsksender_inst|baudrate_generator|ClkCounter\(15) & !\fsksender_inst|baudrate_generator|ClkCounter\(14)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -6336,73 +5877,35 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(13),
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(14),
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(17),
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(16),
-	dataf => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(15),
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(16),
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(15),
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(14),
+	dataf => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(17),
 	combout => \fsksender_inst|baudrate_generator|Equal0~1_combout\);
 
--- Location: MLABCELL_X28_Y1_N0
-\fsksender_inst|baudrate_generator|ClkCounter~1\ : cyclonev_lcell_comb
+-- Location: LABCELL_X19_Y1_N54
+\fsksender_inst|baudrate_generator|Equal0~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|baudrate_generator|ClkCounter~1_combout\ = ( \fsksender_inst|baudrate_generator|ClkCounter\(6) & ( \fsksender_inst|baudrate_generator|Add0~5_sumout\ & ( (!\fsksender_inst|baudrate_generator|Equal0~1_combout\) # 
--- ((!\fsksender_inst|baudrate_generator|Equal0~0_combout\) # ((!\fsksender_inst|baudrate_generator|Equal0~2_combout\) # (!\fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\))) ) ) ) # ( !\fsksender_inst|baudrate_generator|ClkCounter\(6) & ( 
--- \fsksender_inst|baudrate_generator|Add0~5_sumout\ ) )
+-- \fsksender_inst|baudrate_generator|Equal0~0_combout\ = ( !\fsksender_inst|baudrate_generator|ClkCounter\(1) & ( !\fsksender_inst|baudrate_generator|ClkCounter\(3) & ( (\fsksender_inst|baudrate_generator|ClkCounter\(0) & 
+-- (!\fsksender_inst|baudrate_generator|ClkCounter\(4) & (!\fsksender_inst|baudrate_generator|ClkCounter\(2) & !\fsksender_inst|baudrate_generator|ClkCounter\(5)))) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111110",
+	lut_mask => "0100000000000000000000000000000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[12]~DUPLICATE_q\,
-	datae => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
-	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Add0~5_sumout\,
-	combout => \fsksender_inst|baudrate_generator|ClkCounter~1_combout\);
+	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(0),
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(4),
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(2),
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(5),
+	datae => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(1),
+	dataf => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(3),
+	combout => \fsksender_inst|baudrate_generator|Equal0~0_combout\);
 
--- Location: FF_X28_Y1_N2
-\fsksender_inst|baudrate_generator|ClkCounter[6]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|baudrate_generator|ClkCounter~1_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(6));
-
--- Location: MLABCELL_X28_Y1_N33
-\fsksender_inst|baudrate_generator|ClkCounter~7\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|baudrate_generator|ClkCounter~7_combout\ = ( \fsksender_inst|baudrate_generator|Equal0~2_combout\ & ( \fsksender_inst|baudrate_generator|Add0~65_sumout\ & ( (!\fsksender_inst|baudrate_generator|ClkCounter\(6)) # 
--- ((!\fsksender_inst|baudrate_generator|ClkCounter[12]~DUPLICATE_q\) # ((!\fsksender_inst|baudrate_generator|Equal0~0_combout\) # (!\fsksender_inst|baudrate_generator|Equal0~1_combout\))) ) ) ) # ( !\fsksender_inst|baudrate_generator|Equal0~2_combout\ & ( 
--- \fsksender_inst|baudrate_generator|Add0~65_sumout\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111110",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[12]~DUPLICATE_q\,
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
-	datad => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
-	datae => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
-	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Add0~65_sumout\,
-	combout => \fsksender_inst|baudrate_generator|ClkCounter~7_combout\);
-
--- Location: FF_X28_Y1_N35
-\fsksender_inst|baudrate_generator|ClkCounter[8]\ : dffeas
+-- Location: FF_X18_Y1_N16
+\fsksender_inst|baudrate_generator|ClkCounter[8]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -6414,9 +5917,45 @@ PORT MAP (
 	clrn => \inResetAsync~input_o\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \fsksender_inst|baudrate_generator|ClkCounter\(8));
+	q => \fsksender_inst|baudrate_generator|ClkCounter[8]~DUPLICATE_q\);
 
--- Location: FF_X27_Y1_N22
+-- Location: LABCELL_X19_Y1_N18
+\fsksender_inst|baudrate_generator|Add0~5\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~5_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(6) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~10\ ))
+-- \fsksender_inst|baudrate_generator|Add0~6\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(6) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~10\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
+	cin => \fsksender_inst|baudrate_generator|Add0~10\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~5_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~6\);
+
+-- Location: LABCELL_X19_Y1_N21
+\fsksender_inst|baudrate_generator|Add0~69\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~69_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(7) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~6\ ))
+-- \fsksender_inst|baudrate_generator|Add0~70\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(7) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~6\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(7),
+	cin => \fsksender_inst|baudrate_generator|Add0~6\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~69_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~70\);
+
+-- Location: FF_X19_Y1_N23
 \fsksender_inst|baudrate_generator|ClkCounter[7]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6431,7 +5970,62 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter\(7));
 
--- Location: FF_X28_Y1_N31
+-- Location: LABCELL_X19_Y1_N24
+\fsksender_inst|baudrate_generator|Add0~65\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~65_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[8]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~70\ ))
+-- \fsksender_inst|baudrate_generator|Add0~66\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[8]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~70\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[8]~DUPLICATE_q\,
+	cin => \fsksender_inst|baudrate_generator|Add0~70\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~65_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~66\);
+
+-- Location: LABCELL_X18_Y1_N15
+\fsksender_inst|baudrate_generator|ClkCounter~7\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|ClkCounter~7_combout\ = ( \fsksender_inst|baudrate_generator|Equal0~2_combout\ & ( \fsksender_inst|baudrate_generator|Add0~65_sumout\ & ( (!\fsksender_inst|baudrate_generator|Equal0~1_combout\) # 
+-- ((!\fsksender_inst|baudrate_generator|ClkCounter\(12)) # ((!\fsksender_inst|baudrate_generator|Equal0~0_combout\) # (!\fsksender_inst|baudrate_generator|ClkCounter\(6)))) ) ) ) # ( !\fsksender_inst|baudrate_generator|Equal0~2_combout\ & ( 
+-- \fsksender_inst|baudrate_generator|Add0~65_sumout\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011111111111111111111111111111110",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(12),
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
+	datae => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
+	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Add0~65_sumout\,
+	combout => \fsksender_inst|baudrate_generator|ClkCounter~7_combout\);
+
+-- Location: FF_X18_Y1_N17
+\fsksender_inst|baudrate_generator|ClkCounter[8]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|ClkCounter~7_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(8));
+
+-- Location: FF_X18_Y1_N14
 \fsksender_inst|baudrate_generator|ClkCounter[9]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6446,27 +6040,180 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter\(9));
 
--- Location: MLABCELL_X28_Y1_N54
+-- Location: LABCELL_X18_Y1_N21
 \fsksender_inst|baudrate_generator|Equal0~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|baudrate_generator|Equal0~2_combout\ = ( \fsksender_inst|baudrate_generator|ClkCounter\(9) & ( (\fsksender_inst|baudrate_generator|ClkCounter\(8) & (!\fsksender_inst|baudrate_generator|ClkCounter\(10) & 
--- (\fsksender_inst|baudrate_generator|ClkCounter\(11) & !\fsksender_inst|baudrate_generator|ClkCounter\(7)))) ) )
+-- \fsksender_inst|baudrate_generator|Equal0~2_combout\ = ( \fsksender_inst|baudrate_generator|ClkCounter\(11) & ( (!\fsksender_inst|baudrate_generator|ClkCounter\(10) & (\fsksender_inst|baudrate_generator|ClkCounter\(8) & 
+-- (\fsksender_inst|baudrate_generator|ClkCounter\(9) & !\fsksender_inst|baudrate_generator|ClkCounter\(7)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000100000000000000010000000000",
+	lut_mask => "0000000000000000000000000000000000000010000000000000001000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(8),
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(10),
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(11),
+	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(10),
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(8),
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(9),
 	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(7),
-	dataf => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(9),
+	dataf => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(11),
 	combout => \fsksender_inst|baudrate_generator|Equal0~2_combout\);
 
--- Location: FF_X28_Y1_N58
+-- Location: LABCELL_X19_Y1_N27
+\fsksender_inst|baudrate_generator|Add0~61\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~61_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter[9]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~66\ ))
+-- \fsksender_inst|baudrate_generator|Add0~62\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter[9]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~66\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter[9]~DUPLICATE_q\,
+	cin => \fsksender_inst|baudrate_generator|Add0~66\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~61_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~62\);
+
+-- Location: LABCELL_X18_Y1_N12
+\fsksender_inst|baudrate_generator|ClkCounter~6\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|ClkCounter~6_combout\ = ( \fsksender_inst|baudrate_generator|Equal0~2_combout\ & ( \fsksender_inst|baudrate_generator|Add0~61_sumout\ & ( (!\fsksender_inst|baudrate_generator|Equal0~1_combout\) # 
+-- ((!\fsksender_inst|baudrate_generator|ClkCounter\(12)) # ((!\fsksender_inst|baudrate_generator|ClkCounter\(6)) # (!\fsksender_inst|baudrate_generator|Equal0~0_combout\))) ) ) ) # ( !\fsksender_inst|baudrate_generator|Equal0~2_combout\ & ( 
+-- \fsksender_inst|baudrate_generator|Add0~61_sumout\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011111111111111111111111111111110",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(12),
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
+	datae => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
+	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Add0~61_sumout\,
+	combout => \fsksender_inst|baudrate_generator|ClkCounter~6_combout\);
+
+-- Location: FF_X18_Y1_N13
+\fsksender_inst|baudrate_generator|ClkCounter[9]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|ClkCounter~6_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter[9]~DUPLICATE_q\);
+
+-- Location: LABCELL_X19_Y1_N30
+\fsksender_inst|baudrate_generator|Add0~57\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~57_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(10) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~62\ ))
+-- \fsksender_inst|baudrate_generator|Add0~58\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(10) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~62\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(10),
+	cin => \fsksender_inst|baudrate_generator|Add0~62\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~57_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~58\);
+
+-- Location: FF_X19_Y1_N31
+\fsksender_inst|baudrate_generator|ClkCounter[10]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|Add0~57_sumout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(10));
+
+-- Location: LABCELL_X19_Y1_N33
+\fsksender_inst|baudrate_generator|Add0~53\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~53_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(11) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~58\ ))
+-- \fsksender_inst|baudrate_generator|Add0~54\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(11) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~58\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(11),
+	cin => \fsksender_inst|baudrate_generator|Add0~58\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~53_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~54\);
+
+-- Location: LABCELL_X18_Y1_N18
+\fsksender_inst|baudrate_generator|ClkCounter~5\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|ClkCounter~5_combout\ = (!\fsksender_inst|baudrate_generator|Equal0~3_combout\ & \fsksender_inst|baudrate_generator|Add0~53_sumout\)
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000011110000000000001111000000000000111100000000000011110000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~3_combout\,
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_Add0~53_sumout\,
+	combout => \fsksender_inst|baudrate_generator|ClkCounter~5_combout\);
+
+-- Location: FF_X18_Y1_N19
+\fsksender_inst|baudrate_generator|ClkCounter[11]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|ClkCounter~5_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(11));
+
+-- Location: LABCELL_X18_Y1_N39
+\fsksender_inst|baudrate_generator|ClkCounter~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|ClkCounter~0_combout\ = ( \fsksender_inst|baudrate_generator|Add0~1_sumout\ & ( !\fsksender_inst|baudrate_generator|Equal0~3_combout\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000110011001100110000000000000000001100110011001100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~3_combout\,
+	datae => \fsksender_inst|baudrate_generator|ALT_INV_Add0~1_sumout\,
+	combout => \fsksender_inst|baudrate_generator|ClkCounter~0_combout\);
+
+-- Location: FF_X18_Y1_N41
 \fsksender_inst|baudrate_generator|ClkCounter[12]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6481,27 +6228,251 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|ClkCounter\(12));
 
--- Location: MLABCELL_X28_Y1_N12
-\fsksender_inst|baudrate_generator|Equal0~3\ : cyclonev_lcell_comb
+-- Location: LABCELL_X18_Y1_N3
+\fsksender_inst|baudrate_generator|ClkCounter~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|baudrate_generator|Equal0~3_combout\ = ( \fsksender_inst|baudrate_generator|ClkCounter\(6) & ( \fsksender_inst|baudrate_generator|ClkCounter\(12) & ( (\fsksender_inst|baudrate_generator|Equal0~2_combout\ & 
--- (\fsksender_inst|baudrate_generator|Equal0~0_combout\ & \fsksender_inst|baudrate_generator|Equal0~1_combout\)) ) ) )
+-- \fsksender_inst|baudrate_generator|ClkCounter~2_combout\ = ( \fsksender_inst|baudrate_generator|ClkCounter\(6) & ( \fsksender_inst|baudrate_generator|Equal0~1_combout\ & ( (\fsksender_inst|baudrate_generator|Add0~25_sumout\ & 
+-- ((!\fsksender_inst|baudrate_generator|ClkCounter\(12)) # ((!\fsksender_inst|baudrate_generator|Equal0~0_combout\) # (!\fsksender_inst|baudrate_generator|Equal0~2_combout\)))) ) ) ) # ( !\fsksender_inst|baudrate_generator|ClkCounter\(6) & ( 
+-- \fsksender_inst|baudrate_generator|Equal0~1_combout\ & ( \fsksender_inst|baudrate_generator|Add0~25_sumout\ ) ) ) # ( \fsksender_inst|baudrate_generator|ClkCounter\(6) & ( !\fsksender_inst|baudrate_generator|Equal0~1_combout\ & ( 
+-- \fsksender_inst|baudrate_generator|Add0~25_sumout\ ) ) ) # ( !\fsksender_inst|baudrate_generator|ClkCounter\(6) & ( !\fsksender_inst|baudrate_generator|Equal0~1_combout\ & ( \fsksender_inst|baudrate_generator|Add0~25_sumout\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000000000000000000100000001",
+	lut_mask => "0101010101010101010101010101010101010101010101010101010101010100",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
-	datab => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
+	dataa => \fsksender_inst|baudrate_generator|ALT_INV_Add0~25_sumout\,
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(12),
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
 	datae => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
-	dataf => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(12),
+	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
+	combout => \fsksender_inst|baudrate_generator|ClkCounter~2_combout\);
+
+-- Location: FF_X18_Y1_N4
+\fsksender_inst|baudrate_generator|ClkCounter[1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|ClkCounter~2_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(1));
+
+-- Location: LABCELL_X19_Y1_N6
+\fsksender_inst|baudrate_generator|Add0~21\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~21_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(2) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~26\ ))
+-- \fsksender_inst|baudrate_generator|Add0~22\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(2) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~26\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(2),
+	cin => \fsksender_inst|baudrate_generator|Add0~26\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~21_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~22\);
+
+-- Location: FF_X19_Y1_N7
+\fsksender_inst|baudrate_generator|ClkCounter[2]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|Add0~21_sumout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(2));
+
+-- Location: LABCELL_X19_Y1_N9
+\fsksender_inst|baudrate_generator|Add0~17\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~17_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(3) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~22\ ))
+-- \fsksender_inst|baudrate_generator|Add0~18\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(3) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~22\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(3),
+	cin => \fsksender_inst|baudrate_generator|Add0~22\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~17_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~18\);
+
+-- Location: FF_X19_Y1_N11
+\fsksender_inst|baudrate_generator|ClkCounter[3]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|Add0~17_sumout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(3));
+
+-- Location: LABCELL_X19_Y1_N12
+\fsksender_inst|baudrate_generator|Add0~13\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~13_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(4) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~18\ ))
+-- \fsksender_inst|baudrate_generator|Add0~14\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(4) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~18\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(4),
+	cin => \fsksender_inst|baudrate_generator|Add0~18\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~13_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~14\);
+
+-- Location: FF_X19_Y1_N14
+\fsksender_inst|baudrate_generator|ClkCounter[4]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|Add0~13_sumout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(4));
+
+-- Location: LABCELL_X19_Y1_N15
+\fsksender_inst|baudrate_generator|Add0~9\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Add0~9_sumout\ = SUM(( \fsksender_inst|baudrate_generator|ClkCounter\(5) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~14\ ))
+-- \fsksender_inst|baudrate_generator|Add0~10\ = CARRY(( \fsksender_inst|baudrate_generator|ClkCounter\(5) ) + ( GND ) + ( \fsksender_inst|baudrate_generator|Add0~14\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(5),
+	cin => \fsksender_inst|baudrate_generator|Add0~14\,
+	sumout => \fsksender_inst|baudrate_generator|Add0~9_sumout\,
+	cout => \fsksender_inst|baudrate_generator|Add0~10\);
+
+-- Location: FF_X19_Y1_N17
+\fsksender_inst|baudrate_generator|ClkCounter[5]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|Add0~9_sumout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(5));
+
+-- Location: LABCELL_X18_Y1_N30
+\fsksender_inst|baudrate_generator|ClkCounter~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|ClkCounter~1_combout\ = ( \fsksender_inst|baudrate_generator|ClkCounter\(6) & ( \fsksender_inst|baudrate_generator|Equal0~1_combout\ & ( (\fsksender_inst|baudrate_generator|Add0~5_sumout\ & 
+-- ((!\fsksender_inst|baudrate_generator|ClkCounter\(12)) # ((!\fsksender_inst|baudrate_generator|Equal0~2_combout\) # (!\fsksender_inst|baudrate_generator|Equal0~0_combout\)))) ) ) ) # ( !\fsksender_inst|baudrate_generator|ClkCounter\(6) & ( 
+-- \fsksender_inst|baudrate_generator|Equal0~1_combout\ & ( \fsksender_inst|baudrate_generator|Add0~5_sumout\ ) ) ) # ( \fsksender_inst|baudrate_generator|ClkCounter\(6) & ( !\fsksender_inst|baudrate_generator|Equal0~1_combout\ & ( 
+-- \fsksender_inst|baudrate_generator|Add0~5_sumout\ ) ) ) # ( !\fsksender_inst|baudrate_generator|ClkCounter\(6) & ( !\fsksender_inst|baudrate_generator|Equal0~1_combout\ & ( \fsksender_inst|baudrate_generator|Add0~5_sumout\ ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010101010101010101010101010101010101010101010101010101010100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|baudrate_generator|ALT_INV_Add0~5_sumout\,
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(12),
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
+	datae => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
+	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
+	combout => \fsksender_inst|baudrate_generator|ClkCounter~1_combout\);
+
+-- Location: FF_X18_Y1_N31
+\fsksender_inst|baudrate_generator|ClkCounter[6]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|baudrate_generator|ClkCounter~1_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|ClkCounter\(6));
+
+-- Location: LABCELL_X18_Y1_N54
+\fsksender_inst|baudrate_generator|Equal0~3\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|baudrate_generator|Equal0~3_combout\ = ( \fsksender_inst|baudrate_generator|Equal0~1_combout\ & ( (\fsksender_inst|baudrate_generator|ClkCounter\(6) & (\fsksender_inst|baudrate_generator|ClkCounter\(12) & 
+-- (\fsksender_inst|baudrate_generator|Equal0~2_combout\ & \fsksender_inst|baudrate_generator|Equal0~0_combout\))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000000000000000010000000000000001",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(6),
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_ClkCounter\(12),
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~2_combout\,
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~0_combout\,
+	dataf => \fsksender_inst|baudrate_generator|ALT_INV_Equal0~1_combout\,
 	combout => \fsksender_inst|baudrate_generator|Equal0~3_combout\);
 
--- Location: FF_X28_Y1_N16
+-- Location: FF_X18_Y3_N10
+\fsksender_inst|baudrate_generator|oStrobe~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \fsksender_inst|baudrate_generator|Equal0~3_combout\,
+	clrn => \inResetAsync~input_o\,
+	sload => VCC,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\);
+
+-- Location: FF_X18_Y3_N11
 \fsksender_inst|baudrate_generator|oStrobe\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6517,21 +6488,6 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|baudrate_generator|oStrobe~q\);
 
--- Location: LABCELL_X30_Y1_N24
-\fsksender_inst|Reg.SendCounter[0]~3\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|Reg.SendCounter[0]~3_combout\ = ( !\fsksender_inst|Reg.SendCounter\(0) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1111111111111111000000000000000011111111111111110000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datae => \fsksender_inst|ALT_INV_Reg.SendCounter\(0),
-	combout => \fsksender_inst|Reg.SendCounter[0]~3_combout\);
-
 -- Location: IOIBUF_X16_Y0_N1
 \iSwitch[1]~input\ : cyclonev_io_ibuf
 -- pragma translate_off
@@ -6543,18 +6499,7 @@ PORT MAP (
 	i => ww_iSwitch(1),
 	o => \iSwitch[1]~input_o\);
 
--- Location: IOIBUF_X8_Y0_N35
-\iSwitch[2]~input\ : cyclonev_io_ibuf
--- pragma translate_off
-GENERIC MAP (
-	bus_hold => "false",
-	simulate_z_as => "z")
--- pragma translate_on
-PORT MAP (
-	i => ww_iSwitch(2),
-	o => \iSwitch[2]~input_o\);
-
--- Location: MLABCELL_X25_Y1_N0
+-- Location: LABCELL_X17_Y3_N0
 \fsksender_inst|Add0~53\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Add0~53_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(0) ) + ( VCC ) + ( !VCC ))
@@ -6572,192 +6517,7 @@ PORT MAP (
 	sumout => \fsksender_inst|Add0~53_sumout\,
 	cout => \fsksender_inst|Add0~54\);
 
--- Location: MLABCELL_X25_Y1_N21
-\fsksender_inst|Add0~25\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|Add0~25_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(7) ) + ( GND ) + ( \fsksender_inst|Add0~10\ ))
--- \fsksender_inst|Add0~26\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(7) ) + ( GND ) + ( \fsksender_inst|Add0~10\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
-	cin => \fsksender_inst|Add0~10\,
-	sumout => \fsksender_inst|Add0~25_sumout\,
-	cout => \fsksender_inst|Add0~26\);
-
--- Location: MLABCELL_X25_Y1_N24
-\fsksender_inst|Add0~21\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|Add0~21_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(8) ) + ( GND ) + ( \fsksender_inst|Add0~26\ ))
--- \fsksender_inst|Add0~22\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(8) ) + ( GND ) + ( \fsksender_inst|Add0~26\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
-	cin => \fsksender_inst|Add0~26\,
-	sumout => \fsksender_inst|Add0~21_sumout\,
-	cout => \fsksender_inst|Add0~22\);
-
--- Location: MLABCELL_X25_Y1_N48
-\fsksender_inst|LessThan0~5\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|LessThan0~5_combout\ = ( \fsksender_inst|Reg.WaitCounter\(7) & ( \fsksender_inst|Reg.WaitCounter\(2) & ( (\iSwitch[1]~input_o\ & ((!\fsksender_inst|Reg.WaitCounter\(8)) # (!\fsksender_inst|Reg.WaitCounter\(4)))) ) ) ) # ( 
--- !\fsksender_inst|Reg.WaitCounter\(7) & ( \fsksender_inst|Reg.WaitCounter\(2) & ( \iSwitch[1]~input_o\ ) ) ) # ( \fsksender_inst|Reg.WaitCounter\(7) & ( !\fsksender_inst|Reg.WaitCounter\(2) & ( (\iSwitch[1]~input_o\ & 
--- ((!\fsksender_inst|Reg.WaitCounter\(8)) # ((!\fsksender_inst|Reg.WaitCounter\(4)) # (!\fsksender_inst|Reg.WaitCounter\(3))))) ) ) ) # ( !\fsksender_inst|Reg.WaitCounter\(7) & ( !\fsksender_inst|Reg.WaitCounter\(2) & ( 
--- ((!\fsksender_inst|Reg.WaitCounter\(8) & (!\fsksender_inst|Reg.WaitCounter\(4) & !\fsksender_inst|Reg.WaitCounter\(3)))) # (\iSwitch[1]~input_o\) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1000111100001111000011110000111000001111000011110000111000001110",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
-	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(4),
-	datac => \ALT_INV_iSwitch[1]~input_o\,
-	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(3),
-	datae => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
-	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(2),
-	combout => \fsksender_inst|LessThan0~5_combout\);
-
--- Location: LABCELL_X24_Y1_N36
-\fsksender_inst|LessThan0~4\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|LessThan0~4_combout\ = ( \iSwitch[2]~input_o\ & ( (\iSwitch[1]~input_o\ & \fsksender_inst|Reg.WaitCounter\(9)) ) ) # ( !\iSwitch[2]~input_o\ & ( ((!\iSwitch[1]~input_o\ & ((\fsksender_inst|Reg.WaitCounter\(7)) # 
--- (\fsksender_inst|Reg.WaitCounter\(8))))) # (\fsksender_inst|Reg.WaitCounter\(9)) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0010111110101111001011111010111100000101000001010000010100000101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \ALT_INV_iSwitch[1]~input_o\,
-	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
-	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
-	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
-	dataf => \ALT_INV_iSwitch[2]~input_o\,
-	combout => \fsksender_inst|LessThan0~4_combout\);
-
--- Location: LABCELL_X24_Y1_N45
-\fsksender_inst|LessThan0~6\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|LessThan0~6_combout\ = ( \fsksender_inst|LessThan0~4_combout\ & ( (!\fsksender_inst|LessThan0~5_combout\) # (\fsksender_inst|Reg.WaitCounter\(9)) ) ) # ( !\fsksender_inst|LessThan0~4_combout\ & ( (\fsksender_inst|Reg.WaitCounter\(5) & 
--- (\fsksender_inst|Reg.WaitCounter\(6) & ((!\fsksender_inst|LessThan0~5_combout\) # (\fsksender_inst|Reg.WaitCounter\(9))))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0001000100000001000100010000000111111111000011111111111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(5),
-	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(6),
-	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
-	datad => \fsksender_inst|ALT_INV_LessThan0~5_combout\,
-	dataf => \fsksender_inst|ALT_INV_LessThan0~4_combout\,
-	combout => \fsksender_inst|LessThan0~6_combout\);
-
--- Location: FF_X30_Y1_N59
-\fsksender_inst|Reg.SendCounter[2]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Reg.SendCounter[2]~1_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.SendCounter\(2));
-
--- Location: LABCELL_X30_Y1_N57
-\fsksender_inst|Reg.SendCounter[2]~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|Reg.SendCounter[2]~1_combout\ = ( \fsksender_inst|Reg.SendCounter\(2) & ( \fsksender_inst|Reg.SendCounter[3]~0_combout\ & ( (!\fsksender_inst|Reg.SendCounter\(0)) # (!\fsksender_inst|Reg.SendCounter\(1)) ) ) ) # ( 
--- !\fsksender_inst|Reg.SendCounter\(2) & ( \fsksender_inst|Reg.SendCounter[3]~0_combout\ & ( (\fsksender_inst|Reg.SendCounter\(0) & \fsksender_inst|Reg.SendCounter\(1)) ) ) ) # ( \fsksender_inst|Reg.SendCounter\(2) & ( 
--- !\fsksender_inst|Reg.SendCounter[3]~0_combout\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000101000001011111101011111010",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.SendCounter\(0),
-	datac => \fsksender_inst|ALT_INV_Reg.SendCounter\(1),
-	datae => \fsksender_inst|ALT_INV_Reg.SendCounter\(2),
-	dataf => \fsksender_inst|ALT_INV_Reg.SendCounter[3]~0_combout\,
-	combout => \fsksender_inst|Reg.SendCounter[2]~1_combout\);
-
--- Location: FF_X30_Y1_N58
-\fsksender_inst|Reg.SendCounter[2]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Reg.SendCounter[2]~1_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.SendCounter[2]~DUPLICATE_q\);
-
--- Location: FF_X30_Y1_N25
-\fsksender_inst|Reg.SendCounter[0]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Reg.SendCounter[0]~3_combout\,
-	clrn => \inResetAsync~input_o\,
-	ena => \fsksender_inst|Reg.SendCounter[3]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.SendCounter[0]~DUPLICATE_q\);
-
--- Location: LABCELL_X30_Y1_N36
-\fsksender_inst|Selector0~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|Selector0~0_combout\ = ( \fsksender_inst|baudrate_generator|oStrobe~q\ & ( \fsksender_inst|Reg.SendCounter[0]~DUPLICATE_q\ & ( (\fsksender_inst|Reg.SendCounter\(1) & (\fsksender_inst|Reg.SendCounter[2]~DUPLICATE_q\ & 
--- \fsksender_inst|Reg.state.Send~q\)) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000000000000000000000000011",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \fsksender_inst|ALT_INV_Reg.SendCounter\(1),
-	datac => \fsksender_inst|ALT_INV_Reg.SendCounter[2]~DUPLICATE_q\,
-	datad => \fsksender_inst|ALT_INV_Reg.state.Send~q\,
-	datae => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~q\,
-	dataf => \fsksender_inst|ALT_INV_Reg.SendCounter[0]~DUPLICATE_q\,
-	combout => \fsksender_inst|Selector0~0_combout\);
-
--- Location: MLABCELL_X25_Y1_N36
+-- Location: LABCELL_X17_Y3_N36
 \fsksender_inst|Add0~33\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Add0~33_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(12) ) + ( GND ) + ( \fsksender_inst|Add0~42\ ))
@@ -6775,7 +6535,7 @@ PORT MAP (
 	sumout => \fsksender_inst|Add0~33_sumout\,
 	cout => \fsksender_inst|Add0~34\);
 
--- Location: MLABCELL_X25_Y1_N39
+-- Location: LABCELL_X17_Y3_N39
 \fsksender_inst|Add0~29\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Add0~29_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(13) ) + ( GND ) + ( \fsksender_inst|Add0~34\ ))
@@ -6791,8 +6551,136 @@ PORT MAP (
 	cin => \fsksender_inst|Add0~34\,
 	sumout => \fsksender_inst|Add0~29_sumout\);
 
--- Location: FF_X25_Y1_N41
-\fsksender_inst|Reg.WaitCounter[13]\ : dffeas
+-- Location: IOIBUF_X8_Y0_N35
+\iSwitch[2]~input\ : cyclonev_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_iSwitch(2),
+	o => \iSwitch[2]~input_o\);
+
+-- Location: LABCELL_X16_Y3_N12
+\fsksender_inst|LessThan0~4\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|LessThan0~4_combout\ = ( \fsksender_inst|Reg.WaitCounter\(8) & ( (!\iSwitch[1]~input_o\ & (!\iSwitch[2]~input_o\)) # (\iSwitch[1]~input_o\ & ((\fsksender_inst|Reg.WaitCounter\(9)))) ) ) # ( !\fsksender_inst|Reg.WaitCounter\(8) & ( 
+-- (!\iSwitch[1]~input_o\ & (!\iSwitch[2]~input_o\ & ((\fsksender_inst|Reg.WaitCounter\(7)) # (\fsksender_inst|Reg.WaitCounter\(9))))) # (\iSwitch[1]~input_o\ & (((\fsksender_inst|Reg.WaitCounter\(9))))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000101110001011000010111000101110001011100010111000101110001011",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ALT_INV_iSwitch[2]~input_o\,
+	datab => \ALT_INV_iSwitch[1]~input_o\,
+	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
+	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
+	combout => \fsksender_inst|LessThan0~4_combout\);
+
+-- Location: LABCELL_X16_Y3_N42
+\fsksender_inst|LessThan0~5\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|LessThan0~5_combout\ = ( \fsksender_inst|Reg.WaitCounter\(3) & ( \fsksender_inst|Reg.WaitCounter\(8) & ( (\iSwitch[1]~input_o\ & ((!\fsksender_inst|Reg.WaitCounter\(7)) # (!\fsksender_inst|Reg.WaitCounter\(4)))) ) ) ) # ( 
+-- !\fsksender_inst|Reg.WaitCounter\(3) & ( \fsksender_inst|Reg.WaitCounter\(8) & ( (\iSwitch[1]~input_o\ & ((!\fsksender_inst|Reg.WaitCounter\(2)) # ((!\fsksender_inst|Reg.WaitCounter\(7)) # (!\fsksender_inst|Reg.WaitCounter\(4))))) ) ) ) # ( 
+-- \fsksender_inst|Reg.WaitCounter\(3) & ( !\fsksender_inst|Reg.WaitCounter\(8) & ( \iSwitch[1]~input_o\ ) ) ) # ( !\fsksender_inst|Reg.WaitCounter\(3) & ( !\fsksender_inst|Reg.WaitCounter\(8) & ( ((!\fsksender_inst|Reg.WaitCounter\(2) & 
+-- (!\fsksender_inst|Reg.WaitCounter\(7) & !\fsksender_inst|Reg.WaitCounter\(4)))) # (\iSwitch[1]~input_o\) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1011001100110011001100110011001100110011001100100011001100110000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(2),
+	datab => \ALT_INV_iSwitch[1]~input_o\,
+	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
+	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(4),
+	datae => \fsksender_inst|ALT_INV_Reg.WaitCounter\(3),
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
+	combout => \fsksender_inst|LessThan0~5_combout\);
+
+-- Location: LABCELL_X16_Y3_N3
+\fsksender_inst|LessThan0~6\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|LessThan0~6_combout\ = ( \fsksender_inst|LessThan0~5_combout\ & ( (\fsksender_inst|Reg.WaitCounter\(9) & (((\fsksender_inst|Reg.WaitCounter\(6) & \fsksender_inst|Reg.WaitCounter\(5))) # (\fsksender_inst|LessThan0~4_combout\))) ) ) # ( 
+-- !\fsksender_inst|LessThan0~5_combout\ & ( ((\fsksender_inst|Reg.WaitCounter\(6) & \fsksender_inst|Reg.WaitCounter\(5))) # (\fsksender_inst|LessThan0~4_combout\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000111100111111000011110011111100000101000101010000010100010101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
+	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(6),
+	datac => \fsksender_inst|ALT_INV_LessThan0~4_combout\,
+	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(5),
+	dataf => \fsksender_inst|ALT_INV_LessThan0~5_combout\,
+	combout => \fsksender_inst|LessThan0~6_combout\);
+
+-- Location: LABCELL_X17_Y3_N48
+\fsksender_inst|LessThan0~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|LessThan0~0_combout\ = ( !\fsksender_inst|Reg.WaitCounter\(5) & ( !\fsksender_inst|Reg.WaitCounter\(6) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1111000011110000111100001111000000000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(6),
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(5),
+	combout => \fsksender_inst|LessThan0~0_combout\);
+
+-- Location: LABCELL_X17_Y3_N51
+\fsksender_inst|LessThan0~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|LessThan0~1_combout\ = ( \fsksender_inst|Reg.WaitCounter\(8) & ( (\fsksender_inst|Reg.WaitCounter\(9) & \fsksender_inst|Reg.WaitCounter\(7)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000000000010101010000000001010101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
+	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
+	combout => \fsksender_inst|LessThan0~1_combout\);
+
+-- Location: LABCELL_X18_Y3_N21
+\fsksender_inst|LessThan0~2\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|LessThan0~2_combout\ = ( !\fsksender_inst|Reg.WaitCounter\(4) & ( \fsksender_inst|LessThan0~1_combout\ & ( (!\fsksender_inst|Reg.WaitCounter\(3) & (\iSwitch[2]~input_o\ & ((!\iSwitch[1]~input_o\) # (\fsksender_inst|LessThan0~0_combout\)))) 
+-- ) ) ) # ( \fsksender_inst|Reg.WaitCounter\(4) & ( !\fsksender_inst|LessThan0~1_combout\ & ( \iSwitch[2]~input_o\ ) ) ) # ( !\fsksender_inst|Reg.WaitCounter\(4) & ( !\fsksender_inst|LessThan0~1_combout\ & ( \iSwitch[2]~input_o\ ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000011111111000000001111111100000000100011000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ALT_INV_iSwitch[1]~input_o\,
+	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(3),
+	datac => \fsksender_inst|ALT_INV_LessThan0~0_combout\,
+	datad => \ALT_INV_iSwitch[2]~input_o\,
+	datae => \fsksender_inst|ALT_INV_Reg.WaitCounter\(4),
+	dataf => \fsksender_inst|ALT_INV_LessThan0~1_combout\,
+	combout => \fsksender_inst|LessThan0~2_combout\);
+
+-- Location: FF_X15_Y3_N14
+\fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -6800,74 +6688,13 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Add0~29_sumout\,
-	clrn => \inResetAsync~input_o\,
-	sclr => \fsksender_inst|Selector1~2_combout\,
-	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.WaitCounter\(13));
-
--- Location: MLABCELL_X25_Y1_N42
-\fsksender_inst|LessThan0~7\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|LessThan0~7_combout\ = ( \fsksender_inst|Reg.WaitCounter\(12) & ( !\fsksender_inst|Reg.WaitCounter\(10) & ( (!\fsksender_inst|Reg.WaitCounter\(11) & (\iSwitch[2]~input_o\ & (\iSwitch[1]~input_o\ & !\fsksender_inst|Reg.WaitCounter\(13)))) ) 
--- ) ) # ( !\fsksender_inst|Reg.WaitCounter\(12) & ( !\fsksender_inst|Reg.WaitCounter\(10) & ( (!\fsksender_inst|Reg.WaitCounter\(11) & (!\fsksender_inst|Reg.WaitCounter\(13) & ((!\iSwitch[2]~input_o\) # (!\iSwitch[1]~input_o\)))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1010100000000000000000100000000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(11),
-	datab => \ALT_INV_iSwitch[2]~input_o\,
-	datac => \ALT_INV_iSwitch[1]~input_o\,
-	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(13),
-	datae => \fsksender_inst|ALT_INV_Reg.WaitCounter\(12),
-	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(10),
-	combout => \fsksender_inst|LessThan0~7_combout\);
-
--- Location: LABCELL_X24_Y1_N0
-\fsksender_inst|Selector0~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|Selector0~1_combout\ = ( \fsksender_inst|Reg.state.WaitForSend~q\ & ( \fsksender_inst|LessThan0~2_combout\ & ( !\fsksender_inst|Selector0~0_combout\ ) ) ) # ( !\fsksender_inst|Reg.state.WaitForSend~q\ & ( 
--- \fsksender_inst|LessThan0~2_combout\ & ( (!\fsksender_inst|Selector0~0_combout\ & (!\fsksender_inst|LessThan0~3_combout\ & !\fsksender_inst|LessThan0~7_combout\)) ) ) ) # ( \fsksender_inst|Reg.state.WaitForSend~q\ & ( !\fsksender_inst|LessThan0~2_combout\ 
--- & ( !\fsksender_inst|Selector0~0_combout\ ) ) ) # ( !\fsksender_inst|Reg.state.WaitForSend~q\ & ( !\fsksender_inst|LessThan0~2_combout\ & ( (!\fsksender_inst|Selector0~0_combout\ & (!\fsksender_inst|LessThan0~3_combout\ & 
--- ((!\fsksender_inst|LessThan0~7_combout\) # (\fsksender_inst|LessThan0~6_combout\)))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1000000010001000101010101010101010000000100000001010101010101010",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Selector0~0_combout\,
-	datab => \fsksender_inst|ALT_INV_LessThan0~3_combout\,
-	datac => \fsksender_inst|ALT_INV_LessThan0~7_combout\,
-	datad => \fsksender_inst|ALT_INV_LessThan0~6_combout\,
-	datae => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
-	dataf => \fsksender_inst|ALT_INV_LessThan0~2_combout\,
-	combout => \fsksender_inst|Selector0~1_combout\);
-
--- Location: FF_X24_Y1_N2
-\fsksender_inst|Reg.state.WaitForSend\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Selector0~1_combout\,
+	d => \fsksender_inst|msstrobe_generator|Add0~5_sumout\,
 	clrn => \inResetAsync~input_o\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.state.WaitForSend~q\);
+	q => \fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\);
 
--- Location: LABCELL_X29_Y1_N0
+-- Location: MLABCELL_X15_Y3_N0
 \fsksender_inst|msstrobe_generator|Add0~21\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~21_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(0) ) + ( VCC ) + ( !VCC ))
@@ -6885,7 +6712,7 @@ PORT MAP (
 	sumout => \fsksender_inst|msstrobe_generator|Add0~21_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~22\);
 
--- Location: FF_X29_Y1_N2
+-- Location: FF_X15_Y3_N2
 \fsksender_inst|msstrobe_generator|ClkCounter[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6900,7 +6727,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(0));
 
--- Location: LABCELL_X29_Y1_N3
+-- Location: MLABCELL_X15_Y3_N3
 \fsksender_inst|msstrobe_generator|Add0~17\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~17_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(1) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~22\ ))
@@ -6918,7 +6745,7 @@ PORT MAP (
 	sumout => \fsksender_inst|msstrobe_generator|Add0~17_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~18\);
 
--- Location: FF_X29_Y1_N5
+-- Location: FF_X15_Y3_N5
 \fsksender_inst|msstrobe_generator|ClkCounter[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6933,7 +6760,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(1));
 
--- Location: LABCELL_X29_Y1_N6
+-- Location: MLABCELL_X15_Y3_N6
 \fsksender_inst|msstrobe_generator|Add0~13\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~13_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(2) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~18\ ))
@@ -6942,16 +6769,16 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(2),
+	datab => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(2),
 	cin => \fsksender_inst|msstrobe_generator|Add0~18\,
 	sumout => \fsksender_inst|msstrobe_generator|Add0~13_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~14\);
 
--- Location: FF_X29_Y1_N7
+-- Location: FF_X15_Y3_N8
 \fsksender_inst|msstrobe_generator|ClkCounter[2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6966,7 +6793,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(2));
 
--- Location: LABCELL_X29_Y1_N9
+-- Location: MLABCELL_X15_Y3_N9
 \fsksender_inst|msstrobe_generator|Add0~9\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~9_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(3) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~14\ ))
@@ -6984,7 +6811,7 @@ PORT MAP (
 	sumout => \fsksender_inst|msstrobe_generator|Add0~9_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~10\);
 
--- Location: FF_X29_Y1_N11
+-- Location: FF_X15_Y3_N11
 \fsksender_inst|msstrobe_generator|ClkCounter[3]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -6999,41 +6826,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(3));
 
--- Location: LABCELL_X29_Y1_N48
-\fsksender_inst|msstrobe_generator|Equal0~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|msstrobe_generator|Equal0~0_combout\ = ( \fsksender_inst|msstrobe_generator|ClkCounter\(3) & ( (\fsksender_inst|msstrobe_generator|ClkCounter\(2) & (\fsksender_inst|msstrobe_generator|ClkCounter\(1) & 
--- \fsksender_inst|msstrobe_generator|ClkCounter\(0))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000000001010000000000000101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(2),
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(1),
-	datad => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(0),
-	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(3),
-	combout => \fsksender_inst|msstrobe_generator|Equal0~0_combout\);
-
--- Location: FF_X29_Y1_N14
-\fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|msstrobe_generator|Add0~5_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\);
-
--- Location: LABCELL_X29_Y1_N12
+-- Location: MLABCELL_X15_Y3_N12
 \fsksender_inst|msstrobe_generator|Add0~5\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~5_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~10\ ))
@@ -7051,7 +6844,7 @@ PORT MAP (
 	sumout => \fsksender_inst|msstrobe_generator|Add0~5_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~6\);
 
--- Location: FF_X29_Y1_N13
+-- Location: FF_X15_Y3_N13
 \fsksender_inst|msstrobe_generator|ClkCounter[4]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -7066,274 +6859,26 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(4));
 
--- Location: FF_X28_Y1_N46
-\fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE_q\);
-
--- Location: LABCELL_X29_Y1_N15
-\fsksender_inst|msstrobe_generator|Add0~61\ : cyclonev_lcell_comb
+-- Location: MLABCELL_X15_Y3_N48
+\fsksender_inst|msstrobe_generator|Equal0~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|msstrobe_generator|Add0~61_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(5) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~6\ ))
--- \fsksender_inst|msstrobe_generator|Add0~62\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter\(5) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~6\ ))
+-- \fsksender_inst|msstrobe_generator|Equal0~0_combout\ = ( \fsksender_inst|msstrobe_generator|ClkCounter\(3) & ( (\fsksender_inst|msstrobe_generator|ClkCounter\(1) & (\fsksender_inst|msstrobe_generator|ClkCounter\(2) & 
+-- \fsksender_inst|msstrobe_generator|ClkCounter\(0))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	lut_mask => "0000000000000000000000000000000000000001000000010000000100000001",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(5),
-	cin => \fsksender_inst|msstrobe_generator|Add0~6\,
-	sumout => \fsksender_inst|msstrobe_generator|Add0~61_sumout\,
-	cout => \fsksender_inst|msstrobe_generator|Add0~62\);
+	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(1),
+	datab => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(2),
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(0),
+	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(3),
+	combout => \fsksender_inst|msstrobe_generator|Equal0~0_combout\);
 
--- Location: FF_X29_Y1_N16
-\fsksender_inst|msstrobe_generator|ClkCounter[5]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|msstrobe_generator|Add0~61_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|msstrobe_generator|ClkCounter\(5));
-
--- Location: LABCELL_X29_Y1_N18
-\fsksender_inst|msstrobe_generator|Add0~57\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|msstrobe_generator|Add0~57_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(6) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~62\ ))
--- \fsksender_inst|msstrobe_generator|Add0~58\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter\(6) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~62\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(6),
-	cin => \fsksender_inst|msstrobe_generator|Add0~62\,
-	sumout => \fsksender_inst|msstrobe_generator|Add0~57_sumout\,
-	cout => \fsksender_inst|msstrobe_generator|Add0~58\);
-
--- Location: FF_X29_Y1_N20
-\fsksender_inst|msstrobe_generator|ClkCounter[6]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|msstrobe_generator|Add0~57_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|msstrobe_generator|ClkCounter\(6));
-
--- Location: LABCELL_X29_Y1_N21
-\fsksender_inst|msstrobe_generator|Add0~53\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|msstrobe_generator|Add0~53_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(7) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~58\ ))
--- \fsksender_inst|msstrobe_generator|Add0~54\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter\(7) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~58\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(7),
-	cin => \fsksender_inst|msstrobe_generator|Add0~58\,
-	sumout => \fsksender_inst|msstrobe_generator|Add0~53_sumout\,
-	cout => \fsksender_inst|msstrobe_generator|Add0~54\);
-
--- Location: MLABCELL_X28_Y1_N24
-\fsksender_inst|msstrobe_generator|ClkCounter~6\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|msstrobe_generator|ClkCounter~6_combout\ = ( \fsksender_inst|msstrobe_generator|ClkCounter\(4) & ( \fsksender_inst|msstrobe_generator|ClkCounter\(10) & ( \fsksender_inst|msstrobe_generator|Add0~53_sumout\ ) ) ) # ( 
--- !\fsksender_inst|msstrobe_generator|ClkCounter\(4) & ( \fsksender_inst|msstrobe_generator|ClkCounter\(10) & ( \fsksender_inst|msstrobe_generator|Add0~53_sumout\ ) ) ) # ( \fsksender_inst|msstrobe_generator|ClkCounter\(4) & ( 
--- !\fsksender_inst|msstrobe_generator|ClkCounter\(10) & ( (\fsksender_inst|msstrobe_generator|Add0~53_sumout\ & ((!\fsksender_inst|msstrobe_generator|Equal0~0_combout\) # ((!\fsksender_inst|msstrobe_generator|Equal0~2_combout\) # 
--- (!\fsksender_inst|msstrobe_generator|Equal0~1_combout\)))) ) ) ) # ( !\fsksender_inst|msstrobe_generator|ClkCounter\(4) & ( !\fsksender_inst|msstrobe_generator|ClkCounter\(10) & ( \fsksender_inst|msstrobe_generator|Add0~53_sumout\ ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0101010101010101010101010101010001010101010101010101010101010101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~53_sumout\,
-	datab => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~0_combout\,
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~2_combout\,
-	datad => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~1_combout\,
-	datae => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(4),
-	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(10),
-	combout => \fsksender_inst|msstrobe_generator|ClkCounter~6_combout\);
-
--- Location: FF_X28_Y1_N25
-\fsksender_inst|msstrobe_generator|ClkCounter[7]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|msstrobe_generator|ClkCounter~6_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|msstrobe_generator|ClkCounter\(7));
-
--- Location: LABCELL_X29_Y1_N24
-\fsksender_inst|msstrobe_generator|Add0~49\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|msstrobe_generator|Add0~49_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~54\ ))
--- \fsksender_inst|msstrobe_generator|Add0~50\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~54\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[8]~DUPLICATE_q\,
-	cin => \fsksender_inst|msstrobe_generator|Add0~54\,
-	sumout => \fsksender_inst|msstrobe_generator|Add0~49_sumout\,
-	cout => \fsksender_inst|msstrobe_generator|Add0~50\);
-
--- Location: MLABCELL_X28_Y1_N45
-\fsksender_inst|msstrobe_generator|ClkCounter~5\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\ = ( \fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( \fsksender_inst|msstrobe_generator|Add0~49_sumout\ & ( ((!\fsksender_inst|msstrobe_generator|Equal0~0_combout\) # 
--- ((!\fsksender_inst|msstrobe_generator|Equal0~1_combout\) # (!\fsksender_inst|msstrobe_generator|ClkCounter\(4)))) # (\fsksender_inst|msstrobe_generator|ClkCounter\(10)) ) ) ) # ( !\fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( 
--- \fsksender_inst|msstrobe_generator|Add0~49_sumout\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(10),
-	datab => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~0_combout\,
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~1_combout\,
-	datad => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(4),
-	datae => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~2_combout\,
-	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~49_sumout\,
-	combout => \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\);
-
--- Location: FF_X28_Y1_N47
-\fsksender_inst|msstrobe_generator|ClkCounter[8]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|msstrobe_generator|ClkCounter\(8));
-
--- Location: MLABCELL_X28_Y1_N6
-\fsksender_inst|msstrobe_generator|Equal0~2\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|msstrobe_generator|Equal0~2_combout\ = ( \fsksender_inst|msstrobe_generator|ClkCounter\(6) & ( !\fsksender_inst|msstrobe_generator|ClkCounter\(7) & ( (\fsksender_inst|msstrobe_generator|ClkCounter\(8) & 
--- (\fsksender_inst|msstrobe_generator|ClkCounter\(5) & \fsksender_inst|msstrobe_generator|ClkCounter\(9))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000001100000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(8),
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(5),
-	datad => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(9),
-	datae => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(6),
-	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(7),
-	combout => \fsksender_inst|msstrobe_generator|Equal0~2_combout\);
-
--- Location: LABCELL_X29_Y1_N27
-\fsksender_inst|msstrobe_generator|Add0~45\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|msstrobe_generator|Add0~45_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(9) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~50\ ))
--- \fsksender_inst|msstrobe_generator|Add0~46\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter\(9) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~50\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(9),
-	cin => \fsksender_inst|msstrobe_generator|Add0~50\,
-	sumout => \fsksender_inst|msstrobe_generator|Add0~45_sumout\,
-	cout => \fsksender_inst|msstrobe_generator|Add0~46\);
-
--- Location: MLABCELL_X28_Y1_N42
-\fsksender_inst|msstrobe_generator|ClkCounter~4\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|msstrobe_generator|ClkCounter~4_combout\ = ( \fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( \fsksender_inst|msstrobe_generator|Add0~45_sumout\ & ( ((!\fsksender_inst|msstrobe_generator|Equal0~0_combout\) # 
--- ((!\fsksender_inst|msstrobe_generator|ClkCounter\(4)) # (!\fsksender_inst|msstrobe_generator|Equal0~1_combout\))) # (\fsksender_inst|msstrobe_generator|ClkCounter\(10)) ) ) ) # ( !\fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( 
--- \fsksender_inst|msstrobe_generator|Add0~45_sumout\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(10),
-	datab => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~0_combout\,
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(4),
-	datad => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~1_combout\,
-	datae => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~2_combout\,
-	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~45_sumout\,
-	combout => \fsksender_inst|msstrobe_generator|ClkCounter~4_combout\);
-
--- Location: FF_X28_Y1_N43
-\fsksender_inst|msstrobe_generator|ClkCounter[9]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|msstrobe_generator|ClkCounter~4_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|msstrobe_generator|ClkCounter\(9));
-
--- Location: LABCELL_X29_Y1_N30
+-- Location: MLABCELL_X15_Y3_N30
 \fsksender_inst|msstrobe_generator|Add0~1\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~1_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(10) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~46\ ))
@@ -7351,22 +6896,7 @@ PORT MAP (
 	sumout => \fsksender_inst|msstrobe_generator|Add0~1_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~2\);
 
--- Location: FF_X29_Y1_N31
-\fsksender_inst|msstrobe_generator|ClkCounter[10]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|msstrobe_generator|Add0~1_sumout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|msstrobe_generator|ClkCounter\(10));
-
--- Location: LABCELL_X29_Y1_N33
+-- Location: MLABCELL_X15_Y3_N33
 \fsksender_inst|msstrobe_generator|Add0~41\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~41_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(11) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~2\ ))
@@ -7375,32 +6905,32 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(11),
+	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(11),
 	cin => \fsksender_inst|msstrobe_generator|Add0~2\,
 	sumout => \fsksender_inst|msstrobe_generator|Add0~41_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~42\);
 
--- Location: LABCELL_X29_Y1_N57
+-- Location: MLABCELL_X15_Y3_N51
 \fsksender_inst|msstrobe_generator|ClkCounter~3\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|msstrobe_generator|ClkCounter~3_combout\ = ( !\fsksender_inst|msstrobe_generator|Equal0~3_combout\ & ( \fsksender_inst|msstrobe_generator|Add0~41_sumout\ ) )
+-- \fsksender_inst|msstrobe_generator|ClkCounter~3_combout\ = ( \fsksender_inst|msstrobe_generator|Add0~41_sumout\ & ( !\fsksender_inst|msstrobe_generator|Equal0~3_combout\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000111100001111000011110000111100000000000000000000000000000000",
+	lut_mask => "0000000000000000000000000000000011110000111100001111000011110000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~41_sumout\,
-	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~3_combout\,
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~3_combout\,
+	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~41_sumout\,
 	combout => \fsksender_inst|msstrobe_generator|ClkCounter~3_combout\);
 
--- Location: FF_X29_Y1_N59
+-- Location: FF_X15_Y3_N53
 \fsksender_inst|msstrobe_generator|ClkCounter[11]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -7415,7 +6945,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(11));
 
--- Location: LABCELL_X29_Y1_N36
+-- Location: MLABCELL_X15_Y3_N36
 \fsksender_inst|msstrobe_generator|Add0~37\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~37_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(12) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~42\ ))
@@ -7433,7 +6963,7 @@ PORT MAP (
 	sumout => \fsksender_inst|msstrobe_generator|Add0~37_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~38\);
 
--- Location: LABCELL_X30_Y1_N0
+-- Location: LABCELL_X16_Y3_N51
 \fsksender_inst|msstrobe_generator|ClkCounter~2\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|ClkCounter~2_combout\ = ( !\fsksender_inst|msstrobe_generator|Equal0~3_combout\ & ( \fsksender_inst|msstrobe_generator|Add0~37_sumout\ ) )
@@ -7441,15 +6971,15 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111110000000000000000",
+	lut_mask => "0101010101010101010101010101010100000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datae => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~3_combout\,
-	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~37_sumout\,
+	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~37_sumout\,
+	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~3_combout\,
 	combout => \fsksender_inst|msstrobe_generator|ClkCounter~2_combout\);
 
--- Location: FF_X30_Y1_N2
+-- Location: FF_X16_Y3_N53
 \fsksender_inst|msstrobe_generator|ClkCounter[12]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -7464,7 +6994,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(12));
 
--- Location: LABCELL_X29_Y1_N39
+-- Location: MLABCELL_X15_Y3_N39
 \fsksender_inst|msstrobe_generator|Add0~33\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~33_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(13) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~38\ ))
@@ -7473,16 +7003,16 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
+	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(13),
+	datad => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(13),
 	cin => \fsksender_inst|msstrobe_generator|Add0~38\,
 	sumout => \fsksender_inst|msstrobe_generator|Add0~33_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~34\);
 
--- Location: LABCELL_X29_Y1_N51
+-- Location: LABCELL_X16_Y3_N9
 \fsksender_inst|msstrobe_generator|ClkCounter~1\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|ClkCounter~1_combout\ = ( !\fsksender_inst|msstrobe_generator|Equal0~3_combout\ & ( \fsksender_inst|msstrobe_generator|Add0~33_sumout\ ) )
@@ -7498,7 +7028,7 @@ PORT MAP (
 	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~3_combout\,
 	combout => \fsksender_inst|msstrobe_generator|ClkCounter~1_combout\);
 
--- Location: FF_X29_Y1_N53
+-- Location: FF_X16_Y3_N11
 \fsksender_inst|msstrobe_generator|ClkCounter[13]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -7513,7 +7043,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(13));
 
--- Location: LABCELL_X29_Y1_N42
+-- Location: MLABCELL_X15_Y3_N42
 \fsksender_inst|msstrobe_generator|Add0~29\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~29_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(14) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~34\ ))
@@ -7531,7 +7061,7 @@ PORT MAP (
 	sumout => \fsksender_inst|msstrobe_generator|Add0~29_sumout\,
 	cout => \fsksender_inst|msstrobe_generator|Add0~30\);
 
--- Location: FF_X29_Y1_N44
+-- Location: FF_X15_Y3_N44
 \fsksender_inst|msstrobe_generator|ClkCounter[14]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -7546,7 +7076,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(14));
 
--- Location: LABCELL_X29_Y1_N45
+-- Location: MLABCELL_X15_Y3_N45
 \fsksender_inst|msstrobe_generator|Add0~25\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|Add0~25_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(15) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~30\ ))
@@ -7562,7 +7092,7 @@ PORT MAP (
 	cin => \fsksender_inst|msstrobe_generator|Add0~30\,
 	sumout => \fsksender_inst|msstrobe_generator|Add0~25_sumout\);
 
--- Location: LABCELL_X30_Y1_N18
+-- Location: MLABCELL_X15_Y3_N57
 \fsksender_inst|msstrobe_generator|ClkCounter~0\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|msstrobe_generator|ClkCounter~0_combout\ = ( !\fsksender_inst|msstrobe_generator|Equal0~3_combout\ & ( \fsksender_inst|msstrobe_generator|Add0~25_sumout\ ) )
@@ -7570,15 +7100,15 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111110000000000000000",
+	lut_mask => "0000111100001111000011110000111100000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datae => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~3_combout\,
-	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~25_sumout\,
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~25_sumout\,
+	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~3_combout\,
 	combout => \fsksender_inst|msstrobe_generator|ClkCounter~0_combout\);
 
--- Location: FF_X30_Y1_N20
+-- Location: FF_X15_Y3_N59
 \fsksender_inst|msstrobe_generator|ClkCounter[15]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -7593,11 +7123,11 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|ClkCounter\(15));
 
--- Location: LABCELL_X29_Y1_N54
+-- Location: MLABCELL_X15_Y3_N54
 \fsksender_inst|msstrobe_generator|Equal0~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|msstrobe_generator|Equal0~1_combout\ = ( \fsksender_inst|msstrobe_generator|ClkCounter\(15) & ( (\fsksender_inst|msstrobe_generator|ClkCounter\(13) & (!\fsksender_inst|msstrobe_generator|ClkCounter\(14) & 
--- (\fsksender_inst|msstrobe_generator|ClkCounter\(12) & \fsksender_inst|msstrobe_generator|ClkCounter\(11)))) ) )
+-- \fsksender_inst|msstrobe_generator|Equal0~1_combout\ = ( \fsksender_inst|msstrobe_generator|ClkCounter\(12) & ( (\fsksender_inst|msstrobe_generator|ClkCounter\(11) & (!\fsksender_inst|msstrobe_generator|ClkCounter\(14) & 
+-- (\fsksender_inst|msstrobe_generator|ClkCounter\(13) & \fsksender_inst|msstrobe_generator|ClkCounter\(15)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -7606,34 +7136,331 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(13),
+	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(11),
 	datab => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(14),
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(12),
-	datad => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(11),
-	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(15),
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(13),
+	datad => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(15),
+	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(12),
 	combout => \fsksender_inst|msstrobe_generator|Equal0~1_combout\);
 
--- Location: MLABCELL_X28_Y1_N36
-\fsksender_inst|msstrobe_generator|Equal0~3\ : cyclonev_lcell_comb
+-- Location: MLABCELL_X15_Y3_N15
+\fsksender_inst|msstrobe_generator|Add0~61\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|msstrobe_generator|Equal0~3_combout\ = ( \fsksender_inst|msstrobe_generator|Equal0~0_combout\ & ( \fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( (\fsksender_inst|msstrobe_generator|Equal0~1_combout\ & 
--- (!\fsksender_inst|msstrobe_generator|ClkCounter\(10) & \fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\)) ) ) )
+-- \fsksender_inst|msstrobe_generator|Add0~61_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(5) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~6\ ))
+-- \fsksender_inst|msstrobe_generator|Add0~62\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter\(5) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~6\ ))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000000000000000000000110000",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~1_combout\,
-	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(10),
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(5),
+	cin => \fsksender_inst|msstrobe_generator|Add0~6\,
+	sumout => \fsksender_inst|msstrobe_generator|Add0~61_sumout\,
+	cout => \fsksender_inst|msstrobe_generator|Add0~62\);
+
+-- Location: FF_X15_Y3_N17
+\fsksender_inst|msstrobe_generator|ClkCounter[5]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|msstrobe_generator|Add0~61_sumout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|msstrobe_generator|ClkCounter\(5));
+
+-- Location: MLABCELL_X15_Y3_N18
+\fsksender_inst|msstrobe_generator|Add0~57\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|msstrobe_generator|Add0~57_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(6) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~62\ ))
+-- \fsksender_inst|msstrobe_generator|Add0~58\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter\(6) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~62\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(6),
+	cin => \fsksender_inst|msstrobe_generator|Add0~62\,
+	sumout => \fsksender_inst|msstrobe_generator|Add0~57_sumout\,
+	cout => \fsksender_inst|msstrobe_generator|Add0~58\);
+
+-- Location: FF_X15_Y3_N20
+\fsksender_inst|msstrobe_generator|ClkCounter[6]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|msstrobe_generator|Add0~57_sumout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|msstrobe_generator|ClkCounter\(6));
+
+-- Location: MLABCELL_X15_Y3_N21
+\fsksender_inst|msstrobe_generator|Add0~53\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|msstrobe_generator|Add0~53_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(7) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~58\ ))
+-- \fsksender_inst|msstrobe_generator|Add0~54\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter\(7) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~58\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(7),
+	cin => \fsksender_inst|msstrobe_generator|Add0~58\,
+	sumout => \fsksender_inst|msstrobe_generator|Add0~53_sumout\,
+	cout => \fsksender_inst|msstrobe_generator|Add0~54\);
+
+-- Location: LABCELL_X16_Y3_N54
+\fsksender_inst|msstrobe_generator|ClkCounter~6\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|msstrobe_generator|ClkCounter~6_combout\ = ( \fsksender_inst|msstrobe_generator|Equal0~0_combout\ & ( \fsksender_inst|msstrobe_generator|ClkCounter\(10) & ( \fsksender_inst|msstrobe_generator|Add0~53_sumout\ ) ) ) # ( 
+-- !\fsksender_inst|msstrobe_generator|Equal0~0_combout\ & ( \fsksender_inst|msstrobe_generator|ClkCounter\(10) & ( \fsksender_inst|msstrobe_generator|Add0~53_sumout\ ) ) ) # ( \fsksender_inst|msstrobe_generator|Equal0~0_combout\ & ( 
+-- !\fsksender_inst|msstrobe_generator|ClkCounter\(10) & ( (\fsksender_inst|msstrobe_generator|Add0~53_sumout\ & ((!\fsksender_inst|msstrobe_generator|Equal0~2_combout\) # ((!\fsksender_inst|msstrobe_generator|Equal0~1_combout\) # 
+-- (!\fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\)))) ) ) ) # ( !\fsksender_inst|msstrobe_generator|Equal0~0_combout\ & ( !\fsksender_inst|msstrobe_generator|ClkCounter\(10) & ( \fsksender_inst|msstrobe_generator|Add0~53_sumout\ ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010101010101010101010101010001010101010101010101010101010101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~53_sumout\,
+	datab => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~2_combout\,
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~1_combout\,
 	datad => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[4]~DUPLICATE_q\,
 	datae => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~0_combout\,
+	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(10),
+	combout => \fsksender_inst|msstrobe_generator|ClkCounter~6_combout\);
+
+-- Location: FF_X16_Y3_N56
+\fsksender_inst|msstrobe_generator|ClkCounter[7]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|msstrobe_generator|ClkCounter~6_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|msstrobe_generator|ClkCounter\(7));
+
+-- Location: FF_X16_Y3_N41
+\fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE_q\);
+
+-- Location: MLABCELL_X15_Y3_N24
+\fsksender_inst|msstrobe_generator|Add0~49\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|msstrobe_generator|Add0~49_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~54\ ))
+-- \fsksender_inst|msstrobe_generator|Add0~50\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter[8]~DUPLICATE_q\ ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~54\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[8]~DUPLICATE_q\,
+	cin => \fsksender_inst|msstrobe_generator|Add0~54\,
+	sumout => \fsksender_inst|msstrobe_generator|Add0~49_sumout\,
+	cout => \fsksender_inst|msstrobe_generator|Add0~50\);
+
+-- Location: LABCELL_X16_Y3_N39
+\fsksender_inst|msstrobe_generator|ClkCounter~5\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\ = ( \fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( \fsksender_inst|msstrobe_generator|Add0~49_sumout\ & ( ((!\fsksender_inst|msstrobe_generator|Equal0~0_combout\) # 
+-- ((!\fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\) # (!\fsksender_inst|msstrobe_generator|Equal0~1_combout\))) # (\fsksender_inst|msstrobe_generator|ClkCounter\(10)) ) ) ) # ( !\fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( 
+-- \fsksender_inst|msstrobe_generator|Add0~49_sumout\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011111111111111111111111111111101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(10),
+	datab => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~0_combout\,
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[4]~DUPLICATE_q\,
+	datad => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~1_combout\,
+	datae => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~2_combout\,
+	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~49_sumout\,
+	combout => \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\);
+
+-- Location: FF_X16_Y3_N40
+\fsksender_inst|msstrobe_generator|ClkCounter[8]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|msstrobe_generator|ClkCounter~5_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|msstrobe_generator|ClkCounter\(8));
+
+-- Location: FF_X15_Y3_N16
+\fsksender_inst|msstrobe_generator|ClkCounter[5]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|msstrobe_generator|Add0~61_sumout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|msstrobe_generator|ClkCounter[5]~DUPLICATE_q\);
+
+-- Location: LABCELL_X16_Y3_N6
+\fsksender_inst|msstrobe_generator|Equal0~2\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|msstrobe_generator|Equal0~2_combout\ = ( \fsksender_inst|msstrobe_generator|ClkCounter\(9) & ( (!\fsksender_inst|msstrobe_generator|ClkCounter\(7) & (\fsksender_inst|msstrobe_generator|ClkCounter\(8) & 
+-- (\fsksender_inst|msstrobe_generator|ClkCounter[5]~DUPLICATE_q\ & \fsksender_inst|msstrobe_generator|ClkCounter\(6)))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000000000000000100000000000000010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(7),
+	datab => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(8),
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[5]~DUPLICATE_q\,
+	datad => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(6),
+	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(9),
+	combout => \fsksender_inst|msstrobe_generator|Equal0~2_combout\);
+
+-- Location: MLABCELL_X15_Y3_N27
+\fsksender_inst|msstrobe_generator|Add0~45\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|msstrobe_generator|Add0~45_sumout\ = SUM(( \fsksender_inst|msstrobe_generator|ClkCounter\(9) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~50\ ))
+-- \fsksender_inst|msstrobe_generator|Add0~46\ = CARRY(( \fsksender_inst|msstrobe_generator|ClkCounter\(9) ) + ( GND ) + ( \fsksender_inst|msstrobe_generator|Add0~50\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(9),
+	cin => \fsksender_inst|msstrobe_generator|Add0~50\,
+	sumout => \fsksender_inst|msstrobe_generator|Add0~45_sumout\,
+	cout => \fsksender_inst|msstrobe_generator|Add0~46\);
+
+-- Location: LABCELL_X16_Y3_N36
+\fsksender_inst|msstrobe_generator|ClkCounter~4\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|msstrobe_generator|ClkCounter~4_combout\ = ( \fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( \fsksender_inst|msstrobe_generator|Add0~45_sumout\ & ( ((!\fsksender_inst|msstrobe_generator|Equal0~0_combout\) # 
+-- ((!\fsksender_inst|msstrobe_generator|Equal0~1_combout\) # (!\fsksender_inst|msstrobe_generator|ClkCounter[4]~DUPLICATE_q\))) # (\fsksender_inst|msstrobe_generator|ClkCounter\(10)) ) ) ) # ( !\fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( 
+-- \fsksender_inst|msstrobe_generator|Add0~45_sumout\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011111111111111111111111111111101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(10),
+	datab => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~0_combout\,
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~1_combout\,
+	datad => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter[4]~DUPLICATE_q\,
+	datae => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~2_combout\,
+	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Add0~45_sumout\,
+	combout => \fsksender_inst|msstrobe_generator|ClkCounter~4_combout\);
+
+-- Location: FF_X16_Y3_N38
+\fsksender_inst|msstrobe_generator|ClkCounter[9]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|msstrobe_generator|ClkCounter~4_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|msstrobe_generator|ClkCounter\(9));
+
+-- Location: FF_X15_Y3_N31
+\fsksender_inst|msstrobe_generator|ClkCounter[10]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|msstrobe_generator|Add0~1_sumout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|msstrobe_generator|ClkCounter\(10));
+
+-- Location: LABCELL_X16_Y3_N24
+\fsksender_inst|msstrobe_generator|Equal0~3\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|msstrobe_generator|Equal0~3_combout\ = ( \fsksender_inst|msstrobe_generator|Equal0~2_combout\ & ( (\fsksender_inst|msstrobe_generator|ClkCounter\(4) & (\fsksender_inst|msstrobe_generator|Equal0~0_combout\ & 
+-- (!\fsksender_inst|msstrobe_generator|ClkCounter\(10) & \fsksender_inst|msstrobe_generator|Equal0~1_combout\))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000000000000100000000000000010000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(4),
+	datab => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~0_combout\,
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_ClkCounter\(10),
+	datad => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~1_combout\,
 	dataf => \fsksender_inst|msstrobe_generator|ALT_INV_Equal0~2_combout\,
 	combout => \fsksender_inst|msstrobe_generator|Equal0~3_combout\);
 
--- Location: FF_X28_Y1_N40
+-- Location: FF_X16_Y3_N49
 \fsksender_inst|msstrobe_generator|oStrobe\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -7649,23 +7476,23 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|msstrobe_generator|oStrobe~q\);
 
--- Location: LABCELL_X24_Y1_N30
+-- Location: LABCELL_X19_Y3_N48
 \StartSending~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \StartSending~0_combout\ = ( \ConfigureCodec|R.Configured~DUPLICATE_q\ ) # ( !\ConfigureCodec|R.Configured~DUPLICATE_q\ & ( \StartSending~q\ ) )
+-- \StartSending~0_combout\ = ( \StartSending~q\ & ( \ConfigureCodec|R.Configured~q\ ) ) # ( !\StartSending~q\ & ( \ConfigureCodec|R.Configured~q\ ) ) # ( \StartSending~q\ & ( !\ConfigureCodec|R.Configured~q\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000011111111000000001111111111111111111111111111111111111111",
+	lut_mask => "0000000000000000111111111111111111111111111111111111111111111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datad => \ALT_INV_StartSending~q\,
-	dataf => \ConfigureCodec|ALT_INV_R.Configured~DUPLICATE_q\,
+	datae => \ALT_INV_StartSending~q\,
+	dataf => \ConfigureCodec|ALT_INV_R.Configured~q\,
 	combout => \StartSending~0_combout\);
 
--- Location: FF_X24_Y1_N32
+-- Location: FF_X19_Y3_N49
 StartSending : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -7680,46 +7507,46 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \StartSending~q\);
 
--- Location: LABCELL_X24_Y1_N33
+-- Location: LABCELL_X16_Y3_N15
 \fsksender_inst|the_comp~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|the_comp~0_combout\ = (\fsksender_inst|msstrobe_generator|oStrobe~q\ & \StartSending~q\)
+-- \fsksender_inst|the_comp~0_combout\ = ( \StartSending~q\ & ( \fsksender_inst|msstrobe_generator|oStrobe~q\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000001100000011000000110000001100000011000000110000001100000011",
+	lut_mask => "0000000000000000000000000000000000001111000011110000111100001111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \fsksender_inst|msstrobe_generator|ALT_INV_oStrobe~q\,
-	datac => \ALT_INV_StartSending~q\,
+	datac => \fsksender_inst|msstrobe_generator|ALT_INV_oStrobe~q\,
+	dataf => \ALT_INV_StartSending~q\,
 	combout => \fsksender_inst|the_comp~0_combout\);
 
--- Location: LABCELL_X24_Y1_N6
+-- Location: LABCELL_X17_Y3_N54
 \fsksender_inst|Reg.WaitCounter[13]~0\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Reg.WaitCounter[13]~0_combout\ = ( \fsksender_inst|LessThan0~7_combout\ & ( \fsksender_inst|the_comp~0_combout\ ) ) # ( !\fsksender_inst|LessThan0~7_combout\ & ( \fsksender_inst|the_comp~0_combout\ ) ) # ( 
--- \fsksender_inst|LessThan0~7_combout\ & ( !\fsksender_inst|the_comp~0_combout\ & ( (!\fsksender_inst|LessThan0~2_combout\ & (\fsksender_inst|LessThan0~6_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & !\fsksender_inst|LessThan0~3_combout\))) ) ) ) 
--- # ( !\fsksender_inst|LessThan0~7_combout\ & ( !\fsksender_inst|the_comp~0_combout\ & ( (!\fsksender_inst|Reg.state.WaitForSend~q\ & !\fsksender_inst|LessThan0~3_combout\) ) ) )
+-- \fsksender_inst|LessThan0~7_combout\ & ( !\fsksender_inst|the_comp~0_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (\fsksender_inst|LessThan0~6_combout\ & (!\fsksender_inst|LessThan0~2_combout\ & !\fsksender_inst|Reg.state.WaitForSend~q\))) ) ) ) 
+-- # ( !\fsksender_inst|LessThan0~7_combout\ & ( !\fsksender_inst|the_comp~0_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & !\fsksender_inst|Reg.state.WaitForSend~q\) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1111000000000000001000000000000011111111111111111111111111111111",
+	lut_mask => "1010101000000000001000000000000011111111111111111111111111111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_LessThan0~2_combout\,
+	dataa => \fsksender_inst|ALT_INV_LessThan0~3_combout\,
 	datab => \fsksender_inst|ALT_INV_LessThan0~6_combout\,
-	datac => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
-	datad => \fsksender_inst|ALT_INV_LessThan0~3_combout\,
+	datac => \fsksender_inst|ALT_INV_LessThan0~2_combout\,
+	datad => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
 	datae => \fsksender_inst|ALT_INV_LessThan0~7_combout\,
 	dataf => \fsksender_inst|ALT_INV_the_comp~0_combout\,
 	combout => \fsksender_inst|Reg.WaitCounter[13]~0_combout\);
 
--- Location: FF_X25_Y1_N26
-\fsksender_inst|Reg.WaitCounter[8]\ : dffeas
+-- Location: FF_X17_Y3_N41
+\fsksender_inst|Reg.WaitCounter[13]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -7727,158 +7554,78 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Add0~21_sumout\,
+	d => \fsksender_inst|Add0~29_sumout\,
 	clrn => \inResetAsync~input_o\,
 	sclr => \fsksender_inst|Selector1~2_combout\,
 	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.WaitCounter\(8));
+	q => \fsksender_inst|Reg.WaitCounter\(13));
 
--- Location: MLABCELL_X25_Y1_N27
-\fsksender_inst|Add0~17\ : cyclonev_lcell_comb
+-- Location: LABCELL_X18_Y3_N6
+\fsksender_inst|LessThan0~7\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|Add0~17_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(9) ) + ( GND ) + ( \fsksender_inst|Add0~22\ ))
--- \fsksender_inst|Add0~18\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(9) ) + ( GND ) + ( \fsksender_inst|Add0~22\ ))
+-- \fsksender_inst|LessThan0~7_combout\ = ( \iSwitch[2]~input_o\ & ( !\fsksender_inst|Reg.WaitCounter\(10) & ( (!\fsksender_inst|Reg.WaitCounter\(11) & (!\fsksender_inst|Reg.WaitCounter\(13) & (!\iSwitch[1]~input_o\ $ 
+-- (\fsksender_inst|Reg.WaitCounter\(12))))) ) ) ) # ( !\iSwitch[2]~input_o\ & ( !\fsksender_inst|Reg.WaitCounter\(10) & ( (!\fsksender_inst|Reg.WaitCounter\(11) & (!\fsksender_inst|Reg.WaitCounter\(13) & !\fsksender_inst|Reg.WaitCounter\(12))) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
+	lut_mask => "1100000000000000100000000100000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
-	cin => \fsksender_inst|Add0~22\,
-	sumout => \fsksender_inst|Add0~17_sumout\,
-	cout => \fsksender_inst|Add0~18\);
-
--- Location: FF_X25_Y1_N29
-\fsksender_inst|Reg.WaitCounter[9]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Add0~17_sumout\,
-	clrn => \inResetAsync~input_o\,
-	sclr => \fsksender_inst|Selector1~2_combout\,
-	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.WaitCounter\(9));
-
--- Location: MLABCELL_X25_Y1_N30
-\fsksender_inst|Add0~45\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|Add0~45_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(10) ) + ( GND ) + ( \fsksender_inst|Add0~18\ ))
--- \fsksender_inst|Add0~46\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(10) ) + ( GND ) + ( \fsksender_inst|Add0~18\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(10),
-	cin => \fsksender_inst|Add0~18\,
-	sumout => \fsksender_inst|Add0~45_sumout\,
-	cout => \fsksender_inst|Add0~46\);
-
--- Location: FF_X25_Y1_N32
-\fsksender_inst|Reg.WaitCounter[10]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Add0~45_sumout\,
-	clrn => \inResetAsync~input_o\,
-	sclr => \fsksender_inst|Selector1~2_combout\,
-	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.WaitCounter\(10));
-
--- Location: MLABCELL_X25_Y1_N33
-\fsksender_inst|Add0~41\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|Add0~41_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(11) ) + ( GND ) + ( \fsksender_inst|Add0~46\ ))
--- \fsksender_inst|Add0~42\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(11) ) + ( GND ) + ( \fsksender_inst|Add0~46\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(11),
-	cin => \fsksender_inst|Add0~46\,
-	sumout => \fsksender_inst|Add0~41_sumout\,
-	cout => \fsksender_inst|Add0~42\);
-
--- Location: FF_X25_Y1_N35
-\fsksender_inst|Reg.WaitCounter[11]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Add0~41_sumout\,
-	clrn => \inResetAsync~input_o\,
-	sclr => \fsksender_inst|Selector1~2_combout\,
-	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.WaitCounter\(11));
-
--- Location: FF_X25_Y1_N38
-\fsksender_inst|Reg.WaitCounter[12]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Add0~33_sumout\,
-	clrn => \inResetAsync~input_o\,
-	sclr => \fsksender_inst|Selector1~2_combout\,
-	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.WaitCounter\(12));
-
--- Location: MLABCELL_X25_Y1_N54
-\fsksender_inst|LessThan0~3\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|LessThan0~3_combout\ = ( !\fsksender_inst|Reg.WaitCounter\(13) & ( (\iSwitch[2]~input_o\ & (\iSwitch[1]~input_o\ & !\fsksender_inst|Reg.WaitCounter\(12))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000001100000000000000110000000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \ALT_INV_iSwitch[2]~input_o\,
-	datac => \ALT_INV_iSwitch[1]~input_o\,
+	dataa => \ALT_INV_iSwitch[1]~input_o\,
+	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(11),
+	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(13),
 	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(12),
-	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(13),
-	combout => \fsksender_inst|LessThan0~3_combout\);
+	datae => \ALT_INV_iSwitch[2]~input_o\,
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(10),
+	combout => \fsksender_inst|LessThan0~7_combout\);
 
--- Location: MLABCELL_X25_Y1_N57
+-- Location: LABCELL_X16_Y3_N27
 \fsksender_inst|LessThan0~10\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|LessThan0~10_combout\ = ( !\fsksender_inst|Reg.WaitCounter\(3) & ( !\fsksender_inst|Reg.WaitCounter\(2) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1111111100000000111111110000000000000000000000000000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(2),
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(3),
+	combout => \fsksender_inst|LessThan0~10_combout\);
+
+-- Location: LABCELL_X16_Y3_N18
+\fsksender_inst|LessThan0~11\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|LessThan0~11_combout\ = ( \fsksender_inst|Reg.WaitCounter\(7) & ( \fsksender_inst|Reg.WaitCounter\(8) & ( (\iSwitch[1]~input_o\ & (!\fsksender_inst|Reg.WaitCounter\(9) & ((!\fsksender_inst|Reg.WaitCounter\(4)) # 
+-- (\fsksender_inst|LessThan0~10_combout\)))) ) ) ) # ( !\fsksender_inst|Reg.WaitCounter\(7) & ( \fsksender_inst|Reg.WaitCounter\(8) & ( (\iSwitch[1]~input_o\ & !\fsksender_inst|Reg.WaitCounter\(9)) ) ) ) # ( \fsksender_inst|Reg.WaitCounter\(7) & ( 
+-- !\fsksender_inst|Reg.WaitCounter\(8) & ( (\iSwitch[1]~input_o\ & !\fsksender_inst|Reg.WaitCounter\(9)) ) ) ) # ( !\fsksender_inst|Reg.WaitCounter\(7) & ( !\fsksender_inst|Reg.WaitCounter\(8) & ( (!\fsksender_inst|Reg.WaitCounter\(9) & 
+-- (((\fsksender_inst|LessThan0~10_combout\ & !\fsksender_inst|Reg.WaitCounter\(4))) # (\iSwitch[1]~input_o\))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0111000000110000001100000011000000110000001100000011000000010000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|ALT_INV_LessThan0~10_combout\,
+	datab => \ALT_INV_iSwitch[1]~input_o\,
+	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
+	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(4),
+	datae => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
+	combout => \fsksender_inst|LessThan0~11_combout\);
+
+-- Location: LABCELL_X16_Y3_N0
+\fsksender_inst|LessThan0~8\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|LessThan0~8_combout\ = ( !\fsksender_inst|Reg.WaitCounter\(8) & ( !\fsksender_inst|Reg.WaitCounter\(7) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -7887,96 +7634,58 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(2),
-	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(3),
-	combout => \fsksender_inst|LessThan0~10_combout\);
-
--- Location: LABCELL_X24_Y1_N54
-\fsksender_inst|LessThan0~11\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|LessThan0~11_combout\ = ( \iSwitch[1]~input_o\ & ( \fsksender_inst|Reg.WaitCounter\(4) & ( (!\fsksender_inst|Reg.WaitCounter\(9) & ((!\fsksender_inst|Reg.WaitCounter\(7)) # ((!\fsksender_inst|Reg.WaitCounter\(8)) # 
--- (\fsksender_inst|LessThan0~10_combout\)))) ) ) ) # ( \iSwitch[1]~input_o\ & ( !\fsksender_inst|Reg.WaitCounter\(4) & ( !\fsksender_inst|Reg.WaitCounter\(9) ) ) ) # ( !\iSwitch[1]~input_o\ & ( !\fsksender_inst|Reg.WaitCounter\(4) & ( 
--- (!\fsksender_inst|Reg.WaitCounter\(7) & (!\fsksender_inst|Reg.WaitCounter\(8) & (!\fsksender_inst|Reg.WaitCounter\(9) & \fsksender_inst|LessThan0~10_combout\))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000010000000111100001111000000000000000000001110000011110000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
-	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
-	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
-	datad => \fsksender_inst|ALT_INV_LessThan0~10_combout\,
-	datae => \ALT_INV_iSwitch[1]~input_o\,
-	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(4),
-	combout => \fsksender_inst|LessThan0~11_combout\);
-
--- Location: LABCELL_X24_Y1_N18
-\fsksender_inst|LessThan0~8\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|LessThan0~8_combout\ = (!\fsksender_inst|Reg.WaitCounter\(7) & !\fsksender_inst|Reg.WaitCounter\(8))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "1000100010001000100010001000100010001000100010001000100010001000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
-	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
+	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
 	combout => \fsksender_inst|LessThan0~8_combout\);
 
--- Location: LABCELL_X24_Y1_N12
+-- Location: LABCELL_X16_Y3_N30
 \fsksender_inst|LessThan0~9\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|LessThan0~9_combout\ = ( \fsksender_inst|Reg.WaitCounter\(5) & ( \fsksender_inst|LessThan0~8_combout\ & ( (!\fsksender_inst|Reg.WaitCounter\(6) & ((!\fsksender_inst|Reg.WaitCounter\(9)) # ((!\iSwitch[1]~input_o\ & \iSwitch[2]~input_o\)))) 
--- ) ) ) # ( !\fsksender_inst|Reg.WaitCounter\(5) & ( \fsksender_inst|LessThan0~8_combout\ & ( (!\fsksender_inst|Reg.WaitCounter\(9)) # ((!\iSwitch[1]~input_o\ & \iSwitch[2]~input_o\)) ) ) ) # ( \fsksender_inst|Reg.WaitCounter\(5) & ( 
--- !\fsksender_inst|LessThan0~8_combout\ & ( (!\fsksender_inst|Reg.WaitCounter\(6) & ((!\iSwitch[1]~input_o\ & ((\iSwitch[2]~input_o\))) # (\iSwitch[1]~input_o\ & (!\fsksender_inst|Reg.WaitCounter\(9))))) ) ) ) # ( !\fsksender_inst|Reg.WaitCounter\(5) & ( 
--- !\fsksender_inst|LessThan0~8_combout\ & ( (!\iSwitch[1]~input_o\ & ((\iSwitch[2]~input_o\))) # (\iSwitch[1]~input_o\ & (!\fsksender_inst|Reg.WaitCounter\(9))) ) ) )
+-- \fsksender_inst|LessThan0~9_combout\ = ( \fsksender_inst|LessThan0~8_combout\ & ( \fsksender_inst|Reg.WaitCounter\(9) & ( (!\iSwitch[1]~input_o\ & (\iSwitch[2]~input_o\ & ((!\fsksender_inst|Reg.WaitCounter\(5)) # (!\fsksender_inst|Reg.WaitCounter\(6))))) 
+-- ) ) ) # ( !\fsksender_inst|LessThan0~8_combout\ & ( \fsksender_inst|Reg.WaitCounter\(9) & ( (!\iSwitch[1]~input_o\ & (\iSwitch[2]~input_o\ & ((!\fsksender_inst|Reg.WaitCounter\(5)) # (!\fsksender_inst|Reg.WaitCounter\(6))))) ) ) ) # ( 
+-- \fsksender_inst|LessThan0~8_combout\ & ( !\fsksender_inst|Reg.WaitCounter\(9) & ( (!\fsksender_inst|Reg.WaitCounter\(5)) # (!\fsksender_inst|Reg.WaitCounter\(6)) ) ) ) # ( !\fsksender_inst|LessThan0~8_combout\ & ( !\fsksender_inst|Reg.WaitCounter\(9) & ( 
+-- (!\fsksender_inst|Reg.WaitCounter\(5) & (((\iSwitch[2]~input_o\)) # (\iSwitch[1]~input_o\))) # (\fsksender_inst|Reg.WaitCounter\(5) & (!\fsksender_inst|Reg.WaitCounter\(6) & ((\iSwitch[2]~input_o\) # (\iSwitch[1]~input_o\)))) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000101011111010000010001100100010101010111110101000100011001000",
+	lut_mask => "0011111100101010111111111010101000001100000010000000110000001000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
-	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(6),
-	datac => \ALT_INV_iSwitch[1]~input_o\,
-	datad => \ALT_INV_iSwitch[2]~input_o\,
-	datae => \fsksender_inst|ALT_INV_Reg.WaitCounter\(5),
-	dataf => \fsksender_inst|ALT_INV_LessThan0~8_combout\,
+	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(5),
+	datab => \ALT_INV_iSwitch[1]~input_o\,
+	datac => \ALT_INV_iSwitch[2]~input_o\,
+	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(6),
+	datae => \fsksender_inst|ALT_INV_LessThan0~8_combout\,
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
 	combout => \fsksender_inst|LessThan0~9_combout\);
 
--- Location: LABCELL_X24_Y1_N48
+-- Location: LABCELL_X17_Y3_N42
 \fsksender_inst|Selector1~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|Selector1~2_combout\ = ( \fsksender_inst|LessThan0~11_combout\ & ( \fsksender_inst|LessThan0~9_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & !\fsksender_inst|LessThan0~7_combout\)) ) ) ) 
--- # ( !\fsksender_inst|LessThan0~11_combout\ & ( \fsksender_inst|LessThan0~9_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & !\fsksender_inst|LessThan0~7_combout\)) ) ) ) # ( 
--- \fsksender_inst|LessThan0~11_combout\ & ( !\fsksender_inst|LessThan0~9_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & !\fsksender_inst|LessThan0~7_combout\)) ) ) ) # ( 
--- !\fsksender_inst|LessThan0~11_combout\ & ( !\fsksender_inst|LessThan0~9_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & ((!\fsksender_inst|LessThan0~2_combout\) # 
--- (!\fsksender_inst|LessThan0~7_combout\)))) ) ) )
+-- \fsksender_inst|Selector1~2_combout\ = ( \fsksender_inst|LessThan0~2_combout\ & ( \fsksender_inst|LessThan0~9_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & !\fsksender_inst|LessThan0~7_combout\)) ) ) ) 
+-- # ( !\fsksender_inst|LessThan0~2_combout\ & ( \fsksender_inst|LessThan0~9_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & !\fsksender_inst|LessThan0~7_combout\)) ) ) ) # ( 
+-- \fsksender_inst|LessThan0~2_combout\ & ( !\fsksender_inst|LessThan0~9_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & !\fsksender_inst|LessThan0~7_combout\)) ) ) ) # ( 
+-- !\fsksender_inst|LessThan0~2_combout\ & ( !\fsksender_inst|LessThan0~9_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & ((!\fsksender_inst|LessThan0~7_combout\) # 
+-- (!\fsksender_inst|LessThan0~11_combout\)))) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1100000010000000110000000000000011000000000000001100000000000000",
+	lut_mask => "1000100010000000100000001000000010000000100000001000000010000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_LessThan0~2_combout\,
-	datab => \fsksender_inst|ALT_INV_LessThan0~3_combout\,
-	datac => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
-	datad => \fsksender_inst|ALT_INV_LessThan0~7_combout\,
-	datae => \fsksender_inst|ALT_INV_LessThan0~11_combout\,
+	dataa => \fsksender_inst|ALT_INV_LessThan0~3_combout\,
+	datab => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
+	datac => \fsksender_inst|ALT_INV_LessThan0~7_combout\,
+	datad => \fsksender_inst|ALT_INV_LessThan0~11_combout\,
+	datae => \fsksender_inst|ALT_INV_LessThan0~2_combout\,
 	dataf => \fsksender_inst|ALT_INV_LessThan0~9_combout\,
 	combout => \fsksender_inst|Selector1~2_combout\);
 
--- Location: FF_X25_Y1_N2
+-- Location: FF_X17_Y3_N2
 \fsksender_inst|Reg.WaitCounter[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -7993,7 +7702,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.WaitCounter\(0));
 
--- Location: MLABCELL_X25_Y1_N3
+-- Location: LABCELL_X17_Y3_N3
 \fsksender_inst|Add0~49\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Add0~49_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(1) ) + ( GND ) + ( \fsksender_inst|Add0~54\ ))
@@ -8011,7 +7720,7 @@ PORT MAP (
 	sumout => \fsksender_inst|Add0~49_sumout\,
 	cout => \fsksender_inst|Add0~50\);
 
--- Location: FF_X25_Y1_N5
+-- Location: FF_X17_Y3_N5
 \fsksender_inst|Reg.WaitCounter[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8028,7 +7737,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.WaitCounter\(1));
 
--- Location: MLABCELL_X25_Y1_N6
+-- Location: LABCELL_X17_Y3_N6
 \fsksender_inst|Add0~37\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Add0~37_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(2) ) + ( GND ) + ( \fsksender_inst|Add0~50\ ))
@@ -8046,7 +7755,7 @@ PORT MAP (
 	sumout => \fsksender_inst|Add0~37_sumout\,
 	cout => \fsksender_inst|Add0~38\);
 
--- Location: FF_X25_Y1_N8
+-- Location: FF_X17_Y3_N8
 \fsksender_inst|Reg.WaitCounter[2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8063,7 +7772,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.WaitCounter\(2));
 
--- Location: MLABCELL_X25_Y1_N9
+-- Location: LABCELL_X17_Y3_N9
 \fsksender_inst|Add0~5\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Add0~5_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(3) ) + ( GND ) + ( \fsksender_inst|Add0~38\ ))
@@ -8081,7 +7790,7 @@ PORT MAP (
 	sumout => \fsksender_inst|Add0~5_sumout\,
 	cout => \fsksender_inst|Add0~6\);
 
--- Location: FF_X25_Y1_N11
+-- Location: FF_X17_Y3_N11
 \fsksender_inst|Reg.WaitCounter[3]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8098,7 +7807,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.WaitCounter\(3));
 
--- Location: MLABCELL_X25_Y1_N12
+-- Location: LABCELL_X17_Y3_N12
 \fsksender_inst|Add0~1\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Add0~1_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(4) ) + ( GND ) + ( \fsksender_inst|Add0~6\ ))
@@ -8116,7 +7825,7 @@ PORT MAP (
 	sumout => \fsksender_inst|Add0~1_sumout\,
 	cout => \fsksender_inst|Add0~2\);
 
--- Location: FF_X25_Y1_N14
+-- Location: FF_X17_Y3_N14
 \fsksender_inst|Reg.WaitCounter[4]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8133,7 +7842,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.WaitCounter\(4));
 
--- Location: MLABCELL_X25_Y1_N15
+-- Location: LABCELL_X17_Y3_N15
 \fsksender_inst|Add0~13\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Add0~13_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(5) ) + ( GND ) + ( \fsksender_inst|Add0~2\ ))
@@ -8151,7 +7860,7 @@ PORT MAP (
 	sumout => \fsksender_inst|Add0~13_sumout\,
 	cout => \fsksender_inst|Add0~14\);
 
--- Location: FF_X25_Y1_N17
+-- Location: FF_X17_Y3_N17
 \fsksender_inst|Reg.WaitCounter[5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8168,7 +7877,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.WaitCounter\(5));
 
--- Location: MLABCELL_X25_Y1_N18
+-- Location: LABCELL_X17_Y3_N18
 \fsksender_inst|Add0~9\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Add0~9_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(6) ) + ( GND ) + ( \fsksender_inst|Add0~14\ ))
@@ -8186,7 +7895,7 @@ PORT MAP (
 	sumout => \fsksender_inst|Add0~9_sumout\,
 	cout => \fsksender_inst|Add0~10\);
 
--- Location: FF_X25_Y1_N20
+-- Location: FF_X17_Y3_N20
 \fsksender_inst|Reg.WaitCounter[6]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8203,7 +7912,25 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.WaitCounter\(6));
 
--- Location: FF_X25_Y1_N23
+-- Location: LABCELL_X17_Y3_N21
+\fsksender_inst|Add0~25\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|Add0~25_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(7) ) + ( GND ) + ( \fsksender_inst|Add0~10\ ))
+-- \fsksender_inst|Add0~26\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(7) ) + ( GND ) + ( \fsksender_inst|Add0~10\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
+	cin => \fsksender_inst|Add0~10\,
+	sumout => \fsksender_inst|Add0~25_sumout\,
+	cout => \fsksender_inst|Add0~26\);
+
+-- Location: FF_X17_Y3_N23
 \fsksender_inst|Reg.WaitCounter[7]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8220,66 +7947,185 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.WaitCounter\(7));
 
--- Location: LABCELL_X24_Y1_N21
-\fsksender_inst|LessThan0~1\ : cyclonev_lcell_comb
+-- Location: LABCELL_X17_Y3_N24
+\fsksender_inst|Add0~21\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|LessThan0~1_combout\ = (\fsksender_inst|Reg.WaitCounter\(7) & (\fsksender_inst|Reg.WaitCounter\(8) & \fsksender_inst|Reg.WaitCounter\(9)))
+-- \fsksender_inst|Add0~21_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(8) ) + ( GND ) + ( \fsksender_inst|Add0~26\ ))
+-- \fsksender_inst|Add0~22\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(8) ) + ( GND ) + ( \fsksender_inst|Add0~26\ ))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000010001000000000001000100000000000100010000000000010001",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(7),
-	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
-	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
-	combout => \fsksender_inst|LessThan0~1_combout\);
+	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(8),
+	cin => \fsksender_inst|Add0~26\,
+	sumout => \fsksender_inst|Add0~21_sumout\,
+	cout => \fsksender_inst|Add0~22\);
 
--- Location: LABCELL_X24_Y1_N39
-\fsksender_inst|LessThan0~0\ : cyclonev_lcell_comb
+-- Location: FF_X17_Y3_N26
+\fsksender_inst|Reg.WaitCounter[8]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Add0~21_sumout\,
+	clrn => \inResetAsync~input_o\,
+	sclr => \fsksender_inst|Selector1~2_combout\,
+	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.WaitCounter\(8));
+
+-- Location: LABCELL_X17_Y3_N27
+\fsksender_inst|Add0~17\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|LessThan0~0_combout\ = ( !\fsksender_inst|Reg.WaitCounter\(6) & ( !\fsksender_inst|Reg.WaitCounter\(5) ) )
+-- \fsksender_inst|Add0~17_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(9) ) + ( GND ) + ( \fsksender_inst|Add0~22\ ))
+-- \fsksender_inst|Add0~18\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(9) ) + ( GND ) + ( \fsksender_inst|Add0~22\ ))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1111111100000000111111110000000000000000000000000000000000000000",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(5),
-	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(6),
-	combout => \fsksender_inst|LessThan0~0_combout\);
+	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(9),
+	cin => \fsksender_inst|Add0~22\,
+	sumout => \fsksender_inst|Add0~17_sumout\,
+	cout => \fsksender_inst|Add0~18\);
 
--- Location: LABCELL_X24_Y1_N24
-\fsksender_inst|LessThan0~2\ : cyclonev_lcell_comb
+-- Location: FF_X17_Y3_N29
+\fsksender_inst|Reg.WaitCounter[9]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Add0~17_sumout\,
+	clrn => \inResetAsync~input_o\,
+	sclr => \fsksender_inst|Selector1~2_combout\,
+	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.WaitCounter\(9));
+
+-- Location: LABCELL_X17_Y3_N30
+\fsksender_inst|Add0~45\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|LessThan0~2_combout\ = ( \fsksender_inst|LessThan0~0_combout\ & ( \fsksender_inst|Reg.WaitCounter\(4) & ( (\iSwitch[2]~input_o\ & !\fsksender_inst|LessThan0~1_combout\) ) ) ) # ( !\fsksender_inst|LessThan0~0_combout\ & ( 
--- \fsksender_inst|Reg.WaitCounter\(4) & ( (\iSwitch[2]~input_o\ & !\fsksender_inst|LessThan0~1_combout\) ) ) ) # ( \fsksender_inst|LessThan0~0_combout\ & ( !\fsksender_inst|Reg.WaitCounter\(4) & ( (\iSwitch[2]~input_o\ & 
--- ((!\fsksender_inst|LessThan0~1_combout\) # (!\fsksender_inst|Reg.WaitCounter\(3)))) ) ) ) # ( !\fsksender_inst|LessThan0~0_combout\ & ( !\fsksender_inst|Reg.WaitCounter\(4) & ( (\iSwitch[2]~input_o\ & ((!\fsksender_inst|LessThan0~1_combout\) # 
--- ((!\iSwitch[1]~input_o\ & !\fsksender_inst|Reg.WaitCounter\(3))))) ) ) )
+-- \fsksender_inst|Add0~45_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(10) ) + ( GND ) + ( \fsksender_inst|Add0~18\ ))
+-- \fsksender_inst|Add0~46\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(10) ) + ( GND ) + ( \fsksender_inst|Add0~18\ ))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0011001000110000001100110011000000110000001100000011000000110000",
+	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \fsksender_inst|ALT_INV_Reg.WaitCounter\(10),
+	cin => \fsksender_inst|Add0~18\,
+	sumout => \fsksender_inst|Add0~45_sumout\,
+	cout => \fsksender_inst|Add0~46\);
+
+-- Location: FF_X17_Y3_N32
+\fsksender_inst|Reg.WaitCounter[10]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Add0~45_sumout\,
+	clrn => \inResetAsync~input_o\,
+	sclr => \fsksender_inst|Selector1~2_combout\,
+	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.WaitCounter\(10));
+
+-- Location: LABCELL_X17_Y3_N33
+\fsksender_inst|Add0~41\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|Add0~41_sumout\ = SUM(( \fsksender_inst|Reg.WaitCounter\(11) ) + ( GND ) + ( \fsksender_inst|Add0~46\ ))
+-- \fsksender_inst|Add0~42\ = CARRY(( \fsksender_inst|Reg.WaitCounter\(11) ) + ( GND ) + ( \fsksender_inst|Add0~46\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|ALT_INV_Reg.WaitCounter\(11),
+	cin => \fsksender_inst|Add0~46\,
+	sumout => \fsksender_inst|Add0~41_sumout\,
+	cout => \fsksender_inst|Add0~42\);
+
+-- Location: FF_X17_Y3_N35
+\fsksender_inst|Reg.WaitCounter[11]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Add0~41_sumout\,
+	clrn => \inResetAsync~input_o\,
+	sclr => \fsksender_inst|Selector1~2_combout\,
+	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.WaitCounter\(11));
+
+-- Location: FF_X17_Y3_N38
+\fsksender_inst|Reg.WaitCounter[12]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Add0~33_sumout\,
+	clrn => \inResetAsync~input_o\,
+	sclr => \fsksender_inst|Selector1~2_combout\,
+	ena => \fsksender_inst|Reg.WaitCounter[13]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.WaitCounter\(12));
+
+-- Location: LABCELL_X18_Y3_N15
+\fsksender_inst|LessThan0~3\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|LessThan0~3_combout\ = ( !\fsksender_inst|Reg.WaitCounter\(13) & ( (\iSwitch[1]~input_o\ & (!\fsksender_inst|Reg.WaitCounter\(12) & \iSwitch[2]~input_o\)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000001010000000000000101000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
 	dataa => \ALT_INV_iSwitch[1]~input_o\,
-	datab => \ALT_INV_iSwitch[2]~input_o\,
-	datac => \fsksender_inst|ALT_INV_LessThan0~1_combout\,
-	datad => \fsksender_inst|ALT_INV_Reg.WaitCounter\(3),
-	datae => \fsksender_inst|ALT_INV_LessThan0~0_combout\,
-	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(4),
-	combout => \fsksender_inst|LessThan0~2_combout\);
+	datac => \fsksender_inst|ALT_INV_Reg.WaitCounter\(12),
+	datad => \ALT_INV_iSwitch[2]~input_o\,
+	dataf => \fsksender_inst|ALT_INV_Reg.WaitCounter\(13),
+	combout => \fsksender_inst|LessThan0~3_combout\);
 
--- Location: LABCELL_X24_Y1_N42
+-- Location: LABCELL_X18_Y3_N45
 \fsksender_inst|Selector1~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|Selector1~0_combout\ = ( \fsksender_inst|Reg.state.WaitForFirstBaud~q\ & ( !\fsksender_inst|baudrate_generator|oStrobe~q\ ) )
+-- \fsksender_inst|Selector1~0_combout\ = ( \fsksender_inst|Reg.state.WaitForFirstBaud~q\ & ( !\fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -8288,33 +8134,33 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~q\,
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~DUPLICATE_q\,
 	dataf => \fsksender_inst|ALT_INV_Reg.state.WaitForFirstBaud~q\,
 	combout => \fsksender_inst|Selector1~0_combout\);
 
--- Location: LABCELL_X24_Y1_N9
+-- Location: LABCELL_X17_Y3_N57
 \fsksender_inst|Selector1~1\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Selector1~1_combout\ = ( \fsksender_inst|LessThan0~7_combout\ & ( \fsksender_inst|Selector1~0_combout\ ) ) # ( !\fsksender_inst|LessThan0~7_combout\ & ( \fsksender_inst|Selector1~0_combout\ ) ) # ( \fsksender_inst|LessThan0~7_combout\ & ( 
--- !\fsksender_inst|Selector1~0_combout\ & ( (!\fsksender_inst|LessThan0~2_combout\ & (\fsksender_inst|LessThan0~6_combout\ & (!\fsksender_inst|LessThan0~3_combout\ & !\fsksender_inst|Reg.state.WaitForSend~q\))) ) ) ) # ( 
+-- !\fsksender_inst|Selector1~0_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & (\fsksender_inst|LessThan0~6_combout\ & (!\fsksender_inst|Reg.state.WaitForSend~q\ & !\fsksender_inst|LessThan0~2_combout\))) ) ) ) # ( 
 -- !\fsksender_inst|LessThan0~7_combout\ & ( !\fsksender_inst|Selector1~0_combout\ & ( (!\fsksender_inst|LessThan0~3_combout\ & !\fsksender_inst|Reg.state.WaitForSend~q\) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1111000000000000001000000000000011111111111111111111111111111111",
+	lut_mask => "1010000010100000001000000000000011111111111111111111111111111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_LessThan0~2_combout\,
+	dataa => \fsksender_inst|ALT_INV_LessThan0~3_combout\,
 	datab => \fsksender_inst|ALT_INV_LessThan0~6_combout\,
-	datac => \fsksender_inst|ALT_INV_LessThan0~3_combout\,
-	datad => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
+	datac => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
+	datad => \fsksender_inst|ALT_INV_LessThan0~2_combout\,
 	datae => \fsksender_inst|ALT_INV_LessThan0~7_combout\,
 	dataf => \fsksender_inst|ALT_INV_Selector1~0_combout\,
 	combout => \fsksender_inst|Selector1~1_combout\);
 
--- Location: FF_X24_Y1_N11
+-- Location: FF_X17_Y3_N59
 \fsksender_inst|Reg.state.WaitForFirstBaud\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8329,57 +8175,22 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.state.WaitForFirstBaud~q\);
 
--- Location: LABCELL_X30_Y1_N6
-\fsksender_inst|Selector2~0\ : cyclonev_lcell_comb
+-- Location: LABCELL_X18_Y3_N12
+\fsksender_inst|Reg.SendCounter[0]~3\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|Selector2~0_combout\ = ( \fsksender_inst|Equal0~0_combout\ & ( (!\fsksender_inst|baudrate_generator|oStrobe~q\ & ((\fsksender_inst|Reg.state.Send~q\))) # (\fsksender_inst|baudrate_generator|oStrobe~q\ & 
--- (\fsksender_inst|Reg.state.WaitForFirstBaud~q\)) ) ) # ( !\fsksender_inst|Equal0~0_combout\ & ( ((\fsksender_inst|Reg.state.WaitForFirstBaud~q\ & \fsksender_inst|baudrate_generator|oStrobe~q\)) # (\fsksender_inst|Reg.state.Send~q\) ) )
+-- \fsksender_inst|Reg.SendCounter[0]~3_combout\ = !\fsksender_inst|Reg.SendCounter\(0)
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000001111111111000000111111111100000011111100110000001111110011",
+	lut_mask => "1111111100000000111111110000000011111111000000001111111100000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \fsksender_inst|ALT_INV_Reg.state.WaitForFirstBaud~q\,
-	datac => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~q\,
-	datad => \fsksender_inst|ALT_INV_Reg.state.Send~q\,
-	dataf => \fsksender_inst|ALT_INV_Equal0~0_combout\,
-	combout => \fsksender_inst|Selector2~0_combout\);
+	datad => \fsksender_inst|ALT_INV_Reg.SendCounter\(0),
+	combout => \fsksender_inst|Reg.SendCounter[0]~3_combout\);
 
--- Location: FF_X30_Y1_N8
-\fsksender_inst|Reg.state.Send\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \fsksender_inst|Selector2~0_combout\,
-	clrn => \inResetAsync~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \fsksender_inst|Reg.state.Send~q\);
-
--- Location: LABCELL_X30_Y1_N33
-\fsksender_inst|Reg.SendCounter[3]~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \fsksender_inst|Reg.SendCounter[3]~0_combout\ = ( \fsksender_inst|baudrate_generator|oStrobe~q\ & ( \fsksender_inst|Reg.state.Send~q\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000000000001111111111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datae => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~q\,
-	dataf => \fsksender_inst|ALT_INV_Reg.state.Send~q\,
-	combout => \fsksender_inst|Reg.SendCounter[3]~0_combout\);
-
--- Location: FF_X30_Y1_N26
+-- Location: FF_X18_Y3_N14
 \fsksender_inst|Reg.SendCounter[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8395,25 +8206,25 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.SendCounter\(0));
 
--- Location: LABCELL_X30_Y1_N12
+-- Location: LABCELL_X18_Y3_N24
 \fsksender_inst|Reg.SendCounter[1]~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|Reg.SendCounter[1]~2_combout\ = ( \fsksender_inst|Reg.SendCounter\(1) & ( \fsksender_inst|Reg.SendCounter[3]~0_combout\ & ( !\fsksender_inst|Reg.SendCounter\(0) ) ) ) # ( !\fsksender_inst|Reg.SendCounter\(1) & ( 
--- \fsksender_inst|Reg.SendCounter[3]~0_combout\ & ( \fsksender_inst|Reg.SendCounter\(0) ) ) ) # ( \fsksender_inst|Reg.SendCounter\(1) & ( !\fsksender_inst|Reg.SendCounter[3]~0_combout\ ) )
+-- \fsksender_inst|Reg.SendCounter[1]~2_combout\ = ( \fsksender_inst|Reg.SendCounter\(1) & ( (!\fsksender_inst|Reg.SendCounter\(0)) # (!\fsksender_inst|Reg.SendCounter[3]~0_combout\) ) ) # ( !\fsksender_inst|Reg.SendCounter\(1) & ( 
+-- (\fsksender_inst|Reg.SendCounter\(0) & \fsksender_inst|Reg.SendCounter[3]~0_combout\) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111101010101010101011010101010101010",
+	lut_mask => "0000001100000011111111001111110000000011000000111111110011111100",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|ALT_INV_Reg.SendCounter\(0),
+	datab => \fsksender_inst|ALT_INV_Reg.SendCounter\(0),
+	datac => \fsksender_inst|ALT_INV_Reg.SendCounter[3]~0_combout\,
 	datae => \fsksender_inst|ALT_INV_Reg.SendCounter\(1),
-	dataf => \fsksender_inst|ALT_INV_Reg.SendCounter[3]~0_combout\,
 	combout => \fsksender_inst|Reg.SendCounter[1]~2_combout\);
 
--- Location: FF_X30_Y1_N14
+-- Location: FF_X18_Y3_N26
 \fsksender_inst|Reg.SendCounter[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8428,7 +8239,38 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.SendCounter\(1));
 
--- Location: LABCELL_X30_Y1_N9
+-- Location: FF_X18_Y3_N59
+\fsksender_inst|Reg.SendCounter[2]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Reg.SendCounter[2]~1_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.SendCounter\(2));
+
+-- Location: FF_X18_Y3_N13
+\fsksender_inst|Reg.SendCounter[0]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Reg.SendCounter[0]~3_combout\,
+	clrn => \inResetAsync~input_o\,
+	ena => \fsksender_inst|Reg.SendCounter[3]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.SendCounter[0]~DUPLICATE_q\);
+
+-- Location: LABCELL_X18_Y3_N33
 \fsksender_inst|Equal0~0\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \fsksender_inst|Equal0~0_combout\ = ( \fsksender_inst|Reg.SendCounter[0]~DUPLICATE_q\ & ( (\fsksender_inst|Reg.SendCounter\(1) & \fsksender_inst|Reg.SendCounter\(2)) ) )
@@ -8436,16 +8278,115 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000000011110000000000001111",
+	lut_mask => "0000000000000000000000000000000000000000010101010000000001010101",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \fsksender_inst|ALT_INV_Reg.SendCounter\(1),
+	dataa => \fsksender_inst|ALT_INV_Reg.SendCounter\(1),
 	datad => \fsksender_inst|ALT_INV_Reg.SendCounter\(2),
 	dataf => \fsksender_inst|ALT_INV_Reg.SendCounter[0]~DUPLICATE_q\,
 	combout => \fsksender_inst|Equal0~0_combout\);
 
--- Location: FF_X30_Y1_N7
+-- Location: LABCELL_X18_Y3_N30
+\fsksender_inst|Selector2~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|Selector2~0_combout\ = ( \fsksender_inst|Equal0~0_combout\ & ( (!\fsksender_inst|baudrate_generator|oStrobe~q\ & ((\fsksender_inst|Reg.state.Send~q\))) # (\fsksender_inst|baudrate_generator|oStrobe~q\ & 
+-- (\fsksender_inst|Reg.state.WaitForFirstBaud~q\)) ) ) # ( !\fsksender_inst|Equal0~0_combout\ & ( ((\fsksender_inst|baudrate_generator|oStrobe~q\ & \fsksender_inst|Reg.state.WaitForFirstBaud~q\)) # (\fsksender_inst|Reg.state.Send~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000001111111111000000111111111100000011110011110000001111001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~q\,
+	datac => \fsksender_inst|ALT_INV_Reg.state.WaitForFirstBaud~q\,
+	datad => \fsksender_inst|ALT_INV_Reg.state.Send~q\,
+	dataf => \fsksender_inst|ALT_INV_Equal0~0_combout\,
+	combout => \fsksender_inst|Selector2~0_combout\);
+
+-- Location: FF_X18_Y3_N31
+\fsksender_inst|Reg.state.Send\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Selector2~0_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.state.Send~q\);
+
+-- Location: LABCELL_X18_Y3_N54
+\fsksender_inst|Reg.SendCounter[3]~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|Reg.SendCounter[3]~0_combout\ = ( \fsksender_inst|Reg.state.Send~q\ & ( \fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000000000111111110000000011111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datad => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~DUPLICATE_q\,
+	dataf => \fsksender_inst|ALT_INV_Reg.state.Send~q\,
+	combout => \fsksender_inst|Reg.SendCounter[3]~0_combout\);
+
+-- Location: FF_X18_Y3_N25
+\fsksender_inst|Reg.SendCounter[1]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Reg.SendCounter[1]~2_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.SendCounter[1]~DUPLICATE_q\);
+
+-- Location: LABCELL_X18_Y3_N57
+\fsksender_inst|Reg.SendCounter[2]~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|Reg.SendCounter[2]~1_combout\ = ( \fsksender_inst|Reg.SendCounter[1]~DUPLICATE_q\ & ( !\fsksender_inst|Reg.SendCounter\(2) $ (((!\fsksender_inst|Reg.SendCounter[3]~0_combout\) # (!\fsksender_inst|Reg.SendCounter\(0)))) ) ) # ( 
+-- !\fsksender_inst|Reg.SendCounter[1]~DUPLICATE_q\ & ( \fsksender_inst|Reg.SendCounter\(2) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000011111111000000001111111100000101111110100000010111111010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|ALT_INV_Reg.SendCounter[3]~0_combout\,
+	datac => \fsksender_inst|ALT_INV_Reg.SendCounter\(0),
+	datad => \fsksender_inst|ALT_INV_Reg.SendCounter\(2),
+	dataf => \fsksender_inst|ALT_INV_Reg.SendCounter[1]~DUPLICATE_q\,
+	combout => \fsksender_inst|Reg.SendCounter[2]~1_combout\);
+
+-- Location: FF_X18_Y3_N58
+\fsksender_inst|Reg.SendCounter[2]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Reg.SendCounter[2]~1_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.SendCounter[2]~DUPLICATE_q\);
+
+-- Location: FF_X18_Y3_N32
 \fsksender_inst|Reg.state.Send~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8460,30 +8401,89 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.state.Send~DUPLICATE_q\);
 
--- Location: LABCELL_X30_Y1_N48
-\fsksender_inst|Reg.Data~0\ : cyclonev_lcell_comb
+-- Location: LABCELL_X18_Y3_N3
+\fsksender_inst|Selector0~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \fsksender_inst|Reg.Data~0_combout\ = ( \fsksender_inst|Reg.Data~q\ & ( \fsksender_inst|Reg.state.Send~DUPLICATE_q\ & ( (!\fsksender_inst|baudrate_generator|oStrobe~q\) # ((!\fsksender_inst|Reg.state.WaitForSend~q\) # ((!\fsksender_inst|Equal0~0_combout\ 
--- & \fsksender_inst|Reg.SendCounter\(0)))) ) ) ) # ( !\fsksender_inst|Reg.Data~q\ & ( \fsksender_inst|Reg.state.Send~DUPLICATE_q\ & ( (\fsksender_inst|baudrate_generator|oStrobe~q\ & (!\fsksender_inst|Equal0~0_combout\ & (\fsksender_inst|Reg.SendCounter\(0) 
--- & \fsksender_inst|Reg.state.WaitForSend~q\))) ) ) ) # ( \fsksender_inst|Reg.Data~q\ & ( !\fsksender_inst|Reg.state.Send~DUPLICATE_q\ ) ) # ( !\fsksender_inst|Reg.Data~q\ & ( !\fsksender_inst|Reg.state.Send~DUPLICATE_q\ & ( 
--- (\fsksender_inst|baudrate_generator|oStrobe~q\ & \fsksender_inst|Reg.state.WaitForSend~q\) ) ) )
+-- \fsksender_inst|Selector0~0_combout\ = ( \fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\ & ( \fsksender_inst|Reg.state.Send~DUPLICATE_q\ & ( (\fsksender_inst|Reg.SendCounter[2]~DUPLICATE_q\ & (\fsksender_inst|Reg.SendCounter[1]~DUPLICATE_q\ & 
+-- \fsksender_inst|Reg.SendCounter[0]~DUPLICATE_q\)) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000001010101111111111111111100000000000001001111111110101110",
+	lut_mask => "0000000000000000000000000000000000000000000000000000000100000001",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~q\,
-	datab => \fsksender_inst|ALT_INV_Equal0~0_combout\,
-	datac => \fsksender_inst|ALT_INV_Reg.SendCounter\(0),
-	datad => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
-	datae => \fsksender_inst|ALT_INV_Reg.Data~q\,
+	dataa => \fsksender_inst|ALT_INV_Reg.SendCounter[2]~DUPLICATE_q\,
+	datab => \fsksender_inst|ALT_INV_Reg.SendCounter[1]~DUPLICATE_q\,
+	datac => \fsksender_inst|ALT_INV_Reg.SendCounter[0]~DUPLICATE_q\,
+	datae => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~DUPLICATE_q\,
 	dataf => \fsksender_inst|ALT_INV_Reg.state.Send~DUPLICATE_q\,
+	combout => \fsksender_inst|Selector0~0_combout\);
+
+-- Location: LABCELL_X18_Y3_N48
+\fsksender_inst|Selector0~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|Selector0~1_combout\ = ( \fsksender_inst|Reg.state.WaitForSend~q\ & ( \fsksender_inst|LessThan0~6_combout\ & ( !\fsksender_inst|Selector0~0_combout\ ) ) ) # ( !\fsksender_inst|Reg.state.WaitForSend~q\ & ( 
+-- \fsksender_inst|LessThan0~6_combout\ & ( (!\fsksender_inst|Selector0~0_combout\ & (!\fsksender_inst|LessThan0~3_combout\ & ((!\fsksender_inst|LessThan0~2_combout\) # (!\fsksender_inst|LessThan0~7_combout\)))) ) ) ) # ( 
+-- \fsksender_inst|Reg.state.WaitForSend~q\ & ( !\fsksender_inst|LessThan0~6_combout\ & ( !\fsksender_inst|Selector0~0_combout\ ) ) ) # ( !\fsksender_inst|Reg.state.WaitForSend~q\ & ( !\fsksender_inst|LessThan0~6_combout\ & ( 
+-- (!\fsksender_inst|Selector0~0_combout\ & (!\fsksender_inst|LessThan0~3_combout\ & !\fsksender_inst|LessThan0~7_combout\)) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1000100000000000101010101010101010001000100000001010101010101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|ALT_INV_Selector0~0_combout\,
+	datab => \fsksender_inst|ALT_INV_LessThan0~3_combout\,
+	datac => \fsksender_inst|ALT_INV_LessThan0~2_combout\,
+	datad => \fsksender_inst|ALT_INV_LessThan0~7_combout\,
+	datae => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
+	dataf => \fsksender_inst|ALT_INV_LessThan0~6_combout\,
+	combout => \fsksender_inst|Selector0~1_combout\);
+
+-- Location: FF_X18_Y3_N50
+\fsksender_inst|Reg.state.WaitForSend\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \fsksender_inst|Selector0~1_combout\,
+	clrn => \inResetAsync~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \fsksender_inst|Reg.state.WaitForSend~q\);
+
+-- Location: LABCELL_X18_Y3_N36
+\fsksender_inst|Reg.Data~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \fsksender_inst|Reg.Data~0_combout\ = ( \fsksender_inst|Reg.Data~q\ & ( \fsksender_inst|Equal0~0_combout\ & ( (!\fsksender_inst|Reg.state.WaitForSend~q\) # ((!\fsksender_inst|Reg.state.Send~DUPLICATE_q\) # 
+-- (!\fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\)) ) ) ) # ( !\fsksender_inst|Reg.Data~q\ & ( \fsksender_inst|Equal0~0_combout\ & ( (\fsksender_inst|Reg.state.WaitForSend~q\ & (!\fsksender_inst|Reg.state.Send~DUPLICATE_q\ & 
+-- \fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\)) ) ) ) # ( \fsksender_inst|Reg.Data~q\ & ( !\fsksender_inst|Equal0~0_combout\ & ( (!\fsksender_inst|Reg.state.WaitForSend~q\) # ((!\fsksender_inst|Reg.state.Send~DUPLICATE_q\) # 
+-- ((!\fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\) # (\fsksender_inst|Reg.SendCounter\(0)))) ) ) ) # ( !\fsksender_inst|Reg.Data~q\ & ( !\fsksender_inst|Equal0~0_combout\ & ( (\fsksender_inst|Reg.state.WaitForSend~q\ & 
+-- (\fsksender_inst|baudrate_generator|oStrobe~DUPLICATE_q\ & ((!\fsksender_inst|Reg.state.Send~DUPLICATE_q\) # (\fsksender_inst|Reg.SendCounter\(0))))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000010000000101111111101111111100000100000001001111111011111110",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \fsksender_inst|ALT_INV_Reg.state.WaitForSend~q\,
+	datab => \fsksender_inst|ALT_INV_Reg.state.Send~DUPLICATE_q\,
+	datac => \fsksender_inst|baudrate_generator|ALT_INV_oStrobe~DUPLICATE_q\,
+	datad => \fsksender_inst|ALT_INV_Reg.SendCounter\(0),
+	datae => \fsksender_inst|ALT_INV_Reg.Data~q\,
+	dataf => \fsksender_inst|ALT_INV_Equal0~0_combout\,
 	combout => \fsksender_inst|Reg.Data~0_combout\);
 
--- Location: FF_X30_Y1_N49
+-- Location: FF_X18_Y3_N37
 \fsksender_inst|Reg.Data\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8498,7 +8498,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \fsksender_inst|Reg.Data~q\);
 
--- Location: LABCELL_X36_Y1_N27
+-- Location: LABCELL_X37_Y3_N51
 \TheTxDataSync|Metastable[0]~feeder\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxDataSync|Metastable[0]~feeder_combout\ = ( \fsksender_inst|Reg.Data~q\ )
@@ -8513,7 +8513,7 @@ PORT MAP (
 	dataf => \fsksender_inst|ALT_INV_Reg.Data~q\,
 	combout => \TheTxDataSync|Metastable[0]~feeder_combout\);
 
--- Location: FF_X36_Y1_N28
+-- Location: FF_X37_Y3_N52
 \TheTxDataSync|Metastable[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8528,7 +8528,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxDataSync|Metastable\(0));
 
--- Location: LABCELL_X55_Y3_N48
+-- Location: LABCELL_X43_Y2_N54
 \TheTxDataSync|Metastable[1]~feeder\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxDataSync|Metastable[1]~feeder_combout\ = ( \TheTxDataSync|Metastable\(0) )
@@ -8543,7 +8543,7 @@ PORT MAP (
 	dataf => \TheTxDataSync|ALT_INV_Metastable\(0),
 	combout => \TheTxDataSync|Metastable[1]~feeder_combout\);
 
--- Location: FF_X55_Y3_N50
+-- Location: FF_X43_Y2_N56
 \TheTxDataSync|Metastable[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8558,7 +8558,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxDataSync|Metastable\(1));
 
--- Location: LABCELL_X50_Y4_N27
+-- Location: LABCELL_X45_Y4_N21
 \GenClks|MclkCounter[0]~0\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \GenClks|MclkCounter[0]~0_combout\ = !\GenClks|MclkCounter\(0)
@@ -8573,7 +8573,7 @@ PORT MAP (
 	datad => \GenClks|ALT_INV_MclkCounter\(0),
 	combout => \GenClks|MclkCounter[0]~0_combout\);
 
--- Location: FF_X50_Y4_N28
+-- Location: FF_X45_Y4_N22
 \GenClks|MclkCounter[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8588,7 +8588,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \GenClks|MclkCounter\(0));
 
--- Location: LABCELL_X50_Y4_N24
+-- Location: LABCELL_X45_Y4_N18
 \GenClks|Mclk~0\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \GenClks|Mclk~0_combout\ = ( \GenClks|MclkCounter\(0) & ( !\GenClks|Mclk~q\ ) ) # ( !\GenClks|MclkCounter\(0) & ( \GenClks|Mclk~q\ ) )
@@ -8604,7 +8604,7 @@ PORT MAP (
 	dataf => \GenClks|ALT_INV_MclkCounter\(0),
 	combout => \GenClks|Mclk~0_combout\);
 
--- Location: FF_X50_Y4_N2
+-- Location: FF_X45_Y4_N5
 \GenClks|Mclk\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8620,25 +8620,22 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \GenClks|Mclk~q\);
 
--- Location: LABCELL_X50_Y4_N30
-\GenClks|Add1~9\ : cyclonev_lcell_comb
+-- Location: LABCELL_X45_Y4_N0
+\GenClks|ADCCounter[0]~5\ : cyclonev_lcell_comb
 -- Equation(s):
--- \GenClks|Add1~9_sumout\ = SUM(( \GenClks|ADCCounter\(0) ) + ( VCC ) + ( !VCC ))
--- \GenClks|Add1~10\ = CARRY(( \GenClks|ADCCounter\(0) ) + ( VCC ) + ( !VCC ))
+-- \GenClks|ADCCounter[0]~5_combout\ = ( !\GenClks|ADCCounter\(0) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000000000000011001100110011",
+	lut_mask => "1111111111111111000000000000000011111111111111110000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \GenClks|ALT_INV_ADCCounter\(0),
-	cin => GND,
-	sumout => \GenClks|Add1~9_sumout\,
-	cout => \GenClks|Add1~10\);
+	datae => \GenClks|ALT_INV_ADCCounter\(0),
+	combout => \GenClks|ADCCounter[0]~5_combout\);
 
--- Location: FF_X50_Y4_N44
+-- Location: FF_X45_Y4_N59
 \GenClks|ADCCounter[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8647,223 +8644,39 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \GenClks|ALT_INV_Mclk~q\,
-	asdata => \GenClks|Add1~9_sumout\,
+	asdata => \GenClks|ADCCounter[0]~5_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	sload => VCC,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \GenClks|ADCCounter\(0));
 
--- Location: LABCELL_X50_Y4_N33
-\GenClks|Add1~5\ : cyclonev_lcell_comb
+-- Location: LABCELL_X45_Y4_N42
+\GenClks|ADCCounter~4\ : cyclonev_lcell_comb
 -- Equation(s):
--- \GenClks|Add1~5_sumout\ = SUM(( \GenClks|ADCCounter\(1) ) + ( GND ) + ( \GenClks|Add1~10\ ))
--- \GenClks|Add1~6\ = CARRY(( \GenClks|ADCCounter\(1) ) + ( GND ) + ( \GenClks|Add1~10\ ))
+-- \GenClks|ADCCounter~4_combout\ = ( \GenClks|ADCCounter\(4) & ( \GenClks|ADCCounter\(2) & ( (!\GenClks|ADCCounter\(0)) # ((!\GenClks|ADCCounter\(1) & ((!\GenClks|ADCCounter\(5)) # (!\GenClks|ADCCounter\(3))))) ) ) ) # ( !\GenClks|ADCCounter\(4) & ( 
+-- \GenClks|ADCCounter\(2) & ( (!\GenClks|ADCCounter\(0)) # (!\GenClks|ADCCounter\(1)) ) ) ) # ( \GenClks|ADCCounter\(4) & ( !\GenClks|ADCCounter\(2) & ( (\GenClks|ADCCounter\(0) & \GenClks|ADCCounter\(1)) ) ) ) # ( !\GenClks|ADCCounter\(4) & ( 
+-- !\GenClks|ADCCounter\(2) & ( (\GenClks|ADCCounter\(0) & \GenClks|ADCCounter\(1)) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	lut_mask => "0000000000110011000000000011001111111111110011001111111011001100",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \GenClks|ALT_INV_ADCCounter\(1),
-	cin => \GenClks|Add1~10\,
-	sumout => \GenClks|Add1~5_sumout\,
-	cout => \GenClks|Add1~6\);
-
--- Location: FF_X50_Y4_N59
-\GenClks|ADCCounter[1]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \GenClks|ALT_INV_Mclk~q\,
-	asdata => \GenClks|Add1~5_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \GenClks|ADCCounter\(1));
-
--- Location: LABCELL_X50_Y4_N36
-\GenClks|Add1~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \GenClks|Add1~1_sumout\ = SUM(( \GenClks|ADCCounter\(2) ) + ( GND ) + ( \GenClks|Add1~6\ ))
--- \GenClks|Add1~2\ = CARRY(( \GenClks|ADCCounter\(2) ) + ( GND ) + ( \GenClks|Add1~6\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \GenClks|ALT_INV_ADCCounter\(2),
-	cin => \GenClks|Add1~6\,
-	sumout => \GenClks|Add1~1_sumout\,
-	cout => \GenClks|Add1~2\);
-
--- Location: FF_X50_Y4_N23
-\GenClks|ADCCounter[2]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \GenClks|ALT_INV_Mclk~q\,
-	asdata => \GenClks|Add1~1_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \GenClks|ADCCounter\(2));
-
--- Location: LABCELL_X50_Y4_N39
-\GenClks|Add1~29\ : cyclonev_lcell_comb
--- Equation(s):
--- \GenClks|Add1~29_sumout\ = SUM(( \GenClks|ADCCounter\(3) ) + ( GND ) + ( \GenClks|Add1~2\ ))
--- \GenClks|Add1~30\ = CARRY(( \GenClks|ADCCounter\(3) ) + ( GND ) + ( \GenClks|Add1~2\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \GenClks|ALT_INV_ADCCounter\(3),
-	cin => \GenClks|Add1~2\,
-	sumout => \GenClks|Add1~29_sumout\,
-	cout => \GenClks|Add1~30\);
-
--- Location: LABCELL_X50_Y4_N9
-\GenClks|ADCCounter~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \GenClks|ADCCounter~1_combout\ = ( \GenClks|ADCCounter\(1) & ( (\GenClks|Add1~29_sumout\ & ((!\GenClks|ADCCounter\(2)) # ((!\GenClks|ADCCounter\(0)) # (!\GenClks|Equal0~0_combout\)))) ) ) # ( !\GenClks|ADCCounter\(1) & ( \GenClks|Add1~29_sumout\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000111100001111000011110000111000001111000011110000111100001110",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \GenClks|ALT_INV_ADCCounter\(2),
+	dataa => \GenClks|ALT_INV_ADCCounter\(5),
 	datab => \GenClks|ALT_INV_ADCCounter\(0),
-	datac => \GenClks|ALT_INV_Add1~29_sumout\,
-	datad => \GenClks|ALT_INV_Equal0~0_combout\,
-	datae => \GenClks|ALT_INV_ADCCounter\(1),
-	combout => \GenClks|ADCCounter~1_combout\);
+	datac => \GenClks|ALT_INV_ADCCounter\(3),
+	datad => \GenClks|ALT_INV_ADCCounter\(1),
+	datae => \GenClks|ALT_INV_ADCCounter\(4),
+	dataf => \GenClks|ALT_INV_ADCCounter\(2),
+	combout => \GenClks|ADCCounter~4_combout\);
 
--- Location: FF_X50_Y4_N11
-\GenClks|ADCCounter[3]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \GenClks|ALT_INV_Mclk~q\,
-	d => \GenClks|ADCCounter~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \GenClks|ADCCounter\(3));
-
--- Location: LABCELL_X50_Y4_N42
-\GenClks|Add1~25\ : cyclonev_lcell_comb
+-- Location: LABCELL_X45_Y4_N39
+\GenClks|ADCCounter[2]~feeder\ : cyclonev_lcell_comb
 -- Equation(s):
--- \GenClks|Add1~25_sumout\ = SUM(( \GenClks|ADCCounter\(4) ) + ( GND ) + ( \GenClks|Add1~30\ ))
--- \GenClks|Add1~26\ = CARRY(( \GenClks|ADCCounter\(4) ) + ( GND ) + ( \GenClks|Add1~30\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \GenClks|ALT_INV_ADCCounter\(4),
-	cin => \GenClks|Add1~30\,
-	sumout => \GenClks|Add1~25_sumout\,
-	cout => \GenClks|Add1~26\);
-
--- Location: FF_X50_Y4_N55
-\GenClks|ADCCounter[4]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \GenClks|ALT_INV_Mclk~q\,
-	asdata => \GenClks|Add1~25_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \GenClks|ADCCounter\(4));
-
--- Location: LABCELL_X50_Y4_N45
-\GenClks|Add1~21\ : cyclonev_lcell_comb
--- Equation(s):
--- \GenClks|Add1~21_sumout\ = SUM(( \GenClks|ADCCounter\(5) ) + ( GND ) + ( \GenClks|Add1~26\ ))
--- \GenClks|Add1~22\ = CARRY(( \GenClks|ADCCounter\(5) ) + ( GND ) + ( \GenClks|Add1~26\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \GenClks|ALT_INV_ADCCounter\(5),
-	cin => \GenClks|Add1~26\,
-	sumout => \GenClks|Add1~21_sumout\,
-	cout => \GenClks|Add1~22\);
-
--- Location: FF_X50_Y4_N8
-\GenClks|ADCCounter[5]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \GenClks|ALT_INV_Mclk~q\,
-	asdata => \GenClks|Add1~21_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \GenClks|ADCCounter\(5));
-
--- Location: LABCELL_X50_Y4_N48
-\GenClks|Add1~17\ : cyclonev_lcell_comb
--- Equation(s):
--- \GenClks|Add1~17_sumout\ = SUM(( \GenClks|ADCCounter\(6) ) + ( GND ) + ( \GenClks|Add1~22\ ))
--- \GenClks|Add1~18\ = CARRY(( \GenClks|ADCCounter\(6) ) + ( GND ) + ( \GenClks|Add1~22\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \GenClks|ALT_INV_ADCCounter\(6),
-	cin => \GenClks|Add1~22\,
-	sumout => \GenClks|Add1~17_sumout\,
-	cout => \GenClks|Add1~18\);
-
--- Location: LABCELL_X50_Y4_N18
-\GenClks|ADCCounter[6]~feeder\ : cyclonev_lcell_comb
--- Equation(s):
--- \GenClks|ADCCounter[6]~feeder_combout\ = ( \GenClks|Add1~17_sumout\ )
+-- \GenClks|ADCCounter[2]~feeder_combout\ = ( \GenClks|ADCCounter~4_combout\ )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -8872,11 +8685,11 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataf => \GenClks|ALT_INV_Add1~17_sumout\,
-	combout => \GenClks|ADCCounter[6]~feeder_combout\);
+	dataf => \GenClks|ALT_INV_ADCCounter~4_combout\,
+	combout => \GenClks|ADCCounter[2]~feeder_combout\);
 
--- Location: FF_X50_Y4_N20
-\GenClks|ADCCounter[6]\ : dffeas
+-- Location: FF_X45_Y4_N41
+\GenClks|ADCCounter[2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -8884,49 +8697,177 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \GenClks|ALT_INV_Mclk~q\,
-	d => \GenClks|ADCCounter[6]~feeder_combout\,
+	d => \GenClks|ADCCounter[2]~feeder_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \GenClks|ADCCounter\(6));
+	q => \GenClks|ADCCounter\(2));
 
--- Location: LABCELL_X50_Y4_N51
-\GenClks|Add1~13\ : cyclonev_lcell_comb
+-- Location: LABCELL_X45_Y4_N15
+\GenClks|ADCCounter~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \GenClks|Add1~13_sumout\ = SUM(( \GenClks|ADCCounter\(7) ) + ( GND ) + ( \GenClks|Add1~18\ ))
+-- \GenClks|ADCCounter~1_combout\ = ( \GenClks|ADCCounter\(0) & ( \GenClks|ADCCounter\(2) & ( (!\GenClks|ADCCounter\(3) & (((\GenClks|ADCCounter\(5))))) # (\GenClks|ADCCounter\(3) & ((!\GenClks|ADCCounter\(4) & ((\GenClks|ADCCounter\(5)))) # 
+-- (\GenClks|ADCCounter\(4) & (\GenClks|ADCCounter\(1) & !\GenClks|ADCCounter\(5))))) ) ) ) # ( !\GenClks|ADCCounter\(0) & ( \GenClks|ADCCounter\(2) & ( \GenClks|ADCCounter\(5) ) ) ) # ( \GenClks|ADCCounter\(0) & ( !\GenClks|ADCCounter\(2) & ( 
+-- \GenClks|ADCCounter\(5) ) ) ) # ( !\GenClks|ADCCounter\(0) & ( !\GenClks|ADCCounter\(2) & ( \GenClks|ADCCounter\(5) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	lut_mask => "0000000011111111000000001111111100000000111111110000000111111010",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \GenClks|ALT_INV_ADCCounter\(7),
-	cin => \GenClks|Add1~18\,
-	sumout => \GenClks|Add1~13_sumout\);
+	dataa => \GenClks|ALT_INV_ADCCounter\(3),
+	datab => \GenClks|ALT_INV_ADCCounter\(1),
+	datac => \GenClks|ALT_INV_ADCCounter\(4),
+	datad => \GenClks|ALT_INV_ADCCounter\(5),
+	datae => \GenClks|ALT_INV_ADCCounter\(0),
+	dataf => \GenClks|ALT_INV_ADCCounter\(2),
+	combout => \GenClks|ADCCounter~1_combout\);
 
--- Location: LABCELL_X50_Y4_N15
+-- Location: LABCELL_X45_Y4_N6
+\GenClks|ADCCounter[5]~feeder\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \GenClks|ADCCounter[5]~feeder_combout\ = ( \GenClks|ADCCounter~1_combout\ )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataf => \GenClks|ALT_INV_ADCCounter~1_combout\,
+	combout => \GenClks|ADCCounter[5]~feeder_combout\);
+
+-- Location: FF_X45_Y4_N7
+\GenClks|ADCCounter[5]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \GenClks|ALT_INV_Mclk~q\,
+	d => \GenClks|ADCCounter[5]~feeder_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \GenClks|ADCCounter\(5));
+
+-- Location: LABCELL_X45_Y4_N54
+\GenClks|ADCCounter~2\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \GenClks|ADCCounter~2_combout\ = ( \GenClks|ADCCounter\(4) & ( \GenClks|ADCCounter\(2) & ( (!\GenClks|ADCCounter\(0)) # ((!\GenClks|ADCCounter\(3)) # ((!\GenClks|ADCCounter\(5) & !\GenClks|ADCCounter\(1)))) ) ) ) # ( !\GenClks|ADCCounter\(4) & ( 
+-- \GenClks|ADCCounter\(2) & ( (\GenClks|ADCCounter\(0) & (\GenClks|ADCCounter\(3) & \GenClks|ADCCounter\(1))) ) ) ) # ( \GenClks|ADCCounter\(4) & ( !\GenClks|ADCCounter\(2) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000111111111011111100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \GenClks|ALT_INV_ADCCounter\(5),
+	datab => \GenClks|ALT_INV_ADCCounter\(0),
+	datac => \GenClks|ALT_INV_ADCCounter\(3),
+	datad => \GenClks|ALT_INV_ADCCounter\(1),
+	datae => \GenClks|ALT_INV_ADCCounter\(4),
+	dataf => \GenClks|ALT_INV_ADCCounter\(2),
+	combout => \GenClks|ADCCounter~2_combout\);
+
+-- Location: FF_X45_Y4_N47
+\GenClks|ADCCounter[4]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \GenClks|ALT_INV_Mclk~q\,
+	asdata => \GenClks|ADCCounter~2_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \GenClks|ADCCounter\(4));
+
+-- Location: LABCELL_X45_Y4_N27
+\GenClks|ADCCounter~3\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \GenClks|ADCCounter~3_combout\ = ( \GenClks|ADCCounter\(0) & ( \GenClks|ADCCounter\(2) & ( (!\GenClks|ADCCounter\(3) & (\GenClks|ADCCounter\(1))) # (\GenClks|ADCCounter\(3) & (!\GenClks|ADCCounter\(1) & ((!\GenClks|ADCCounter\(4)) # 
+-- (!\GenClks|ADCCounter\(5))))) ) ) ) # ( !\GenClks|ADCCounter\(0) & ( \GenClks|ADCCounter\(2) & ( \GenClks|ADCCounter\(3) ) ) ) # ( \GenClks|ADCCounter\(0) & ( !\GenClks|ADCCounter\(2) & ( \GenClks|ADCCounter\(3) ) ) ) # ( !\GenClks|ADCCounter\(0) & ( 
+-- !\GenClks|ADCCounter\(2) & ( \GenClks|ADCCounter\(3) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010101010101010101010101010101010101010101010110011001100010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \GenClks|ALT_INV_ADCCounter\(3),
+	datab => \GenClks|ALT_INV_ADCCounter\(1),
+	datac => \GenClks|ALT_INV_ADCCounter\(4),
+	datad => \GenClks|ALT_INV_ADCCounter\(5),
+	datae => \GenClks|ALT_INV_ADCCounter\(0),
+	dataf => \GenClks|ALT_INV_ADCCounter\(2),
+	combout => \GenClks|ADCCounter~3_combout\);
+
+-- Location: FF_X45_Y4_N26
+\GenClks|ADCCounter[3]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \GenClks|ALT_INV_Mclk~q\,
+	asdata => \GenClks|ADCCounter~3_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \GenClks|ADCCounter\(3));
+
+-- Location: LABCELL_X45_Y4_N51
 \GenClks|ADCCounter~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \GenClks|ADCCounter~0_combout\ = ( \GenClks|ADCCounter\(2) & ( (\GenClks|Add1~13_sumout\ & ((!\GenClks|ADCCounter\(1)) # ((!\GenClks|ADCCounter\(0)) # (!\GenClks|Equal0~0_combout\)))) ) ) # ( !\GenClks|ADCCounter\(2) & ( \GenClks|Add1~13_sumout\ ) )
+-- \GenClks|ADCCounter~0_combout\ = ( \GenClks|ADCCounter\(0) & ( \GenClks|ADCCounter\(2) & ( (!\GenClks|ADCCounter\(1) & ((!\GenClks|ADCCounter\(3)) # ((!\GenClks|ADCCounter\(4)) # (!\GenClks|ADCCounter\(5))))) ) ) ) # ( !\GenClks|ADCCounter\(0) & ( 
+-- \GenClks|ADCCounter\(2) & ( \GenClks|ADCCounter\(1) ) ) ) # ( \GenClks|ADCCounter\(0) & ( !\GenClks|ADCCounter\(2) & ( !\GenClks|ADCCounter\(1) ) ) ) # ( !\GenClks|ADCCounter\(0) & ( !\GenClks|ADCCounter\(2) & ( \GenClks|ADCCounter\(1) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0101010101010101010101010101010001010101010101010101010101010100",
+	lut_mask => "0011001100110011110011001100110000110011001100111100110011001000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \GenClks|ALT_INV_Add1~13_sumout\,
+	dataa => \GenClks|ALT_INV_ADCCounter\(3),
 	datab => \GenClks|ALT_INV_ADCCounter\(1),
-	datac => \GenClks|ALT_INV_ADCCounter\(0),
-	datad => \GenClks|ALT_INV_Equal0~0_combout\,
-	datae => \GenClks|ALT_INV_ADCCounter\(2),
+	datac => \GenClks|ALT_INV_ADCCounter\(4),
+	datad => \GenClks|ALT_INV_ADCCounter\(5),
+	datae => \GenClks|ALT_INV_ADCCounter\(0),
+	dataf => \GenClks|ALT_INV_ADCCounter\(2),
 	combout => \GenClks|ADCCounter~0_combout\);
 
--- Location: FF_X50_Y4_N17
-\GenClks|ADCCounter[7]\ : dffeas
+-- Location: LABCELL_X45_Y4_N9
+\GenClks|ADCCounter[1]~feeder\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \GenClks|ADCCounter[1]~feeder_combout\ = ( \GenClks|ADCCounter~0_combout\ )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataf => \GenClks|ALT_INV_ADCCounter~0_combout\,
+	combout => \GenClks|ADCCounter[1]~feeder_combout\);
+
+-- Location: FF_X45_Y4_N11
+\GenClks|ADCCounter[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -8934,52 +8875,64 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \GenClks|ALT_INV_Mclk~q\,
-	d => \GenClks|ADCCounter~0_combout\,
+	d => \GenClks|ADCCounter[1]~feeder_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \GenClks|ADCCounter\(7));
+	q => \GenClks|ADCCounter\(1));
 
--- Location: LABCELL_X50_Y4_N54
+-- Location: LABCELL_X45_Y4_N30
 \GenClks|Equal0~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \GenClks|Equal0~0_combout\ = ( !\GenClks|ADCCounter\(4) & ( !\GenClks|ADCCounter\(3) & ( (\GenClks|ADCCounter\(7) & (!\GenClks|ADCCounter\(6) & !\GenClks|ADCCounter\(5))) ) ) )
+-- \GenClks|Equal0~0_combout\ = ( \GenClks|ADCCounter\(2) & ( (\GenClks|ADCCounter\(3) & (\GenClks|ADCCounter\(5) & \GenClks|ADCCounter\(4))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0011000000000000000000000000000000000000000000000000000000000000",
+	lut_mask => "0000000000000000000000000000000000000000000001010000000000000101",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \GenClks|ALT_INV_ADCCounter\(7),
-	datac => \GenClks|ALT_INV_ADCCounter\(6),
-	datad => \GenClks|ALT_INV_ADCCounter\(5),
-	datae => \GenClks|ALT_INV_ADCCounter\(4),
-	dataf => \GenClks|ALT_INV_ADCCounter\(3),
+	dataa => \GenClks|ALT_INV_ADCCounter\(3),
+	datac => \GenClks|ALT_INV_ADCCounter\(5),
+	datad => \GenClks|ALT_INV_ADCCounter\(4),
+	dataf => \GenClks|ALT_INV_ADCCounter\(2),
 	combout => \GenClks|Equal0~0_combout\);
 
--- Location: LABCELL_X50_Y4_N0
+-- Location: LABCELL_X45_Y4_N33
 \GenClks|ADClrc~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \GenClks|ADClrc~0_combout\ = ( \GenClks|ADCCounter\(1) & ( \GenClks|ADClrc~q\ & ( (!\GenClks|Equal0~0_combout\) # ((!\GenClks|ADCCounter\(0)) # (!\GenClks|ADCCounter\(2))) ) ) ) # ( !\GenClks|ADCCounter\(1) & ( \GenClks|ADClrc~q\ ) ) # ( 
--- \GenClks|ADCCounter\(1) & ( !\GenClks|ADClrc~q\ & ( (\GenClks|Equal0~0_combout\ & (\GenClks|ADCCounter\(0) & \GenClks|ADCCounter\(2))) ) ) )
+-- \GenClks|ADClrc~0_combout\ = ( \GenClks|Equal0~0_combout\ & ( !\GenClks|ADClrc~q\ $ (((!\GenClks|ADCCounter\(0)) # (\GenClks|ADCCounter\(1)))) ) ) # ( !\GenClks|Equal0~0_combout\ & ( \GenClks|ADClrc~q\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000010000000111111111111111111111111011111110",
+	lut_mask => "0000111100001111000011110000111100001111110000110000111111000011",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \GenClks|ALT_INV_Equal0~0_combout\,
-	datab => \GenClks|ALT_INV_ADCCounter\(0),
-	datac => \GenClks|ALT_INV_ADCCounter\(2),
-	datae => \GenClks|ALT_INV_ADCCounter\(1),
-	dataf => \GenClks|ALT_INV_ADClrc~q\,
+	datab => \GenClks|ALT_INV_ADCCounter\(1),
+	datac => \GenClks|ALT_INV_ADClrc~q\,
+	datad => \GenClks|ALT_INV_ADCCounter\(0),
+	dataf => \GenClks|ALT_INV_Equal0~0_combout\,
 	combout => \GenClks|ADClrc~0_combout\);
 
--- Location: FF_X50_Y4_N13
+-- Location: LABCELL_X45_Y4_N36
+\GenClks|ADClrc~feeder\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \GenClks|ADClrc~feeder_combout\ = ( \GenClks|ADClrc~0_combout\ )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataf => \GenClks|ALT_INV_ADClrc~0_combout\,
+	combout => \GenClks|ADClrc~feeder_combout\);
+
+-- Location: FF_X45_Y4_N37
 \GenClks|ADClrc\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -8988,14 +8941,13 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \GenClks|ALT_INV_Mclk~q\,
-	asdata => \GenClks|ADClrc~0_combout\,
+	d => \GenClks|ADClrc~feeder_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \GenClks|ADClrc~q\);
 
--- Location: FF_X57_Y1_N14
+-- Location: FF_X57_Y2_N50
 oldADClrc : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9011,38 +8963,23 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \oldADClrc~q\);
 
--- Location: LABCELL_X57_Y1_N12
+-- Location: LABCELL_X57_Y2_N48
 PhaseStrobe : cyclonev_lcell_comb
 -- Equation(s):
--- \PhaseStrobe~combout\ = ( !\oldADClrc~q\ & ( \GenClks|ADClrc~q\ ) )
+-- \PhaseStrobe~combout\ = ( \GenClks|ADClrc~q\ & ( !\oldADClrc~q\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000111100001111000011110000111100000000000000000000000000000000",
+	lut_mask => "0000000000000000111111111111111100000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \GenClks|ALT_INV_ADClrc~q\,
+	datae => \GenClks|ALT_INV_ADClrc~q\,
 	dataf => \ALT_INV_oldADClrc~q\,
 	combout => \PhaseStrobe~combout\);
 
--- Location: FF_X55_Y4_N56
-\TheParToI2s|BclkCtr[0]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|Selector9~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|BclkCtr\(0));
-
--- Location: FF_X56_Y4_N32
+-- Location: FF_X56_Y2_N41
 \TheParToI2s|BclkDlyd\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9058,7 +8995,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|BclkDlyd~q\);
 
--- Location: FF_X56_Y4_N35
+-- Location: FF_X57_Y2_N56
 ValWetR : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9074,56 +9011,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \ValWetR~q\);
 
--- Location: FF_X55_Y4_N20
-\TheParToI2s|State.SendingR~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|Selector5~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|State.SendingR~DUPLICATE_q\);
-
--- Location: LABCELL_X55_Y4_N21
-\TheParToI2s|Selector0~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheParToI2s|Selector0~0_combout\ = ( \TheParToI2s|State.SendingR~DUPLICATE_q\ & ( (!\TheParToI2s|NextState~6_combout\ & ((\TheParToI2s|State.WaitingValL~q\) # (\ValWetR~q\))) ) ) # ( !\TheParToI2s|State.SendingR~DUPLICATE_q\ & ( 
--- (\TheParToI2s|State.WaitingValL~q\) # (\ValWetR~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000111111111111000011111111111100001100110011000000110011001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheParToI2s|ALT_INV_NextState~6_combout\,
-	datac => \ALT_INV_ValWetR~q\,
-	datad => \TheParToI2s|ALT_INV_State.WaitingValL~q\,
-	dataf => \TheParToI2s|ALT_INV_State.SendingR~DUPLICATE_q\,
-	combout => \TheParToI2s|Selector0~0_combout\);
-
--- Location: FF_X55_Y4_N23
-\TheParToI2s|State.WaitingValL\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|Selector0~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|State.WaitingValL~q\);
-
--- Location: FF_X55_Y4_N50
+-- Location: FF_X56_Y2_N23
 \TheParToI2s|State.SyncingToBclk\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9138,181 +9026,23 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|State.SyncingToBclk~q\);
 
--- Location: LABCELL_X55_Y4_N48
-\TheParToI2s|Selector1~0\ : cyclonev_lcell_comb
+-- Location: LABCELL_X56_Y2_N42
+\TheParToI2s|NextBclkCtr~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Selector1~0_combout\ = ( \ValWetR~q\ & ( (!\TheParToI2s|State.WaitingValL~q\) # ((\TheParToI2s|State.SyncingToBclk~q\ & ((!\TheParToI2s|BclkDlyd~q\) # (\GenClks|Mclk~q\)))) ) ) # ( !\ValWetR~q\ & ( (\TheParToI2s|State.SyncingToBclk~q\ & 
--- ((!\TheParToI2s|BclkDlyd~q\) # (\GenClks|Mclk~q\))) ) )
+-- \TheParToI2s|NextBclkCtr~0_combout\ = ( !\TheParToI2s|State.SyncingToBclk~q\ & ( \TheParToI2s|State.WaitingValL~q\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000010111011000000001011101111110000111110111111000011111011",
+	lut_mask => "0000000000000000000000000000000011111111111111110000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	datab => \GenClks|ALT_INV_Mclk~q\,
-	datac => \TheParToI2s|ALT_INV_State.WaitingValL~q\,
-	datad => \TheParToI2s|ALT_INV_State.SyncingToBclk~q\,
-	dataf => \ALT_INV_ValWetR~q\,
-	combout => \TheParToI2s|Selector1~0_combout\);
+	datae => \TheParToI2s|ALT_INV_State.SyncingToBclk~q\,
+	dataf => \TheParToI2s|ALT_INV_State.WaitingValL~q\,
+	combout => \TheParToI2s|NextBclkCtr~0_combout\);
 
--- Location: FF_X55_Y4_N49
-\TheParToI2s|State.SyncingToBclk~DUPLICATE\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|Selector1~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|State.SyncingToBclk~DUPLICATE_q\);
-
--- Location: LABCELL_X55_Y4_N51
-\TheParToI2s|State.FirstBitEmptyL~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheParToI2s|State.FirstBitEmptyL~0_combout\ = (!\TheParToI2s|BclkDlyd~q\ & (((\TheParToI2s|State.FirstBitEmptyL~q\)))) # (\TheParToI2s|BclkDlyd~q\ & ((!\GenClks|Mclk~q\ & (\TheParToI2s|State.SyncingToBclk~DUPLICATE_q\)) # (\GenClks|Mclk~q\ & 
--- ((\TheParToI2s|State.FirstBitEmptyL~q\)))))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000010010111111000001001011111100000100101111110000010010111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	datab => \GenClks|ALT_INV_Mclk~q\,
-	datac => \TheParToI2s|ALT_INV_State.SyncingToBclk~DUPLICATE_q\,
-	datad => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
-	combout => \TheParToI2s|State.FirstBitEmptyL~0_combout\);
-
--- Location: FF_X55_Y4_N53
-\TheParToI2s|State.FirstBitEmptyL\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|State.FirstBitEmptyL~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|State.FirstBitEmptyL~q\);
-
--- Location: LABCELL_X55_Y4_N36
-\TheParToI2s|Selector3~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheParToI2s|Selector3~0_combout\ = ( \GenClks|Mclk~q\ & ( (!\TheParToI2s|NextState~6_combout\ & \TheParToI2s|State.SendingL~q\) ) ) # ( !\GenClks|Mclk~q\ & ( (!\TheParToI2s|BclkDlyd~q\ & (!\TheParToI2s|NextState~6_combout\ & 
--- ((\TheParToI2s|State.SendingL~q\)))) # (\TheParToI2s|BclkDlyd~q\ & (((!\TheParToI2s|NextState~6_combout\ & \TheParToI2s|State.SendingL~q\)) # (\TheParToI2s|State.FirstBitEmptyL~q\))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000010111001101000001011100110100000000110011000000000011001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	datab => \TheParToI2s|ALT_INV_NextState~6_combout\,
-	datac => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
-	datad => \TheParToI2s|ALT_INV_State.SendingL~q\,
-	dataf => \GenClks|ALT_INV_Mclk~q\,
-	combout => \TheParToI2s|Selector3~0_combout\);
-
--- Location: FF_X55_Y4_N38
-\TheParToI2s|State.SendingL\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|Selector3~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|State.SendingL~q\);
-
--- Location: LABCELL_X55_Y4_N39
-\TheParToI2s|Selector4~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheParToI2s|Selector4~0_combout\ = ( \TheParToI2s|State.SendingL~q\ & ( ((\TheParToI2s|State.FirstBitEmptyR~q\ & ((!\TheParToI2s|BclkDlyd~q\) # (\GenClks|Mclk~q\)))) # (\TheParToI2s|NextState~6_combout\) ) ) # ( !\TheParToI2s|State.SendingL~q\ & ( 
--- (\TheParToI2s|State.FirstBitEmptyR~q\ & ((!\TheParToI2s|BclkDlyd~q\) # (\GenClks|Mclk~q\))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000010101111000000001010111100110011101111110011001110111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	datab => \TheParToI2s|ALT_INV_NextState~6_combout\,
-	datac => \GenClks|ALT_INV_Mclk~q\,
-	datad => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
-	dataf => \TheParToI2s|ALT_INV_State.SendingL~q\,
-	combout => \TheParToI2s|Selector4~0_combout\);
-
--- Location: FF_X55_Y4_N41
-\TheParToI2s|State.FirstBitEmptyR\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|Selector4~0_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|State.FirstBitEmptyR~q\);
-
--- Location: LABCELL_X55_Y4_N24
-\TheParToI2s|Selector9~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheParToI2s|Selector9~0_combout\ = ( \TheParToI2s|State.FirstBitEmptyL~q\ & ( ((\TheParToI2s|BclkDlyd~q\ & !\GenClks|Mclk~q\)) # (\TheParToI2s|BclkCtr\(0)) ) ) # ( !\TheParToI2s|State.FirstBitEmptyL~q\ & ( (\TheParToI2s|State.FirstBitEmptyR~q\ & 
--- (((\TheParToI2s|BclkDlyd~q\ & !\GenClks|Mclk~q\)) # (\TheParToI2s|BclkCtr\(0)))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000011100000101000001110000010101110111010101010111011101010101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkCtr\(0),
-	datab => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	datac => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
-	datad => \GenClks|ALT_INV_Mclk~q\,
-	dataf => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
-	combout => \TheParToI2s|Selector9~0_combout\);
-
--- Location: FF_X55_Y4_N44
-\TheParToI2s|BclkCtr[1]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|Selector8~1_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|BclkCtr\(1));
-
--- Location: LABCELL_X55_Y4_N9
+-- Location: LABCELL_X55_Y2_N57
 \TheParToI2s|Selector8~0\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheParToI2s|Selector8~0_combout\ = ( \TheParToI2s|BclkCtr\(1) & ( (\TheParToI2s|State.FirstBitEmptyR~q\) # (\TheParToI2s|State.FirstBitEmptyL~q\) ) ) # ( !\TheParToI2s|BclkCtr\(1) & ( (!\GenClks|Mclk~q\ & (\TheParToI2s|BclkDlyd~q\ & 
@@ -9321,58 +9051,79 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000001001100000000000100110001011111010111110101111101011111",
+	lut_mask => "0000000001110000000000000111000001110111011101110111011101110111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
 	dataa => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
-	datab => \GenClks|ALT_INV_Mclk~q\,
-	datac => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
+	datab => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
+	datac => \GenClks|ALT_INV_Mclk~q\,
 	datad => \TheParToI2s|ALT_INV_BclkDlyd~q\,
 	dataf => \TheParToI2s|ALT_INV_BclkCtr\(1),
 	combout => \TheParToI2s|Selector8~0_combout\);
 
--- Location: LABCELL_X55_Y4_N33
-\TheParToI2s|NextBclkCtr~0\ : cyclonev_lcell_comb
+-- Location: LABCELL_X55_Y2_N45
+\TheParToI2s|Selector7~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|NextBclkCtr~0_combout\ = ( !\TheParToI2s|State.SyncingToBclk~q\ & ( \TheParToI2s|State.WaitingValL~q\ ) )
+-- \TheParToI2s|Selector7~0_combout\ = ( \TheParToI2s|State.FirstBitEmptyL~q\ & ( ((!\GenClks|Mclk~q\ & \TheParToI2s|BclkDlyd~q\)) # (\TheParToI2s|BclkCtr\(2)) ) ) # ( !\TheParToI2s|State.FirstBitEmptyL~q\ & ( (\TheParToI2s|State.FirstBitEmptyR~q\ & 
+-- (((!\GenClks|Mclk~q\ & \TheParToI2s|BclkDlyd~q\)) # (\TheParToI2s|BclkCtr\(2)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000011111111000000001111111100000000000000000000000000000000",
+	lut_mask => "0000001000110011000000100011001100001010111111110000101011111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datad => \TheParToI2s|ALT_INV_State.WaitingValL~q\,
-	dataf => \TheParToI2s|ALT_INV_State.SyncingToBclk~q\,
-	combout => \TheParToI2s|NextBclkCtr~0_combout\);
+	dataa => \GenClks|ALT_INV_Mclk~q\,
+	datab => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
+	datac => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	datad => \TheParToI2s|ALT_INV_BclkCtr\(2),
+	dataf => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
+	combout => \TheParToI2s|Selector7~0_combout\);
 
--- Location: LABCELL_X55_Y4_N42
-\TheParToI2s|Selector8~1\ : cyclonev_lcell_comb
+-- Location: LABCELL_X55_Y2_N54
+\TheParToI2s|Selector9~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Selector8~1_combout\ = ( \TheParToI2s|BclkCtr\(1) & ( \TheParToI2s|NextBclkCtr~0_combout\ & ( ((\TheParToI2s|Selector10~0_combout\ & ((!\TheParToI2s|NextBclkCtr~1_combout\) # (\TheParToI2s|BclkCtr\(0))))) # (\TheParToI2s|Selector8~0_combout\) 
--- ) ) ) # ( !\TheParToI2s|BclkCtr\(1) & ( \TheParToI2s|NextBclkCtr~0_combout\ & ( ((!\TheParToI2s|BclkCtr\(0) & (\TheParToI2s|Selector10~0_combout\ & \TheParToI2s|NextBclkCtr~1_combout\))) # (\TheParToI2s|Selector8~0_combout\) ) ) ) # ( 
--- \TheParToI2s|BclkCtr\(1) & ( !\TheParToI2s|NextBclkCtr~0_combout\ ) ) # ( !\TheParToI2s|BclkCtr\(1) & ( !\TheParToI2s|NextBclkCtr~0_combout\ & ( ((!\TheParToI2s|BclkCtr\(0) & (\TheParToI2s|Selector10~0_combout\ & \TheParToI2s|NextBclkCtr~1_combout\))) # 
--- (\TheParToI2s|Selector8~0_combout\) ) ) )
+-- \TheParToI2s|Selector9~0_combout\ = ( \GenClks|Mclk~q\ & ( (\TheParToI2s|BclkCtr\(0) & ((\TheParToI2s|State.FirstBitEmptyR~q\) # (\TheParToI2s|State.FirstBitEmptyL~q\))) ) ) # ( !\GenClks|Mclk~q\ & ( (!\TheParToI2s|State.FirstBitEmptyL~q\ & 
+-- (\TheParToI2s|State.FirstBitEmptyR~q\ & ((\TheParToI2s|BclkDlyd~q\) # (\TheParToI2s|BclkCtr\(0))))) # (\TheParToI2s|State.FirstBitEmptyL~q\ & (((\TheParToI2s|BclkDlyd~q\) # (\TheParToI2s|BclkCtr\(0))))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0011001100111011111111111111111100110011001110110011111100110111",
+	lut_mask => "0000011101110111000001110111011100000111000001110000011100000111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkCtr\(0),
-	datab => \TheParToI2s|ALT_INV_Selector8~0_combout\,
+	dataa => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
+	datab => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
+	datac => \TheParToI2s|ALT_INV_BclkCtr\(0),
+	datad => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	dataf => \GenClks|ALT_INV_Mclk~q\,
+	combout => \TheParToI2s|Selector9~0_combout\);
+
+-- Location: LABCELL_X55_Y2_N21
+\TheParToI2s|Selector9~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|Selector9~1_combout\ = ( \TheParToI2s|NextBclkCtr~1_combout\ & ( ((!\TheParToI2s|BclkCtr\(0) & ((\TheParToI2s|Selector10~0_combout\))) # (\TheParToI2s|BclkCtr\(0) & (!\TheParToI2s|NextBclkCtr~0_combout\))) # 
+-- (\TheParToI2s|Selector9~0_combout\) ) ) # ( !\TheParToI2s|NextBclkCtr~1_combout\ & ( ((\TheParToI2s|BclkCtr\(0) & ((!\TheParToI2s|NextBclkCtr~0_combout\) # (\TheParToI2s|Selector10~0_combout\)))) # (\TheParToI2s|Selector9~0_combout\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010111011111010101011101111101011111110111010101111111011101",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheParToI2s|ALT_INV_Selector9~0_combout\,
+	datab => \TheParToI2s|ALT_INV_NextBclkCtr~0_combout\,
 	datac => \TheParToI2s|ALT_INV_Selector10~0_combout\,
-	datad => \TheParToI2s|ALT_INV_NextBclkCtr~1_combout\,
-	datae => \TheParToI2s|ALT_INV_BclkCtr\(1),
-	dataf => \TheParToI2s|ALT_INV_NextBclkCtr~0_combout\,
-	combout => \TheParToI2s|Selector8~1_combout\);
+	datad => \TheParToI2s|ALT_INV_BclkCtr\(0),
+	dataf => \TheParToI2s|ALT_INV_NextBclkCtr~1_combout\,
+	combout => \TheParToI2s|Selector9~1_combout\);
 
--- Location: FF_X55_Y4_N43
-\TheParToI2s|BclkCtr[1]~DUPLICATE\ : dffeas
+-- Location: FF_X55_Y2_N23
+\TheParToI2s|BclkCtr[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -9380,72 +9131,52 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|Selector8~1_combout\,
+	d => \TheParToI2s|Selector9~1_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheParToI2s|BclkCtr[1]~DUPLICATE_q\);
+	q => \TheParToI2s|BclkCtr\(0));
 
--- Location: LABCELL_X56_Y4_N0
+-- Location: LABCELL_X55_Y2_N18
 \TheParToI2s|Add0~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Add0~0_combout\ = (!\TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & !\TheParToI2s|BclkCtr[1]~DUPLICATE_q\)
+-- \TheParToI2s|Add0~0_combout\ = ( !\TheParToI2s|BclkCtr\(1) & ( !\TheParToI2s|BclkCtr\(0) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1111000000000000111100000000000011110000000000001111000000000000",
+	lut_mask => "1111111100000000111111110000000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\,
-	datad => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
+	datad => \TheParToI2s|ALT_INV_BclkCtr\(0),
+	dataf => \TheParToI2s|ALT_INV_BclkCtr\(1),
 	combout => \TheParToI2s|Add0~0_combout\);
 
--- Location: LABCELL_X55_Y4_N6
-\TheParToI2s|Selector7~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheParToI2s|Selector7~0_combout\ = ( \TheParToI2s|BclkDlyd~q\ & ( (!\TheParToI2s|State.FirstBitEmptyL~q\ & (\TheParToI2s|State.FirstBitEmptyR~q\ & ((!\GenClks|Mclk~q\) # (\TheParToI2s|BclkCtr\(2))))) # (\TheParToI2s|State.FirstBitEmptyL~q\ & 
--- ((!\GenClks|Mclk~q\) # ((\TheParToI2s|BclkCtr\(2))))) ) ) # ( !\TheParToI2s|BclkDlyd~q\ & ( (\TheParToI2s|BclkCtr\(2) & ((\TheParToI2s|State.FirstBitEmptyR~q\) # (\TheParToI2s|State.FirstBitEmptyL~q\))) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000001011111000000000101111101001100010111110100110001011111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
-	datab => \GenClks|ALT_INV_Mclk~q\,
-	datac => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
-	datad => \TheParToI2s|ALT_INV_BclkCtr\(2),
-	dataf => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	combout => \TheParToI2s|Selector7~0_combout\);
-
--- Location: LABCELL_X55_Y4_N0
+-- Location: LABCELL_X55_Y2_N0
 \TheParToI2s|Selector7~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Selector7~1_combout\ = ( \TheParToI2s|BclkCtr\(2) & ( \TheParToI2s|NextBclkCtr~0_combout\ & ( ((\TheParToI2s|Selector10~0_combout\ & ((!\TheParToI2s|Add0~0_combout\) # (!\TheParToI2s|NextBclkCtr~1_combout\)))) # 
--- (\TheParToI2s|Selector7~0_combout\) ) ) ) # ( !\TheParToI2s|BclkCtr\(2) & ( \TheParToI2s|NextBclkCtr~0_combout\ & ( ((\TheParToI2s|Add0~0_combout\ & (\TheParToI2s|Selector10~0_combout\ & \TheParToI2s|NextBclkCtr~1_combout\))) # 
--- (\TheParToI2s|Selector7~0_combout\) ) ) ) # ( \TheParToI2s|BclkCtr\(2) & ( !\TheParToI2s|NextBclkCtr~0_combout\ ) ) # ( !\TheParToI2s|BclkCtr\(2) & ( !\TheParToI2s|NextBclkCtr~0_combout\ & ( ((\TheParToI2s|Add0~0_combout\ & 
--- (\TheParToI2s|Selector10~0_combout\ & \TheParToI2s|NextBclkCtr~1_combout\))) # (\TheParToI2s|Selector7~0_combout\) ) ) )
+-- \TheParToI2s|Selector7~1_combout\ = ( \TheParToI2s|BclkCtr\(2) & ( \TheParToI2s|Add0~0_combout\ & ( (!\TheParToI2s|NextBclkCtr~0_combout\) # (((!\TheParToI2s|NextBclkCtr~1_combout\ & \TheParToI2s|Selector10~0_combout\)) # 
+-- (\TheParToI2s|Selector7~0_combout\)) ) ) ) # ( !\TheParToI2s|BclkCtr\(2) & ( \TheParToI2s|Add0~0_combout\ & ( ((\TheParToI2s|NextBclkCtr~1_combout\ & \TheParToI2s|Selector10~0_combout\)) # (\TheParToI2s|Selector7~0_combout\) ) ) ) # ( 
+-- \TheParToI2s|BclkCtr\(2) & ( !\TheParToI2s|Add0~0_combout\ & ( (!\TheParToI2s|NextBclkCtr~0_combout\) # ((\TheParToI2s|Selector10~0_combout\) # (\TheParToI2s|Selector7~0_combout\)) ) ) ) # ( !\TheParToI2s|BclkCtr\(2) & ( !\TheParToI2s|Add0~0_combout\ & ( 
+-- \TheParToI2s|Selector7~0_combout\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0011001100110111111111111111111100110011001101110011111100111011",
+	lut_mask => "0011001100110011101110111111111100110011001111111011101111111011",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_Add0~0_combout\,
+	dataa => \TheParToI2s|ALT_INV_NextBclkCtr~0_combout\,
 	datab => \TheParToI2s|ALT_INV_Selector7~0_combout\,
-	datac => \TheParToI2s|ALT_INV_Selector10~0_combout\,
-	datad => \TheParToI2s|ALT_INV_NextBclkCtr~1_combout\,
+	datac => \TheParToI2s|ALT_INV_NextBclkCtr~1_combout\,
+	datad => \TheParToI2s|ALT_INV_Selector10~0_combout\,
 	datae => \TheParToI2s|ALT_INV_BclkCtr\(2),
-	dataf => \TheParToI2s|ALT_INV_NextBclkCtr~0_combout\,
+	dataf => \TheParToI2s|ALT_INV_Add0~0_combout\,
 	combout => \TheParToI2s|Selector7~1_combout\);
 
--- Location: FF_X55_Y4_N2
+-- Location: FF_X55_Y2_N2
 \TheParToI2s|BclkCtr[2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9460,46 +9191,120 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|BclkCtr\(2));
 
--- Location: LABCELL_X55_Y4_N27
+-- Location: FF_X55_Y2_N22
+\TheParToI2s|BclkCtr[0]~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheParToI2s|Selector9~1_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|BclkCtr[0]~DUPLICATE_q\);
+
+-- Location: LABCELL_X55_Y2_N27
+\TheParToI2s|NextBclkCtr~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|NextBclkCtr~1_combout\ = ( \TheParToI2s|BclkCtr\(3) & ( \TheParToI2s|BclkDlyd~q\ & ( !\GenClks|Mclk~q\ ) ) ) # ( !\TheParToI2s|BclkCtr\(3) & ( \TheParToI2s|BclkDlyd~q\ & ( (!\GenClks|Mclk~q\ & (((\TheParToI2s|BclkCtr[0]~DUPLICATE_q\) # 
+-- (\TheParToI2s|BclkCtr\(1))) # (\TheParToI2s|BclkCtr\(2)))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000001001100110011001100110011001100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheParToI2s|ALT_INV_BclkCtr\(2),
+	datab => \GenClks|ALT_INV_Mclk~q\,
+	datac => \TheParToI2s|ALT_INV_BclkCtr\(1),
+	datad => \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\,
+	datae => \TheParToI2s|ALT_INV_BclkCtr\(3),
+	dataf => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	combout => \TheParToI2s|NextBclkCtr~1_combout\);
+
+-- Location: LABCELL_X55_Y2_N6
+\TheParToI2s|Selector8~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|Selector8~1_combout\ = ( \TheParToI2s|BclkCtr\(1) & ( \TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & ( ((!\TheParToI2s|NextBclkCtr~0_combout\) # (\TheParToI2s|Selector10~0_combout\)) # (\TheParToI2s|Selector8~0_combout\) ) ) ) # ( 
+-- !\TheParToI2s|BclkCtr\(1) & ( \TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & ( \TheParToI2s|Selector8~0_combout\ ) ) ) # ( \TheParToI2s|BclkCtr\(1) & ( !\TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & ( ((!\TheParToI2s|NextBclkCtr~0_combout\) # 
+-- ((!\TheParToI2s|NextBclkCtr~1_combout\ & \TheParToI2s|Selector10~0_combout\))) # (\TheParToI2s|Selector8~0_combout\) ) ) ) # ( !\TheParToI2s|BclkCtr\(1) & ( !\TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & ( ((\TheParToI2s|NextBclkCtr~1_combout\ & 
+-- \TheParToI2s|Selector10~0_combout\)) # (\TheParToI2s|Selector8~0_combout\) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010101011111110111011111110101010101010101011101110111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheParToI2s|ALT_INV_Selector8~0_combout\,
+	datab => \TheParToI2s|ALT_INV_NextBclkCtr~0_combout\,
+	datac => \TheParToI2s|ALT_INV_NextBclkCtr~1_combout\,
+	datad => \TheParToI2s|ALT_INV_Selector10~0_combout\,
+	datae => \TheParToI2s|ALT_INV_BclkCtr\(1),
+	dataf => \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\,
+	combout => \TheParToI2s|Selector8~1_combout\);
+
+-- Location: FF_X55_Y2_N8
+\TheParToI2s|BclkCtr[1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheParToI2s|Selector8~1_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|BclkCtr\(1));
+
+-- Location: LABCELL_X55_Y2_N33
 \TheParToI2s|Selector6~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Selector6~1_combout\ = ( !\TheParToI2s|BclkCtr\(1) & ( (!\TheParToI2s|BclkCtr\(0) & (\TheParToI2s|BclkDlyd~q\ & (!\GenClks|Mclk~q\ & !\TheParToI2s|BclkCtr\(2)))) ) )
+-- \TheParToI2s|Selector6~1_combout\ = ( !\TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & ( (\TheParToI2s|BclkDlyd~q\ & (!\GenClks|Mclk~q\ & (!\TheParToI2s|BclkCtr\(1) & !\TheParToI2s|BclkCtr\(2)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0010000000000000001000000000000000000000000000000000000000000000",
+	lut_mask => "0100000000000000010000000000000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkCtr\(0),
-	datab => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	datac => \GenClks|ALT_INV_Mclk~q\,
+	dataa => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	datab => \GenClks|ALT_INV_Mclk~q\,
+	datac => \TheParToI2s|ALT_INV_BclkCtr\(1),
 	datad => \TheParToI2s|ALT_INV_BclkCtr\(2),
-	dataf => \TheParToI2s|ALT_INV_BclkCtr\(1),
+	dataf => \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\,
 	combout => \TheParToI2s|Selector6~1_combout\);
 
--- Location: LABCELL_X55_Y4_N30
+-- Location: LABCELL_X55_Y2_N30
 \TheParToI2s|Selector6~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Selector6~0_combout\ = ( \TheParToI2s|BclkCtr\(3) & ( (\TheParToI2s|State.FirstBitEmptyR~q\) # (\TheParToI2s|State.FirstBitEmptyL~q\) ) ) # ( !\TheParToI2s|BclkCtr\(3) & ( (\TheParToI2s|BclkDlyd~q\ & (!\GenClks|Mclk~q\ & 
--- ((\TheParToI2s|State.FirstBitEmptyR~q\) # (\TheParToI2s|State.FirstBitEmptyL~q\)))) ) )
+-- \TheParToI2s|Selector6~0_combout\ = ( \TheParToI2s|State.FirstBitEmptyR~q\ & ( ((\TheParToI2s|BclkDlyd~q\ & !\GenClks|Mclk~q\)) # (\TheParToI2s|BclkCtr\(3)) ) ) # ( !\TheParToI2s|State.FirstBitEmptyR~q\ & ( (\TheParToI2s|State.FirstBitEmptyL~q\ & 
+-- (((\TheParToI2s|BclkDlyd~q\ & !\GenClks|Mclk~q\)) # (\TheParToI2s|BclkCtr\(3)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0001001100000000000100110000000001011111010111110101111101011111",
+	lut_mask => "0000010000001111000001000000111101000100111111110100010011111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
-	datab => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	datac => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
-	datad => \GenClks|ALT_INV_Mclk~q\,
-	dataf => \TheParToI2s|ALT_INV_BclkCtr\(3),
+	dataa => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	datab => \GenClks|ALT_INV_Mclk~q\,
+	datac => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
+	datad => \TheParToI2s|ALT_INV_BclkCtr\(3),
+	dataf => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
 	combout => \TheParToI2s|Selector6~0_combout\);
 
--- Location: LABCELL_X55_Y4_N12
+-- Location: LABCELL_X55_Y2_N36
 \TheParToI2s|Selector6~2\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheParToI2s|Selector6~2_combout\ = ( \TheParToI2s|Selector6~0_combout\ ) # ( !\TheParToI2s|Selector6~0_combout\ & ( (\TheParToI2s|BclkCtr\(3) & ((!\TheParToI2s|NextBclkCtr~0_combout\) # ((\TheParToI2s|Selector10~0_combout\ & 
@@ -9519,7 +9324,7 @@ PORT MAP (
 	dataf => \TheParToI2s|ALT_INV_Selector6~0_combout\,
 	combout => \TheParToI2s|Selector6~2_combout\);
 
--- Location: FF_X55_Y4_N13
+-- Location: FF_X55_Y2_N37
 \TheParToI2s|BclkCtr[3]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9534,7 +9339,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|BclkCtr\(3));
 
--- Location: FF_X55_Y4_N1
+-- Location: FF_X55_Y2_N1
 \TheParToI2s|BclkCtr[2]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9549,49 +9354,8 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|BclkCtr[2]~DUPLICATE_q\);
 
--- Location: LABCELL_X56_Y4_N30
-\TheParToI2s|NextBclkCtr~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheParToI2s|NextBclkCtr~1_combout\ = ( !\GenClks|Mclk~q\ & ( \TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & ( \TheParToI2s|BclkDlyd~q\ ) ) ) # ( !\GenClks|Mclk~q\ & ( !\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & ( (\TheParToI2s|BclkDlyd~q\ & 
--- (((\TheParToI2s|BclkCtr\(3)) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\)) # (\TheParToI2s|BclkCtr[0]~DUPLICATE_q\))) ) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000001111111000000000000000000000000111111110000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\,
-	datab => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
-	datac => \TheParToI2s|ALT_INV_BclkCtr\(3),
-	datad => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	datae => \GenClks|ALT_INV_Mclk~q\,
-	dataf => \TheParToI2s|ALT_INV_BclkCtr[2]~DUPLICATE_q\,
-	combout => \TheParToI2s|NextBclkCtr~1_combout\);
-
--- Location: LABCELL_X55_Y4_N54
-\TheParToI2s|Selector9~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheParToI2s|Selector9~1_combout\ = ( \TheParToI2s|NextBclkCtr~0_combout\ & ( ((\TheParToI2s|Selector10~0_combout\ & (!\TheParToI2s|NextBclkCtr~1_combout\ $ (!\TheParToI2s|BclkCtr\(0))))) # (\TheParToI2s|Selector9~0_combout\) ) ) # ( 
--- !\TheParToI2s|NextBclkCtr~0_combout\ & ( (((\TheParToI2s|NextBclkCtr~1_combout\ & \TheParToI2s|Selector10~0_combout\)) # (\TheParToI2s|BclkCtr\(0))) # (\TheParToI2s|Selector9~0_combout\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0101011111111111010101111111111101010111010111010101011101011101",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_Selector9~0_combout\,
-	datab => \TheParToI2s|ALT_INV_NextBclkCtr~1_combout\,
-	datac => \TheParToI2s|ALT_INV_Selector10~0_combout\,
-	datad => \TheParToI2s|ALT_INV_BclkCtr\(0),
-	dataf => \TheParToI2s|ALT_INV_NextBclkCtr~0_combout\,
-	combout => \TheParToI2s|Selector9~1_combout\);
-
--- Location: FF_X55_Y4_N55
-\TheParToI2s|BclkCtr[0]~DUPLICATE\ : dffeas
+-- Location: FF_X55_Y2_N7
+\TheParToI2s|BclkCtr[1]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -9599,53 +9363,88 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheParToI2s|Selector9~1_combout\,
+	d => \TheParToI2s|Selector8~1_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheParToI2s|BclkCtr[0]~DUPLICATE_q\);
+	q => \TheParToI2s|BclkCtr[1]~DUPLICATE_q\);
 
--- Location: LABCELL_X56_Y4_N54
+-- Location: LABCELL_X56_Y2_N24
 \TheParToI2s|NextState~6\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|NextState~6_combout\ = ( !\TheParToI2s|BclkCtr\(3) & ( !\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & ( (!\TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (!\GenClks|Mclk~q\ & \TheParToI2s|BclkDlyd~q\))) ) ) )
+-- \TheParToI2s|NextState~6_combout\ = ( !\TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & ( !\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ( (!\GenClks|Mclk~q\ & (\TheParToI2s|BclkDlyd~q\ & (!\TheParToI2s|BclkCtr\(3) & !\TheParToI2s|BclkCtr[2]~DUPLICATE_q\))) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000010000000000000000000000000000000000000000000000000000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\,
-	datab => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
-	datac => \GenClks|ALT_INV_Mclk~q\,
-	datad => \TheParToI2s|ALT_INV_BclkDlyd~q\,
-	datae => \TheParToI2s|ALT_INV_BclkCtr\(3),
-	dataf => \TheParToI2s|ALT_INV_BclkCtr[2]~DUPLICATE_q\,
-	combout => \TheParToI2s|NextState~6_combout\);
-
--- Location: LABCELL_X55_Y4_N18
-\TheParToI2s|Selector5~0\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheParToI2s|Selector5~0_combout\ = ( \TheParToI2s|State.FirstBitEmptyR~q\ & ( (!\GenClks|Mclk~q\ & (((!\TheParToI2s|NextState~6_combout\ & \TheParToI2s|State.SendingR~q\)) # (\TheParToI2s|BclkDlyd~q\))) # (\GenClks|Mclk~q\ & 
--- (!\TheParToI2s|NextState~6_combout\ & ((\TheParToI2s|State.SendingR~q\)))) ) ) # ( !\TheParToI2s|State.FirstBitEmptyR~q\ & ( (!\TheParToI2s|NextState~6_combout\ & \TheParToI2s|State.SendingR~q\) ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000011001100000000001100110000001010110011100000101011001110",
+	lut_mask => "0010000000000000000000000000000000000000000000000000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
 	dataa => \GenClks|ALT_INV_Mclk~q\,
-	datab => \TheParToI2s|ALT_INV_NextState~6_combout\,
+	datab => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	datac => \TheParToI2s|ALT_INV_BclkCtr\(3),
+	datad => \TheParToI2s|ALT_INV_BclkCtr[2]~DUPLICATE_q\,
+	datae => \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\,
+	dataf => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
+	combout => \TheParToI2s|NextState~6_combout\);
+
+-- Location: LABCELL_X55_Y2_N15
+\TheParToI2s|Selector4~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|Selector4~0_combout\ = ( \TheParToI2s|NextState~6_combout\ & ( ((\TheParToI2s|State.FirstBitEmptyR~q\ & ((!\TheParToI2s|BclkDlyd~q\) # (\GenClks|Mclk~q\)))) # (\TheParToI2s|State.SendingL~q\) ) ) # ( !\TheParToI2s|NextState~6_combout\ & ( 
+-- (\TheParToI2s|State.FirstBitEmptyR~q\ & ((!\TheParToI2s|BclkDlyd~q\) # (\GenClks|Mclk~q\))) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000010111011000000001011101100001111101111110000111110111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	datab => \GenClks|ALT_INV_Mclk~q\,
+	datac => \TheParToI2s|ALT_INV_State.SendingL~q\,
+	datad => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
+	dataf => \TheParToI2s|ALT_INV_NextState~6_combout\,
+	combout => \TheParToI2s|Selector4~0_combout\);
+
+-- Location: FF_X55_Y2_N17
+\TheParToI2s|State.FirstBitEmptyR\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheParToI2s|Selector4~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|State.FirstBitEmptyR~q\);
+
+-- Location: LABCELL_X55_Y2_N42
+\TheParToI2s|Selector5~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|Selector5~0_combout\ = ( \TheParToI2s|NextState~6_combout\ & ( (!\GenClks|Mclk~q\ & (\TheParToI2s|State.FirstBitEmptyR~q\ & \TheParToI2s|BclkDlyd~q\)) ) ) # ( !\TheParToI2s|NextState~6_combout\ & ( ((!\GenClks|Mclk~q\ & 
+-- (\TheParToI2s|State.FirstBitEmptyR~q\ & \TheParToI2s|BclkDlyd~q\))) # (\TheParToI2s|State.SendingR~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000001011111111000000101111111100000010000000100000001000000010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \GenClks|ALT_INV_Mclk~q\,
+	datab => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
 	datac => \TheParToI2s|ALT_INV_BclkDlyd~q\,
 	datad => \TheParToI2s|ALT_INV_State.SendingR~q\,
-	dataf => \TheParToI2s|ALT_INV_State.FirstBitEmptyR~q\,
+	dataf => \TheParToI2s|ALT_INV_NextState~6_combout\,
 	combout => \TheParToI2s|Selector5~0_combout\);
 
--- Location: FF_X55_Y4_N19
+-- Location: FF_X55_Y2_N43
 \TheParToI2s|State.SendingR\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9660,10 +9459,163 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|State.SendingR~q\);
 
--- Location: LABCELL_X55_Y4_N57
+-- Location: LABCELL_X56_Y2_N18
+\TheParToI2s|Selector0~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|Selector0~0_combout\ = ( \TheParToI2s|NextState~6_combout\ & ( (!\TheParToI2s|State.SendingR~q\ & ((\TheParToI2s|State.WaitingValL~q\) # (\ValWetR~q\))) ) ) # ( !\TheParToI2s|NextState~6_combout\ & ( (\TheParToI2s|State.WaitingValL~q\) # 
+-- (\ValWetR~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010111111111010101011111111101010000111100000101000011110000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ALT_INV_ValWetR~q\,
+	datac => \TheParToI2s|ALT_INV_State.SendingR~q\,
+	datad => \TheParToI2s|ALT_INV_State.WaitingValL~q\,
+	dataf => \TheParToI2s|ALT_INV_NextState~6_combout\,
+	combout => \TheParToI2s|Selector0~0_combout\);
+
+-- Location: FF_X56_Y2_N19
+\TheParToI2s|State.WaitingValL\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheParToI2s|Selector0~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|State.WaitingValL~q\);
+
+-- Location: LABCELL_X56_Y2_N21
+\TheParToI2s|Selector1~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|Selector1~0_combout\ = ( \TheParToI2s|State.WaitingValL~q\ & ( (\TheParToI2s|State.SyncingToBclk~q\ & ((!\TheParToI2s|BclkDlyd~q\) # (\GenClks|Mclk~q\))) ) ) # ( !\TheParToI2s|State.WaitingValL~q\ & ( ((\TheParToI2s|State.SyncingToBclk~q\ & 
+-- ((!\TheParToI2s|BclkDlyd~q\) # (\GenClks|Mclk~q\)))) # (\ValWetR~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010111110111010101011111011100000000111100110000000011110011",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ALT_INV_ValWetR~q\,
+	datab => \GenClks|ALT_INV_Mclk~q\,
+	datac => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	datad => \TheParToI2s|ALT_INV_State.SyncingToBclk~q\,
+	dataf => \TheParToI2s|ALT_INV_State.WaitingValL~q\,
+	combout => \TheParToI2s|Selector1~0_combout\);
+
+-- Location: FF_X56_Y2_N22
+\TheParToI2s|State.SyncingToBclk~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheParToI2s|Selector1~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|State.SyncingToBclk~DUPLICATE_q\);
+
+-- Location: LABCELL_X55_Y2_N48
+\TheParToI2s|State.FirstBitEmptyL~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|State.FirstBitEmptyL~0_combout\ = ( \GenClks|Mclk~q\ & ( \TheParToI2s|State.FirstBitEmptyL~q\ ) ) # ( !\GenClks|Mclk~q\ & ( (!\TheParToI2s|BclkDlyd~q\ & ((\TheParToI2s|State.FirstBitEmptyL~q\))) # (\TheParToI2s|BclkDlyd~q\ & 
+-- (\TheParToI2s|State.SyncingToBclk~DUPLICATE_q\)) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000010111110101000001011111010100000000111111110000000011111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheParToI2s|ALT_INV_State.SyncingToBclk~DUPLICATE_q\,
+	datac => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	datad => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
+	dataf => \GenClks|ALT_INV_Mclk~q\,
+	combout => \TheParToI2s|State.FirstBitEmptyL~0_combout\);
+
+-- Location: FF_X55_Y2_N50
+\TheParToI2s|State.FirstBitEmptyL\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheParToI2s|State.FirstBitEmptyL~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|State.FirstBitEmptyL~q\);
+
+-- Location: LABCELL_X55_Y2_N12
+\TheParToI2s|Selector3~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|Selector3~0_combout\ = ( \TheParToI2s|NextState~6_combout\ & ( (\TheParToI2s|BclkDlyd~q\ & (!\GenClks|Mclk~q\ & \TheParToI2s|State.FirstBitEmptyL~q\)) ) ) # ( !\TheParToI2s|NextState~6_combout\ & ( ((\TheParToI2s|BclkDlyd~q\ & 
+-- (!\GenClks|Mclk~q\ & \TheParToI2s|State.FirstBitEmptyL~q\))) # (\TheParToI2s|State.SendingL~q\) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000010011111111000001001111111100000100000001000000010000000100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheParToI2s|ALT_INV_BclkDlyd~q\,
+	datab => \GenClks|ALT_INV_Mclk~q\,
+	datac => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
+	datad => \TheParToI2s|ALT_INV_State.SendingL~q\,
+	dataf => \TheParToI2s|ALT_INV_NextState~6_combout\,
+	combout => \TheParToI2s|Selector3~0_combout\);
+
+-- Location: FF_X55_Y2_N14
+\TheParToI2s|State.SendingL\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheParToI2s|Selector3~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|State.SendingL~q\);
+
+-- Location: FF_X55_Y2_N44
+\TheParToI2s|State.SendingR~DUPLICATE\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheParToI2s|Selector5~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|State.SendingR~DUPLICATE_q\);
+
+-- Location: LABCELL_X55_Y2_N51
 \TheParToI2s|Selector10~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Selector10~0_combout\ = ( \TheParToI2s|State.SendingL~q\ ) # ( !\TheParToI2s|State.SendingL~q\ & ( \TheParToI2s|State.SendingR~q\ ) )
+-- \TheParToI2s|Selector10~0_combout\ = ( \TheParToI2s|State.SendingR~DUPLICATE_q\ ) # ( !\TheParToI2s|State.SendingR~DUPLICATE_q\ & ( \TheParToI2s|State.SendingL~q\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -9672,44 +9624,27 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datac => \TheParToI2s|ALT_INV_State.SendingR~q\,
-	dataf => \TheParToI2s|ALT_INV_State.SendingL~q\,
+	datac => \TheParToI2s|ALT_INV_State.SendingL~q\,
+	dataf => \TheParToI2s|ALT_INV_State.SendingR~DUPLICATE_q\,
 	combout => \TheParToI2s|Selector10~0_combout\);
 
--- Location: FF_X57_Y3_N56
-\TheTxFsk|TheDDS|PhaseAddr[8]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~9_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \PhaseStrobe~combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|PhaseAddr\(8));
-
--- Location: MLABCELL_X59_Y3_N51
+-- Location: LABCELL_X64_Y2_N54
 \TheTxFsk|TheDDS|RegsLFSR[0]~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|RegsLFSR[0]~0_combout\ = ( !\TheTxFsk|TheDDS|NextRegsLFSR\(0) )
+-- \TheTxFsk|TheDDS|RegsLFSR[0]~0_combout\ = !\TheTxFsk|TheDDS|NextRegsLFSR\(0)
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1111111111111111111111111111111100000000000000000000000000000000",
+	lut_mask => "1100110011001100110011001100110011001100110011001100110011001100",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_NextRegsLFSR\(0),
+	datab => \TheTxFsk|TheDDS|ALT_INV_NextRegsLFSR\(0),
 	combout => \TheTxFsk|TheDDS|RegsLFSR[0]~0_combout\);
 
--- Location: FF_X59_Y3_N52
-\TheTxFsk|TheDDS|RegsLFSR[0]\ : dffeas
+-- Location: FF_X64_Y2_N56
+\TheTxFsk|TheDDS|RegsLFSR[0]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -9722,12 +9657,12 @@ PORT MAP (
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|RegsLFSR\(0));
+	q => \TheTxFsk|TheDDS|RegsLFSR[0]~DUPLICATE_q\);
 
--- Location: MLABCELL_X59_Y3_N36
+-- Location: LABCELL_X64_Y2_N0
 \TheTxFsk|TheDDS|RegsLFSR[1]~feeder\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|RegsLFSR[1]~feeder_combout\ = ( \TheTxFsk|TheDDS|RegsLFSR\(0) )
+-- \TheTxFsk|TheDDS|RegsLFSR[1]~feeder_combout\ = ( \TheTxFsk|TheDDS|RegsLFSR[0]~DUPLICATE_q\ )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -9736,10 +9671,10 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(0),
+	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR[0]~DUPLICATE_q\,
 	combout => \TheTxFsk|TheDDS|RegsLFSR[1]~feeder_combout\);
 
--- Location: FF_X59_Y3_N37
+-- Location: FF_X64_Y2_N1
 \TheTxFsk|TheDDS|RegsLFSR[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9755,7 +9690,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(1));
 
--- Location: FF_X59_Y3_N13
+-- Location: FF_X61_Y2_N35
 \TheTxFsk|TheDDS|RegsLFSR[2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9772,7 +9707,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(2));
 
--- Location: LABCELL_X57_Y3_N57
+-- Location: LABCELL_X61_Y2_N27
 \TheTxFsk|TheDDS|RegsLFSR[3]~feeder\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|RegsLFSR[3]~feeder_combout\ = ( \TheTxFsk|TheDDS|RegsLFSR\(2) )
@@ -9787,7 +9722,7 @@ PORT MAP (
 	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(2),
 	combout => \TheTxFsk|TheDDS|RegsLFSR[3]~feeder_combout\);
 
--- Location: FF_X57_Y3_N58
+-- Location: FF_X61_Y2_N28
 \TheTxFsk|TheDDS|RegsLFSR[3]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9803,7 +9738,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(3));
 
--- Location: FF_X59_Y3_N5
+-- Location: FF_X64_Y2_N52
 \TheTxFsk|TheDDS|RegsLFSR[4]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9820,22 +9755,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(4));
 
--- Location: MLABCELL_X59_Y3_N0
-\TheTxFsk|TheDDS|RegsLFSR[5]~feeder\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|RegsLFSR[5]~feeder_combout\ = ( \TheTxFsk|TheDDS|RegsLFSR\(4) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(4),
-	combout => \TheTxFsk|TheDDS|RegsLFSR[5]~feeder_combout\);
-
--- Location: FF_X59_Y3_N2
+-- Location: FF_X64_Y2_N50
 \TheTxFsk|TheDDS|RegsLFSR[5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9844,14 +9764,31 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|RegsLFSR[5]~feeder_combout\,
+	asdata => \TheTxFsk|TheDDS|RegsLFSR\(4),
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(5));
 
--- Location: FF_X59_Y3_N1
+-- Location: FF_X64_Y2_N55
+\TheTxFsk|TheDDS|RegsLFSR[0]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|RegsLFSR[0]~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	ena => \PhaseStrobe~combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheTxFsk|TheDDS|RegsLFSR\(0));
+
+-- Location: FF_X64_Y2_N49
 \TheTxFsk|TheDDS|RegsLFSR[5]~DUPLICATE\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9860,29 +9797,15 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|RegsLFSR[5]~feeder_combout\,
+	asdata => \TheTxFsk|TheDDS|RegsLFSR\(4),
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR[5]~DUPLICATE_q\);
 
--- Location: LABCELL_X55_Y3_N45
-\TheTxFsk|TheDDS|RegsLFSR[6]~feeder\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|RegsLFSR[6]~feeder_combout\ = ( \TheTxFsk|TheDDS|RegsLFSR[5]~DUPLICATE_q\ )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR[5]~DUPLICATE_q\,
-	combout => \TheTxFsk|TheDDS|RegsLFSR[6]~feeder_combout\);
-
--- Location: FF_X55_Y3_N46
+-- Location: FF_X61_Y2_N49
 \TheTxFsk|TheDDS|RegsLFSR[6]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9891,14 +9814,15 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|RegsLFSR[6]~feeder_combout\,
+	asdata => \TheTxFsk|TheDDS|RegsLFSR[5]~DUPLICATE_q\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(6));
 
--- Location: FF_X55_Y3_N47
+-- Location: FF_X61_Y2_N19
 \TheTxFsk|TheDDS|RegsLFSR[7]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9915,7 +9839,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(7));
 
--- Location: LABCELL_X55_Y3_N57
+-- Location: MLABCELL_X65_Y2_N39
 \TheTxFsk|TheDDS|RegsLFSR[8]~feeder\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|RegsLFSR[8]~feeder_combout\ = ( \TheTxFsk|TheDDS|RegsLFSR\(7) )
@@ -9930,7 +9854,7 @@ PORT MAP (
 	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(7),
 	combout => \TheTxFsk|TheDDS|RegsLFSR[8]~feeder_combout\);
 
--- Location: FF_X55_Y3_N58
+-- Location: FF_X65_Y2_N41
 \TheTxFsk|TheDDS|RegsLFSR[8]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9946,7 +9870,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(8));
 
--- Location: FF_X55_Y3_N2
+-- Location: FF_X65_Y2_N59
 \TheTxFsk|TheDDS|RegsLFSR[9]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9963,7 +9887,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(9));
 
--- Location: FF_X55_Y3_N40
+-- Location: FF_X65_Y2_N56
 \TheTxFsk|TheDDS|RegsLFSR[10]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9980,7 +9904,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(10));
 
--- Location: FF_X57_Y5_N50
+-- Location: FF_X65_Y2_N50
 \TheTxFsk|TheDDS|RegsLFSR[11]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -9997,7 +9921,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(11));
 
--- Location: FF_X57_Y5_N59
+-- Location: FF_X65_Y2_N53
 \TheTxFsk|TheDDS|RegsLFSR[12]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10014,7 +9938,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(12));
 
--- Location: FF_X57_Y5_N56
+-- Location: FF_X65_Y2_N8
 \TheTxFsk|TheDDS|RegsLFSR[13]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10031,7 +9955,22 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(13));
 
--- Location: FF_X57_Y5_N5
+-- Location: MLABCELL_X65_Y2_N9
+\TheTxFsk|TheDDS|RegsLFSR[14]~feeder\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|RegsLFSR[14]~feeder_combout\ = \TheTxFsk|TheDDS|RegsLFSR\(13)
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000111100001111000011110000111100001111000011110000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(13),
+	combout => \TheTxFsk|TheDDS|RegsLFSR[14]~feeder_combout\);
+
+-- Location: FF_X65_Y2_N10
 \TheTxFsk|TheDDS|RegsLFSR[14]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10040,15 +9979,14 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|RegsLFSR\(13),
+	d => \TheTxFsk|TheDDS|RegsLFSR[14]~feeder_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(14));
 
--- Location: FF_X57_Y5_N2
+-- Location: FF_X65_Y2_N38
 \TheTxFsk|TheDDS|RegsLFSR[15]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10065,7 +10003,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(15));
 
--- Location: FF_X57_Y5_N47
+-- Location: FF_X65_Y2_N20
 \TheTxFsk|TheDDS|RegsLFSR[16]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10082,7 +10020,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(16));
 
--- Location: FF_X57_Y5_N44
+-- Location: FF_X65_Y2_N22
 \TheTxFsk|TheDDS|RegsLFSR[17]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10099,7 +10037,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(17));
 
--- Location: FF_X57_Y5_N29
+-- Location: FF_X65_Y2_N2
 \TheTxFsk|TheDDS|RegsLFSR[18]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10116,7 +10054,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(18));
 
--- Location: FF_X57_Y5_N26
+-- Location: FF_X65_Y2_N5
 \TheTxFsk|TheDDS|RegsLFSR[19]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10133,7 +10071,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(19));
 
--- Location: FF_X57_Y5_N35
+-- Location: FF_X65_Y2_N32
 \TheTxFsk|TheDDS|RegsLFSR[20]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10150,7 +10088,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(20));
 
--- Location: FF_X57_Y5_N32
+-- Location: FF_X65_Y2_N35
 \TheTxFsk|TheDDS|RegsLFSR[21]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10167,7 +10105,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(21));
 
--- Location: FF_X57_Y5_N41
+-- Location: FF_X65_Y2_N14
 \TheTxFsk|TheDDS|RegsLFSR[22]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10184,7 +10122,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(22));
 
--- Location: FF_X57_Y5_N37
+-- Location: FF_X65_Y2_N17
 \TheTxFsk|TheDDS|RegsLFSR[23]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10201,22 +10139,22 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(23));
 
--- Location: MLABCELL_X59_Y3_N45
+-- Location: MLABCELL_X65_Y2_N42
 \TheTxFsk|TheDDS|RegsLFSR[24]~feeder\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|RegsLFSR[24]~feeder_combout\ = ( \TheTxFsk|TheDDS|RegsLFSR\(23) )
+-- \TheTxFsk|TheDDS|RegsLFSR[24]~feeder_combout\ = \TheTxFsk|TheDDS|RegsLFSR\(23)
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
+	lut_mask => "0011001100110011001100110011001100110011001100110011001100110011",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(23),
+	datab => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(23),
 	combout => \TheTxFsk|TheDDS|RegsLFSR[24]~feeder_combout\);
 
--- Location: FF_X59_Y3_N47
+-- Location: FF_X65_Y2_N44
 \TheTxFsk|TheDDS|RegsLFSR[24]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10232,7 +10170,22 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(24));
 
--- Location: FF_X59_Y3_N44
+-- Location: MLABCELL_X65_Y2_N45
+\TheTxFsk|TheDDS|RegsLFSR[25]~feeder\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|RegsLFSR[25]~feeder_combout\ = \TheTxFsk|TheDDS|RegsLFSR\(24)
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000111100001111000011110000111100001111000011110000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(24),
+	combout => \TheTxFsk|TheDDS|RegsLFSR[25]~feeder_combout\);
+
+-- Location: FF_X65_Y2_N47
 \TheTxFsk|TheDDS|RegsLFSR[25]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10241,15 +10194,14 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|RegsLFSR\(24),
+	d => \TheTxFsk|TheDDS|RegsLFSR[25]~feeder_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(25));
 
--- Location: FF_X59_Y3_N59
+-- Location: FF_X65_Y2_N26
 \TheTxFsk|TheDDS|RegsLFSR[26]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10266,7 +10218,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(26));
 
--- Location: FF_X59_Y3_N55
+-- Location: FF_X65_Y2_N29
 \TheTxFsk|TheDDS|RegsLFSR[27]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10283,7 +10235,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(27));
 
--- Location: FF_X59_Y3_N11
+-- Location: FF_X64_Y2_N38
 \TheTxFsk|TheDDS|RegsLFSR[28]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10300,7 +10252,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(28));
 
--- Location: FF_X59_Y3_N8
+-- Location: FF_X64_Y2_N59
 \TheTxFsk|TheDDS|RegsLFSR[29]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10317,26 +10269,27 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RegsLFSR\(29));
 
--- Location: MLABCELL_X59_Y3_N48
+-- Location: LABCELL_X64_Y2_N39
 \TheTxFsk|TheDDS|NextRegsLFSR[0]\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|NextRegsLFSR\(0) = ( \TheTxFsk|TheDDS|RegsLFSR\(0) & ( !\TheTxFsk|TheDDS|RegsLFSR\(5) $ (!\TheTxFsk|TheDDS|RegsLFSR\(29) $ (!\TheTxFsk|TheDDS|RegsLFSR\(3))) ) ) # ( !\TheTxFsk|TheDDS|RegsLFSR\(0) & ( !\TheTxFsk|TheDDS|RegsLFSR\(5) $ 
--- (!\TheTxFsk|TheDDS|RegsLFSR\(29) $ (\TheTxFsk|TheDDS|RegsLFSR\(3))) ) )
+-- \TheTxFsk|TheDDS|NextRegsLFSR\(0) = ( \TheTxFsk|TheDDS|RegsLFSR\(0) & ( \TheTxFsk|TheDDS|RegsLFSR\(29) & ( !\TheTxFsk|TheDDS|RegsLFSR\(5) $ (!\TheTxFsk|TheDDS|RegsLFSR\(3)) ) ) ) # ( !\TheTxFsk|TheDDS|RegsLFSR\(0) & ( \TheTxFsk|TheDDS|RegsLFSR\(29) & ( 
+-- !\TheTxFsk|TheDDS|RegsLFSR\(5) $ (\TheTxFsk|TheDDS|RegsLFSR\(3)) ) ) ) # ( \TheTxFsk|TheDDS|RegsLFSR\(0) & ( !\TheTxFsk|TheDDS|RegsLFSR\(29) & ( !\TheTxFsk|TheDDS|RegsLFSR\(5) $ (\TheTxFsk|TheDDS|RegsLFSR\(3)) ) ) ) # ( !\TheTxFsk|TheDDS|RegsLFSR\(0) & ( 
+-- !\TheTxFsk|TheDDS|RegsLFSR\(29) & ( !\TheTxFsk|TheDDS|RegsLFSR\(5) $ (!\TheTxFsk|TheDDS|RegsLFSR\(3)) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0110100101101001011010010110100110010110100101101001011010010110",
+	lut_mask => "0101101001011010101001011010010110100101101001010101101001011010",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
 	dataa => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(5),
-	datab => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(29),
 	datac => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(3),
-	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(0),
+	datae => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(0),
+	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(29),
 	combout => \TheTxFsk|TheDDS|NextRegsLFSR\(0));
 
--- Location: FF_X59_Y3_N49
+-- Location: FF_X64_Y2_N40
 \TheTxFsk|TheDDS|RandomValue[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10352,10 +10305,42 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RandomValue\(0));
 
--- Location: MLABCELL_X59_Y3_N33
+-- Location: FF_X40_Y2_N47
+\TheChannelSelSync|Metastable[1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheChannelSelSync|Metastable[1]~feeder_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheChannelSelSync|Metastable\(1));
+
+-- Location: LABCELL_X40_Y2_N24
+\TheTxFsk|PhaseIncrement[7]~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|PhaseIncrement[7]~0_combout\ = ( \TheChannelSelSync|Metastable\(1) & ( \TheTxDataSync|Metastable\(1) ) ) # ( \TheChannelSelSync|Metastable\(1) & ( !\TheTxDataSync|Metastable\(1) ) ) # ( !\TheChannelSelSync|Metastable\(1) & ( 
+-- !\TheTxDataSync|Metastable\(1) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "1111111111111111111111111111111100000000000000001111111111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datae => \TheChannelSelSync|ALT_INV_Metastable\(1),
+	dataf => \TheTxDataSync|ALT_INV_Metastable\(1),
+	combout => \TheTxFsk|PhaseIncrement[7]~0_combout\);
+
+-- Location: LABCELL_X64_Y2_N30
 \TheTxFsk|TheDDS|RandomValue[-1]~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|RandomValue[-1]~0_combout\ = ( !\TheTxFsk|TheDDS|RegsLFSR\(0) )
+-- \TheTxFsk|TheDDS|RandomValue[-1]~0_combout\ = ( !\TheTxFsk|TheDDS|RegsLFSR[0]~DUPLICATE_q\ )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -10364,10 +10349,10 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(0),
+	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR[0]~DUPLICATE_q\,
 	combout => \TheTxFsk|TheDDS|RandomValue[-1]~0_combout\);
 
--- Location: FF_X59_Y3_N34
+-- Location: FF_X64_Y2_N31
 \TheTxFsk|TheDDS|RandomValue[-1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10383,7 +10368,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RandomValue[-1]~q\);
 
--- Location: MLABCELL_X59_Y3_N15
+-- Location: LABCELL_X61_Y2_N12
 \TheTxFsk|TheDDS|RandomValue[-2]~1\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|RandomValue[-2]~1_combout\ = ( !\TheTxFsk|TheDDS|RegsLFSR\(1) )
@@ -10391,14 +10376,14 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1111111111111111111111111111111100000000000000000000000000000000",
+	lut_mask => "1111111111111111000000000000000011111111111111110000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(1),
+	datae => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(1),
 	combout => \TheTxFsk|TheDDS|RandomValue[-2]~1_combout\);
 
--- Location: FF_X59_Y3_N16
+-- Location: FF_X61_Y2_N13
 \TheTxFsk|TheDDS|RandomValue[-2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10414,7 +10399,23 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RandomValue[-2]~q\);
 
--- Location: LABCELL_X57_Y3_N3
+-- Location: LABCELL_X61_Y2_N6
+\TheTxFsk|PhaseIncrement[16]~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|PhaseIncrement[16]~1_combout\ = ( !\TheTxDataSync|Metastable\(1) & ( \TheChannelSelSync|Metastable[1]~DUPLICATE_q\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011111111111111110000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datae => \TheTxDataSync|ALT_INV_Metastable\(1),
+	dataf => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	combout => \TheTxFsk|PhaseIncrement[16]~1_combout\);
+
+-- Location: LABCELL_X61_Y2_N30
 \TheTxFsk|TheDDS|RandomValue[-3]~2\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|RandomValue[-3]~2_combout\ = ( !\TheTxFsk|TheDDS|RegsLFSR\(2) )
@@ -10429,7 +10430,7 @@ PORT MAP (
 	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(2),
 	combout => \TheTxFsk|TheDDS|RandomValue[-3]~2_combout\);
 
--- Location: FF_X57_Y3_N4
+-- Location: FF_X61_Y2_N31
 \TheTxFsk|TheDDS|RandomValue[-3]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10445,7 +10446,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RandomValue[-3]~q\);
 
--- Location: LABCELL_X57_Y3_N0
+-- Location: LABCELL_X61_Y2_N45
 \TheTxFsk|TheDDS|RandomValue[-4]~3\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|RandomValue[-4]~3_combout\ = ( !\TheTxFsk|TheDDS|RegsLFSR\(3) )
@@ -10460,7 +10461,7 @@ PORT MAP (
 	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(3),
 	combout => \TheTxFsk|TheDDS|RandomValue[-4]~3_combout\);
 
--- Location: FF_X57_Y3_N1
+-- Location: FF_X61_Y2_N46
 \TheTxFsk|TheDDS|RandomValue[-4]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10476,7 +10477,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RandomValue[-4]~q\);
 
--- Location: MLABCELL_X59_Y3_N27
+-- Location: LABCELL_X61_Y2_N57
 \TheTxFsk|TheDDS|RandomValue[-5]~4\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|RandomValue[-5]~4_combout\ = ( !\TheTxFsk|TheDDS|RegsLFSR\(4) )
@@ -10484,14 +10485,14 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1111111111111111111111111111111100000000000000000000000000000000",
+	lut_mask => "1111111111111111000000000000000011111111111111110000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(4),
+	datae => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(4),
 	combout => \TheTxFsk|TheDDS|RandomValue[-5]~4_combout\);
 
--- Location: FF_X59_Y3_N28
+-- Location: FF_X61_Y2_N58
 \TheTxFsk|TheDDS|RandomValue[-5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10507,7 +10508,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RandomValue[-5]~q\);
 
--- Location: LABCELL_X55_Y3_N27
+-- Location: LABCELL_X61_Y2_N36
 \TheTxFsk|TheDDS|RandomValue[-6]~5\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|RandomValue[-6]~5_combout\ = ( !\TheTxFsk|TheDDS|RegsLFSR[5]~DUPLICATE_q\ )
@@ -10522,7 +10523,7 @@ PORT MAP (
 	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR[5]~DUPLICATE_q\,
 	combout => \TheTxFsk|TheDDS|RandomValue[-6]~5_combout\);
 
--- Location: FF_X55_Y3_N28
+-- Location: FF_X61_Y2_N37
 \TheTxFsk|TheDDS|RandomValue[-6]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10538,7 +10539,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RandomValue[-6]~q\);
 
--- Location: LABCELL_X55_Y3_N42
+-- Location: LABCELL_X61_Y2_N51
 \TheTxFsk|TheDDS|RandomValue[-7]~6\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|RandomValue[-7]~6_combout\ = ( !\TheTxFsk|TheDDS|RegsLFSR\(6) )
@@ -10553,7 +10554,7 @@ PORT MAP (
 	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(6),
 	combout => \TheTxFsk|TheDDS|RandomValue[-7]~6_combout\);
 
--- Location: FF_X55_Y3_N43
+-- Location: FF_X61_Y2_N52
 \TheTxFsk|TheDDS|RandomValue[-7]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10569,7 +10570,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RandomValue[-7]~q\);
 
--- Location: LABCELL_X55_Y3_N36
+-- Location: LABCELL_X61_Y2_N21
 \TheTxFsk|TheDDS|RandomValue[-8]~7\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|RandomValue[-8]~7_combout\ = ( !\TheTxFsk|TheDDS|RegsLFSR\(7) )
@@ -10584,7 +10585,7 @@ PORT MAP (
 	dataf => \TheTxFsk|TheDDS|ALT_INV_RegsLFSR\(7),
 	combout => \TheTxFsk|TheDDS|RandomValue[-8]~7_combout\);
 
--- Location: FF_X55_Y3_N37
+-- Location: FF_X61_Y2_N22
 \TheTxFsk|TheDDS|RandomValue[-8]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10600,26 +10601,31 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|RandomValue[-8]~q\);
 
--- Location: LABCELL_X56_Y3_N0
-\TheTxFsk|TheDDS|Add1~77\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N0
+\TheTxFsk|TheDDS|NxtPhaseAddr[0]~77\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~77_sumout\ = SUM(( \TheTxFsk|TheDDS|RandomValue[-8]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(0) ) + ( !VCC ))
--- \TheTxFsk|TheDDS|Add1~78\ = CARRY(( \TheTxFsk|TheDDS|RandomValue[-8]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(0) ) + ( !VCC ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[0]~77_sumout\ = SUM(( !\TheTxDataSync|Metastable\(1) $ (!\TheTxFsk|TheDDS|PhaseAddr\(0) $ (!\TheTxFsk|TheDDS|RandomValue[-8]~q\)) ) + ( !VCC ) + ( !VCC ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[0]~78\ = CARRY(( !\TheTxDataSync|Metastable\(1) $ (!\TheTxFsk|TheDDS|PhaseAddr\(0) $ (!\TheTxFsk|TheDDS|RandomValue[-8]~q\)) ) + ( !VCC ) + ( !VCC ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[0]~79\ = SHARE((!\TheTxDataSync|Metastable\(1) & ((\TheTxFsk|TheDDS|RandomValue[-8]~q\) # (\TheTxFsk|TheDDS|PhaseAddr\(0)))) # (\TheTxDataSync|Metastable\(1) & (\TheTxFsk|TheDDS|PhaseAddr\(0) & 
+-- \TheTxFsk|TheDDS|RandomValue[-8]~q\)))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000110011001100110000000000000000000000111100001111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000010101010111100000000000000001010010101011010",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(0),
-	datac => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-8]~q\,
+	dataa => \TheTxDataSync|ALT_INV_Metastable\(1),
+	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(0),
+	datad => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-8]~q\,
 	cin => GND,
-	sumout => \TheTxFsk|TheDDS|Add1~77_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~78\);
+	sharein => GND,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[0]~77_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[0]~78\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[0]~79\);
 
--- Location: FF_X56_Y3_N1
+-- Location: FF_X62_Y2_N2
 \TheTxFsk|TheDDS|PhaseAddr[0]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10628,33 +10634,41 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~77_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[0]~77_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(0));
 
--- Location: LABCELL_X56_Y3_N3
-\TheTxFsk|TheDDS|Add1~73\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N3
+\TheTxFsk|TheDDS|NxtPhaseAddr[1]~73\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~73_sumout\ = SUM(( \TheTxFsk|TheDDS|RandomValue[-7]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(1) ) + ( \TheTxFsk|TheDDS|Add1~78\ ))
--- \TheTxFsk|TheDDS|Add1~74\ = CARRY(( \TheTxFsk|TheDDS|RandomValue[-7]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(1) ) + ( \TheTxFsk|TheDDS|Add1~78\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[1]~73_sumout\ = SUM(( !\TheTxDataSync|Metastable\(1) $ (!\TheTxFsk|TheDDS|PhaseAddr\(1) $ (!\TheTxFsk|TheDDS|RandomValue[-7]~q\ $ (\TheChannelSelSync|Metastable[1]~DUPLICATE_q\))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[0]~79\ ) 
+-- + ( \TheTxFsk|TheDDS|NxtPhaseAddr[0]~78\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[1]~74\ = CARRY(( !\TheTxDataSync|Metastable\(1) $ (!\TheTxFsk|TheDDS|PhaseAddr\(1) $ (!\TheTxFsk|TheDDS|RandomValue[-7]~q\ $ (\TheChannelSelSync|Metastable[1]~DUPLICATE_q\))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[0]~79\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[0]~78\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[1]~75\ = SHARE((!\TheTxFsk|TheDDS|PhaseAddr\(1) & (\TheTxFsk|TheDDS|RandomValue[-7]~q\ & (!\TheTxDataSync|Metastable\(1) $ (\TheChannelSelSync|Metastable[1]~DUPLICATE_q\)))) # (\TheTxFsk|TheDDS|PhaseAddr\(1) & 
+-- ((!\TheTxDataSync|Metastable\(1) $ (\TheChannelSelSync|Metastable[1]~DUPLICATE_q\)) # (\TheTxFsk|TheDDS|RandomValue[-7]~q\))))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000101010101010101000000000000000000000111100001111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000001010110001011100000000000000001001011001101001",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(1),
+	dataa => \TheTxDataSync|ALT_INV_Metastable\(1),
+	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(1),
 	datac => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-7]~q\,
-	cin => \TheTxFsk|TheDDS|Add1~78\,
-	sumout => \TheTxFsk|TheDDS|Add1~73_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~74\);
+	datad => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[0]~78\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[0]~79\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[1]~73_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[1]~74\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[1]~75\);
 
--- Location: FF_X56_Y3_N4
+-- Location: FF_X62_Y2_N4
 \TheTxFsk|TheDDS|PhaseAddr[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10663,33 +10677,36 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~73_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[1]~73_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(1));
 
--- Location: LABCELL_X56_Y3_N6
-\TheTxFsk|TheDDS|Add1~69\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N6
+\TheTxFsk|TheDDS|NxtPhaseAddr[2]~69\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~69_sumout\ = SUM(( \TheTxFsk|TheDDS|RandomValue[-6]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(2) ) + ( \TheTxFsk|TheDDS|Add1~74\ ))
--- \TheTxFsk|TheDDS|Add1~70\ = CARRY(( \TheTxFsk|TheDDS|RandomValue[-6]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(2) ) + ( \TheTxFsk|TheDDS|Add1~74\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[2]~69_sumout\ = SUM(( !\TheTxFsk|TheDDS|RandomValue[-6]~q\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(2)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[1]~75\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[1]~74\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[2]~70\ = CARRY(( !\TheTxFsk|TheDDS|RandomValue[-6]~q\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(2)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[1]~75\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[1]~74\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[2]~71\ = SHARE((\TheTxFsk|TheDDS|RandomValue[-6]~q\ & \TheTxFsk|TheDDS|PhaseAddr\(2)))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000110011001100110000000000000000000000111100001111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000000000000111100000000000000000000111111110000",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(2),
 	datac => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-6]~q\,
-	cin => \TheTxFsk|TheDDS|Add1~74\,
-	sumout => \TheTxFsk|TheDDS|Add1~69_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~70\);
+	datad => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(2),
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[1]~74\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[1]~75\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[2]~69_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[2]~70\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[2]~71\);
 
--- Location: FF_X56_Y3_N8
+-- Location: FF_X62_Y2_N7
 \TheTxFsk|TheDDS|PhaseAddr[2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10698,33 +10715,41 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~69_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[2]~69_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(2));
 
--- Location: LABCELL_X56_Y3_N9
-\TheTxFsk|TheDDS|Add1~65\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N9
+\TheTxFsk|TheDDS|NxtPhaseAddr[3]~65\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~65_sumout\ = SUM(( \TheTxFsk|TheDDS|RandomValue[-5]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(3) ) + ( \TheTxFsk|TheDDS|Add1~70\ ))
--- \TheTxFsk|TheDDS|Add1~66\ = CARRY(( \TheTxFsk|TheDDS|RandomValue[-5]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(3) ) + ( \TheTxFsk|TheDDS|Add1~70\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[3]~65_sumout\ = SUM(( !\TheTxFsk|TheDDS|RandomValue[-5]~q\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(3) $ (((!\TheTxDataSync|Metastable\(1) & !\TheChannelSelSync|Metastable[1]~DUPLICATE_q\)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[2]~71\ 
+-- ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[2]~70\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[3]~66\ = CARRY(( !\TheTxFsk|TheDDS|RandomValue[-5]~q\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(3) $ (((!\TheTxDataSync|Metastable\(1) & !\TheChannelSelSync|Metastable[1]~DUPLICATE_q\)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[2]~71\ ) + 
+-- ( \TheTxFsk|TheDDS|NxtPhaseAddr[2]~70\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[3]~67\ = SHARE((!\TheTxFsk|TheDDS|RandomValue[-5]~q\ & (!\TheTxDataSync|Metastable\(1) & (\TheTxFsk|TheDDS|PhaseAddr\(3) & !\TheChannelSelSync|Metastable[1]~DUPLICATE_q\))) # (\TheTxFsk|TheDDS|RandomValue[-5]~q\ & 
+-- (((!\TheTxDataSync|Metastable\(1) & !\TheChannelSelSync|Metastable[1]~DUPLICATE_q\)) # (\TheTxFsk|TheDDS|PhaseAddr\(3)))))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000101010101010101000000000000000000000000011111111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000001010110000001100000000000000001001011000111100",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(3),
-	datad => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-5]~q\,
-	cin => \TheTxFsk|TheDDS|Add1~70\,
-	sumout => \TheTxFsk|TheDDS|Add1~65_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~66\);
+	dataa => \TheTxDataSync|ALT_INV_Metastable\(1),
+	datab => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-5]~q\,
+	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(3),
+	datad => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[2]~70\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[2]~71\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[3]~65_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[3]~66\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[3]~67\);
 
--- Location: FF_X56_Y3_N10
+-- Location: FF_X62_Y2_N11
 \TheTxFsk|TheDDS|PhaseAddr[3]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10733,33 +10758,40 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~65_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[3]~65_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(3));
 
--- Location: LABCELL_X56_Y3_N12
-\TheTxFsk|TheDDS|Add1~61\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N12
+\TheTxFsk|TheDDS|NxtPhaseAddr[4]~61\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~61_sumout\ = SUM(( \TheTxFsk|TheDDS|RandomValue[-4]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(4) ) + ( \TheTxFsk|TheDDS|Add1~66\ ))
--- \TheTxFsk|TheDDS|Add1~62\ = CARRY(( \TheTxFsk|TheDDS|RandomValue[-4]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(4) ) + ( \TheTxFsk|TheDDS|Add1~66\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[4]~61_sumout\ = SUM(( !\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (!\TheTxFsk|TheDDS|RandomValue[-4]~q\ $ (\TheTxFsk|TheDDS|PhaseAddr\(4))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[3]~67\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[3]~66\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[4]~62\ = CARRY(( !\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (!\TheTxFsk|TheDDS|RandomValue[-4]~q\ $ (\TheTxFsk|TheDDS|PhaseAddr\(4))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[3]~67\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[3]~66\ 
+-- ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[4]~63\ = SHARE((!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ & (\TheTxFsk|TheDDS|RandomValue[-4]~q\ & \TheTxFsk|TheDDS|PhaseAddr\(4))) # (\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ & ((\TheTxFsk|TheDDS|PhaseAddr\(4)) # 
+-- (\TheTxFsk|TheDDS|RandomValue[-4]~q\))))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111110000000000000000000000000000111100001111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000000110011111100000000000000000011110011000011",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
+	datab => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
 	datac => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-4]~q\,
-	dataf => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(4),
-	cin => \TheTxFsk|TheDDS|Add1~66\,
-	sumout => \TheTxFsk|TheDDS|Add1~61_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~62\);
+	datad => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(4),
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[3]~66\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[3]~67\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[4]~61_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[4]~62\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[4]~63\);
 
--- Location: FF_X56_Y3_N14
+-- Location: FF_X62_Y2_N13
 \TheTxFsk|TheDDS|PhaseAddr[4]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10768,33 +10800,41 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~61_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[4]~61_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(4));
 
--- Location: LABCELL_X56_Y3_N15
-\TheTxFsk|TheDDS|Add1~57\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N15
+\TheTxFsk|TheDDS|NxtPhaseAddr[5]~57\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~57_sumout\ = SUM(( \TheTxFsk|TheDDS|RandomValue[-3]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(5) ) + ( \TheTxFsk|TheDDS|Add1~62\ ))
--- \TheTxFsk|TheDDS|Add1~58\ = CARRY(( \TheTxFsk|TheDDS|RandomValue[-3]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(5) ) + ( \TheTxFsk|TheDDS|Add1~62\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[5]~57_sumout\ = SUM(( !\TheTxFsk|TheDDS|RandomValue[-3]~q\ $ (!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(5) $ (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[4]~63\ ) 
+-- + ( \TheTxFsk|TheDDS|NxtPhaseAddr[4]~62\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[5]~58\ = CARRY(( !\TheTxFsk|TheDDS|RandomValue[-3]~q\ $ (!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(5) $ (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[4]~63\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[4]~62\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[5]~59\ = SHARE((!\TheTxFsk|TheDDS|RandomValue[-3]~q\ & (\TheTxFsk|TheDDS|PhaseAddr\(5) & (!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (\TheTxDataSync|Metastable\(1))))) # (\TheTxFsk|TheDDS|RandomValue[-3]~q\ & 
+-- ((!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (\TheTxDataSync|Metastable\(1))) # (\TheTxFsk|TheDDS|PhaseAddr\(5)))))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000101010101010101000000000000000000000111100001111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000010011010001011100000000000000001001011001101001",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(5),
-	datac => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-3]~q\,
-	cin => \TheTxFsk|TheDDS|Add1~62\,
-	sumout => \TheTxFsk|TheDDS|Add1~57_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~58\);
+	dataa => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-3]~q\,
+	datab => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(5),
+	datad => \TheTxDataSync|ALT_INV_Metastable\(1),
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[4]~62\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[4]~63\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[5]~57_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[5]~58\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[5]~59\);
 
--- Location: FF_X56_Y3_N16
+-- Location: FF_X62_Y2_N17
 \TheTxFsk|TheDDS|PhaseAddr[5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10803,33 +10843,39 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~57_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[5]~57_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(5));
 
--- Location: LABCELL_X56_Y3_N18
-\TheTxFsk|TheDDS|Add1~53\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N18
+\TheTxFsk|TheDDS|NxtPhaseAddr[6]~53\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~53_sumout\ = SUM(( \TheTxFsk|TheDDS|RandomValue[-2]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(6) ) + ( \TheTxFsk|TheDDS|Add1~58\ ))
--- \TheTxFsk|TheDDS|Add1~54\ = CARRY(( \TheTxFsk|TheDDS|RandomValue[-2]~q\ ) + ( \TheTxFsk|TheDDS|PhaseAddr\(6) ) + ( \TheTxFsk|TheDDS|Add1~58\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[6]~53_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(6) $ (!\TheTxFsk|TheDDS|RandomValue[-2]~q\ $ (\TheTxFsk|PhaseIncrement[16]~1_combout\)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[5]~59\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[5]~58\ 
+-- ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[6]~54\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(6) $ (!\TheTxFsk|TheDDS|RandomValue[-2]~q\ $ (\TheTxFsk|PhaseIncrement[16]~1_combout\)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[5]~59\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[5]~58\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[6]~55\ = SHARE((!\TheTxFsk|TheDDS|PhaseAddr\(6) & (\TheTxFsk|TheDDS|RandomValue[-2]~q\ & \TheTxFsk|PhaseIncrement[16]~1_combout\)) # (\TheTxFsk|TheDDS|PhaseAddr\(6) & ((\TheTxFsk|PhaseIncrement[16]~1_combout\) # 
+-- (\TheTxFsk|TheDDS|RandomValue[-2]~q\))))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000110011001100110000000000000000000000000011111111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000001010101111100000000000000000101101010100101",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(6),
-	datad => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-2]~q\,
-	cin => \TheTxFsk|TheDDS|Add1~58\,
-	sumout => \TheTxFsk|TheDDS|Add1~53_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~54\);
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(6),
+	datac => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-2]~q\,
+	datad => \TheTxFsk|ALT_INV_PhaseIncrement[16]~1_combout\,
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[5]~58\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[5]~59\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[6]~53_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[6]~54\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[6]~55\);
 
--- Location: FF_X56_Y3_N19
+-- Location: FF_X62_Y2_N20
 \TheTxFsk|TheDDS|PhaseAddr[6]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10838,33 +10884,39 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~53_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[6]~53_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(6));
 
--- Location: LABCELL_X56_Y3_N21
-\TheTxFsk|TheDDS|Add1~49\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N21
+\TheTxFsk|TheDDS|NxtPhaseAddr[7]~49\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~49_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(7) ) + ( \TheTxFsk|TheDDS|RandomValue[-1]~q\ ) + ( \TheTxFsk|TheDDS|Add1~54\ ))
--- \TheTxFsk|TheDDS|Add1~50\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(7) ) + ( \TheTxFsk|TheDDS|RandomValue[-1]~q\ ) + ( \TheTxFsk|TheDDS|Add1~54\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[7]~49_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(7) $ (!\TheTxFsk|PhaseIncrement[7]~0_combout\ $ (\TheTxFsk|TheDDS|RandomValue[-1]~q\)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[6]~55\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[6]~54\ 
+-- ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[7]~50\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(7) $ (!\TheTxFsk|PhaseIncrement[7]~0_combout\ $ (\TheTxFsk|TheDDS|RandomValue[-1]~q\)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[6]~55\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[6]~54\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[7]~51\ = SHARE((!\TheTxFsk|TheDDS|PhaseAddr\(7) & (\TheTxFsk|PhaseIncrement[7]~0_combout\ & \TheTxFsk|TheDDS|RandomValue[-1]~q\)) # (\TheTxFsk|TheDDS|PhaseAddr\(7) & ((\TheTxFsk|TheDDS|RandomValue[-1]~q\) # 
+-- (\TheTxFsk|PhaseIncrement[7]~0_combout\))))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111100001111000000000000000000000000000011111111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000000110011111100000000000000000011110011000011",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-1]~q\,
-	datad => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(7),
-	cin => \TheTxFsk|TheDDS|Add1~54\,
-	sumout => \TheTxFsk|TheDDS|Add1~49_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~50\);
+	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(7),
+	datac => \TheTxFsk|ALT_INV_PhaseIncrement[7]~0_combout\,
+	datad => \TheTxFsk|TheDDS|ALT_INV_RandomValue[-1]~q\,
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[6]~54\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[6]~55\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[7]~49_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[7]~50\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[7]~51\);
 
--- Location: FF_X56_Y3_N23
+-- Location: FF_X62_Y2_N22
 \TheTxFsk|TheDDS|PhaseAddr[7]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10873,34 +10925,37 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~49_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[7]~49_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(7));
 
--- Location: LABCELL_X56_Y3_N24
-\TheTxFsk|TheDDS|Add1~9\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N24
+\TheTxFsk|TheDDS|NxtPhaseAddr[8]~9\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~9_sumout\ = SUM(( \TheTxFsk|TheDDS|RandomValue\(0) ) + ( \TheTxFsk|TheDDS|PhaseAddr\(8) ) + ( \TheTxFsk|TheDDS|Add1~50\ ))
--- \TheTxFsk|TheDDS|Add1~10\ = CARRY(( \TheTxFsk|TheDDS|RandomValue\(0) ) + ( \TheTxFsk|TheDDS|PhaseAddr\(8) ) + ( \TheTxFsk|TheDDS|Add1~50\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[8]~9_sumout\ = SUM(( !\TheTxFsk|TheDDS|RandomValue\(0) $ (!\TheTxFsk|TheDDS|PhaseAddr\(8)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[7]~51\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[7]~50\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[8]~10\ = CARRY(( !\TheTxFsk|TheDDS|RandomValue\(0) $ (!\TheTxFsk|TheDDS|PhaseAddr\(8)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[7]~51\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[7]~50\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[8]~11\ = SHARE((\TheTxFsk|TheDDS|RandomValue\(0) & \TheTxFsk|TheDDS|PhaseAddr\(8)))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000110011001100110000000000000000000000111100001111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000000000000111100000000000000000000111111110000",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(8),
 	datac => \TheTxFsk|TheDDS|ALT_INV_RandomValue\(0),
-	cin => \TheTxFsk|TheDDS|Add1~50\,
-	sumout => \TheTxFsk|TheDDS|Add1~9_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~10\);
+	datad => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(8),
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[7]~50\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[7]~51\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[8]~9_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[8]~10\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[8]~11\);
 
--- Location: FF_X57_Y3_N17
-\TheTxFsk|TheDDS|Address[0]_NEW_REG20\ : dffeas
+-- Location: FF_X62_Y2_N26
+\TheTxFsk|TheDDS|PhaseAddr[8]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -10908,67 +10963,38 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~9_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[0]_OTERM21\);
-
--- Location: FF_X56_Y3_N56
-\TheTxFsk|TheDDS|PhaseAddr[18]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~5_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[8]~9_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|PhaseAddr\(18));
+	q => \TheTxFsk|TheDDS|PhaseAddr\(8));
 
--- Location: LABCELL_X55_Y3_N0
-\TheTxFsk|TheDDS|Add0~9\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N27
+\TheTxFsk|TheDDS|NxtPhaseAddr[9]~13\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add0~9_sumout\ = SUM(( !\TheChannelSelSync|Metastable\(1) ) + ( \TheTxFsk|TheDDS|PhaseAddr\(12) ) + ( !VCC ))
--- \TheTxFsk|TheDDS|Add0~10\ = CARRY(( !\TheChannelSelSync|Metastable\(1) ) + ( \TheTxFsk|TheDDS|PhaseAddr\(12) ) + ( !VCC ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[9]~13_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(9) $ (!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (!\TheTxDataSync|Metastable\(1))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[8]~11\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[8]~10\ 
+-- ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[9]~14\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(9) $ (!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (!\TheTxDataSync|Metastable\(1))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[8]~11\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[8]~10\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[9]~15\ = SHARE((\TheTxFsk|TheDDS|PhaseAddr\(9) & (!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (\TheTxDataSync|Metastable\(1)))))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111100001111000000000000000000001111111100000000",
-	shared_arith => "off")
+	lut_mask => "0000000000000000010100000000010100000000000000001010010101011010",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(12),
-	datad => \TheChannelSelSync|ALT_INV_Metastable\(1),
-	cin => GND,
-	sumout => \TheTxFsk|TheDDS|Add0~9_sumout\,
-	cout => \TheTxFsk|TheDDS|Add0~10\);
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(9),
+	datac => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	datad => \TheTxDataSync|ALT_INV_Metastable\(1),
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[8]~10\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[8]~11\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[9]~13_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[9]~14\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[9]~15\);
 
--- Location: LABCELL_X56_Y3_N27
-\TheTxFsk|TheDDS|Add1~13\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add1~13_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(9) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~10\ ))
--- \TheTxFsk|TheDDS|Add1~14\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(9) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~10\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datad => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(9),
-	cin => \TheTxFsk|TheDDS|Add1~10\,
-	sumout => \TheTxFsk|TheDDS|Add1~13_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~14\);
-
--- Location: FF_X56_Y3_N29
+-- Location: FF_X62_Y2_N29
 \TheTxFsk|TheDDS|PhaseAddr[9]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -10977,32 +11003,39 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~13_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[9]~13_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(9));
 
--- Location: LABCELL_X56_Y3_N30
-\TheTxFsk|TheDDS|Add1~17\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N30
+\TheTxFsk|TheDDS|NxtPhaseAddr[10]~17\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~17_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(10) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~14\ ))
--- \TheTxFsk|TheDDS|Add1~18\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(10) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~14\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[10]~17_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(10) $ (((!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) # (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[9]~15\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[9]~14\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[10]~18\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(10) $ (((!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) # (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[9]~15\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[9]~14\ 
+-- ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[10]~19\ = SHARE((\TheTxFsk|TheDDS|PhaseAddr\(10) & (!\TheTxDataSync|Metastable\(1) & \TheChannelSelSync|Metastable[1]~DUPLICATE_q\)))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000000000011000000000000000000000011001111000011",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
 	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(10),
-	cin => \TheTxFsk|TheDDS|Add1~14\,
-	sumout => \TheTxFsk|TheDDS|Add1~17_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~18\);
+	datac => \TheTxDataSync|ALT_INV_Metastable\(1),
+	datad => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[9]~14\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[9]~15\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[10]~17_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[10]~18\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[10]~19\);
 
--- Location: FF_X56_Y3_N32
+-- Location: FF_X62_Y2_N32
 \TheTxFsk|TheDDS|PhaseAddr[10]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11011,32 +11044,39 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~17_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[10]~17_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(10));
 
--- Location: LABCELL_X56_Y3_N33
-\TheTxFsk|TheDDS|Add1~21\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N33
+\TheTxFsk|TheDDS|NxtPhaseAddr[11]~21\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~21_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(11) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~18\ ))
--- \TheTxFsk|TheDDS|Add1~22\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(11) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~18\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[11]~21_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(11) $ (((\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) # (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[10]~19\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[10]~18\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[11]~22\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(11) $ (((\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) # (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[10]~19\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[10]~18\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[11]~23\ = SHARE((\TheTxFsk|TheDDS|PhaseAddr\(11) & (!\TheTxDataSync|Metastable\(1) & !\TheChannelSelSync|Metastable[1]~DUPLICATE_q\)))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000101010101010101",
-	shared_arith => "off")
+	lut_mask => "0000000000000000010100000000000000000000000000001010010101010101",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
 	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(11),
-	cin => \TheTxFsk|TheDDS|Add1~18\,
-	sumout => \TheTxFsk|TheDDS|Add1~21_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~22\);
+	datac => \TheTxDataSync|ALT_INV_Metastable\(1),
+	datad => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[10]~18\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[10]~19\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[11]~21_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[11]~22\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[11]~23\);
 
--- Location: FF_X56_Y3_N35
+-- Location: FF_X62_Y2_N35
 \TheTxFsk|TheDDS|PhaseAddr[11]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11045,47 +11085,39 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~21_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[11]~21_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(11));
 
--- Location: LABCELL_X56_Y3_N36
-\TheTxFsk|TheDDS|Add1~25\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N36
+\TheTxFsk|TheDDS|NxtPhaseAddr[12]~25\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add1~25_sumout\ = SUM(( \TheTxFsk|TheDDS|Add0~9_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~22\ ))
--- \TheTxFsk|TheDDS|Add1~26\ = CARRY(( \TheTxFsk|TheDDS|Add0~9_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~22\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[12]~25_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(12) $ (((!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) # (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[11]~23\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[11]~22\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[12]~26\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(12) $ (((!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) # (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[11]~23\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[11]~22\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[12]~27\ = SHARE((!\TheTxDataSync|Metastable\(1) & (\TheTxFsk|TheDDS|PhaseAddr\(12) & \TheChannelSelSync|Metastable[1]~DUPLICATE_q\)))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001100110011",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000000000000101000000000000000000000111110100101",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_Add0~9_sumout\,
-	cin => \TheTxFsk|TheDDS|Add1~22\,
-	sumout => \TheTxFsk|TheDDS|Add1~25_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~26\);
+	dataa => \TheTxDataSync|ALT_INV_Metastable\(1),
+	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(12),
+	datad => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[11]~22\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[11]~23\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[12]~25_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[12]~26\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[12]~27\);
 
--- Location: LABCELL_X55_Y3_N54
-\TheTxFsk|TheDDS|PhaseAddr[12]~feeder\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|PhaseAddr[12]~feeder_combout\ = ( \TheTxFsk|TheDDS|Add1~25_sumout\ )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_Add1~25_sumout\,
-	combout => \TheTxFsk|TheDDS|PhaseAddr[12]~feeder_combout\);
-
--- Location: FF_X55_Y3_N56
+-- Location: FF_X62_Y2_N38
 \TheTxFsk|TheDDS|PhaseAddr[12]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11094,50 +11126,36 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|PhaseAddr[12]~feeder_combout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[12]~25_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(12));
 
--- Location: LABCELL_X55_Y3_N3
-\TheTxFsk|TheDDS|Add0~13\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N39
+\TheTxFsk|TheDDS|NxtPhaseAddr[13]~29\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add0~13_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(13) ) + ( VCC ) + ( \TheTxFsk|TheDDS|Add0~10\ ))
--- \TheTxFsk|TheDDS|Add0~14\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(13) ) + ( VCC ) + ( \TheTxFsk|TheDDS|Add0~10\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[13]~29_sumout\ = SUM(( !\TheTxDataSync|Metastable\(1) $ (\TheTxFsk|TheDDS|PhaseAddr\(13)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[12]~27\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[12]~26\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[13]~30\ = CARRY(( !\TheTxDataSync|Metastable\(1) $ (\TheTxFsk|TheDDS|PhaseAddr\(13)) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[12]~27\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[12]~26\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[13]~31\ = SHARE((!\TheTxDataSync|Metastable\(1) & \TheTxFsk|TheDDS|PhaseAddr\(13)))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000000000000000000000000111100001111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000010100000101000000000000000001010010110100101",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
+	dataa => \TheTxDataSync|ALT_INV_Metastable\(1),
 	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(13),
-	cin => \TheTxFsk|TheDDS|Add0~10\,
-	sumout => \TheTxFsk|TheDDS|Add0~13_sumout\,
-	cout => \TheTxFsk|TheDDS|Add0~14\);
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[12]~26\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[12]~27\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[13]~29_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[13]~30\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[13]~31\);
 
--- Location: LABCELL_X56_Y3_N39
-\TheTxFsk|TheDDS|Add1~29\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add1~29_sumout\ = SUM(( \TheTxFsk|TheDDS|Add0~13_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~26\ ))
--- \TheTxFsk|TheDDS|Add1~30\ = CARRY(( \TheTxFsk|TheDDS|Add0~13_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~26\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_Add0~13_sumout\,
-	cin => \TheTxFsk|TheDDS|Add1~26\,
-	sumout => \TheTxFsk|TheDDS|Add1~29_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~30\);
-
--- Location: FF_X56_Y3_N38
+-- Location: FF_X62_Y2_N41
 \TheTxFsk|TheDDS|PhaseAddr[13]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11146,53 +11164,35 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~29_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[13]~29_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(13));
 
--- Location: LABCELL_X55_Y3_N6
-\TheTxFsk|TheDDS|Add0~17\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N42
+\TheTxFsk|TheDDS|NxtPhaseAddr[14]~33\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add0~17_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(14) ) + ( !\TheChannelSelSync|Metastable\(1) $ (\TheTxDataSync|Metastable\(1)) ) + ( \TheTxFsk|TheDDS|Add0~14\ ))
--- \TheTxFsk|TheDDS|Add0~18\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(14) ) + ( !\TheChannelSelSync|Metastable\(1) $ (\TheTxDataSync|Metastable\(1)) ) + ( \TheTxFsk|TheDDS|Add0~14\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[14]~33_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(14) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[13]~31\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[13]~30\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[14]~34\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(14) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[13]~31\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[13]~30\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[14]~35\ = SHARE(GND)
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000010110100101101000000000000000000000000011111111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000000000000000000000000000000000011001100110011",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheChannelSelSync|ALT_INV_Metastable\(1),
-	datac => \TheTxDataSync|ALT_INV_Metastable\(1),
-	datad => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(14),
-	cin => \TheTxFsk|TheDDS|Add0~14\,
-	sumout => \TheTxFsk|TheDDS|Add0~17_sumout\,
-	cout => \TheTxFsk|TheDDS|Add0~18\);
+	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(14),
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[13]~30\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[13]~31\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[14]~33_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[14]~34\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[14]~35\);
 
--- Location: LABCELL_X56_Y3_N42
-\TheTxFsk|TheDDS|Add1~33\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add1~33_sumout\ = SUM(( \TheTxFsk|TheDDS|Add0~17_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~30\ ))
--- \TheTxFsk|TheDDS|Add1~34\ = CARRY(( \TheTxFsk|TheDDS|Add0~17_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~30\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datad => \TheTxFsk|TheDDS|ALT_INV_Add0~17_sumout\,
-	cin => \TheTxFsk|TheDDS|Add1~30\,
-	sumout => \TheTxFsk|TheDDS|Add1~33_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~34\);
-
--- Location: FF_X56_Y3_N44
+-- Location: FF_X62_Y2_N44
 \TheTxFsk|TheDDS|PhaseAddr[14]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11201,52 +11201,36 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~33_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[14]~33_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(14));
 
--- Location: LABCELL_X55_Y3_N9
-\TheTxFsk|TheDDS|Add0~21\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N45
+\TheTxFsk|TheDDS|NxtPhaseAddr[15]~37\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add0~21_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(15) ) + ( (!\TheChannelSelSync|Metastable\(1)) # (!\TheTxDataSync|Metastable\(1)) ) + ( \TheTxFsk|TheDDS|Add0~18\ ))
--- \TheTxFsk|TheDDS|Add0~22\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(15) ) + ( (!\TheChannelSelSync|Metastable\(1)) # (!\TheTxDataSync|Metastable\(1)) ) + ( \TheTxFsk|TheDDS|Add0~18\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[15]~37_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(15) $ (\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[14]~35\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[14]~34\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[15]~38\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(15) $ (\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[14]~35\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[14]~34\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[15]~39\ = SHARE((\TheTxFsk|TheDDS|PhaseAddr\(15) & !\TheChannelSelSync|Metastable[1]~DUPLICATE_q\))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000000101010100000000000000000000111100001111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000011110000000000000000000000001111000000001111",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheChannelSelSync|ALT_INV_Metastable\(1),
 	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(15),
-	dataf => \TheTxDataSync|ALT_INV_Metastable\(1),
-	cin => \TheTxFsk|TheDDS|Add0~18\,
-	sumout => \TheTxFsk|TheDDS|Add0~21_sumout\,
-	cout => \TheTxFsk|TheDDS|Add0~22\);
+	datad => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[14]~34\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[14]~35\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[15]~37_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[15]~38\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[15]~39\);
 
--- Location: LABCELL_X56_Y3_N45
-\TheTxFsk|TheDDS|Add1~37\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add1~37_sumout\ = SUM(( \TheTxFsk|TheDDS|Add0~21_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~34\ ))
--- \TheTxFsk|TheDDS|Add1~38\ = CARRY(( \TheTxFsk|TheDDS|Add0~21_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~34\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_Add0~21_sumout\,
-	cin => \TheTxFsk|TheDDS|Add1~34\,
-	sumout => \TheTxFsk|TheDDS|Add1~37_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~38\);
-
--- Location: FF_X56_Y3_N26
+-- Location: FF_X62_Y2_N47
 \TheTxFsk|TheDDS|PhaseAddr[15]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11255,51 +11239,39 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~37_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[15]~37_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(15));
 
--- Location: LABCELL_X55_Y3_N12
-\TheTxFsk|TheDDS|Add0~25\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N48
+\TheTxFsk|TheDDS|NxtPhaseAddr[16]~41\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add0~25_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(16) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add0~22\ ))
--- \TheTxFsk|TheDDS|Add0~26\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(16) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add0~22\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[16]~41_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(16) $ (((!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) # (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[15]~39\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[15]~38\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[16]~42\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(16) $ (((!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) # (\TheTxDataSync|Metastable\(1)))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[15]~39\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[15]~38\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[16]~43\ = SHARE((\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ & (\TheTxFsk|TheDDS|PhaseAddr\(16) & !\TheTxDataSync|Metastable\(1))))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000000000110000000000000000000000000011110000001111",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
+	datab => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
 	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(16),
-	cin => \TheTxFsk|TheDDS|Add0~22\,
-	sumout => \TheTxFsk|TheDDS|Add0~25_sumout\,
-	cout => \TheTxFsk|TheDDS|Add0~26\);
+	datad => \TheTxDataSync|ALT_INV_Metastable\(1),
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[15]~38\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[15]~39\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[16]~41_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[16]~42\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[16]~43\);
 
--- Location: LABCELL_X56_Y3_N48
-\TheTxFsk|TheDDS|Add1~41\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add1~41_sumout\ = SUM(( \TheTxFsk|TheDDS|Add0~25_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~38\ ))
--- \TheTxFsk|TheDDS|Add1~42\ = CARRY(( \TheTxFsk|TheDDS|Add0~25_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~38\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_Add0~25_sumout\,
-	cin => \TheTxFsk|TheDDS|Add1~38\,
-	sumout => \TheTxFsk|TheDDS|Add1~41_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~42\);
-
--- Location: FF_X56_Y3_N47
+-- Location: FF_X62_Y2_N50
 \TheTxFsk|TheDDS|PhaseAddr[16]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11308,52 +11280,39 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~41_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[16]~41_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(16));
 
--- Location: LABCELL_X55_Y3_N15
-\TheTxFsk|TheDDS|Add0~29\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N51
+\TheTxFsk|TheDDS|NxtPhaseAddr[17]~45\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add0~29_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(17) ) + ( !\TheTxDataSync|Metastable\(1) ) + ( \TheTxFsk|TheDDS|Add0~26\ ))
--- \TheTxFsk|TheDDS|Add0~30\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(17) ) + ( !\TheTxDataSync|Metastable\(1) ) + ( \TheTxFsk|TheDDS|Add0~26\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[17]~45_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(17) $ (!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (!\TheTxDataSync|Metastable\(1))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[16]~43\ ) + ( 
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[16]~42\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[17]~46\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(17) $ (!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (!\TheTxDataSync|Metastable\(1))) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[16]~43\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[16]~42\ 
+-- ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[17]~47\ = SHARE((\TheTxFsk|TheDDS|PhaseAddr\(17) & (!\TheChannelSelSync|Metastable[1]~DUPLICATE_q\ $ (\TheTxDataSync|Metastable\(1)))))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000000000001111111100000000000000000101010101010101",
-	shared_arith => "off")
+	lut_mask => "0000000000000000010001000001000100000000000000001001100101100110",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
 	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(17),
-	dataf => \TheTxDataSync|ALT_INV_Metastable\(1),
-	cin => \TheTxFsk|TheDDS|Add0~26\,
-	sumout => \TheTxFsk|TheDDS|Add0~29_sumout\,
-	cout => \TheTxFsk|TheDDS|Add0~30\);
+	datab => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	datad => \TheTxDataSync|ALT_INV_Metastable\(1),
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[16]~42\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[16]~43\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[17]~45_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[17]~46\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[17]~47\);
 
--- Location: LABCELL_X56_Y3_N51
-\TheTxFsk|TheDDS|Add1~45\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add1~45_sumout\ = SUM(( \TheTxFsk|TheDDS|Add0~29_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~42\ ))
--- \TheTxFsk|TheDDS|Add1~46\ = CARRY(( \TheTxFsk|TheDDS|Add0~29_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~42\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_Add0~29_sumout\,
-	cin => \TheTxFsk|TheDDS|Add1~42\,
-	sumout => \TheTxFsk|TheDDS|Add1~45_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~46\);
-
--- Location: FF_X56_Y3_N41
+-- Location: FF_X62_Y2_N53
 \TheTxFsk|TheDDS|PhaseAddr[17]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11362,53 +11321,37 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~45_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[17]~45_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|PhaseAddr\(17));
 
--- Location: LABCELL_X55_Y3_N18
-\TheTxFsk|TheDDS|Add0~5\ : cyclonev_lcell_comb
+-- Location: LABCELL_X62_Y2_N54
+\TheTxFsk|TheDDS|NxtPhaseAddr[18]~5\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|Add0~5_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(18) ) + ( \TheTxDataSync|Metastable\(1) ) + ( \TheTxFsk|TheDDS|Add0~30\ ))
--- \TheTxFsk|TheDDS|Add0~6\ = CARRY(( \TheTxFsk|TheDDS|PhaseAddr\(18) ) + ( \TheTxDataSync|Metastable\(1) ) + ( \TheTxFsk|TheDDS|Add0~30\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(18) $ (\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[17]~47\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[17]~46\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[18]~6\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(18) $ (\TheChannelSelSync|Metastable[1]~DUPLICATE_q\) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[17]~47\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[17]~46\ ))
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[18]~7\ = SHARE((\TheTxFsk|TheDDS|PhaseAddr\(18) & !\TheChannelSelSync|Metastable[1]~DUPLICATE_q\))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000000000111100001111000000000000000000000000000011111111",
-	shared_arith => "off")
+	lut_mask => "0000000000000000010101010000000000000000000000001010101001010101",
+	shared_arith => "on")
 -- pragma translate_on
 PORT MAP (
-	datac => \TheTxDataSync|ALT_INV_Metastable\(1),
-	datad => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(18),
-	cin => \TheTxFsk|TheDDS|Add0~30\,
-	sumout => \TheTxFsk|TheDDS|Add0~5_sumout\,
-	cout => \TheTxFsk|TheDDS|Add0~6\);
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(18),
+	datad => \TheChannelSelSync|ALT_INV_Metastable[1]~DUPLICATE_q\,
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[17]~46\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[17]~47\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\,
+	cout => \TheTxFsk|TheDDS|NxtPhaseAddr[18]~6\,
+	shareout => \TheTxFsk|TheDDS|NxtPhaseAddr[18]~7\);
 
--- Location: LABCELL_X56_Y3_N54
-\TheTxFsk|TheDDS|Add1~5\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add1~5_sumout\ = SUM(( \TheTxFsk|TheDDS|Add0~5_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~46\ ))
--- \TheTxFsk|TheDDS|Add1~6\ = CARRY(( \TheTxFsk|TheDDS|Add0~5_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~46\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datad => \TheTxFsk|TheDDS|ALT_INV_Add0~5_sumout\,
-	cin => \TheTxFsk|TheDDS|Add1~46\,
-	sumout => \TheTxFsk|TheDDS|Add1~5_sumout\,
-	cout => \TheTxFsk|TheDDS|Add1~6\);
-
--- Location: FF_X57_Y3_N26
-\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE\ : dffeas
+-- Location: FF_X62_Y2_N56
+\TheTxFsk|TheDDS|PhaseAddr[18]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -11416,17 +11359,81 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~5_sumout\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
+	ena => \PhaseStrobe~combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\);
+	q => \TheTxFsk|TheDDS|PhaseAddr\(18));
 
--- Location: LABCELL_X57_Y3_N15
+-- Location: LABCELL_X62_Y2_N57
+\TheTxFsk|TheDDS|NxtPhaseAddr[19]~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|NxtPhaseAddr[19]~1_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(19) ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~7\ ) + ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~6\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000000000000000000000000111100001111",
+	shared_arith => "on")
+-- pragma translate_on
+PORT MAP (
+	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	cin => \TheTxFsk|TheDDS|NxtPhaseAddr[18]~6\,
+	sharein => \TheTxFsk|TheDDS|NxtPhaseAddr[18]~7\,
+	sumout => \TheTxFsk|TheDDS|NxtPhaseAddr[19]~1_sumout\);
+
+-- Location: FF_X62_Y2_N59
+\TheTxFsk|TheDDS|PhaseAddr[19]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|NxtPhaseAddr[19]~1_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	ena => \PhaseStrobe~combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheTxFsk|TheDDS|PhaseAddr\(19));
+
+-- Location: LABCELL_X63_Y2_N48
 \TheTxFsk|TheDDS|NxtAddress[0]~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[0]~0_combout\ = ( !\TheTxFsk|TheDDS|Address[0]_OTERM21\ & ( \TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ ) ) # ( \TheTxFsk|TheDDS|Address[0]_OTERM21\ & ( !\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ ) )
+-- \TheTxFsk|TheDDS|NxtAddress[0]~0_combout\ = ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( !\TheTxFsk|TheDDS|NxtPhaseAddr[8]~9_sumout\ ) ) # ( !\TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( \TheTxFsk|TheDDS|NxtPhaseAddr[8]~9_sumout\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000011111111000000001111111111111111000000001111111100000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datad => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[8]~9_sumout\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\,
+	combout => \TheTxFsk|TheDDS|NxtAddress[0]~0_combout\);
+
+-- Location: FF_X63_Y2_N49
+\TheTxFsk|TheDDS|Address[0]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|NxtAddress[0]~0_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheTxFsk|TheDDS|Address\(0));
+
+-- Location: LABCELL_X63_Y2_N33
+\TheTxFsk|TheDDS|NxtAddress[1]~1\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|NxtAddress[1]~1_combout\ = ( !\TheTxFsk|TheDDS|NxtPhaseAddr[9]~13_sumout\ & ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ ) ) # ( \TheTxFsk|TheDDS|NxtPhaseAddr[9]~13_sumout\ & ( !\TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -11435,59 +11442,12 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datae => \TheTxFsk|TheDDS|ALT_INV_Address[0]_OTERM21\,
-	dataf => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\,
-	combout => \TheTxFsk|TheDDS|NxtAddress[0]~0_combout\);
-
--- Location: FF_X57_Y3_N23
-\TheTxFsk|TheDDS|Address[1]_NEW_REG18\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~13_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[1]_OTERM19\);
-
--- Location: LABCELL_X57_Y3_N21
-\TheTxFsk|TheDDS|NxtAddress[1]~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[1]~1_combout\ = ( \TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ & ( !\TheTxFsk|TheDDS|Address[1]_OTERM19\ ) ) # ( !\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ & ( \TheTxFsk|TheDDS|Address[1]_OTERM19\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000011111111000000001111111111111111000000001111111100000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datad => \TheTxFsk|TheDDS|ALT_INV_Address[1]_OTERM19\,
-	dataf => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\,
+	datae => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[9]~13_sumout\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\,
 	combout => \TheTxFsk|TheDDS|NxtAddress[1]~1_combout\);
 
--- Location: LABCELL_X57_Y3_N42
-\TheTxFsk|TheDDS|Address[2]_OTERM17~feeder\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Address[2]_OTERM17~feeder_combout\ = ( \TheTxFsk|TheDDS|Add1~17_sumout\ )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_Add1~17_sumout\,
-	combout => \TheTxFsk|TheDDS|Address[2]_OTERM17~feeder_combout\);
-
--- Location: FF_X57_Y3_N44
-\TheTxFsk|TheDDS|Address[2]_NEW_REG16\ : dffeas
+-- Location: FF_X63_Y2_N34
+\TheTxFsk|TheDDS|Address[1]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -11495,30 +11455,30 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Address[2]_OTERM17~feeder_combout\,
+	d => \TheTxFsk|TheDDS|NxtAddress[1]~1_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[2]_OTERM17\);
+	q => \TheTxFsk|TheDDS|Address\(1));
 
--- Location: LABCELL_X57_Y3_N36
+-- Location: LABCELL_X63_Y2_N24
 \TheTxFsk|TheDDS|NxtAddress[2]~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[2]~2_combout\ = !\TheTxFsk|TheDDS|Address[2]_OTERM17\ $ (!\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\)
+-- \TheTxFsk|TheDDS|NxtAddress[2]~2_combout\ = ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( !\TheTxFsk|TheDDS|NxtPhaseAddr[10]~17_sumout\ ) ) # ( !\TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( \TheTxFsk|TheDDS|NxtPhaseAddr[10]~17_sumout\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0011110000111100001111000011110000111100001111000011110000111100",
+	lut_mask => "0000111100001111000011110000111111110000111100001111000011110000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_Address[2]_OTERM17\,
-	datac => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\,
+	datac => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[10]~17_sumout\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\,
 	combout => \TheTxFsk|TheDDS|NxtAddress[2]~2_combout\);
 
--- Location: FF_X57_Y3_N35
-\TheTxFsk|TheDDS|Address[3]_NEW_REG14\ : dffeas
+-- Location: FF_X63_Y2_N25
+\TheTxFsk|TheDDS|Address[2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -11526,17 +11486,78 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~21_sumout\,
+	d => \TheTxFsk|TheDDS|NxtAddress[2]~2_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[3]_OTERM15\);
+	q => \TheTxFsk|TheDDS|Address\(2));
 
--- Location: LABCELL_X57_Y3_N33
+-- Location: LABCELL_X63_Y2_N45
 \TheTxFsk|TheDDS|NxtAddress[3]~3\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[3]~3_combout\ = ( \TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ & ( !\TheTxFsk|TheDDS|Address[3]_OTERM15\ ) ) # ( !\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ & ( \TheTxFsk|TheDDS|Address[3]_OTERM15\ ) )
+-- \TheTxFsk|TheDDS|NxtAddress[3]~3_combout\ = ( !\TheTxFsk|TheDDS|NxtPhaseAddr[11]~21_sumout\ & ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ ) ) # ( \TheTxFsk|TheDDS|NxtPhaseAddr[11]~21_sumout\ & ( !\TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111111111111111111110000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datae => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[11]~21_sumout\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\,
+	combout => \TheTxFsk|TheDDS|NxtAddress[3]~3_combout\);
+
+-- Location: FF_X63_Y2_N46
+\TheTxFsk|TheDDS|Address[3]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|NxtAddress[3]~3_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheTxFsk|TheDDS|Address\(3));
+
+-- Location: LABCELL_X63_Y2_N0
+\TheTxFsk|TheDDS|NxtAddress[4]~4\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|NxtAddress[4]~4_combout\ = ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( !\TheTxFsk|TheDDS|NxtPhaseAddr[12]~25_sumout\ ) ) # ( !\TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( \TheTxFsk|TheDDS|NxtPhaseAddr[12]~25_sumout\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000111100001111000011110000111111110000111100001111000011110000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[12]~25_sumout\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\,
+	combout => \TheTxFsk|TheDDS|NxtAddress[4]~4_combout\);
+
+-- Location: FF_X63_Y2_N1
+\TheTxFsk|TheDDS|Address[4]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|NxtAddress[4]~4_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheTxFsk|TheDDS|Address\(4));
+
+-- Location: LABCELL_X63_Y2_N9
+\TheTxFsk|TheDDS|NxtAddress[5]~5\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|NxtAddress[5]~5_combout\ = ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( !\TheTxFsk|TheDDS|NxtPhaseAddr[13]~29_sumout\ ) ) # ( !\TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( \TheTxFsk|TheDDS|NxtPhaseAddr[13]~29_sumout\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -11545,90 +11566,12 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datad => \TheTxFsk|TheDDS|ALT_INV_Address[3]_OTERM15\,
-	dataf => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\,
-	combout => \TheTxFsk|TheDDS|NxtAddress[3]~3_combout\);
-
--- Location: FF_X57_Y3_N14
-\TheTxFsk|TheDDS|Address[4]_NEW_REG12\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~25_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[4]_OTERM13\);
-
--- Location: LABCELL_X57_Y3_N18
-\TheTxFsk|TheDDS|NxtAddress[4]~4\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[4]~4_combout\ = !\TheTxFsk|TheDDS|Address[4]_OTERM13\ $ (!\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\)
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0011110000111100001111000011110000111100001111000011110000111100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_Address[4]_OTERM13\,
-	datac => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\,
-	combout => \TheTxFsk|TheDDS|NxtAddress[4]~4_combout\);
-
--- Location: LABCELL_X57_Y3_N45
-\TheTxFsk|TheDDS|Address[5]_OTERM11~feeder\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Address[5]_OTERM11~feeder_combout\ = ( \TheTxFsk|TheDDS|Add1~29_sumout\ )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataf => \TheTxFsk|TheDDS|ALT_INV_Add1~29_sumout\,
-	combout => \TheTxFsk|TheDDS|Address[5]_OTERM11~feeder_combout\);
-
--- Location: FF_X57_Y3_N47
-\TheTxFsk|TheDDS|Address[5]_NEW_REG10\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Address[5]_OTERM11~feeder_combout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[5]_OTERM11\);
-
--- Location: LABCELL_X57_Y3_N39
-\TheTxFsk|TheDDS|NxtAddress[5]~5\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[5]~5_combout\ = ( \TheTxFsk|TheDDS|Address[5]_OTERM11\ & ( !\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ ) ) # ( !\TheTxFsk|TheDDS|Address[5]_OTERM11\ & ( \TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0101010101010101010101010101010110101010101010101010101010101010",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\,
-	dataf => \TheTxFsk|TheDDS|ALT_INV_Address[5]_OTERM11\,
+	datad => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[13]~29_sumout\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\,
 	combout => \TheTxFsk|TheDDS|NxtAddress[5]~5_combout\);
 
--- Location: FF_X57_Y3_N8
-\TheTxFsk|TheDDS|Address[6]_NEW_REG8\ : dffeas
+-- Location: FF_X63_Y2_N10
+\TheTxFsk|TheDDS|Address[5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -11636,31 +11579,30 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~33_sumout\,
+	d => \TheTxFsk|TheDDS|NxtAddress[5]~5_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[6]_OTERM9\);
+	q => \TheTxFsk|TheDDS|Address\(5));
 
--- Location: LABCELL_X57_Y3_N30
+-- Location: LABCELL_X63_Y2_N36
 \TheTxFsk|TheDDS|NxtAddress[6]~6\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[6]~6_combout\ = !\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ $ (!\TheTxFsk|TheDDS|Address[6]_OTERM9\)
+-- \TheTxFsk|TheDDS|NxtAddress[6]~6_combout\ = ( !\TheTxFsk|TheDDS|NxtPhaseAddr[14]~33_sumout\ & ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ ) ) # ( \TheTxFsk|TheDDS|NxtPhaseAddr[14]~33_sumout\ & ( !\TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0110011001100110011001100110011001100110011001100110011001100110",
+	lut_mask => "0000000000000000111111111111111111111111111111110000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\,
-	datab => \TheTxFsk|TheDDS|ALT_INV_Address[6]_OTERM9\,
+	datae => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[14]~33_sumout\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\,
 	combout => \TheTxFsk|TheDDS|NxtAddress[6]~6_combout\);
 
--- Location: FF_X56_Y3_N49
-\TheTxFsk|TheDDS|Address[7]_NEW_REG6\ : dffeas
+-- Location: FF_X63_Y2_N37
+\TheTxFsk|TheDDS|Address[6]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
 	is_wysiwyg => "true",
@@ -11668,30 +11610,44 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~37_sumout\,
+	d => \TheTxFsk|TheDDS|NxtAddress[6]~6_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[7]_OTERM7\);
+	q => \TheTxFsk|TheDDS|Address\(6));
 
--- Location: LABCELL_X57_Y3_N51
+-- Location: LABCELL_X63_Y2_N21
 \TheTxFsk|TheDDS|NxtAddress[7]~7\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[7]~7_combout\ = ( \TheTxFsk|TheDDS|Address[7]_OTERM7\ & ( !\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ ) ) # ( !\TheTxFsk|TheDDS|Address[7]_OTERM7\ & ( \TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ ) )
+-- \TheTxFsk|TheDDS|NxtAddress[7]~7_combout\ = ( \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( !\TheTxFsk|TheDDS|NxtPhaseAddr[15]~37_sumout\ ) ) # ( !\TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\ & ( \TheTxFsk|TheDDS|NxtPhaseAddr[15]~37_sumout\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000011111111111111110000000000000000111111111111111100000000",
+	lut_mask => "0000000011111111000000001111111111111111000000001111111100000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datad => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\,
-	datae => \TheTxFsk|TheDDS|ALT_INV_Address[7]_OTERM7\,
+	datad => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[15]~37_sumout\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_NxtPhaseAddr[18]~5_sumout\,
 	combout => \TheTxFsk|TheDDS|NxtAddress[7]~7_combout\);
 
--- Location: FF_X56_Y3_N53
+-- Location: FF_X63_Y2_N22
+\TheTxFsk|TheDDS|Address[7]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|NxtAddress[7]~7_combout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheTxFsk|TheDDS|Address\(7));
+
+-- Location: FF_X63_Y2_N17
 \TheTxFsk|TheDDS|Address[8]_NEW_REG4\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11700,46 +11656,14 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~41_sumout\,
+	asdata => \TheTxFsk|TheDDS|NxtPhaseAddr[16]~41_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	sload => VCC,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|Address[8]_OTERM5\);
 
--- Location: LABCELL_X57_Y3_N9
-\TheTxFsk|TheDDS|NxtAddress[8]~8\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[8]~8_combout\ = ( \TheTxFsk|TheDDS|Address[8]_OTERM5\ & ( !\TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ ) ) # ( !\TheTxFsk|TheDDS|Address[8]_OTERM5\ & ( \TheTxFsk|TheDDS|Address[9]_OTERM1~DUPLICATE_q\ ) )
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000011111111000000001111111111111111000000001111111100000000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datad => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1~DUPLICATE_q\,
-	dataf => \TheTxFsk|TheDDS|ALT_INV_Address[8]_OTERM5\,
-	combout => \TheTxFsk|TheDDS|NxtAddress[8]~8_combout\);
-
--- Location: FF_X57_Y3_N50
-\TheTxFsk|TheDDS|Address[9]_NEW_REG2\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~45_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|Address[9]_OTERM3\);
-
--- Location: FF_X57_Y3_N25
+-- Location: FF_X63_Y2_N14
 \TheTxFsk|TheDDS|Address[9]_NEW_REG0\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -11748,30 +11672,62 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \TheTxFsk|TheDDS|Add1~5_sumout\,
+	asdata => \TheTxFsk|TheDDS|NxtPhaseAddr[18]~5_sumout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
 	sload => VCC,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheTxFsk|TheDDS|Address[9]_OTERM1\);
 
--- Location: LABCELL_X57_Y3_N27
-\TheTxFsk|TheDDS|NxtAddress[9]~9\ : cyclonev_lcell_comb
+-- Location: LABCELL_X63_Y2_N15
+\TheTxFsk|TheDDS|NxtAddress[8]~8\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheTxFsk|TheDDS|NxtAddress[9]~9_combout\ = !\TheTxFsk|TheDDS|Address[9]_OTERM3\ $ (!\TheTxFsk|TheDDS|Address[9]_OTERM1\)
+-- \TheTxFsk|TheDDS|NxtAddress[8]~8_combout\ = ( !\TheTxFsk|TheDDS|Address[8]_OTERM5\ & ( \TheTxFsk|TheDDS|Address[9]_OTERM1\ ) ) # ( \TheTxFsk|TheDDS|Address[8]_OTERM5\ & ( !\TheTxFsk|TheDDS|Address[9]_OTERM1\ ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0101101001011010010110100101101001011010010110100101101001011010",
+	lut_mask => "0000000000000000111111111111111111111111111111110000000000000000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM3\,
-	datac => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1\,
+	datae => \TheTxFsk|TheDDS|ALT_INV_Address[8]_OTERM5\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1\,
+	combout => \TheTxFsk|TheDDS|NxtAddress[8]~8_combout\);
+
+-- Location: FF_X63_Y2_N56
+\TheTxFsk|TheDDS|Address[9]_NEW_REG2\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \TheTxFsk|TheDDS|NxtPhaseAddr[17]~45_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheTxFsk|TheDDS|Address[9]_OTERM3\);
+
+-- Location: LABCELL_X63_Y2_N54
+\TheTxFsk|TheDDS|NxtAddress[9]~9\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|NxtAddress[9]~9_combout\ = ( !\TheTxFsk|TheDDS|Address[9]_OTERM3\ & ( \TheTxFsk|TheDDS|Address[9]_OTERM1\ ) ) # ( \TheTxFsk|TheDDS|Address[9]_OTERM3\ & ( !\TheTxFsk|TheDDS|Address[9]_OTERM1\ ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111111111111111111110000000000000000",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datae => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM3\,
+	dataf => \TheTxFsk|TheDDS|ALT_INV_Address[9]_OTERM1\,
 	combout => \TheTxFsk|TheDDS|NxtAddress[9]~9_combout\);
 
--- Location: M10K_X58_Y4_N0
+-- Location: M10K_X58_Y2_N0
 \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0\ : cyclonev_ram_block
 -- pragma translate_off
 GENERIC MAP (
@@ -11814,118 +11770,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	portadataout => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0_PORTADATAOUT_bus\);
 
--- Location: LABCELL_X55_Y3_N21
-\TheTxFsk|TheDDS|Add0~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add0~1_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(19) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add0~6\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	cin => \TheTxFsk|TheDDS|Add0~6\,
-	sumout => \TheTxFsk|TheDDS|Add0~1_sumout\);
-
--- Location: LABCELL_X56_Y3_N57
-\TheTxFsk|TheDDS|Add1~1\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add1~1_sumout\ = SUM(( \TheTxFsk|TheDDS|Add0~1_sumout\ ) + ( GND ) + ( \TheTxFsk|TheDDS|Add1~6\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000000011111111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datad => \TheTxFsk|TheDDS|ALT_INV_Add0~1_sumout\,
-	cin => \TheTxFsk|TheDDS|Add1~6\,
-	sumout => \TheTxFsk|TheDDS|Add1~1_sumout\);
-
--- Location: FF_X56_Y3_N58
-\TheTxFsk|TheDDS|PhaseAddr[19]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add1~1_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	ena => \PhaseStrobe~combout\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheTxFsk|TheDDS|PhaseAddr\(19));
-
--- Location: LABCELL_X57_Y4_N0
-\TheTxFsk|TheDDS|Add2~29\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~29_sumout\ = SUM(( !\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a5\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(19)) ) + ( \TheTxFsk|TheDDS|PhaseAddr\(19) ) + ( !VCC ))
--- \TheTxFsk|TheDDS|Add2~30\ = CARRY(( !\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a5\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(19)) ) + ( \TheTxFsk|TheDDS|PhaseAddr\(19) ) + ( !VCC ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111100001111000000000000000000000011110000111100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a5\,
-	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	cin => GND,
-	sumout => \TheTxFsk|TheDDS|Add2~29_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~30\);
-
--- Location: IOIBUF_X12_Y0_N18
-\iSwitch[0]~input\ : cyclonev_io_ibuf
--- pragma translate_off
-GENERIC MAP (
-	bus_hold => "false",
-	simulate_z_as => "z")
--- pragma translate_on
-PORT MAP (
-	i => ww_iSwitch(0),
-	o => \iSwitch[0]~input_o\);
-
--- Location: FF_X57_Y4_N1
-\DwetL[-14]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add2~29_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sclr => \ALT_INV_iSwitch[0]~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \DwetL[-14]~q\);
-
--- Location: FF_X56_Y4_N53
-\TheParToI2s|LastValidDL[1]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \DwetL[-14]~q\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ValWetR~q\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|LastValidDL\(1));
-
--- Location: M10K_X58_Y3_N0
+-- Location: M10K_X58_Y1_N0
 \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1\ : cyclonev_ram_block
 -- pragma translate_off
 GENERIC MAP (
@@ -11968,144 +11813,30 @@ PORT MAP (
 	devpor => ww_devpor,
 	portadataout => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1_PORTADATAOUT_bus\);
 
--- Location: LABCELL_X57_Y4_N3
+-- Location: LABCELL_X57_Y2_N0
+\TheTxFsk|TheDDS|Add2~29\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~29_sumout\ = SUM(( !\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a5\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(19)) ) + ( \TheTxFsk|TheDDS|PhaseAddr\(19) ) + ( !VCC ))
+-- \TheTxFsk|TheDDS|Add2~30\ = CARRY(( !\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a5\ $ (!\TheTxFsk|TheDDS|PhaseAddr\(19)) ) + ( \TheTxFsk|TheDDS|PhaseAddr\(19) ) + ( !VCC ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111100001111000000000000000000000011110000111100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datab => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a5\,
+	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	cin => GND,
+	sumout => \TheTxFsk|TheDDS|Add2~29_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~30\);
+
+-- Location: LABCELL_X57_Y2_N3
 \TheTxFsk|TheDDS|Add2~1\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheTxFsk|TheDDS|Add2~1_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a4\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~30\ ))
 -- \TheTxFsk|TheDDS|Add2~2\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a4\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~30\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111111110000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a4\,
-	cin => \TheTxFsk|TheDDS|Add2~30\,
-	sumout => \TheTxFsk|TheDDS|Add2~1_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~2\);
-
--- Location: LABCELL_X57_Y4_N6
-\TheTxFsk|TheDDS|Add2~37\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~37_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a3\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~2\ ))
--- \TheTxFsk|TheDDS|Add2~38\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a3\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~2\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001111001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a3\,
-	cin => \TheTxFsk|TheDDS|Add2~2\,
-	sumout => \TheTxFsk|TheDDS|Add2~37_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~38\);
-
--- Location: LABCELL_X57_Y4_N9
-\TheTxFsk|TheDDS|Add2~13\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~13_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a2\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~38\ ))
--- \TheTxFsk|TheDDS|Add2~14\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a2\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~38\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011110000111100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datac => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a2\,
-	cin => \TheTxFsk|TheDDS|Add2~38\,
-	sumout => \TheTxFsk|TheDDS|Add2~13_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~14\);
-
--- Location: LABCELL_X57_Y4_N12
-\TheTxFsk|TheDDS|Add2~45\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~45_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1~portadataout\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~14\ ))
--- \TheTxFsk|TheDDS|Add2~46\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1~portadataout\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~14\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011110000111100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datac => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a1~portadataout\,
-	cin => \TheTxFsk|TheDDS|Add2~14\,
-	sumout => \TheTxFsk|TheDDS|Add2~45_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~46\);
-
--- Location: LABCELL_X57_Y4_N15
-\TheTxFsk|TheDDS|Add2~21\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~21_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0~portadataout\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~46\ ))
--- \TheTxFsk|TheDDS|Add2~22\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0~portadataout\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~46\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001111001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a0~portadataout\,
-	cin => \TheTxFsk|TheDDS|Add2~46\,
-	sumout => \TheTxFsk|TheDDS|Add2~21_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~22\);
-
--- Location: LABCELL_X57_Y4_N18
-\TheTxFsk|TheDDS|Add2~53\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~53_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a6\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~22\ ))
--- \TheTxFsk|TheDDS|Add2~54\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a6\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~22\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001111001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a6\,
-	cin => \TheTxFsk|TheDDS|Add2~22\,
-	sumout => \TheTxFsk|TheDDS|Add2~53_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~54\);
-
--- Location: LABCELL_X57_Y4_N21
-\TheTxFsk|TheDDS|Add2~5\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~5_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a7\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~54\ ))
--- \TheTxFsk|TheDDS|Add2~6\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a7\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~54\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001111001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a7\,
-	cin => \TheTxFsk|TheDDS|Add2~54\,
-	sumout => \TheTxFsk|TheDDS|Add2~5_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~6\);
-
--- Location: LABCELL_X57_Y4_N24
-\TheTxFsk|TheDDS|Add2~33\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~33_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a8\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~6\ ))
--- \TheTxFsk|TheDDS|Add2~34\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a8\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~6\ ))
 
 -- pragma translate_off
 GENERIC MAP (
@@ -12115,12 +11846,156 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a8\,
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a4\,
+	cin => \TheTxFsk|TheDDS|Add2~30\,
+	sumout => \TheTxFsk|TheDDS|Add2~1_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~2\);
+
+-- Location: LABCELL_X57_Y2_N6
+\TheTxFsk|TheDDS|Add2~37\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~37_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a3\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~2\ ))
+-- \TheTxFsk|TheDDS|Add2~38\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a3\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~2\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010110101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a3\,
+	cin => \TheTxFsk|TheDDS|Add2~2\,
+	sumout => \TheTxFsk|TheDDS|Add2~37_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~38\);
+
+-- Location: LABCELL_X57_Y2_N9
+\TheTxFsk|TheDDS|Add2~13\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~13_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a2\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~38\ ))
+-- \TheTxFsk|TheDDS|Add2~14\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a2\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~38\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101101001011010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datac => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a2\,
+	cin => \TheTxFsk|TheDDS|Add2~38\,
+	sumout => \TheTxFsk|TheDDS|Add2~13_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~14\);
+
+-- Location: LABCELL_X57_Y2_N12
+\TheTxFsk|TheDDS|Add2~45\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~45_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1~portadataout\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~14\ ))
+-- \TheTxFsk|TheDDS|Add2~46\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a1~portadataout\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~14\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010110101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a1~portadataout\,
+	cin => \TheTxFsk|TheDDS|Add2~14\,
+	sumout => \TheTxFsk|TheDDS|Add2~45_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~46\);
+
+-- Location: LABCELL_X57_Y2_N15
+\TheTxFsk|TheDDS|Add2~21\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~21_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0~portadataout\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~46\ ))
+-- \TheTxFsk|TheDDS|Add2~22\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a0~portadataout\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~46\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010110101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a0~portadataout\,
+	cin => \TheTxFsk|TheDDS|Add2~46\,
+	sumout => \TheTxFsk|TheDDS|Add2~21_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~22\);
+
+-- Location: LABCELL_X57_Y2_N18
+\TheTxFsk|TheDDS|Add2~53\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~53_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a6\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~22\ ))
+-- \TheTxFsk|TheDDS|Add2~54\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a6\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~22\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010110101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a6\,
+	cin => \TheTxFsk|TheDDS|Add2~22\,
+	sumout => \TheTxFsk|TheDDS|Add2~53_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~54\);
+
+-- Location: LABCELL_X57_Y2_N21
+\TheTxFsk|TheDDS|Add2~5\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~5_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a7\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~54\ ))
+-- \TheTxFsk|TheDDS|Add2~6\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a7\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~54\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010110101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a7\,
+	cin => \TheTxFsk|TheDDS|Add2~54\,
+	sumout => \TheTxFsk|TheDDS|Add2~5_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~6\);
+
+-- Location: LABCELL_X57_Y2_N24
+\TheTxFsk|TheDDS|Add2~33\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~33_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a8\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~6\ ))
+-- \TheTxFsk|TheDDS|Add2~34\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a8\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~6\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000110011001100110",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datab => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a8\,
 	cin => \TheTxFsk|TheDDS|Add2~6\,
 	sumout => \TheTxFsk|TheDDS|Add2~33_sumout\,
 	cout => \TheTxFsk|TheDDS|Add2~34\);
 
--- Location: FF_X57_Y4_N25
+-- Location: IOIBUF_X12_Y0_N18
+\iSwitch[0]~input\ : cyclonev_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_iSwitch(0),
+	o => \iSwitch[0]~input_o\);
+
+-- Location: FF_X57_Y2_N25
 \DwetL[-6]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12136,7 +12011,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \DwetL[-6]~q\);
 
--- Location: FF_X56_Y4_N22
+-- Location: FF_X56_Y2_N50
 \TheParToI2s|LastValidDL[9]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12153,78 +12028,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|LastValidDL\(9));
 
--- Location: LABCELL_X57_Y4_N27
-\TheTxFsk|TheDDS|Add2~9\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~9_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a9\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~34\ ))
--- \TheTxFsk|TheDDS|Add2~10\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a9\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~34\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111111110000",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a9\,
-	cin => \TheTxFsk|TheDDS|Add2~34\,
-	sumout => \TheTxFsk|TheDDS|Add2~9_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~10\);
-
--- Location: LABCELL_X57_Y4_N30
-\TheTxFsk|TheDDS|Add2~41\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~41_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a10\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~10\ ))
--- \TheTxFsk|TheDDS|Add2~42\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a10\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~10\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011110000111100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datac => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a10\,
-	cin => \TheTxFsk|TheDDS|Add2~10\,
-	sumout => \TheTxFsk|TheDDS|Add2~41_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~42\);
-
--- Location: FF_X57_Y4_N32
-\DwetL[-4]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add2~41_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sclr => \ALT_INV_iSwitch[0]~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \DwetL[-4]~q\);
-
--- Location: FF_X56_Y4_N20
-\TheParToI2s|LastValidDL[11]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \DwetL[-4]~q\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ValWetR~q\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|LastValidDL\(11));
-
--- Location: FF_X57_Y4_N7
+-- Location: FF_X57_Y2_N8
 \DwetL[-12]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12240,7 +12044,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \DwetL[-12]~q\);
 
--- Location: FF_X56_Y4_N14
+-- Location: FF_X56_Y2_N59
 \TheParToI2s|LastValidDL[3]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12257,203 +12061,133 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|LastValidDL\(3));
 
--- Location: LABCELL_X56_Y4_N18
+-- Location: FF_X57_Y2_N2
+\DwetL[-14]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|Add2~29_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sclr => \ALT_INV_iSwitch[0]~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \DwetL[-14]~q\);
+
+-- Location: FF_X56_Y2_N52
+\TheParToI2s|LastValidDL[1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \DwetL[-14]~q\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ValWetR~q\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|LastValidDL\(1));
+
+-- Location: LABCELL_X57_Y2_N27
+\TheTxFsk|TheDDS|Add2~9\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~9_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a9\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~34\ ))
+-- \TheTxFsk|TheDDS|Add2~10\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a9\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~34\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010110101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a9\,
+	cin => \TheTxFsk|TheDDS|Add2~34\,
+	sumout => \TheTxFsk|TheDDS|Add2~9_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~10\);
+
+-- Location: LABCELL_X57_Y2_N30
+\TheTxFsk|TheDDS|Add2~41\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~41_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a10\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~10\ ))
+-- \TheTxFsk|TheDDS|Add2~42\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a10\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~10\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010110101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a10\,
+	cin => \TheTxFsk|TheDDS|Add2~10\,
+	sumout => \TheTxFsk|TheDDS|Add2~41_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~42\);
+
+-- Location: FF_X57_Y2_N31
+\DwetL[-4]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|Add2~41_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sclr => \ALT_INV_iSwitch[0]~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \DwetL[-4]~q\);
+
+-- Location: FF_X56_Y2_N56
+\TheParToI2s|LastValidDL[11]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \DwetL[-4]~q\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ValWetR~q\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|LastValidDL\(11));
+
+-- Location: LABCELL_X56_Y2_N54
 \TheParToI2s|Mux1~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Mux1~2_combout\ = ( \TheParToI2s|LastValidDL\(11) & ( \TheParToI2s|LastValidDL\(3) & ( ((!\TheParToI2s|BclkCtr\(3) & (\TheParToI2s|LastValidDL\(1))) # (\TheParToI2s|BclkCtr\(3) & ((\TheParToI2s|LastValidDL\(9))))) # 
--- (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\) ) ) ) # ( !\TheParToI2s|LastValidDL\(11) & ( \TheParToI2s|LastValidDL\(3) & ( (!\TheParToI2s|BclkCtr\(3) & (((\TheParToI2s|LastValidDL\(1))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\))) # (\TheParToI2s|BclkCtr\(3) & 
--- (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((\TheParToI2s|LastValidDL\(9))))) ) ) ) # ( \TheParToI2s|LastValidDL\(11) & ( !\TheParToI2s|LastValidDL\(3) & ( (!\TheParToI2s|BclkCtr\(3) & (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & 
--- (\TheParToI2s|LastValidDL\(1)))) # (\TheParToI2s|BclkCtr\(3) & (((\TheParToI2s|LastValidDL\(9))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\))) ) ) ) # ( !\TheParToI2s|LastValidDL\(11) & ( !\TheParToI2s|LastValidDL\(3) & ( 
--- (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((!\TheParToI2s|BclkCtr\(3) & (\TheParToI2s|LastValidDL\(1))) # (\TheParToI2s|BclkCtr\(3) & ((\TheParToI2s|LastValidDL\(9)))))) ) ) )
+-- \TheParToI2s|Mux1~2_combout\ = ( \TheParToI2s|LastValidDL\(11) & ( \TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ( (\TheParToI2s|BclkCtr\(3)) # (\TheParToI2s|LastValidDL\(3)) ) ) ) # ( !\TheParToI2s|LastValidDL\(11) & ( \TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ( 
+-- (\TheParToI2s|LastValidDL\(3) & !\TheParToI2s|BclkCtr\(3)) ) ) ) # ( \TheParToI2s|LastValidDL\(11) & ( !\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ( (!\TheParToI2s|BclkCtr\(3) & ((\TheParToI2s|LastValidDL\(1)))) # (\TheParToI2s|BclkCtr\(3) & 
+-- (\TheParToI2s|LastValidDL\(9))) ) ) ) # ( !\TheParToI2s|LastValidDL\(11) & ( !\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ( (!\TheParToI2s|BclkCtr\(3) & ((\TheParToI2s|LastValidDL\(1)))) # (\TheParToI2s|BclkCtr\(3) & (\TheParToI2s|LastValidDL\(9))) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000100001001100000110010101110100101010011011100011101101111111",
+	lut_mask => "0000010111110101000001011111010100110000001100000011111100111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkCtr\(3),
-	datab => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
-	datac => \TheParToI2s|ALT_INV_LastValidDL\(1),
-	datad => \TheParToI2s|ALT_INV_LastValidDL\(9),
+	dataa => \TheParToI2s|ALT_INV_LastValidDL\(9),
+	datab => \TheParToI2s|ALT_INV_LastValidDL\(3),
+	datac => \TheParToI2s|ALT_INV_BclkCtr\(3),
+	datad => \TheParToI2s|ALT_INV_LastValidDL\(1),
 	datae => \TheParToI2s|ALT_INV_LastValidDL\(11),
-	dataf => \TheParToI2s|ALT_INV_LastValidDL\(3),
+	dataf => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
 	combout => \TheParToI2s|Mux1~2_combout\);
 
--- Location: FF_X57_Y4_N19
-\DwetL[-8]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add2~53_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sclr => \ALT_INV_iSwitch[0]~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \DwetL[-8]~q\);
-
--- Location: FF_X56_Y4_N43
-\TheParToI2s|LastValidDL[7]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \DwetL[-8]~q\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ValWetR~q\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|LastValidDL\(7));
-
--- Location: LABCELL_X57_Y4_N33
-\TheTxFsk|TheDDS|Add2~17\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~17_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a11\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~42\ ))
--- \TheTxFsk|TheDDS|Add2~18\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a11\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~42\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001111001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a11\,
-	cin => \TheTxFsk|TheDDS|Add2~42\,
-	sumout => \TheTxFsk|TheDDS|Add2~17_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~18\);
-
--- Location: LABCELL_X57_Y4_N36
-\TheTxFsk|TheDDS|Add2~49\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~49_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a12\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~18\ ))
--- \TheTxFsk|TheDDS|Add2~50\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a12\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~18\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011110000111100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datac => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a12\,
-	cin => \TheTxFsk|TheDDS|Add2~18\,
-	sumout => \TheTxFsk|TheDDS|Add2~49_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~50\);
-
--- Location: FF_X57_Y4_N38
-\DwetL[-2]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add2~49_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sclr => \ALT_INV_iSwitch[0]~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \DwetL[-2]~q\);
-
--- Location: FF_X56_Y4_N17
-\TheParToI2s|LastValidDL[13]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \DwetL[-2]~q\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ValWetR~q\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|LastValidDL\(13));
-
--- Location: LABCELL_X57_Y4_N39
-\TheTxFsk|TheDDS|Add2~25\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~25_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a13\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~50\ ))
--- \TheTxFsk|TheDDS|Add2~26\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a13\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~50\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000011001111001100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datab => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a13\,
-	cin => \TheTxFsk|TheDDS|Add2~50\,
-	sumout => \TheTxFsk|TheDDS|Add2~25_sumout\,
-	cout => \TheTxFsk|TheDDS|Add2~26\);
-
--- Location: LABCELL_X57_Y4_N42
-\TheTxFsk|TheDDS|Add2~57\ : cyclonev_lcell_comb
--- Equation(s):
--- \TheTxFsk|TheDDS|Add2~57_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(19) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~26\ ))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
-	cin => \TheTxFsk|TheDDS|Add2~26\,
-	sumout => \TheTxFsk|TheDDS|Add2~57_sumout\);
-
--- Location: FF_X57_Y4_N44
-\DwetL[0]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add2~57_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sclr => \ALT_INV_iSwitch[0]~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => DwetL(0));
-
--- Location: FF_X56_Y4_N8
-\TheParToI2s|LastValidDL[15]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => DwetL(0),
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ValWetR~q\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|LastValidDL\(15));
-
--- Location: FF_X57_Y4_N13
+-- Location: FF_X57_Y2_N13
 \DwetL[-10]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12469,7 +12203,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \DwetL[-10]~q\);
 
--- Location: FF_X56_Y4_N50
+-- Location: FF_X56_Y2_N29
 \TheParToI2s|LastValidDL[5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12486,97 +12220,202 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|LastValidDL\(5));
 
--- Location: LABCELL_X56_Y4_N6
-\TheParToI2s|Mux1~3\ : cyclonev_lcell_comb
+-- Location: LABCELL_X57_Y2_N33
+\TheTxFsk|TheDDS|Add2~17\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Mux1~3_combout\ = ( \TheParToI2s|LastValidDL\(15) & ( \TheParToI2s|LastValidDL\(5) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (((!\TheParToI2s|BclkCtr\(3)) # (\TheParToI2s|LastValidDL\(13))))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & 
--- (((\TheParToI2s|BclkCtr\(3))) # (\TheParToI2s|LastValidDL\(7)))) ) ) ) # ( !\TheParToI2s|LastValidDL\(15) & ( \TheParToI2s|LastValidDL\(5) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (((!\TheParToI2s|BclkCtr\(3)) # (\TheParToI2s|LastValidDL\(13))))) # 
--- (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(7) & (!\TheParToI2s|BclkCtr\(3)))) ) ) ) # ( \TheParToI2s|LastValidDL\(15) & ( !\TheParToI2s|LastValidDL\(5) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (((\TheParToI2s|BclkCtr\(3) & 
--- \TheParToI2s|LastValidDL\(13))))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (((\TheParToI2s|BclkCtr\(3))) # (\TheParToI2s|LastValidDL\(7)))) ) ) ) # ( !\TheParToI2s|LastValidDL\(15) & ( !\TheParToI2s|LastValidDL\(5) & ( 
--- (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (((\TheParToI2s|BclkCtr\(3) & \TheParToI2s|LastValidDL\(13))))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(7) & (!\TheParToI2s|BclkCtr\(3)))) ) ) )
+-- \TheTxFsk|TheDDS|Add2~17_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a11\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~42\ ))
+-- \TheTxFsk|TheDDS|Add2~18\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a11\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~42\ ))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0001000000011100000100110001111111010000110111001101001111011111",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010110101010",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_LastValidDL\(7),
-	datab => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
-	datac => \TheParToI2s|ALT_INV_BclkCtr\(3),
-	datad => \TheParToI2s|ALT_INV_LastValidDL\(13),
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a11\,
+	cin => \TheTxFsk|TheDDS|Add2~42\,
+	sumout => \TheTxFsk|TheDDS|Add2~17_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~18\);
+
+-- Location: LABCELL_X57_Y2_N36
+\TheTxFsk|TheDDS|Add2~49\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~49_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a12\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~18\ ))
+-- \TheTxFsk|TheDDS|Add2~50\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a12\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~18\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000110011001100110",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datab => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a12\,
+	cin => \TheTxFsk|TheDDS|Add2~18\,
+	sumout => \TheTxFsk|TheDDS|Add2~49_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~50\);
+
+-- Location: FF_X57_Y2_N38
+\DwetL[-2]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|Add2~49_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sclr => \ALT_INV_iSwitch[0]~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \DwetL[-2]~q\);
+
+-- Location: FF_X56_Y2_N47
+\TheParToI2s|LastValidDL[13]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \DwetL[-2]~q\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ValWetR~q\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|LastValidDL\(13));
+
+-- Location: FF_X57_Y2_N19
+\DwetL[-8]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|Add2~53_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sclr => \ALT_INV_iSwitch[0]~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \DwetL[-8]~q\);
+
+-- Location: FF_X56_Y2_N5
+\TheParToI2s|LastValidDL[7]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \DwetL[-8]~q\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ValWetR~q\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|LastValidDL\(7));
+
+-- Location: LABCELL_X57_Y2_N39
+\TheTxFsk|TheDDS|Add2~25\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~25_sumout\ = SUM(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a13\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~50\ ))
+-- \TheTxFsk|TheDDS|Add2~26\ = CARRY(( !\TheTxFsk|TheDDS|PhaseAddr\(19) $ (!\TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ram_block1a13\) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~50\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000101010110101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	datad => \TheTxFsk|TheDDS|Mux8_rtl_0|auto_generated|ALT_INV_ram_block1a13\,
+	cin => \TheTxFsk|TheDDS|Add2~50\,
+	sumout => \TheTxFsk|TheDDS|Add2~25_sumout\,
+	cout => \TheTxFsk|TheDDS|Add2~26\);
+
+-- Location: LABCELL_X57_Y2_N42
+\TheTxFsk|TheDDS|Add2~57\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheTxFsk|TheDDS|Add2~57_sumout\ = SUM(( \TheTxFsk|TheDDS|PhaseAddr\(19) ) + ( GND ) + ( \TheTxFsk|TheDDS|Add2~26\ ))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000111111111111111100000000000000000000111100001111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	datac => \TheTxFsk|TheDDS|ALT_INV_PhaseAddr\(19),
+	cin => \TheTxFsk|TheDDS|Add2~26\,
+	sumout => \TheTxFsk|TheDDS|Add2~57_sumout\);
+
+-- Location: FF_X57_Y2_N43
+\DwetL[0]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|Add2~57_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sclr => \ALT_INV_iSwitch[0]~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => DwetL(0));
+
+-- Location: FF_X56_Y2_N2
+\TheParToI2s|LastValidDL[15]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => DwetL(0),
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ValWetR~q\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|LastValidDL\(15));
+
+-- Location: LABCELL_X56_Y2_N0
+\TheParToI2s|Mux1~3\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|Mux1~3_combout\ = ( \TheParToI2s|LastValidDL\(15) & ( \TheParToI2s|BclkCtr\(3) & ( (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\) # (\TheParToI2s|LastValidDL\(13)) ) ) ) # ( !\TheParToI2s|LastValidDL\(15) & ( \TheParToI2s|BclkCtr\(3) & ( 
+-- (\TheParToI2s|LastValidDL\(13) & !\TheParToI2s|BclkCtr[1]~DUPLICATE_q\) ) ) ) # ( \TheParToI2s|LastValidDL\(15) & ( !\TheParToI2s|BclkCtr\(3) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(5))) # 
+-- (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((\TheParToI2s|LastValidDL\(7)))) ) ) ) # ( !\TheParToI2s|LastValidDL\(15) & ( !\TheParToI2s|BclkCtr\(3) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(5))) # 
+-- (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((\TheParToI2s|LastValidDL\(7)))) ) ) )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010100001111010101010000111100110011000000000011001111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \TheParToI2s|ALT_INV_LastValidDL\(5),
+	datab => \TheParToI2s|ALT_INV_LastValidDL\(13),
+	datac => \TheParToI2s|ALT_INV_LastValidDL\(7),
+	datad => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
 	datae => \TheParToI2s|ALT_INV_LastValidDL\(15),
-	dataf => \TheParToI2s|ALT_INV_LastValidDL\(5),
+	dataf => \TheParToI2s|ALT_INV_BclkCtr\(3),
 	combout => \TheParToI2s|Mux1~3_combout\);
 
--- Location: FF_X57_Y4_N41
-\DwetL[-1]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add2~25_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sclr => \ALT_INV_iSwitch[0]~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \DwetL[-1]~q\);
-
--- Location: FF_X56_Y4_N38
-\TheParToI2s|LastValidDL[14]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \DwetL[-1]~q\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ValWetR~q\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|LastValidDL\(14));
-
--- Location: FF_X57_Y4_N35
-\DwetL[-3]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	d => \TheTxFsk|TheDDS|Add2~17_sumout\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sclr => \ALT_INV_iSwitch[0]~input_o\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \DwetL[-3]~q\);
-
--- Location: FF_X56_Y4_N41
-\TheParToI2s|LastValidDL[12]\ : dffeas
--- pragma translate_off
-GENERIC MAP (
-	is_wysiwyg => "true",
-	power_up => "low")
--- pragma translate_on
-PORT MAP (
-	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \DwetL[-3]~q\,
-	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
-	ena => \ValWetR~q\,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor,
-	q => \TheParToI2s|LastValidDL\(12));
-
--- Location: FF_X57_Y4_N17
+-- Location: FF_X57_Y2_N17
 \DwetL[-9]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12592,7 +12431,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \DwetL[-9]~q\);
 
--- Location: FF_X56_Y4_N47
+-- Location: FF_X56_Y2_N35
 \TheParToI2s|LastValidDL[6]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12609,7 +12448,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|LastValidDL\(6));
 
--- Location: FF_X57_Y4_N10
+-- Location: FF_X57_Y2_N11
 \DwetL[-11]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12625,7 +12464,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \DwetL[-11]~q\);
 
--- Location: FF_X56_Y4_N11
+-- Location: FF_X56_Y2_N17
 \TheParToI2s|LastValidDL[4]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12642,31 +12481,96 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|LastValidDL\(4));
 
--- Location: LABCELL_X56_Y4_N51
+-- Location: FF_X57_Y2_N35
+\DwetL[-3]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|Add2~17_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sclr => \ALT_INV_iSwitch[0]~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \DwetL[-3]~q\);
+
+-- Location: FF_X56_Y2_N31
+\TheParToI2s|LastValidDL[12]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \DwetL[-3]~q\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ValWetR~q\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|LastValidDL\(12));
+
+-- Location: FF_X57_Y2_N41
+\DwetL[-1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	d => \TheTxFsk|TheDDS|Add2~25_sumout\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sclr => \ALT_INV_iSwitch[0]~input_o\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \DwetL[-1]~q\);
+
+-- Location: FF_X56_Y2_N14
+\TheParToI2s|LastValidDL[14]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
+	asdata => \DwetL[-1]~q\,
+	clrn => \inButton[1]~inputCLKENA0_outclk\,
+	sload => VCC,
+	ena => \ValWetR~q\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \TheParToI2s|LastValidDL\(14));
+
+-- Location: LABCELL_X56_Y2_N12
 \TheParToI2s|Mux1~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Mux1~1_combout\ = ( \TheParToI2s|LastValidDL\(6) & ( \TheParToI2s|LastValidDL\(4) & ( (!\TheParToI2s|BclkCtr\(3)) # ((!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((\TheParToI2s|LastValidDL\(12)))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & 
--- (\TheParToI2s|LastValidDL\(14)))) ) ) ) # ( !\TheParToI2s|LastValidDL\(6) & ( \TheParToI2s|LastValidDL\(4) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (((!\TheParToI2s|BclkCtr\(3)) # (\TheParToI2s|LastValidDL\(12))))) # 
--- (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(14) & ((\TheParToI2s|BclkCtr\(3))))) ) ) ) # ( \TheParToI2s|LastValidDL\(6) & ( !\TheParToI2s|LastValidDL\(4) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (((\TheParToI2s|LastValidDL\(12) 
--- & \TheParToI2s|BclkCtr\(3))))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (((!\TheParToI2s|BclkCtr\(3))) # (\TheParToI2s|LastValidDL\(14)))) ) ) ) # ( !\TheParToI2s|LastValidDL\(6) & ( !\TheParToI2s|LastValidDL\(4) & ( (\TheParToI2s|BclkCtr\(3) & 
--- ((!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((\TheParToI2s|LastValidDL\(12)))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(14))))) ) ) )
+-- \TheParToI2s|Mux1~1_combout\ = ( \TheParToI2s|LastValidDL\(14) & ( \TheParToI2s|BclkCtr\(3) & ( (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\) # (\TheParToI2s|LastValidDL\(12)) ) ) ) # ( !\TheParToI2s|LastValidDL\(14) & ( \TheParToI2s|BclkCtr\(3) & ( 
+-- (\TheParToI2s|LastValidDL\(12) & !\TheParToI2s|BclkCtr[1]~DUPLICATE_q\) ) ) ) # ( \TheParToI2s|LastValidDL\(14) & ( !\TheParToI2s|BclkCtr\(3) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((\TheParToI2s|LastValidDL\(4)))) # 
+-- (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(6))) ) ) ) # ( !\TheParToI2s|LastValidDL\(14) & ( !\TheParToI2s|BclkCtr\(3) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((\TheParToI2s|LastValidDL\(4)))) # 
+-- (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(6))) ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000000110101000011110011010111110000001101011111111100110101",
+	lut_mask => "0011001101010101001100110101010100001111000000000000111111111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_LastValidDL\(14),
-	datab => \TheParToI2s|ALT_INV_LastValidDL\(12),
-	datac => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
-	datad => \TheParToI2s|ALT_INV_BclkCtr\(3),
-	datae => \TheParToI2s|ALT_INV_LastValidDL\(6),
-	dataf => \TheParToI2s|ALT_INV_LastValidDL\(4),
+	dataa => \TheParToI2s|ALT_INV_LastValidDL\(6),
+	datab => \TheParToI2s|ALT_INV_LastValidDL\(4),
+	datac => \TheParToI2s|ALT_INV_LastValidDL\(12),
+	datad => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
+	datae => \TheParToI2s|ALT_INV_LastValidDL\(14),
+	dataf => \TheParToI2s|ALT_INV_BclkCtr\(3),
 	combout => \TheParToI2s|Mux1~1_combout\);
 
--- Location: FF_X57_Y4_N22
+-- Location: FF_X57_Y2_N23
 \DwetL[-7]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12682,7 +12586,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \DwetL[-7]~q\);
 
--- Location: FF_X56_Y4_N59
+-- Location: FF_X56_Y2_N10
 \TheParToI2s|LastValidDL[8]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12699,7 +12603,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|LastValidDL\(8));
 
--- Location: FF_X57_Y4_N28
+-- Location: FF_X57_Y2_N29
 \DwetL[-5]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12715,7 +12619,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \DwetL[-5]~q\);
 
--- Location: FF_X56_Y4_N5
+-- Location: FF_X56_Y2_N8
 \TheParToI2s|LastValidDL[10]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12732,7 +12636,7 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \TheParToI2s|LastValidDL\(10));
 
--- Location: FF_X57_Y4_N5
+-- Location: FF_X57_Y2_N4
 \DwetL[-13]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12748,7 +12652,22 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \DwetL[-13]~q\);
 
--- Location: FF_X56_Y4_N26
+-- Location: LABCELL_X56_Y2_N9
+\TheParToI2s|LastValidDL[2]~feeder\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \TheParToI2s|LastValidDL[2]~feeder_combout\ = ( \DwetL[-13]~q\ )
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000000000000000000000000000000011111111111111111111111111111111",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataf => \ALT_INV_DwetL[-13]~q\,
+	combout => \TheParToI2s|LastValidDL[2]~feeder_combout\);
+
+-- Location: FF_X56_Y2_N11
 \TheParToI2s|LastValidDL[2]\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
@@ -12757,40 +12676,39 @@ GENERIC MAP (
 -- pragma translate_on
 PORT MAP (
 	clk => \PLL_50MHz_48MHz|GeneratePLLForSyn:AlteraPLL50to48_rtl|alterapll50to48_inst|altera_pll_i|outclk_wire[0]~CLKENA0_outclk\,
-	asdata => \DwetL[-13]~q\,
+	d => \TheParToI2s|LastValidDL[2]~feeder_combout\,
 	clrn => \inButton[1]~inputCLKENA0_outclk\,
-	sload => VCC,
 	ena => \ValWetR~q\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	q => \TheParToI2s|LastValidDL\(2));
 
--- Location: LABCELL_X56_Y4_N3
+-- Location: LABCELL_X56_Y2_N6
 \TheParToI2s|Mux1~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Mux1~0_combout\ = ( \TheParToI2s|LastValidDL\(2) & ( (!\TheParToI2s|BclkCtr\(3) & (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\)) # (\TheParToI2s|BclkCtr\(3) & ((!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(8))) # 
--- (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((\TheParToI2s|LastValidDL\(10)))))) ) ) # ( !\TheParToI2s|LastValidDL\(2) & ( (\TheParToI2s|BclkCtr\(3) & ((!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(8))) # 
--- (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & ((\TheParToI2s|LastValidDL\(10)))))) ) )
+-- \TheParToI2s|Mux1~0_combout\ = ( \TheParToI2s|LastValidDL\(2) & ( (!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(8) & (\TheParToI2s|BclkCtr\(3)))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (((!\TheParToI2s|BclkCtr\(3)) # 
+-- (\TheParToI2s|LastValidDL\(10))))) ) ) # ( !\TheParToI2s|LastValidDL\(2) & ( (\TheParToI2s|BclkCtr\(3) & ((!\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & (\TheParToI2s|LastValidDL\(8))) # (\TheParToI2s|BclkCtr[1]~DUPLICATE_q\ & 
+-- ((\TheParToI2s|LastValidDL\(10)))))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000010000010101000001000001010100100110001101110010011000110111",
+	lut_mask => "0000010000000111000001000000011100110100001101110011010000110111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \TheParToI2s|ALT_INV_BclkCtr\(3),
+	dataa => \TheParToI2s|ALT_INV_LastValidDL\(8),
 	datab => \TheParToI2s|ALT_INV_BclkCtr[1]~DUPLICATE_q\,
-	datac => \TheParToI2s|ALT_INV_LastValidDL\(8),
+	datac => \TheParToI2s|ALT_INV_BclkCtr\(3),
 	datad => \TheParToI2s|ALT_INV_LastValidDL\(10),
 	dataf => \TheParToI2s|ALT_INV_LastValidDL\(2),
 	combout => \TheParToI2s|Mux1~0_combout\);
 
--- Location: LABCELL_X56_Y4_N24
+-- Location: LABCELL_X56_Y2_N39
 \TheParToI2s|Selector10~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \TheParToI2s|Selector10~1_combout\ = ( !\TheParToI2s|BclkCtr\(0) & ( (\TheParToI2s|Selector10~0_combout\ & ((!\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & (\TheParToI2s|Mux1~0_combout\)) # (\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & 
--- (((\TheParToI2s|Mux1~1_combout\)))))) ) ) # ( \TheParToI2s|BclkCtr\(0) & ( (\TheParToI2s|Selector10~0_combout\ & ((!\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & (\TheParToI2s|Mux1~2_combout\)) # (\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & 
+-- \TheParToI2s|Selector10~1_combout\ = ( !\TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & ( (\TheParToI2s|Selector10~0_combout\ & ((!\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & (\TheParToI2s|Mux1~0_combout\)) # (\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & 
+-- (((\TheParToI2s|Mux1~1_combout\)))))) ) ) # ( \TheParToI2s|BclkCtr[0]~DUPLICATE_q\ & ( (\TheParToI2s|Selector10~0_combout\ & ((!\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & (\TheParToI2s|Mux1~2_combout\)) # (\TheParToI2s|BclkCtr[2]~DUPLICATE_q\ & 
 -- (((\TheParToI2s|Mux1~3_combout\)))))) ) )
 
 -- pragma translate_off
@@ -12804,12 +12722,12 @@ PORT MAP (
 	datab => \TheParToI2s|ALT_INV_BclkCtr[2]~DUPLICATE_q\,
 	datac => \TheParToI2s|ALT_INV_Mux1~2_combout\,
 	datad => \TheParToI2s|ALT_INV_Mux1~3_combout\,
-	datae => \TheParToI2s|ALT_INV_BclkCtr\(0),
+	datae => \TheParToI2s|ALT_INV_BclkCtr[0]~DUPLICATE_q\,
 	dataf => \TheParToI2s|ALT_INV_Mux1~1_combout\,
 	datag => \TheParToI2s|ALT_INV_Mux1~0_combout\,
 	combout => \TheParToI2s|Selector10~1_combout\);
 
--- Location: LABCELL_X55_Y4_N15
+-- Location: LABCELL_X55_Y2_N39
 \TheParToI2s|oLrc~0\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \TheParToI2s|oLrc~0_combout\ = ( \TheParToI2s|State.FirstBitEmptyL~q\ ) # ( !\TheParToI2s|State.FirstBitEmptyL~q\ & ( \TheParToI2s|State.SendingL~q\ ) )
@@ -12817,11 +12735,11 @@ PORT MAP (
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0000000011111111000000001111111111111111111111111111111111111111",
+	lut_mask => "0000111100001111000011110000111111111111111111111111111111111111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	datad => \TheParToI2s|ALT_INV_State.SendingL~q\,
+	datac => \TheParToI2s|ALT_INV_State.SendingL~q\,
 	dataf => \TheParToI2s|ALT_INV_State.FirstBitEmptyL~q\,
 	combout => \TheParToI2s|oLrc~0_combout\);
 
@@ -12924,7 +12842,7 @@ PORT MAP (
 	i => ww_iADCdat,
 	o => \iADCdat~input_o\);
 
--- Location: LABCELL_X17_Y45_N3
+-- Location: MLABCELL_X47_Y60_N3
 \~QUARTUS_CREATED_GND~I\ : cyclonev_lcell_comb
 -- Equation(s):
 

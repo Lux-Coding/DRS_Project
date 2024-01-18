@@ -96,6 +96,8 @@ static irqreturn_t handler(int irq, void *data)
 	u32 irq_config = ioread32(rcvr->register_base + RECEIVER_CONFIG_REG);
 	irq_config |= RECEIVER_IRQ_RESET;
 	
+	printk(KERN_INFO "timestamp written data: %lu\n",timestamp);
+
 	spin_lock_irqsave(&rcvr->lock, flags);	
 
 	if(kfifo_is_empty(&timestamps)){
@@ -258,6 +260,7 @@ static ssize_t receiver_read(struct file *filp, char __user *buff,
 	ssize_t copied = 0;
 	unsigned long flags;
 	int err = 0;
+	u64 timestamp = 0;
 
 	struct receiver *rcvr = container_of(
 		filp->private_data, struct receiver, misc);
@@ -274,9 +277,14 @@ static ssize_t receiver_read(struct file *filp, char __user *buff,
 
 	// output the samples of the fifo to the user
 	spin_lock_irqsave(&rcvr->lock, flags);
-	ret = kfifo_to_user(&timestamps, buff, sizeof(u64), &copied);
+	//ret = kfifo_to_user(&timestamps, buff, sizeof(u64), &copied);
+	
+	kfifo_get(&timestamps,&timestamp);
+	
 	spin_unlock_irqrestore(&rcvr->lock, flags);
 	
+	printk(KERN_INFO "timestamp written data: %lu\n",timestamp);
+
 	pr_info("receiver: written: %d Bytes\n", copied);
 	
 	return copied;

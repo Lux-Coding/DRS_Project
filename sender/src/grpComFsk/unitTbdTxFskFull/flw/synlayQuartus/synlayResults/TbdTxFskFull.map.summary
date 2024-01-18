@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Wed Jan 10 21:55:45 2024
+Analysis & Synthesis Status : Successful - Thu Jan 18 11:16:02 2024
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : TbdTxFskFull
 Top-level Entity Name : TbdTxFskFull
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 236
+Total registers : 234
 Total pins : 111
 Total virtual pins : 0
 Total block memory bits : 14,336

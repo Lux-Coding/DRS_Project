@@ -14,8 +14,8 @@ architecture Rtl of TbdTxFskFull is
 
   constant cI2cStrobeFrequency : natural := 750E3;
   constant cMclkFrequency      : natural := 12E6;
-  constant cCodecParamSet      : aParamSetName := MicroSlaveSampleRate44k1;
-  constant cSampleRate         : natural := cDefaultSampleRate;
+  constant cCodecParamSet      : aParamSetName := MicroSlaveSampleRate96k;
+  constant cSampleRate         : natural := 96000;
 
   signal Clk48MHz    : std_ulogic;
   signal PllLocked   : std_ulogic;
