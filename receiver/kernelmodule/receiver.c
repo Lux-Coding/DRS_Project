@@ -16,6 +16,7 @@
 #include <linux/ktime.h>
 #include <linux/wait.h>
 #include <linux/sched.h>
+#include <linux/uaccess.h>
 
 #define RECEIVER_DRIVER_NAME    "receiver"
 #define FIFO_SIZE               16
@@ -280,6 +281,7 @@ static ssize_t receiver_read(struct file *filp, char __user *buff,
 	//ret = kfifo_to_user(&timestamps, buff, sizeof(u64), &copied);
 	
 	kfifo_get(&timestamps,&timestamp);
+	copy_to_user(buff, &timestamp, sizeof(u64));
 	
 	spin_unlock_irqrestore(&rcvr->lock, flags);
 	
