@@ -22,7 +22,7 @@ int main() {
 		data5 = data[5];
 		data6 = data[6];
 		data7 = data[7];
-		result = (data7 << 7 * 8) | (data6 << 6 * 8) | (data5 << 5 * 8) | (data4 << 4 * 8) | (data3 << 3 * 8) | (data2 << 2 * 8) | (data1 << 1 * 8) | data0; 		
+		result = (data7 << (7 * 8)) | (data6 << (6 * 8)) | (data5 << (5 * 8)) | (data4 << (4 * 8)) | (data3 << (3 * 8)) | (data2 << (2 * 8)) | (data1 << (1 * 8)) | data0; 		
 		std::cout << "data:" << result << std::endl;	
 	}
 	return 0;
