@@ -97,7 +97,7 @@ static irqreturn_t handler(int irq, void *data)
 	u32 irq_config = ioread32(rcvr->register_base + RECEIVER_CONFIG_REG);
 	irq_config |= RECEIVER_IRQ_RESET;
 	
-	printk(KERN_INFO "timestamp written data: %lu\n",timestamp);
+	printk(KERN_INFO "timestamp written data: %llu\n",timestamp);
 
 	spin_lock_irqsave(&rcvr->lock, flags);	
 
@@ -285,7 +285,7 @@ static ssize_t receiver_read(struct file *filp, char __user *buff,
 	
 	spin_unlock_irqrestore(&rcvr->lock, flags);
 	
-	printk(KERN_INFO "timestamp written data: %lu\n",timestamp);
+	printk(KERN_INFO "timestamp read data: %llu\n",timestamp);
 
 	pr_info("receiver: written: %d Bytes\n", copied);
 	
