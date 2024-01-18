@@ -39,14 +39,14 @@ entity DrsReceiver is
               Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 2/freq. 1
         3 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 3/freq. 0
               Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 3/freq. 1
-        4 => (Bandpass0 => ( cBandpass0Ch4 ),     -- band pass for Channel 4/freq. 0
-              Bandpass1 => ( cBandpass1Ch4 )),    -- band pass for Channel 4/freq. 1
+        4 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 4/freq. 0
+              Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 4/freq. 1
         5 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 5/freq. 0
               Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 5/freq. 1
         6 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 6/freq. 0
               Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 6/freq. 1
-        7 => (Bandpass0 => ( cBandpass0Ch7 ),     -- band pass for Channel 7/freq. 0
-              Bandpass1 => ( cBandpass1Ch7 )),    -- band pass for Channel 7/freq. 1
+        7 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 7/freq. 0
+              Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 7/freq. 1
         8 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 8/freq. 0
               Bandpass1 => ( cZeroBandpass )),    -- band pass for Channel 8/freq. 1
         9 => (Bandpass0 => ( cZeroBandpass ),     -- band pass for Channel 9/freq. 0
