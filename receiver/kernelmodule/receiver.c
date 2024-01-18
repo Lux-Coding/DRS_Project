@@ -92,25 +92,25 @@ static irqreturn_t handler(int irq, void *data)
 	u64 const timestamp = ((u64)time_high << 32) | time_low;
     u64 old_time = 0;
 
-	printk(KERN_INFO "got an interrupt, time high is %u, time low is %u",time_high,time_low);
-
 	u32 irq_config = ioread32(rcvr->register_base + RECEIVER_CONFIG_REG);
 	irq_config |= RECEIVER_IRQ_RESET;
 	
+	printk(KERN_INFO "got an interrupt, time high is %u, time low is %u",time_high,time_low);
 	printk(KERN_INFO "timestamp written data: %llu\n",timestamp);
 
-	spin_lock_irqsave(&rcvr->lock, flags);	
+	spin_lock_irqsave(&rcvr->lock, flags);
 
 	if(kfifo_is_empty(&timestamps)){
 		wake_up = 1;
 	}
-
+	
 	if (kfifo_is_full(&timestamps) == 1) {
 		val = kfifo_get(&timestamps, &old_time);
 	}
     val = kfifo_put(&timestamps, timestamp);
 	spin_unlock_irqrestore(&rcvr->lock, flags);
 
+	wake_up_interruptible(&rcvr->wq);
 	iowrite32(irq_config, rcvr->register_base + RECEIVER_CONFIG_REG);
 
 	if(wake_up){
@@ -168,7 +168,7 @@ static int receiver_probe(struct platform_device *pdev)
 		return status;
 	}
 
-	// check if the fifo is initialized
+	// // check if the fifo is initialized
 	if (kfifo_initialized(&timestamps) == 0) {
 		dev_crit(&pdev->dev, "Failed to initialize kfifo");
 		return status;
@@ -224,36 +224,6 @@ static int receiver_remove(struct platform_device *pdev)
 	return 0;
 }
 
-// static ssize_t receiver_read(struct file *filp, char __user *buff,
-// 	size_t count, loff_t *offp)
-// {
-// 	int ret = 0;
-// 	ssize_t copied = 0;
-// 	unsigned long flags;
-
-// 	struct receiver *rcvr = container_of(
-// 		filp->private_data, struct receiver, misc);
-
-// 	// check if at least one sample can be read
-// 	if (count >= sizeof(u64)) {
-// 		// set count a multiple of the size of a sample
-// 		if (count % sizeof(u64) != 0)
-// 			count -= count % sizeof(u64);
-
-// 		// wait until the fifo is not empty
-// 		wait_event_interruptible(rcvr->wq, !kfifo_is_empty(&timestamps));
-
-// 		// output the samples of the fifo to the user
-// 		spin_lock_irqsave(&rcvr->lock, flags);
-// 		ret = kfifo_to_user(&timestamps, buff, count, &copied);
-// 		spin_unlock_irqrestore(&rcvr->lock, flags);
-// 	}
-	
-// 	pr_info("receiver: written: %d Bytes\n", copied);
-	
-// 	return copied;
-// }
-
 static ssize_t receiver_read(struct file *filp, char __user *buff,
 	size_t count, loff_t *offp)
 {
@@ -261,7 +231,6 @@ static ssize_t receiver_read(struct file *filp, char __user *buff,
 	ssize_t copied = 0;
 	unsigned long flags;
 	int err = 0;
-	u64 timestamp = 0;
 
 	struct receiver *rcvr = container_of(
 		filp->private_data, struct receiver, misc);
@@ -271,25 +240,19 @@ static ssize_t receiver_read(struct file *filp, char __user *buff,
 	}
 
 	// wait until the fifo is not empty
-	 if ((err = wait_event_interruptible(rcvr->wq, !kfifo_is_empty(&timestamps))))
-	 {
+	if ((err = wait_event_interruptible(rcvr->wq, !kfifo_is_empty(&timestamps))))
+	{
 		return err;
-	 }
+	}
 
 	// output the samples of the fifo to the user
 	spin_lock_irqsave(&rcvr->lock, flags);
-	//ret = kfifo_to_user(&timestamps, buff, sizeof(u64), &copied);
-	
-	kfifo_get(&timestamps,&timestamp);
-	copy_to_user(buff, &timestamp, sizeof(u64));
-	
+	ret = kfifo_to_user(&timestamps, buff, sizeof(u64), &copied);
 	spin_unlock_irqrestore(&rcvr->lock, flags);
 	
-	printk(KERN_INFO "timestamp read data: %llu\n",timestamp);
-
 	pr_info("receiver: written: %d Bytes\n", copied);
 	
-	return sizeof(u64);
+	return copied;
 }
 
 MODULE_LICENSE("GPL");
