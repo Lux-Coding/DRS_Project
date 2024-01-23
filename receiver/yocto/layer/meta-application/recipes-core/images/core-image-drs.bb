@@ -117,3 +117,5 @@ IMAGE_INSTALL += "linuxptp"
 
 # drs app software
 IMAGE_INSTALL += "drsapp"
+IMAGE_INSTALL += "fsk-receiver"
+IMAGE_INSTALL += "receiver-mod"
