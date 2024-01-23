@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import {NodeListComponent} from "./node-list/node-list.component";
-import {QuadraticFieldComponent} from "./quadratic-field/quadratic-field.component";
+import {NodeListComponent} from "./components/node-list/node-list.component";
+import {QuadraticFieldComponent} from "./components/quadratic-field/quadratic-field.component";
 import {interval, Subscription, switchMap} from "rxjs";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 

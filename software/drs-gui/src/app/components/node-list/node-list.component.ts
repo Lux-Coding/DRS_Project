@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NodeComponent} from "../node/node.component";
 import {NgForOf} from "@angular/common";
-import { Node } from '../models/node.model';
+import { Node } from '../../models/node.model';
 
 @Component({
   selector: 'app-node-list',

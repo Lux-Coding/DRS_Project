@@ -1,6 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
-import {NodePageComponent} from "./node-page/node-page.component";
-import {ConfigurationPageComponent} from "./configuration-page/configuration-page.component";
+import {NodePageComponent} from "./pages/node-page/node-page.component";
+import {ConfigurationPageComponent} from "./pages/configuration-page/configuration-page.component";
 import {NgModule} from "@angular/core";
 
 export const routes: Routes = [
