@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Node {{ node.name }} Configuration</mat-card-title>
+      </mat-card-header>
+    <mat-card-content style="margin-top: 16px;">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Node Name</mat-label>
+                <input matInput placeholder="Receiver 1" (value)="node.name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>IP Address</mat-label>
+                <input matInput placeholder="192.168.0.1" value="">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Position</mat-label>
+                <mat-select>
+                    <mat-option value="none">None</mat-option>
+                    <mat-option value="topLeft">Top left</mat-option>
+                    <mat-option value="topRight">Top right</mat-option>
+                    <mat-option value="bottomLeft">Bottom left</mat-option>
+                    <mat-option value="bottomRight">Bottom right</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+</mat-card>
