@@ -35,9 +35,9 @@ def send_udp(timestamp, mac_address, count, host='your_udp_server_ip', port=1234
         print(f"Error sending UDP packet: {e}")
 
 def main():
-    char_device_path = '/dev/random'
+    char_device_path = '/dev/receiver'
     eth_device_name = 'eth0'
-    udp_server_ip = '10.24.99.103'
+    udp_server_ip = '10.27.98.104'
     udp_server_port = 12345
 
     try:
@@ -50,7 +50,7 @@ def main():
                 #    break  # Exit if the device is closed
 
                 # Unpack the binary data into a timestamp (Q = unsigned long long)
-                timestamp = struct.unpack('!Q', timestamp_bytes)[0]
+                timestamp = struct.unpack('Q', timestamp_bytes)[0]
 
                 # Get the MAC address of the Linux device
                 mac_address = get_mac_address(eth_device_name)
@@ -58,6 +58,7 @@ def main():
                 # Send the data in JSON format via UDP
                 print(timestamp, mac_address, count, udp_server_ip, udp_server_port)
                 send_udp(timestamp, mac_address, count, udp_server_ip, udp_server_port)
+                count = count + 1
                 time.sleep(1)
     except FileNotFoundError:
         print(f"Error: {char_device_path} not found.")
