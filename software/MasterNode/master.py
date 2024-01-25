@@ -86,7 +86,20 @@ def calculate_pos():
 
 @app.route('/status', methods=['GET'])
 def get_data():
-    return jsonify(dict(shared_data))
+    data_dict = {
+    "MAC": "",
+    "Timestamp": 1,
+    "Count": 1
+    }
+    data_list = []
+    for mac, timestamp in shared_data.items():
+        data_dict["MAC"] = mac
+        print(mac)
+        data_dict["Timestamp"] = timestamp[0]
+        data_dict["Count"] = timestamp[1]
+        data_list.append(data_dict)
+
+    return jsonify(data_list)
 
 
 @app.route('/pos', methods=['GET'])
