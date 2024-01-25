@@ -1,0 +1,12 @@
+[Unit]
+Description=Your CharDev to Socket Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/root/chardev_to_socket.py
+WorkingDirectory=/home/root
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
