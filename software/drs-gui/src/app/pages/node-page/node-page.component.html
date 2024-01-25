@@ -1,9 +1,25 @@
 <div class="container">
-    <div class="left-side">
-        <app-node-list></app-node-list>
+    <div class="left-container">
+        <!-- <app-node-list></app-node-list> -->
+        <ng-container *ngFor="let node of nodes">
+            <app-node *ngIf="node.position === 0" 
+                      [name]="node.name" 
+                      [status]="node.status" 
+                      [rcvCounter]="node.rcvCounter" 
+                      [lastToa]="node.lastToa">
+            </app-node>
+        </ng-container>
+        <ng-container *ngFor="let node of nodes">
+            <app-node *ngIf="node.position === 1" 
+                      [name]="node.name" 
+                      [status]="node.status" 
+                      [rcvCounter]="node.rcvCounter" 
+                      [lastToa]="node.lastToa">
+            </app-node>
+        </ng-container>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="right-side">
+    <div class="center-container">
         <div class="pill-group">
             @for (item of [
             {
@@ -25,5 +41,25 @@
             <app-quadratic-field></app-quadratic-field>
             <button (click)="placePoint()">Place Point</button>
         </div>
+    </div>
+    <div class="divider" role="separator" aria-label="Divider"></div>
+    <div class="right-container">
+        <!-- <app-node-list></app-node-list> -->
+        <ng-container *ngFor="let node of nodes">
+            <app-node *ngIf="node.position === 2" 
+                      [name]="node.name" 
+                      [status]="node.status" 
+                      [rcvCounter]="node.rcvCounter" 
+                      [lastToa]="node.lastToa">
+            </app-node>
+        </ng-container>
+        <ng-container *ngFor="let node of nodes">
+            <app-node *ngIf="node.position === 3" 
+                      [name]="node.name" 
+                      [status]="node.status" 
+                      [rcvCounter]="node.rcvCounter" 
+                      [lastToa]="node.lastToa">
+            </app-node>
+        </ng-container>
     </div>
 </div>

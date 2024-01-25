@@ -6,11 +6,12 @@ import { NodeListComponent } from '../../components/node-list/node-list.componen
 import { NodeComponent } from '../../components/node/node.component';
 import { DataService } from '../../services/data.service';
 import { Node } from '../../models/node.model';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-node-page',
   standalone: true,
-  imports: [NodeListComponent, QuadraticFieldComponent, HttpClientModule, NodeComponent],
+  imports: [NodeListComponent, QuadraticFieldComponent, HttpClientModule, NodeComponent, NgFor, NgIf],
   templateUrl: './node-page.component.html',
   styleUrl: './node-page.component.css'
 })

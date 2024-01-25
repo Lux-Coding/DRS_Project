@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     gap: 1.25rem;
 }
+
 .pill {
     display: flex;
     align-items: center;
@@ -51,9 +52,11 @@ p {
     margin: 0;
     color: var(--gray-700);
 }
+
 .angular-logo {
     max-width: 9.2rem;
 }
+
 .divider {
     width: 1px;
     background: var(--red-to-pink-to-purple-vertical-gradient);
@@ -62,12 +65,25 @@ p {
 
 .container {
     display: flex;
-  }
-  
-  .left-side {
-    flex: 0 0 30%;
-  }
-  
-  .right-side {
-    flex: 0 0 70%;
-  }
+    height: 100%;
+    /* background-color: antiquewhite; */
+}
+
+.center-container {
+    flex: 0 0 50%;
+}
+
+/* .left-container {
+    flex: 0 0 25%;
+    background-color: antiquewhite;
+  } */
+
+.right-container,
+.left-container {
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex: 0 0 25%;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+}
