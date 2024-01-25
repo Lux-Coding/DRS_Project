@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Node } from '../models/node.model';
+import { Coordinate } from '../models/coordinate.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,18 @@ export class DataService {
   // private apiUrl: string = 'http://localhost:5000/pos';
   private apiUrl: string = 'http://localhost:5000';
 
+  private point: Coordinate = { x: 25, y: 25 };
+
   constructor() { }
+
+
+  getPoint(): Coordinate {
+    return this.point;
+  }
+
+  updateCoordinate(newPoint: Coordinate ){
+    this.point = newPoint;
+  }
 
   getApi(): string {
     return this.apiUrl;

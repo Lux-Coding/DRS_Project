@@ -15,9 +15,9 @@ import { DataService } from '../../services/data.service';
 export class ConfigureNodeListComponent implements OnInit {
   nodes: Node[];
   
-  constructor(private nodeService: DataService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.nodes = this.nodeService.getNodes();
+    this.nodes = this.dataService.getNodes();
   }
 }
