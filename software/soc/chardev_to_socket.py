@@ -59,7 +59,7 @@ def main():
                 print(timestamp, mac_address, count, udp_server_ip, udp_server_port)
                 send_udp(timestamp, mac_address, count, udp_server_ip, udp_server_port)
                 count = count + 1
-                time.sleep(1)
+                #time.sleep(1)
     except FileNotFoundError:
         print(f"Error: {char_device_path} not found.")
     except KeyboardInterrupt:
