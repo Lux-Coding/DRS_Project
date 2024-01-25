@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,5 +13,12 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './configure-master.component.css'
 })
 export class ConfigureMasterComponent {
+  @Input() apiUrl: string;
 
+  updateApi(event: Event): void {
+    const input = event.target as HTMLInputElement | null;
+    if (input) {
+      this.apiUrl = input.value;
+    }
+  }
 }

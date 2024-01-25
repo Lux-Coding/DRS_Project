@@ -16,4 +16,32 @@ import { Node } from '../../models/node.model';
 })
 export class ConfigureNodeComponent {
   @Input() node: Node;
+
+  updateNodeName(event: Event): void {
+    const input = event.target as HTMLInputElement | null;
+    if (input) {
+      this.node.name = input.value;
+    }
+  }
+
+  updateNodeIP(event: Event): void {
+    const input = event.target as HTMLInputElement | null;
+    if (input) {
+      this.node.ip = input.value;
+    }
+  }
+
+  updateNodePosition(event: Event): void {
+    const input = event.target as HTMLInputElement | null;
+    if (input) {
+      console.log(input.value)
+      // this.node.name = input.value;
+    }
+  }
+  onPositionChange(): void {
+    console.log('Selected position:', this.node.position);
+    
+    // Additional logic for when the position changes...
+  }
+
 }
